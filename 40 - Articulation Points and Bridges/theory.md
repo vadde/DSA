@@ -43,7 +43,7 @@ Tarjan's DFS for finding a Bridge:
 flowchart TD
     A["Node 1 (Time: 1)"] --> B["Node 2 (Time: 2)"]
     B --> C["Node 3 (Time: 3)"]
-    C -->|Back-edge!| A
+    C -->|"Back-edge!"| A
     B --> D["Node 4 (Time: 4)"]
     
     style D fill:#eab308,stroke:#000

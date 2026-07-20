@@ -50,7 +50,7 @@ flowchart TD
 ```mermaid
 flowchart LR
     Head((Head)) --> N1((Node 1)) --> N2((Node 2)) --> N3((Node 3)) --> N4((Node 4))
-    N4 -.-> |Cycle!| N2
+    N4 -.->|"Cycle!"| N2
 
     subgraph "Step 1"
     S1[Slow] --> Head

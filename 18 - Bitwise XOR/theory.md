@@ -28,7 +28,7 @@ It has three incredibly useful mathematical properties:
 
 ```mermaid
 flowchart TD
-    subgraph XOR Properties
+    subgraph "XOR Properties"
     A["7 ^ 7 = 0"]
     B["7 ^ 0 = 7"]
     C["a ^ b ^ a = b"]

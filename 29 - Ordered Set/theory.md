@@ -39,7 +39,7 @@ Using Binary Search (`bisect`) to find neighbors:
 flowchart TD
     A["Sorted Bookings: [ (9, 10), (14, 15), (16, 17) ]"]
     B["New Booking: (11, 12)"]
-    A -->|bisect_right| C["Index 1"]
+    A -->|"bisect_right"| C["Index 1"]
     C --> D["Check index 1: (14, 15) -> 14 >= 12 (OK)"]
     C --> E["Check index 0: (9, 10) -> 10 <= 11 (OK)"]
     D --> F["Insert at Index 1"]

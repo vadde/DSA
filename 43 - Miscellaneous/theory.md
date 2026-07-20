@@ -49,8 +49,8 @@ flowchart LR
     Node2["Key: 2, Val: B"]
     Tail["Tail (Dummy)"]
     
-    Map -->|Key 1| Node1
-    Map -->|Key 2| Node2
+    Map -->|"Key 1"| Node1
+    Map -->|"Key 2"| Node2
     
     Head <--> Node2
     Node2 <--> Node1

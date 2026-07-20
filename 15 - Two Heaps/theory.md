@@ -44,7 +44,7 @@ flowchart TD
     D --> F
     end
     
-    A -. Median = (5+8)/2 = 6.5 .- D
+    A -.-|"Median = (5+8)/2 = 6.5"| D
     
     classDef maxH fill:#ffcccb,stroke:#333,stroke-width:2px;
     classDef minH fill:#cce5ff,stroke:#333,stroke-width:2px;
