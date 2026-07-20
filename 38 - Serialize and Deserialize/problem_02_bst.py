@@ -2,7 +2,8 @@
 ============================================================
 Problem: Serialize and Deserialize BST
 Pattern: Serialize and Deserialize
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 LeetCode: #449
 ============================================================
 
@@ -22,6 +23,11 @@ COMPLEXITY:
 -----------
 Time:  O(N) for both.
 Space: O(N)
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

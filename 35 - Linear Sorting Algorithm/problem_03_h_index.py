@@ -2,7 +2,8 @@
 ============================================================
 Problem: H-Index
 Pattern: Counting Sort (Linear Sorting)
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 LeetCode: #274
 ============================================================
 
@@ -26,6 +27,11 @@ COMPLEXITY:
 -----------
 Time:  O(N)
 Space: O(N)
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

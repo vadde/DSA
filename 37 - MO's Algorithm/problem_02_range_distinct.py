@@ -2,7 +2,8 @@
 ============================================================
 Problem: Range Distinct Elements
 Pattern: MO's Algorithm
-Difficulty: Hard
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Hard
 ============================================================
 
 UNDERSTANDING THE PROBLEM (Explain Like I'm 5):
@@ -27,6 +28,11 @@ COMPLEXITY:
 -----------
 Time:  O(Q log Q + Q * sqrt(N))
 Space: O(N + Q)
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

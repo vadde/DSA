@@ -2,7 +2,8 @@
 ============================================================
 Problem: Copy List with Random Pointer
 Pattern: Clone Pattern (Weaving Trick)
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 LeetCode: #138
 ============================================================
 
@@ -27,6 +28,11 @@ COMPLEXITY:
 -----------
 Time:  O(N) — 3 passes.
 Space: O(1) — No Hash Map used!
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

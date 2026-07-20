@@ -2,7 +2,8 @@
 ============================================================
 Problem: Subsets Having Sum Between A and B
 Pattern: Meet in the Middle
-Difficulty: Hard
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Hard
 ============================================================
 
 UNDERSTANDING THE PROBLEM (Explain Like I'm 5):

@@ -2,7 +2,8 @@
 ============================================================
 Problem: Top K Frequent Elements
 Pattern: Bucket Sort (Linear Sorting)
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 LeetCode: #347
 ============================================================
 
@@ -25,6 +26,11 @@ COMPLEXITY:
 -----------
 Time:  O(N) — Counting takes O(N), bucket placement takes O(N), gathering takes O(N).
 Space: O(N) — Buckets and hash map.
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

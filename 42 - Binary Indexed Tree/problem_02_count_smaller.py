@@ -2,7 +2,8 @@
 ============================================================
 Problem: Count of Smaller Numbers After Self
 Pattern: Binary Indexed Tree
-Difficulty: Hard
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Hard
 LeetCode: #315
 ============================================================
 
@@ -31,6 +32,11 @@ COMPLEXITY:
 -----------
 Time:  O(N log N)
 Space: O(N)
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

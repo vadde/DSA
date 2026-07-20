@@ -2,7 +2,8 @@
 ============================================================
 Problem: Range Sum Query (MO's Algorithm Intro)
 Pattern: MO's Algorithm
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 ============================================================
 
 UNDERSTANDING THE PROBLEM (Explain Like I'm 5):
@@ -24,6 +25,11 @@ COMPLEXITY:
 -----------
 Time:  O(Q log Q + Q * sqrt(N))
 Space: O(Q)
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

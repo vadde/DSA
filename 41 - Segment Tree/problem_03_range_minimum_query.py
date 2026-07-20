@@ -2,7 +2,8 @@
 ============================================================
 Problem: Range Minimum Query (Segment Tree)
 Pattern: Segment Tree
-Difficulty: Easy
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Easy
 ============================================================
 
 UNDERSTANDING THE PROBLEM (Explain Like I'm 5):

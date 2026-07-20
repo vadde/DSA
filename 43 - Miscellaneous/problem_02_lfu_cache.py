@@ -2,7 +2,8 @@
 ============================================================
 Problem: LFU Cache
 Pattern: Hash Maps + Doubly Linked Lists
-Difficulty: Hard
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Hard
 LeetCode: #460
 ============================================================
 
@@ -25,6 +26,11 @@ COMPLEXITY:
 -----------
 Time:  O(1) for all operations.
 Space: O(Capacity)
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

@@ -2,7 +2,8 @@
 ============================================================
 Problem: Clone Graph
 Pattern: Clone Pattern (DFS + Hash Map)
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 LeetCode: #133
 ============================================================
 
@@ -26,6 +27,11 @@ COMPLEXITY:
 -----------
 Time:  O(V + E) — Visit every vertex and edge once.
 Space: O(V) — Hash Map stores all vertices.
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

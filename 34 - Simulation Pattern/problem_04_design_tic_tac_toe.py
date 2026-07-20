@@ -2,7 +2,8 @@
 ============================================================
 Problem: Design Tic-Tac-Toe
 Pattern: Simulation (State Optimization)
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 LeetCode: #348
 ============================================================
 
@@ -24,6 +25,11 @@ COMPLEXITY:
 -----------
 Time:  O(1) per move.
 Space: O(N) to store row and col arrays.
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

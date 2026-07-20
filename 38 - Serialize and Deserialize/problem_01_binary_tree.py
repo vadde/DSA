@@ -2,7 +2,8 @@
 ============================================================
 Problem: Serialize and Deserialize Binary Tree
 Pattern: Serialize and Deserialize
-Difficulty: Hard
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Hard
 LeetCode: #297
 ============================================================
 
@@ -24,6 +25,11 @@ COMPLEXITY:
 -----------
 Time:  O(N) for both.
 Space: O(N) to store the string and recursion stack.
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

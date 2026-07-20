@@ -2,7 +2,8 @@
 ============================================================
 Problem: Range Maximum Query (Mutable)
 Pattern: Segment Tree
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 ============================================================
 
 UNDERSTANDING THE PROBLEM (Explain Like I'm 5):
@@ -23,6 +24,11 @@ COMPLEXITY:
 -----------
 Time:  O(N) to build. O(log N) per update/query.
 Space: O(N) for the tree array.
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

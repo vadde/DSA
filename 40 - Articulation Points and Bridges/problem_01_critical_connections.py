@@ -2,7 +2,8 @@
 ============================================================
 Problem: Critical Connections in a Network
 Pattern: Articulation Points and Bridges (Tarjan's Algorithm)
-Difficulty: Hard
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Hard
 LeetCode: #1192
 ============================================================
 
@@ -30,6 +31,11 @@ COMPLEXITY:
 -----------
 Time:  O(V + E) — Standard DFS traversal.
 Space: O(V + E) — Graph representation and recursion stack.
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

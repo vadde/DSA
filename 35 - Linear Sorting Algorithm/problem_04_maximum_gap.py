@@ -2,7 +2,8 @@
 ============================================================
 Problem: Maximum Gap
 Pattern: Bucket Sort / Pigeonhole Principle
-Difficulty: Hard
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Hard
 LeetCode: #164
 ============================================================
 
@@ -28,6 +29,11 @@ COMPLEXITY:
 -----------
 Time:  O(N)
 Space: O(N)
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

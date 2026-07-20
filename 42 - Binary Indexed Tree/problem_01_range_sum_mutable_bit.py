@@ -2,7 +2,8 @@
 ============================================================
 Problem: Range Sum Query - Mutable (BIT Version)
 Pattern: Binary Indexed Tree (Fenwick Tree)
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 LeetCode: #307
 ============================================================
 
@@ -26,6 +27,11 @@ COMPLEXITY:
 -----------
 Time:  O(N log N) to build. O(log N) for query/update.
 Space: O(N)
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

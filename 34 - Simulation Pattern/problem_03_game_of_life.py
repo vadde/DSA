@@ -2,7 +2,8 @@
 ============================================================
 Problem: Game of Life
 Pattern: Simulation (In-Place State Machine)
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 LeetCode: #289
 ============================================================
 
@@ -32,6 +33,11 @@ COMPLEXITY:
 -----------
 Time:  O(R * C)
 Space: O(1)
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

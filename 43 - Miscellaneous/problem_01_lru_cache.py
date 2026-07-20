@@ -2,7 +2,8 @@
 ============================================================
 Problem: LRU Cache
 Pattern: Hash Map + Doubly Linked List
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 LeetCode: #146
 ============================================================
 
@@ -29,6 +30,11 @@ COMPLEXITY:
 -----------
 Time:  O(1) for all operations.
 Space: O(Capacity)
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

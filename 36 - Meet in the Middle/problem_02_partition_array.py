@@ -2,7 +2,8 @@
 ============================================================
 Problem: Partition Array Into Two Arrays to Minimize Sum Difference
 Pattern: Meet in the Middle
-Difficulty: Hard
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Hard
 LeetCode: #2035
 ============================================================
 
@@ -27,6 +28,11 @@ COMPLEXITY:
 -----------
 Time:  O(2^N * N)
 Space: O(2^N)
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

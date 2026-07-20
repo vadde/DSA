@@ -2,7 +2,8 @@
 ============================================================
 Problem: Sort Colors
 Pattern: Linear Sorting (Counting Sort / Dutch National Flag)
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 LeetCode: #75
 ============================================================
 
@@ -23,6 +24,11 @@ COMPLEXITY:
 -----------
 Time:  O(N) (Two passes)
 Space: O(1) (Only 3 variables for counting)
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

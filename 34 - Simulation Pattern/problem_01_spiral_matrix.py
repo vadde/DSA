@@ -2,7 +2,8 @@
 ============================================================
 Problem: Spiral Matrix
 Pattern: Simulation
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 LeetCode: #54
 ============================================================
 
@@ -25,6 +26,11 @@ COMPLEXITY:
 -----------
 Time:  O(R * C) — Visit each cell once.
 Space: O(1) — (excluding output array).
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

@@ -2,7 +2,8 @@
 ============================================================
 Problem: Subset Sum Equal to Target (Meet in the Middle)
 Pattern: Meet in the Middle
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 ============================================================
 
 UNDERSTANDING THE PROBLEM (Explain Like I'm 5):

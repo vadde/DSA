@@ -2,7 +2,8 @@
 ============================================================
 Problem: Robot Bounded In Circle
 Pattern: Simulation + State Tracking
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 LeetCode: #1041
 ============================================================
 
@@ -29,6 +30,11 @@ COMPLEXITY:
 -----------
 Time:  O(N) — One pass through instructions.
 Space: O(1)
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

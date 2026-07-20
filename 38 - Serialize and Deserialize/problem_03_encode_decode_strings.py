@@ -2,7 +2,8 @@
 ============================================================
 Problem: Encode and Decode Strings
 Pattern: Serialize and Deserialize (Length Prefixing)
-Difficulty: Medium
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Medium
 LeetCode: #271 (Premium)
 ============================================================
 
@@ -23,6 +24,11 @@ COMPLEXITY:
 -----------
 Time:  O(N) where N is total number of characters.
 Space: O(N)
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 

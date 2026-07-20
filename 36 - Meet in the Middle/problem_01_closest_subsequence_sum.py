@@ -2,7 +2,8 @@
 ============================================================
 Problem: Closest Subsequence Sum
 Pattern: Meet in the Middle
-Difficulty: Hard
+Difficulty:
+Link: https://leetcode.com/problem-placeholder/ Hard
 LeetCode: #1755
 ============================================================
 
@@ -26,6 +27,11 @@ COMPLEXITY:
 -----------
 Time:  O(2^(N/2) * log(2^(N/2))) ≈ 20 Million operations (Very fast!)
 Space: O(2^(N/2)) to store the sums.
+
+EDGE CASES:
+-----------
+- Basic empty/null edge cases.
+- Boundary constraints.
 ============================================================
 """
 
