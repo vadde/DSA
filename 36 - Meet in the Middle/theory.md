@@ -1,0 +1,69 @@
+# Pattern 36: Meet in the Middle
+
+## 👶 Explain Like I'm 5
+
+Imagine trying to guess a combination lock with 40 dials.
+Checking every possible combination (`2^40` or 1,000,000,000,000) would take forever!
+Instead, what if you and your friend split the work?
+You write down every possible combo for the first 20 dials (only 1,000,000 options).
+Your friend writes down every possible combo for the last 20 dials (also 1,000,000 options).
+Then, you sort your list, and for each combo your friend has, you quickly Binary Search
+your list to find the perfect match!
+You just turned 1 Trillion operations into a couple million. That's **Meet in the Middle**!
+
+---
+
+## 🧩 Core Idea & Pattern Detection
+
+**Meet in the Middle** is a search technique used when the input size `N` is just a bit
+too large for a pure O(2^N) brute-force Backtracking search (e.g., `N` is around 30-40),
+but small enough that O(2^(N/2)) is completely feasible.
+
+### How it works:
+1. Divide the input array into two equal halves.
+2. Generate all possible subset sums (or combinations) for the Left Half.
+3. Generate all possible subset sums (or combinations) for the Right Half.
+4. Sort the Left Half results.
+5. Iterate through the Right Half results, and use Binary Search (`bisect`) on the
+   Left Half to find the value that brings you closest to your target.
+
+### When to use it:
+- Finding combinations or subset sums.
+- `N` is between 20 and 40. (Too big for O(2^N), too small for O(N^3) DP).
+- Keywords: "Subset sum", "Closest to target", "Partition array into two".
+
+---
+
+## 🔧 Visual Anatomy
+
+Splitting `N=40` to find a Target Sum:
+
+```mermaid
+flowchart TD
+    A["Array N=40"] --> B["Left Half N=20"]
+    A --> C["Right Half N=20"]
+    B --> D["Generate 2^20 Subset Sums"]
+    C --> E["Generate 2^20 Subset Sums"]
+    D --> F["Sort Left Sums O(2^20 log(2^20))"]
+    E --> G["For each sum in Right, Binary Search Left!"]
+    F --> G
+```
+
+---
+
+## ⏱️ Complexity Analysis
+
+| Scenario | Brute Force Time | Meet in Middle Time |
+|----------|------------------|---------------------|
+| Subset Sum N=40 | O(2^40) = 1 Trillion! | O(2^20 * 20) ≈ 20 Million |
+
+Space Complexity is typically O(2^(N/2)) to store the combinations.
+
+---
+
+## ✅ Problems in This Pattern
+
+| # | Problem | Difficulty | LeetCode |
+|---|---------|------------|----------|
+| 1 | Closest Subsequence Sum | Hard | #1755 |
+| 2 | Partition Array Into Two Arrays to Minimize Sum Difference | Hard | #2035 |
