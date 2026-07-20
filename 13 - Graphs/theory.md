@@ -40,7 +40,10 @@ flowchart TD
     class A,B visited;
     class C,D,E unvisited;
     
-    Note right of C: A and B are Visited. <br> C, D, E are Unvisited. <br> Notice that D and E are a completely separate component!
+    N1["A and B are Visited.<br>C, D, E are Unvisited.<br>Notice that D and E are a completely separate component!"]
+    C ~~~ N1
+    classDef note fill:#fff5ad,stroke:#333
+    class N1 note
 ```
 
 ---

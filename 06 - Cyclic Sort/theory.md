@@ -57,27 +57,27 @@ flowchart TD
 
 ```mermaid
 sequenceDiagram
-    participant Index 0
-    participant Index 1
-    participant Index 2
-    participant Index 3
+    participant I0 as Index 0
+    participant I1 as Index 1
+    participant I2 as Index 2
+    participant I3 as Index 3
     
-    Note over Index 0,Index 3: Starting Array: [3, 1, 4, 2]
+    Note over I0,I3: Starting Array: [3, 1, 4, 2]
     
-    Index 0->>Index 0: I have a 3. I belong at Index 2!
-    Index 0-->>Index 2: Swap!
-    Note over Index 0,Index 3: Array becomes: [4, 1, 3, 2]
+    I0->>I0: I have a 3. I belong at Index 2!
+    I0-->>I2: Swap!
+    Note over I0,I3: Array becomes: [4, 1, 3, 2]
     
-    Index 0->>Index 0: I have a 4. I belong at Index 3!
-    Index 0-->>Index 3: Swap!
-    Note over Index 0,Index 3: Array becomes: [2, 1, 3, 4]
+    I0->>I0: I have a 4. I belong at Index 3!
+    I0-->>I3: Swap!
+    Note over I0,I3: Array becomes: [2, 1, 3, 4]
     
-    Index 0->>Index 0: I have a 2. I belong at Index 1!
-    Index 0-->>Index 1: Swap!
-    Note over Index 0,Index 3: Array becomes: [1, 2, 3, 4]
+    I0->>I0: I have a 2. I belong at Index 1!
+    I0-->>I1: Swap!
+    Note over I0,I3: Array becomes: [1, 2, 3, 4]
     
-    Index 0->>Index 0: I have a 1. I am happy. i += 1
-    Index 1->>Index 1: I have a 2. I am happy. i += 1
+    I0->>I0: I have a 1. I am happy. i += 1
+    I1->>I1: I have a 2. I am happy. i += 1
 ```
 
 ---

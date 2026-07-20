@@ -39,8 +39,12 @@ flowchart TD
     
     class ROOT,L,LL path;
     
-    Note right of LL: DFS dives all the way down: 1 -> 2 -> 4
-    Note right of LR: Then backtracks to 2, and dives to 5
+    N1["DFS dives all the way down: 1 -> 2 -> 4"]
+    N2["Then backtracks to 2, and dives to 5"]
+    LL ~~~ N1
+    LR ~~~ N2
+    classDef note fill:#fff5ad,stroke:#333
+    class N1,N2 note
 ```
 
 ---

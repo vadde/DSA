@@ -48,9 +48,14 @@ flowchart TD
     class L,R level1;
     class LL,LR,RL,RR level2;
     
-    Note right of ROOT: Level 0: [1]
-    Note right of R: Level 1: [2, 3]
-    Note right of RR: Level 2: [4, 5, 6, 7]
+    N0["Level 0: [1]"]
+    N1["Level 1: [2, 3]"]
+    N2["Level 2: [4, 5, 6, 7]"]
+    ROOT ~~~ N0
+    R ~~~ N1
+    RR ~~~ N2
+    classDef note fill:#fff5ad,stroke:#333
+    class N0,N1,N2 note
 ```
 
 ---
@@ -72,21 +77,21 @@ In Python, we use `collections.deque` (double-ended queue) for our Queue because
 ```mermaid
 sequenceDiagram
     participant Problem
-    participant Queue (Deque)
+    participant Queue as Queue (Deque)
     
-    Note over Queue (Deque): Initial: [1]
-    Problem->>Queue (Deque): level_size = 1
-    Queue (Deque)-->>Problem: popleft() -> 1
-    Problem->>Queue (Deque): append(2), append(3)
+    Note over Queue: Initial: [1]
+    Problem->>Queue: level_size = 1
+    Queue-->>Problem: popleft() -> 1
+    Problem->>Queue: append(2), append(3)
     
-    Note over Queue (Deque): Queue: [2, 3]
-    Problem->>Queue (Deque): level_size = 2
-    Queue (Deque)-->>Problem: popleft() -> 2
-    Problem->>Queue (Deque): append(4), append(5)
-    Queue (Deque)-->>Problem: popleft() -> 3
-    Problem->>Queue (Deque): append(6), append(7)
+    Note over Queue: Queue: [2, 3]
+    Problem->>Queue: level_size = 2
+    Queue-->>Problem: popleft() -> 2
+    Problem->>Queue: append(4), append(5)
+    Queue-->>Problem: popleft() -> 3
+    Problem->>Queue: append(6), append(7)
     
-    Note over Queue (Deque): Queue: [4, 5, 6, 7]
+    Note over Queue: Queue: [4, 5, 6, 7]
 ```
 
 ---
