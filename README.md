@@ -1,22 +1,6 @@
-# 🧠 Data Structures & Algorithms (DSA) Interview Notebook
+# 🧠 Data Structures & Algorithms (DSA) Patterns Appendix
 
-![Python Version](https://img.shields.io/badge/Python-3.14%2B-blue?style=for-the-badge&logo=python)
-![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
-![Patterns](https://img.shields.io/badge/Patterns-43-orange?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-
-Welcome to the comprehensive, open-source DSA notebook. This repository is heavily inspired by the "Grokking the Coding Interview" course, but extensively modified and augmented to include advanced paradigms, mathematical edge cases, and "out of the box" LeetCode Hard problems not covered in the original syllabus.
-
-This notebook is built on three core pillars:
-1. **Explain Like I'm 5**: Analogies and simple language first. No academic jargon.
-2. **Diagram-First Principle**: Every concept must have a visual representation.
-3. **Strict Python Standards**: Clean, idiomatic code utilizing typing and standard libraries.
-
----
-
-## 📚 Master Index
-
-Below are the 43 core coding patterns that this notebook covers. 
+Below are the 43 core coding patterns covered in this repository. 
 *(Checkmarks [x] indicate folders where theory and problems have been fully implemented).*
 
 - `[x]` [01 - Warmup](./01%20-%20Warmup/)
@@ -62,19 +46,3 @@ Below are the 43 core coding patterns that this notebook covers.
 - `[x]` [41 - Segment Tree](./41%20-%20Segment%20Tree/)
 - `[x]` [42 - Binary Indexed Tree](./42%20-%20Binary%20Indexed%20Tree/)
 - `[x]` [43 - Miscellaneous](./43%20-%20Miscellaneous/)
-
----
-
-## 💡 Philosophy & Contribution
-
-This repository is designed to be the ultimate companion for cracking the coding interview. It goes beyond just giving you code:
-
-- **🧠 Deep Understanding**: Every pattern is broken down using the **Explain Like I'm 5** method.
-- **🖼️ Visual Learning**: We use Mermaid diagrams to map out state changes and pattern structures.
-- **🚀 Advanced Variations**: You won't just find basic questions here. We've included carefully curated "Hidden Document" problems and LeetCode Hards to ensure you're ready for anything.
-- **🐍 Pythonic Excellence**: All code adheres to strict, modern Python 3.14+ standards.
-
-Feel free to explore the patterns above. Happy coding, and good luck with your interviews! 💖
-
----
-*Built with love and rigorous self-critique.*
