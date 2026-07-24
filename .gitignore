@@ -2,3 +2,6 @@ _internal/
 Groking
 .DS_Store
 **/.DS_Store
+
+solution_*.py
+
