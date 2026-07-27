@@ -2,6 +2,7 @@
 
 Below are the 43 core coding patterns covered in this repository.
 
+- [00 - Fundamentals](./00%20-%20Fundamentals/)
 - [01 - Warmup](./01%20-%20Warmup/)
 - [02 - Two Pointers](./02%20-%20Two%20Pointers/)
 - [03 - Fast & Slow Pointers](./03%20-%20Fast%20&%20Slow%20Pointers/)
