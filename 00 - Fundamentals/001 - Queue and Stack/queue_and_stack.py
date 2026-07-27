@@ -169,3 +169,26 @@ if __name__ == "__main__":
     assert queue.dequeue() == "Charlie"
     assert queue.is_empty
     print("✅ Queue tests passed!")
+
+# ==============================================================================
+# ⚠️ PYTHON < 3.12 COMPATIBILITY FALLBACK
+# ==============================================================================
+# The modern `class Name[T]:` syntax (PEP 695) requires Python 3.12+.
+# If you are running this code in an older environment (like an online IDE), 
+# you will get a "SyntaxError: invalid syntax".
+# 
+# To fix this, replace the modern syntax with the traditional Generic typing:
+# 
+# 1. Import Generic and TypeVar:
+#    from typing import Generic, TypeVar
+# 
+# 2. Define the TypeVar:
+#    T = TypeVar('T')
+# 
+# 3. Inherit from Generic[T]:
+#    class Node(Generic[T]):
+#        ...
+#    
+#    class DataStructure(Generic[T]):
+#        ...
+# ==============================================================================
