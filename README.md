@@ -3,9 +3,14 @@
 Below are the 43 core coding patterns covered in this repository.
 
 - [00 - Fundamentals](./00%20-%20Fundamentals/)
-  - [01 - Linked List](./00%20-%20Fundamentals/01%20-%20Linked%20List/)
-  - [02 - Doubly Linked List](./00%20-%20Fundamentals/02%20-%20Doubly%20Linked%20List/)
-  - [03 - Circular Linked List](./00%20-%20Fundamentals/03%20-%20Circular%20Linked%20List/)
+  - [001 - Queue and Stack](./00%20-%20Fundamentals/001%20-%20Queue%20and%20Stack/)
+  - [002 - Linked List](./00%20-%20Fundamentals/002%20-%20Linked%20List/)
+  - [003 - Doubly Linked List](./00%20-%20Fundamentals/003%20-%20Doubly%20Linked%20List/)
+  - [004 - Circular Linked List](./00%20-%20Fundamentals/004%20-%20Circular%20Linked%20List/)
+  - [005 - Binary Search Tree](./00%20-%20Fundamentals/005%20-%20Binary%20Search%20Tree/)
+  - [006 - Min and Max Heap](./00%20-%20Fundamentals/006%20-%20Min%20and%20Max%20Heap/)
+  - [007 - Trie](./00%20-%20Fundamentals/007%20-%20Trie/)
+  - [008 - Graph](./00%20-%20Fundamentals/008%20-%20Graph/)
 - [01 - Warmup](./01%20-%20Warmup/)
 - [02 - Two Pointers](./02%20-%20Two%20Pointers/)
 - [03 - Fast & Slow Pointers](./03%20-%20Fast%20&%20Slow%20Pointers/)
