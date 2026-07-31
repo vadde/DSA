@@ -35,27 +35,27 @@ Here is a visual representation of how sorting makes merging simple:
 
 ```mermaid
 flowchart TD
-    subgraph Step 1 [Sort Intervals]
+    subgraph Step1 [Step 1: Sort Intervals]
         W1["Unsorted: [6, 7], [2, 4], [5, 9]\nSorted: [2, 4], [5, 9], [6, 7]"]
     end
     
-    subgraph Step 2 [Add First]
+    subgraph Step2 [Step 2: Add First]
         W2["Merged: [2, 4]"]
     end
     
-    subgraph Step 3 [Compare next: 5, 9]
+    subgraph Step3 [Step 3: Compare next: 5, 9]
         W3["Does 5 <= 4?\nNo! Add to list."]
         N3["Merged: [2, 4], [5, 9]"]
     end
     
-    subgraph Step 4 [Compare next: 6, 7]
+    subgraph Step4 [Step 4: Compare next: 6, 7]
         W4["Does 6 <= 9?\nYES! Overlap!"]
         N4["Update end: max(9, 7) = 9.\nMerged: [2, 4], [5, 9]"]
     end
     
-    Step 1 --> Step 2
-    Step 2 --> Step 3
-    Step 3 --> Step 4
+    Step1 --> Step2
+    Step2 --> Step3
+    Step3 --> Step4
     
     style W4 fill:#ffcdd2,color:#000
     style N4 fill:#32CD32,color:#000
