@@ -67,7 +67,7 @@ Here is how the numbers are built on the way down, and summed on the way up:
 
 ```mermaid
 flowchart TD
-    subgraph Downward: Building Numbers
+    subgraph DownwardBuildingNumbers ["Downward: Building Numbers"]
         A["Node 1\nsum=1"]
         B["Node 7\nsum=17"]
         C["Node 9\nsum=19"]
@@ -79,16 +79,16 @@ flowchart TD
         C -->|"pass 19"| E
     end
     
-    subgraph Upward: Adding Results
+    subgraph UpwardAddingResults ["Upward: Adding Results"]
         L1["Leaf 7 returns 17"]
         L2["Leaf 2 returns 192"]
         L3["Leaf 9 returns 199"]
         I1["Node 9 adds: 192 + 199 = 391"]
         R["Root 1 adds: 17 + 391 = 408"]
         L2 -.-> I1
-        L3 -.-> I1
+L3 -.-> I1
         L1 -.-> R
-        I1 -.-> R
+I1 -.-> R
     end
     
     B ~~~ L1

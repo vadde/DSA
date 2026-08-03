@@ -45,31 +45,31 @@ Here is how the first index aggressively swaps until it finds the right number:
 
 ```mermaid
 flowchart TD
-    subgraph Step 1 [Index 0 has '3']
+    subgraph Step1 [Step 1: Index 0 has '3']
         W1["Array: [3, 1, 5, 4, 2]"]
         N1["3 belongs at index 2!\nSwap 3 and 5."]
     end
     
-    subgraph Step 2 [Index 0 has '5']
+    subgraph Step2 [Step 2: Index 0 has '5']
         W2["Array: [5, 1, 3, 4, 2]"]
         N2["5 belongs at index 4!\nSwap 5 and 2."]
     end
     
-    subgraph Step 3 [Index 0 has '2']
+    subgraph Step3 [Step 3: Index 0 has '2']
         W3["Array: [2, 1, 3, 4, 5]"]
         N3["2 belongs at index 1!\nSwap 2 and 1."]
     end
     
-    subgraph Step 4 [Index 0 has '1']
+    subgraph Step4 [Step 4: Index 0 has '1']
         W4["Array: [1, 2, 3, 4, 5]"]
         N4["1 belongs at index 0!\nIt is HAPPY! Move i forward."]
     end
-    
-    Step 1 --> Step 2
-    Step 2 --> Step 3
-    Step 3 --> Step 4
-    
-    style W1 fill:#ffcdd2,color:#000
+
+Step1 --> Step2
+Step2 --> Step 3
+    Step3 --> Step4
+
+styleW1fill:#ffcdd2,color:#000
     style W2 fill:#ffcdd2,color:#000
     style W3 fill:#ffcdd2,color:#000
     style W4 fill:#c8e6c9,color:#000

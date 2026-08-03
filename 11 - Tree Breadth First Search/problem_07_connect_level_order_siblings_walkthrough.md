@@ -79,16 +79,16 @@ flowchart TD
         S1["level_size = 2\nprevious_node = None"]
     end
     
-    subgraph Pop 7
+    subgraph Pop7 [Pop 7]
         P1["Pop 7\nNo prev to connect to.\nprevious_node = 7\nQueue: [1, 9, 2]"]
     end
     
-    subgraph Pop 1
+    subgraph Pop1 [Pop 1]
         P2["Pop 1\nprevious_node is 7.\nCONNECT: 7 -> 1\nprevious_node = 1\nQueue: [9, 2, 10, 5]"]
     end
-    
-    Setup --> Pop 7
-    Pop 7 --> Pop 1
+
+Setup --> Pop7
+Pop7 --> Pop 1
     
     style S1 fill:#eeeeee,color:#000
     style P1 fill:#fff9c4,color:#000

@@ -57,18 +57,18 @@ Here is a comparison of how the pointers move differently based on the order:
 
 ```mermaid
 flowchart TD
-    subgraph Ascending Array: [1, 5, 10, 15] Target=1
+    subgraph AscendingArray151015Target1 ["Ascending Array: [1, 5, 10, 15] Target=1"]
         A1["Mid is 5. Target (1) < 5"]
         A2["Move RIGHT pointer to Mid-1\nSearch LEFT half"]
     end
     
-    subgraph Descending Array: [15, 10, 5, 1] Target=1
+    subgraph DescendingArray151051Target1 ["Descending Array: [15, 10, 5, 1] Target=1"]
         D1["Mid is 10. Target (1) < 10"]
         D2["Move LEFT pointer to Mid+1\nSearch RIGHT half!"]
     end
-    
-    A1 --> A2
-    D1 --> D2
+
+A1 --> A2
+D1 --> D2
     
     style A1 fill:#e3f2fd,color:#000
     style A2 fill:#bbdefb,color:#000

@@ -46,7 +46,7 @@ Here is a visualization of the Mathematical Counting Trick:
 
 ```mermaid
 flowchart TD
-    subgraph State 1 [Valid Window found!]
+    subgraph State1 [State 1: Valid Window found!]
         W1["String: a, b, c, a, b, c\nWindow: [a, b, c], a, b, c\nend = 2. N = 6."]
     end
     
@@ -58,9 +58,9 @@ flowchart TD
     subgraph Shrink [Shrink to find more]
         W3["Drop first 'a'. Window: b, c...\nExpand to find next 'a'"]
     end
-    
-    State 1 --> Math
-    Math --> Shrink
+
+State1 --> Math
+Math --> Shrink
     
     style W2 fill:#32CD32,color:#000
     style N2 fill:#32CD32,color:#000

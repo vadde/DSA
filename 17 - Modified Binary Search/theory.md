@@ -42,7 +42,7 @@ flowchart TD
     Step2["Left = 4 (Mid + 1), Right = 6"]
     
     Start --> Step1
-    Step1 -- "7 < 11" --> Step2
+Step1 -- "7 < 11" --> Step2
     
     classDef curr fill:#e6f2ff,stroke:#333,stroke-width:2px;
     class Start,Step1,Step2 curr;

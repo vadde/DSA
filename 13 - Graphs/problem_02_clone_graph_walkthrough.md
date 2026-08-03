@@ -75,19 +75,19 @@ Here is a visualization of why adding the node to the Hash Map *before* explorin
 
 ```mermaid
 flowchart TD
-    subgraph Iteration 1
+    subgraph Iteration1 [Iteration 1]
         A["clone(1)"] --> B["Create copy1"]
         B --> C["Add to old_to_new: {1: copy1}"]
         C --> D["clone(2)"]
     end
     
-    subgraph Iteration 2
+    subgraph Iteration2 [Iteration 2]
         D --> E["Create copy2"]
         E --> F["Add to old_to_new: {2: copy2}"]
         F --> G["clone(1)"]
     end
     
-    subgraph Cycle Handled!
+    subgraph CycleHandled ["Cycle Handled!"]
         G --> H["1 is in old_to_new!\nReturn copy1 immediately.\nPrevents infinite loop!"]
     end
     

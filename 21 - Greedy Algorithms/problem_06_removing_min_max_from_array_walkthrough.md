@@ -41,7 +41,7 @@ flowchart TD
         A["[2, 10, 7, 5, 4, 1, 8, 6]\n lo=1 (max=10)   hi=5 (min=1)"]
     end
     
-    subgraph Three Strategies
+    subgraph ThreeStrategies [Three Strategies]
         S1["Strategy 1: Both LEFT\nPeel until hi+1 = 6 moves\n[→ →] covers lo and hi"]
         S2["Strategy 2: Both RIGHT\nPeel until n-lo = 7 moves\n[← ←] covers lo and hi"]
         S3["Strategy 3: SPLIT\n(lo+1) + (n-hi) = 2+3 = 5 moves\n[→] lo + [← ← ←] hi"]
@@ -50,13 +50,13 @@ flowchart TD
     subgraph Result
         R["Return min(6, 7, 5) = 5"]
     end
-    
-    A --> S1
-    A --> S2
+
+A --> S1
+A --> S2
     A --> S3
-    S1 --> R
+S1 --> R
     S2 --> R
-    S3 --> R
+S3 --> R
     
     style S3 fill:#c8e6c9,color:#000
     style R fill:#a5d6a7,color:#000

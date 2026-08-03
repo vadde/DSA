@@ -52,8 +52,8 @@ flowchart TD
     SmallerSum -- No --> Move
     
     Update --> Move
-    
-    Move -- "Yes (Sum is too small)" --> L_Up["left += 1"]
+
+Move -- "Yes (Sum is too small)" --> L_Up["left += 1"]
     Move -- "No (Sum is too big)" --> R_Down["right -= 1"]
 ```
 

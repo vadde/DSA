@@ -75,16 +75,16 @@ flowchart TD
         S0["a1b"]
     end
     
-    subgraph i=0 'a'
+    subgraph I0A ["i=0 'a'"]
         S1_1["a1b"]
         S1_2["A1b"]
     end
     
-    subgraph i=1 '1'
+    subgraph I11 ["i=1 '1'"]
         note1["(No branching for numbers)"]
     end
     
-    subgraph i=2 'b'
+    subgraph I2B ["i=2 'b'"]
         S3_1["a1b"]
         S3_2["a1B"]
         

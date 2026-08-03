@@ -46,21 +46,21 @@ Here is how LIFO (Last-In, First-Out) naturally flips data:
 
 ```mermaid
 flowchart TD
-    subgraph Push Phase
+    subgraph PushPhase [Push Phase]
         W1["Word: C-A-T"]
         N1["Push 'C'\nPush 'A'\nPush 'T'"]
         S1["Stack:\n[Top]\n'T'\n'A'\n'C'\n[Bottom]"]
     end
     
-    subgraph Pop Phase
+    subgraph PopPhase [Pop Phase]
         S2["Pop! -> 'T'\nPop! -> 'A'\nPop! -> 'C'"]
         R1["Result: T-A-C"]
     end
-    
-    W1 --> N1
-    N1 --> S1
+
+W1 --> N1
+N1 --> S1
     S1 --> S2
-    S2 --> R1
+S2 --> R1
     
     style S1 fill:#ffcdd2,color:#000
     style S2 fill:#c8e6c9,color:#000

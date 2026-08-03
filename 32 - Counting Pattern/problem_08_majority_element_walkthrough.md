@@ -38,7 +38,7 @@ flowchart TD
     C -->|YES| D["candidate = num"]
     C -->|NO| E{"num == candidate?"}
     D --> E
-    E -->|YES| F["count += 1"]
+E -->|YES| F["count += 1"]
     E -->|NO| G["count -= 1"]
     F & G --> B
     

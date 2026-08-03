@@ -57,8 +57,8 @@ flowchart TD
     G --> H["Check closest right_sums[idx] and [idx-1]"]
     H --> I["Update min_diff"]
     I --> E
-    
-    E -.->|Finished| J["Return min_diff"]
+
+E -.->|Finished| J["Return min_diff"]
     
     style J fill:#c8e6c9,color:#000
 ```

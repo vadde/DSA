@@ -42,10 +42,10 @@ flowchart TD
     B --> C{"max_dq.front - min_dq.front > limit?"}
     C -->|YES| D["left++\nRemove expired fronts"]
     D --> C
-    C -->|NO| E["result = max(result, window_size)"]
+C -->|NO| E["result = max(result, window_size)"]
     E --> A
-    
-    style D fill:#ffcdd2,color:#000
+
+styleDfill:#ffcdd2,color:#000
     style E fill:#c8e6c9,color:#000
 ```
 

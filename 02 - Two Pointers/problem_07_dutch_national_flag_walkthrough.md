@@ -57,11 +57,11 @@ stateDiagram-v2
     state "Because we don't know what X is. It could be a 0! We must evaluate X on the next loop." as Reason
     
     S1 --> S2
-    S2 --> S3
+S2 --> S3
     S3 --> S4
-    S4 --> S5
+S4 --> S5
     S5 --> Q1
-    Q1 --> No
+Q1 --> No
     No --> Reason
 ```
 

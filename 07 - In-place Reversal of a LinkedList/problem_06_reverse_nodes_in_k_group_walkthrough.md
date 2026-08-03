@@ -55,12 +55,12 @@ Here is a visualization of the Look-Ahead function preventing a reversal:
 
 ```mermaid
 flowchart TD
-    subgraph Group 1 Done
+    subgraph Group1Done [Group 1 Done]
         W1["[3] -> [2] -> [1] -> [4] -> [5]"]
         N1["prev is [1], current is [4]"]
     end
     
-    subgraph Look-Ahead Check
+    subgraph LookAheadCheck ["Look-Ahead Check"]
         W2["has_k_nodes(current=4, k=3)"]
         N2["Count 1: Node 4\nCount 2: Node 5\nCount 3: null!"]
     end
@@ -69,8 +69,8 @@ flowchart TD
         W3["Return False!"]
         N3["Break loop immediately.\nLeftover nodes [4] -> [5] are safe!"]
     end
-    
-    Group 1 Done --> Look-Ahead Check
+
+Group1Done --> Look-Ahead Check
     Look-Ahead Check --> Action
     
     style W2 fill:#fff9c4,color:#000

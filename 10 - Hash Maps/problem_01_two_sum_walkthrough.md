@@ -48,26 +48,26 @@ flowchart TD
         W1["nums: [3, 2, 4]\ntarget: 6"]
     end
     
-    subgraph Iteration 1
+    subgraph Iteration1 [Iteration 1]
         A1["i=0, num=3\nNeeded: 6-3=3\nIs 3 in Map? NO."]
         A2["Store in Map:\n{3: 0}"]
     end
     
-    subgraph Iteration 2
+    subgraph Iteration2 [Iteration 2]
         B1["i=1, num=2\nNeeded: 6-2=4\nIs 4 in Map? NO."]
         B2["Store in Map:\n{3: 0, 2: 1}"]
     end
     
-    subgraph Iteration 3
+    subgraph Iteration3 [Iteration 3]
         C1["i=2, num=4\nNeeded: 6-4=2\nIs 2 in Map? YES! (index 1)"]
         C2["Return [1, 2]"]
     end
-    
-    Data --> Iteration 1
-    Iteration 1 --> Iteration 2
-    Iteration 2 --> Iteration 3
-    
-    style A2 fill:#e3f2fd,color:#000
+
+Data --> Iteration1
+Iteration1 --> Iteration 2
+    Iteration2 --> Iteration3
+
+styleA2fill:#e3f2fd,color:#000
     style B2 fill:#e3f2fd,color:#000
     style C1 fill:#c8e6c9,color:#000
     style C2 fill:#c8e6c9,color:#000

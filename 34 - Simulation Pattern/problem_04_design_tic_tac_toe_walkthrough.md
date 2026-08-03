@@ -46,11 +46,11 @@ flowchart TD
     D -->|YES| E["diag += val"]
     D -->|NO| F{"row + col == N - 1?"}
     E --> F
-    F -->|YES| G["anti_diag += val"]
+F -->|YES| G["anti_diag += val"]
     F -->|NO| H["Check Win Condition"]
     G --> H
-    
-    H --> I{"Any score == N (or -N)?"}
+
+H --> I{"Any score == N (or -N)?"}
     I -->|YES| J["Return Player ID"]
     I -->|NO| K["Return 0"]
     

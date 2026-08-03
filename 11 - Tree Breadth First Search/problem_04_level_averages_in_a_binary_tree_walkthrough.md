@@ -64,28 +64,28 @@ Here is how the BFS logic seamlessly transforms into an aggregation logic:
 
 ```mermaid
 flowchart TD
-    subgraph Level 1
+    subgraph Level1 [Level 1]
         S1["level_size = 1"]
         P1["Process [12]\nlevel_sum = 12.0\nAverage = 12.0 / 1 = 12.0"]
     end
     
-    subgraph Level 2
+    subgraph Level2 [Level 2]
         S2["level_size = 2"]
         P2["Process [7, 1]\nlevel_sum = 8.0\nAverage = 8.0 / 2 = 4.0"]
     end
     
-    subgraph Level 3
+    subgraph Level3 [Level 3]
         S3["level_size = 4"]
         P3["Process [9, 2, 10, 5]\nlevel_sum = 26.0\nAverage = 26.0 / 4 = 6.5"]
     end
-    
-    S1 --> P1
-    P1 --> S2
+
+S1 --> P1
+P1 --> S2
     S2 --> P2
-    P2 --> S3
+P2 --> S3
     S3 --> P3
-    
-    style P1 fill:#e3f2fd,color:#000
+
+styleP1fill:#e3f2fd,color:#000
     style P2 fill:#e3f2fd,color:#000
     style P3 fill:#c8e6c9,color:#000
 ```

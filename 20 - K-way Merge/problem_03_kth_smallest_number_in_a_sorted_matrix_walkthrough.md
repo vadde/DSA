@@ -53,23 +53,23 @@ flowchart TD
         R2["Row 2: [12, 13, 15]"]
     end
     
-    subgraph Expansion from (0,0)
+    subgraph ExpansionFrom00 ["Expansion from (0,0)"]
         S0["Start: (1, r=0, c=0)"]
         P1["Pop (1)\nPush Right: (5, 0, 1)\nPush Down: (10, 1, 0)"]
     end
     
-    subgraph Count Progress
+    subgraph CountProgress [Count Progress]
         C1["#1: 1 | #2: 5 | #3: 9 | #4: 10 | #5: 11 ✅"]
     end
     
-    subgraph Visited Set Key
+    subgraph VisitedSetKey [Visited Set Key]
         V["Prevents double-push!\nAny cell can be reached\nfrom its left AND its top."]
     end
-    
-    R0 --> S0
-    S0 --> P1
+
+R0 --> S0
+S0 --> P1
     P1 --> C1
-    V --> P1
+V --> P1
     
     style S0 fill:#bbdefb,color:#000
     style P1 fill:#fff9c4,color:#000

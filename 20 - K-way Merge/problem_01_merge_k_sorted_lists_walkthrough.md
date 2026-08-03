@@ -57,28 +57,28 @@ Here is how the Min-Heap acts as the master conductor, always choosing the globa
 
 ```mermaid
 flowchart TD
-    subgraph Input Lists
+    subgraph InputLists [Input Lists]
         L0["List 0: 2 -> 6 -> 8"]
         L1["List 1: 3 -> 6 -> 7"]
         L2["List 2: 1 -> 3 -> 4"]
     end
     
-    subgraph Min-Heap State
-        H1["Initial:\n[(1, L2), (2, L0), (3, L1)]"]
+    subgraph MinHeapState ["Min-Heap State"]
+        H1["Initial:\n["(1, L2), (2, L0), (3, L1)"]"]
     end
     
-    subgraph Merge Loop
+    subgraph MergeLoop [Merge Loop]
         M1["Pop Min (1, L2) → Result: 1\nPush L2.next (3, L2)"]
         M2["Pop Min (2, L0) → Result: 1→2\nPush L0.next (6, L0)"]
         M3["Pop Min (3, L1) → Result: 1→2→3\n...and so on"]
     end
-    
-    L0 --> H1
-    L1 --> H1
+
+L0 --> H1
+L1 --> H1
     L2 --> H1
-    H1 --> M1
+H1 --> M1
     M1 --> M2
-    M2 --> M3
+M2 --> M3
     
     style H1 fill:#bbdefb,color:#000
     style M1 fill:#c8e6c9,color:#000

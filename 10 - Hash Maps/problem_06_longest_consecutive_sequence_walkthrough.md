@@ -52,21 +52,21 @@ flowchart TD
         W1["Looping through set: {1, 2, 3, 4, 100, 200}"]
     end
     
-    subgraph Is it a Start?
+    subgraph IsItAStart ["Is it a Start?"]
         N1["num = 4. Is 3 in set? YES.\n4 is NOT a start. Ignore it!"]
         N2["num = 1. Is 0 in set? NO.\n1 IS a start!"]
     end
     
-    subgraph The Build Phase
+    subgraph TheBuildPhase [The Build Phase]
         N3["Build from 1:\nFound 2!\nFound 3!\nFound 4!\n5 not found. Streak is 4."]
     end
-    
-    Iteration --> Is it a Start?
+
+Iteration --> IsitaStart?
     Is it a Start? --> N1
     Is it a Start? --> N2
     N2 --> N3
-    
-    style N1 fill:#ffcdd2,color:#000
+
+styleN1fill:#ffcdd2,color:#000
     style N2 fill:#fff9c4,color:#000
     style N3 fill:#c8e6c9,color:#000
 ```

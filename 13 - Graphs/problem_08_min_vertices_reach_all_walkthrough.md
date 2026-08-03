@@ -46,25 +46,25 @@ Notice how nodes 0 and 3 are the "sources" of the rivers. All other nodes are do
 
 ```mermaid
 flowchart TD
-    subgraph Must Start Here
+    subgraph MustStartHere [Must Start Here]
         N0((0))
         N3((3))
     end
     
-    subgraph Can Reach These
+    subgraph CanReachThese [Can Reach These]
         N1((1))
         N2((2))
         N4((4))
         N5((5))
     end
-    
-    N0 --> N1
-    N0 --> N2
+
+N0 --> N1
+N0 --> N2
     N3 --> N4
-    N4 --> N2
+N4 --> N2
     N2 --> N5
-    
-    style N0 fill:#c8e6c9,color:#000
+
+styleN0fill:#c8e6c9,color:#000
     style N3 fill:#c8e6c9,color:#000
     
     style N1 fill:#ffcdd2,color:#000

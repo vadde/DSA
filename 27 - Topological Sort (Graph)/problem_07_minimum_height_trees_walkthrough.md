@@ -43,10 +43,10 @@ flowchart TD
     subgraph Result
         R["Centers: [3, 4]"]
     end
-    
-    Round1 --> Result
-    
-    style R fill:#c8e6c9,color:#000
+
+Round1 --> Result
+
+styleRfill:#c8e6c9,color:#000
 ```
 
 ## 🛑 Complexity

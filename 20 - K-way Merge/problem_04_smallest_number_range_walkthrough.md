@@ -53,18 +53,18 @@ flowchart TD
         I["Heap always holds exactly 1\nelement per list.\nMin = left boundary\nMax = right boundary"]
     end
     
-    subgraph Initial Window
+    subgraph InitialWindow [Initial Window]
         W1["[0, 5] → size 5\nHeap: {0(L1), 4(L0), 5(L2)}"]
     end
     
-    subgraph Slide Window
+    subgraph SlideWindow [Slide Window]
         S1["Pop 0, Push L1.next (9)\nWindow: [4, 9] → size 5"]
         S2["...keep sliding..."]
         S3["Pop 20, Push L1.next\nL1 exhausted! STOP.\nBest window: [20, 24] → size 4"]
     end
-    
-    I --> W1
-    W1 --> S1 --> S2 --> S3
+
+I --> W1
+W1 --> S1 --> S2 --> S3
     
     style I fill:#e3f2fd,color:#000
     style W1 fill:#fff9c4,color:#000

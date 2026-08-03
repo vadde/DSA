@@ -36,13 +36,13 @@ flowchart TD
     C --> D{"nums[q[-1]] < num?"}
     D -->|YES| E["q.pop()"]
     E --> D
-    D -->|NO| F["q.append(i)"]
+D -->|NO| F["q.append(i)"]
     F --> G{"Window size >= K?"}
     G -->|YES| H["result.append(nums[q[0]])"]
     G -->|NO| A
     H --> A
-    
-    style E fill:#ffcdd2,color:#000
+
+styleEfill:#ffcdd2,color:#000
     style H fill:#c8e6c9,color:#000
 ```
 

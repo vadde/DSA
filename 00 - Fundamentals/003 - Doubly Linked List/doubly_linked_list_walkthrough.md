@@ -47,7 +47,7 @@ Our custom `DoublyLinkedList` in Python 3.14 builds upon the efficiency of our S
 ### Structure of a Doubly Linked List
 ```mermaid
 flowchart LR
-    subgraph Doubly Linked List Wrapper
+    subgraph DoublyLinkedListWrapper [Doubly Linked List Wrapper]
     H[Head Pointer] -.-> N1
     T[Tail Pointer] -.-> N3
     S[Size: 3]

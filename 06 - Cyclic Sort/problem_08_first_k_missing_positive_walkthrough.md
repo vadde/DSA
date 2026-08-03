@@ -68,19 +68,19 @@ Here is why tracking `extra_numbers` is critical for numbers beyond $N$:
 
 ```mermaid
 flowchart TD
-    subgraph Sorted Array
+    subgraph SortedArray [Sorted Array]
         W1["Array: [-1, 5, 3, 4, 5]\nN = 5"]
         N1["Spot 2 has a '5'.\nSo '2' is missing.\nBut we must remember we HAVE a 5!"]
     end
     
-    subgraph Look Beyond N
+    subgraph LookBeyondN [Look Beyond N]
         W2["Need 1 more number.\nCheck N+1 (6)."]
         N2["Is 6 in our extra_numbers set {-1, 5}?\nNo. So 6 is truly missing!"]
     end
-    
-    Sorted Array --> Look Beyond N
-    
-    style N1 fill:#ffcdd2,color:#000
+
+SortedArray --> LookBeyondN
+
+styleN1fill:#ffcdd2,color:#000
     style N2 fill:#32CD32,color:#000
 ```
 

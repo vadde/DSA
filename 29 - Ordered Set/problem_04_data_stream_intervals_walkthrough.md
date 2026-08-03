@@ -43,7 +43,7 @@ flowchart TD
     I["Insert standalone [v,v]"]
     
     A --> B
-    B -->|YES| C
+B -->|YES| C
     B -->|NO| D
     D -->|YES| E
     D -->|NO| E

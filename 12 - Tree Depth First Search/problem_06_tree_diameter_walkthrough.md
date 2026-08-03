@@ -72,7 +72,7 @@ Here is how heights are passed up, but the diameter is calculated and tracked in
 
 ```mermaid
 flowchart TD
-    subgraph Bottom Up Processing
+    subgraph BottomUpProcessing [Bottom Up Processing]
         L7["Node 7\nLeft: 0, Right: 0\nDiam: 1\nReturns: 1"]
         L8["Node 8\nLeft: 0, Right: 0\nDiam: 1\nReturns: 1"]
         

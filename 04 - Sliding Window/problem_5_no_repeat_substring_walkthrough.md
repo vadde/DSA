@@ -56,9 +56,9 @@ flowchart TD
         M3["start jumps directly to 3 + 1 = 4!"]
         N3["Valid! Length: 1"]
     end
-    
-    Expand --> Conflict
-    Conflict --> Jump
+
+Expand --> Conflict
+Conflict --> Jump
     
     style W1 fill:#32CD32,color:#000
     style W2 fill:#ff6b6b,color:#000

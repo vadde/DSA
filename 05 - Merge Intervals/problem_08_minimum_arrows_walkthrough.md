@@ -39,22 +39,22 @@ Here is why sorting by **End Time** is the secret sauce:
 
 ```mermaid
 flowchart TD
-    subgraph Step 1 [Sort by END Time]
+    subgraph Step1 [Step 1: Sort by END Time]
         W1["1. [1, 6]\n2. [2, 8]\n3. [7, 12]\n4. [10, 16]"]
     end
     
-    subgraph Step 2 [Shoot at End of 1st Balloon]
+    subgraph Step2 [Step 2: Shoot at End of 1st Balloon]
         W2["Shoot Arrow at x = 6!"]
         N2["Balloon 1 [1, 6] POPPED!\nBalloon 2 [2, 8] POPPED!"]
     end
     
-    subgraph Step 3 [Balloon 3 Survives]
+    subgraph Step3 [Step 3: Balloon 3 Survives]
         W3["Balloon 3 [7, 12] starts at 7."]
         N3["7 > 6. It survived!\nShoot new Arrow at x = 12!"]
     end
-    
-    Step 1 --> Step 2
-    Step 2 --> Step 3
+
+Step1 --> Step2
+Step2 --> Step 3
     
     style W2 fill:#ffcdd2,color:#000
     style N3 fill:#32CD32,color:#000

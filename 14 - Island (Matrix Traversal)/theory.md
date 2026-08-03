@@ -33,11 +33,11 @@ flowchart TD
     D["(r, c+1) Right"]
     E["(r+1, c) Down"]
     end
-    
-    C --> A
-    C --> B
+
+C --> A
+C --> B
     C --> D
-    C --> E
+C --> E
     
     classDef curr fill:#ff9999,stroke:#333,stroke-width:4px;
     class C curr;

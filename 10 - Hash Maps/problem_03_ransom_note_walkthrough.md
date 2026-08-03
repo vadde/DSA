@@ -57,19 +57,19 @@ flowchart TD
         N1["Inventory: {'a': 2, 'b': 1}"]
     end
     
-    subgraph Process Note 'a'
+    subgraph ProcessNoteA ["Process Note 'a'"]
         N2["Need 'a'!\nCheck inventory: 'a' has 2.\nUse one. Inventory now {'a': 1, 'b': 1}"]
     end
     
-    subgraph Process Note 'a' (again)
+    subgraph ProcessNoteAAgain ["Process Note 'a' (again)"]
         N3["Need 'a'!\nCheck inventory: 'a' has 1.\nUse one. Inventory now {'a': 0, 'b': 1}"]
     end
     
     subgraph Done
         N4["Finished note!\nReturn True."]
     end
-    
-    Initialization --> Process Note 'a'
+
+Initialization --> ProcessNote 'a'
     Process Note 'a' --> Process Note 'a' (again)
     Process Note 'a' (again) --> Done
     

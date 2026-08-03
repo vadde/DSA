@@ -69,7 +69,7 @@ Here is how the projects flow from the initial list, through the heaps, and into
 
 ```mermaid
 flowchart TD
-    subgraph Initial State
+    subgraph InitialState [Initial State]
         P1["Cost 0, Profit 1"]
         P2["Cost 1, Profit 2"]
         P3["Cost 1, Profit 3"]
@@ -77,19 +77,19 @@ flowchart TD
     end
     
     subgraph Heaps
-        MIN["min_capital_heap\n[(0,1), (1,2), (1,3)]"]
+        MIN["min_capital_heap\n["(0,1), (1,2), (1,3)"]"]
         MAX["max_profit_heap\n[ ]"]
         MIN -- "Afford (Cost <= W)?" --> MAX
     end
     
-    subgraph Execution Loop
+    subgraph ExecutionLoop [Execution Loop]
         MAX -- "Do most profitable" --> POCKET["Add to Capital W"]
         POCKET -. "Loop K times" .-> Heaps
     end
-    
-    Initial State --> MIN
-    
-    style MIN fill:#ffcdd2,color:#000
+
+InitialState --> MIN
+
+styleMINfill:#ffcdd2,color:#000
     style MAX fill:#c8e6c9,color:#000
     style POCKET fill:#bbdefb,color:#000
 ```

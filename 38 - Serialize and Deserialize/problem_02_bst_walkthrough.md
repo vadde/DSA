@@ -48,7 +48,7 @@ When we rebuild it, if we are at 5 and we read a 3, we know 3 is smaller, so it 
 
 ```mermaid
 flowchart TD
-    subgraph Deserialize Build Function
+    subgraph DeserializeBuildFunction [Deserialize Build Function]
     A["build(min_val, max_val)"] --> B{"Queue empty?"}
     B -->|YES| C["Return None"]
     B -->|NO| D{"Is next value\nbetween min and max?"}

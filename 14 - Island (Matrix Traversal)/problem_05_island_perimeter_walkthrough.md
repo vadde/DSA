@@ -70,7 +70,7 @@ flowchart TD
         note1["Grid starts at 0,0"]
     end
     
-    subgraph DFS Logic
+    subgraph DFSLogic [DFS Logic]
         D00["dfs(0,0)\nMarks 0,0 as -1"]
         D00 -->|Up: OOB| R1("Returns 1")
         D00 -->|Left: OOB| R2("Returns 1")

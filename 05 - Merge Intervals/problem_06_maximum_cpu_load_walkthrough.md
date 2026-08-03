@@ -42,21 +42,21 @@ Here is how the Min-Heap tracks active jobs and their loads:
 
 ```mermaid
 flowchart TD
-    subgraph Step 2 [Time: 2. Heap has (4,3)]
+    subgraph Step2 [Step 2: Time: 2. Heap has (4,3)]
         W1["Current Job: [2, 5, load 4]"]
         N1["Does 2 >= 4? No.\nKeep the old job!"]
         H1["Current Load: 3 + 4 = 7\nMax Load = 7"]
     end
     
-    subgraph Step 3 [Time: 7. Heap has (4,3), (5,4)]
+    subgraph Step3 [Step 3: Time: 7. Heap has (4,3), (5,4)]
         W2["Current Job: [7, 9, load 6]"]
         N2["7 >= 4? YES! Pop it. Load - 3 = 4.\n7 >= 5? YES! Pop it. Load - 4 = 0."]
         H2["Push new job.\nCurrent Load = 0 + 6 = 6\nMax Load remains 7!"]
     end
-    
-    Step 2 --> Step 3
-    
-    style H1 fill:#ffcdd2,color:#000
+
+Step2 --> Step3
+
+styleH1fill:#ffcdd2,color:#000
     style N2 fill:#32CD32,color:#000
 ```
 

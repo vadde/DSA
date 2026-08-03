@@ -73,25 +73,25 @@ Here is a visualization of how Pass 1 prepares the grid for Pass 2:
 
 ```mermaid
 flowchart TD
-    subgraph Initial Grid
+    subgraph InitialGrid [Initial Grid]
         B1((0,1 : 0\nBORDER)) --- B2((1,1 : 0))
         C1((2,2 : 0\nCLOSED))
         B3((3,0 : 0\nBORDER))
     end
     
-    subgraph Pass 1: Border Patrol
+    subgraph Pass1BorderPatrol ["Pass 1: Border Patrol"]
         S1["sink(0,1)"] --> B1
         S1 --> B2
-        S2["sink(3,0)"] --> B3
+S2["sink(3,0)"] --> B3
         note1["Border 0s and all connected 0s\nare turned to 1s (Water)."]
     end
     
-    subgraph Pass 2: Safe Zone Scan
+    subgraph Pass2SafeZoneScan ["Pass 2: Safe Zone Scan"]
         C1
         note2["Only the Closed island remains!\nScan finds it, counts it, and sinks it."]
     end
-    
-    Initial Grid --> Pass 1: Border Patrol
+
+InitialGrid --> Pass1: Border Patrol
     Pass 1: Border Patrol --> Pass 2: Safe Zone Scan
     
     style B1 fill:#ffcdd2,color:#000

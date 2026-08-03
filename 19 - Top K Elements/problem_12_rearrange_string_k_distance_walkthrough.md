@@ -75,41 +75,41 @@ flowchart TD
         A["String: 'aab'\nK: 2"]
     end
     
-    subgraph Turn 1
+    subgraph Turn1 [Turn 1]
         H1["Heap: [(-2, 'a'), (-1, 'b')]"]
         P1["Pop 'a'\nResult: a"]
         Q1["Queue: [(-1, 'a')]\nSize < 2, no release"]
     end
     
-    subgraph Turn 2
+    subgraph Turn2 [Turn 2]
         H2["Heap: [(-1, 'b')]"]
         P2["Pop 'b'\nResult: a -> b"]
         Q2["Queue: [(-1, 'a'), (0, 'b')]\nSize == 2! Release front."]
         R2["Release (-1, 'a')\nPush to Heap"]
     end
     
-    subgraph Turn 3
+    subgraph Turn3 [Turn 3]
         H3["Heap: [(-1, 'a')]"]
         P3["Pop 'a'\nResult: a -> b -> a"]
         Q3["Queue: [(0, 'b'), (0, 'a')]\nSize == 2! Release front."]
         R3["Release (0, 'b')\nFreq is 0, DO NOT push"]
     end
-    
-    A --> H1
-    H1 --> P1
+
+A --> H1
+H1 --> P1
     P1 --> Q1
-    
-    Q1 --> H2
+
+Q1 --> H2
     H2 --> P2
-    P2 --> Q2
+P2 --> Q2
     Q2 --> R2
-    
-    R2 --> H3
+
+R2 --> H3
     H3 --> P3
-    P3 --> Q3
+P3 --> Q3
     Q3 --> R3
-    
-    style H1 fill:#bbdefb,color:#000
+
+styleH1fill:#bbdefb,color:#000
     style Q1 fill:#ffcc80,color:#000
     style H2 fill:#bbdefb,color:#000
     style Q2 fill:#ffcc80,color:#000

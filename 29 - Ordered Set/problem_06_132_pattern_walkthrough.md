@@ -41,7 +41,7 @@ flowchart TD
     F["Return False"]
     
     A --> B
-    B -->|YES| C
+B -->|YES| C
     B -->|NO| D --> E --> A
     A -->|exhausted| F
     

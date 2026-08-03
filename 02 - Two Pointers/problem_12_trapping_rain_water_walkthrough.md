@@ -44,14 +44,14 @@ flowchart TD
     LeftCheck -- No --> TrapLeft["total += max_left - height[left]"]
     UpdateMaxL --> MoveL["left += 1"]
     TrapLeft --> MoveL
-    
-    Compare -- No (Right Bottleneck) --> RightCheck{"Is height[right] >= max_right?"}
+
+Compare -- No (Right Bottleneck) --> RightCheck{"Is height[right] >= max_right?"}
     RightCheck -- Yes --> UpdateMaxR["max_right = height[right]"]
     RightCheck -- No --> TrapRight["total += max_right - height[right]"]
     UpdateMaxR --> MoveR["right -= 1"]
     TrapRight --> MoveR
-    
-    MoveL --> Start
+
+MoveL --> Start
     MoveR --> Start
 ```
 

@@ -44,7 +44,7 @@ flowchart TD
     C --> E["Check index 0: (9, 10) -> 10 <= 11 (OK)"]
     D --> F["Insert at Index 1"]
     E --> F
-    F --> G["New Sorted: [ (9, 10), (11, 12), (14, 15), (16, 17) ]"]
+F --> G["New Sorted: [ (9, 10), (11, 12), (14, 15), (16, 17) ]"]
 ```
 
 ---

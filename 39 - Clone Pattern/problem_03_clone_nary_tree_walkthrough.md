@@ -54,8 +54,8 @@ flowchart TD
     D --> E["For child in node.children:"]
     E --> F["clone.children.append(\nclone_tree(child))"]
     F --> E
-    
-    E -.->|Done| G["Return clone"]
+
+E -.->|Done| G["Return clone"]
     
     style C fill:#ffcdd2,color:#000
     style G fill:#c8e6c9,color:#000

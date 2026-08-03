@@ -49,8 +49,8 @@ flowchart TD
     G -->|YES| H["Traverse Left (B to T)\nLeft ++"]
     G -->|NO| B
     H --> B
-    
-    style C fill:#c8e6c9,color:#000
+
+styleCfill:#c8e6c9,color:#000
     style D fill:#c8e6c9,color:#000
     style F fill:#c8e6c9,color:#000
     style H fill:#c8e6c9,color:#000

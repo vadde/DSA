@@ -65,13 +65,13 @@ flowchart TD
         H1["Min-Heap\nTop is always smallest"]
     end
     
-    subgraph Discard Phase (K1 times)
+    subgraph DiscardPhaseK1times ["Discard Phase (K1 times)"]
         D1["Pop 1st: 1 (Trash)"]
         D2["Pop 2nd: 3 (Trash)"]
         D3["Pop 3rd: 5 (Trash)"]
     end
     
-    subgraph Sum Phase (K2 - K1 - 1 times)
+    subgraph SumPhaseK2K11times ["Sum Phase (K2 - K1 - 1 times)"]
         S1["Pop 4th: 11\nSum = 11"]
         S2["Pop 5th: 12\nSum = 11 + 12 = 23"]
     end
@@ -79,16 +79,16 @@ flowchart TD
     subgraph Result
         R["Return 23"]
     end
-    
-    A --> H1
-    H1 --> D1
+
+A --> H1
+H1 --> D1
     D1 --> D2
-    D2 --> D3
+D2 --> D3
     D3 --> S1
-    S1 --> S2
+S1 --> S2
     S2 --> R
-    
-    style H1 fill:#bbdefb,color:#000
+
+styleH1fill:#bbdefb,color:#000
     style D1 fill:#ffcdd2,color:#000
     style D2 fill:#ffcdd2,color:#000
     style D3 fill:#ffcdd2,color:#000

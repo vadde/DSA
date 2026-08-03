@@ -39,31 +39,31 @@ Here is a visualization of the window expanding and shrinking:
 
 ```mermaid
 flowchart TD
-    subgraph Expand to 8 [end = 2]
+    subgraph Expandto8 [Expand to 8: end = 2]
         W1["[ 2, 1, 5 ], 2, 8"]
         note1["Sum: 8. Valid! Len: 3"]
     end
     
-    subgraph Shrink 1 [start = 1]
+    subgraph Shrink1 [Shrink 1: start = 1]
         W2["2, [ 1, 5 ], 2, 8"]
         note2["Sum: 6. Invalid."]
     end
     
-    subgraph Expand to 8 again [end = 3]
+    subgraph Expandto8again [Expand to 8 again: end = 3]
         W3["2, [ 1, 5, 2 ], 8"]
         note3["Sum: 8. Valid! Len: 3"]
     end
     
-    subgraph Shrink 2 [start = 2]
+    subgraph Shrink2 [Shrink 2: start = 2]
         W4["2, 1, [ 5, 2 ], 8"]
         note4["Sum: 7. Valid! Len: 2"]
     end
-    
-    Expand to 8 --> Shrink 1
-    Shrink 1 --> Expand to 8 again
-    Expand to 8 again --> Shrink 2
-    
-    style W1 fill:#32CD32,color:#000
+
+Expandto8 --> Shrink1
+Shrink1 --> Expand to 8 again
+    Expandto8again --> Shrink2
+
+styleW1fill:#32CD32,color:#000
     style W2 fill:#ff6b6b,color:#000
     style W3 fill:#32CD32,color:#000
     style W4 fill:#FFD700,color:#000,stroke:#f00,stroke-width:2px

@@ -66,7 +66,7 @@ Here's how the DFS spreads out from the center, stopping when it hits a boundary
 
 ```mermaid
 flowchart TD
-    subgraph Grid Start State
+    subgraph GridStartState [Grid Start State]
         P11((1,1 : Color 1\nSTART)) --- P01((0,1 : Color 1))
         P11 --- P21((2,1 : Color 0\nBLOCK!))
         P11 --- P10((1,0 : Color 1))
@@ -74,16 +74,16 @@ flowchart TD
         note1["DFS spreads Up and Left.\nDown and Right are blocked by 0s!"]
     end
     
-    subgraph Grid End State
+    subgraph GridEndState [Grid End State]
         F11((1,1 : Color 2)) --- F01((0,1 : Color 2))
         F11 --- F21((2,1 : Color 0))
         F11 --- F10((1,0 : Color 2))
         F11 --- F12((1,2 : Color 0))
     end
-    
-    Grid Start State --> Grid End State
-    
-    style P11 fill:#c8e6c9,color:#000
+
+GridStartState --> GridEndState
+
+styleP11fill:#c8e6c9,color:#000
     style P01 fill:#c8e6c9,color:#000
     style P10 fill:#c8e6c9,color:#000
     

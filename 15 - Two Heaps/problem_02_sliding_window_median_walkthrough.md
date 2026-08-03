@@ -66,7 +66,7 @@ Here is how Lazy Deletion works when the trash floats to the top:
 
 ```mermaid
 flowchart TD
-    subgraph max_heap State
+    subgraph max_heapState ["max_heap State"]
         T1(("1\n(TRASH)")) --- N1(("-1\n(Valid)"))
         T1 --- N3(("-3\n(Valid)"))
         note1["max_heap physically has 3 items.\nBut max_size = 2."]
@@ -77,7 +77,7 @@ flowchart TD
         POP --> CHECK2["New Top is -1.\ntrash[-1] == 0.\nDone!"]
     end
     
-    max_heap State --> clean_heap_top
+    max_HeapState --> clean_heap_top
     
     style T1 fill:#ffcdd2,color:#000,stroke:#d32f2f,stroke-width:4px
     style N1 fill:#c8e6c9,color:#000

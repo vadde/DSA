@@ -45,7 +45,7 @@ Values: `[1]`, `[8]`, `[5]`, `[9]`, `[6]`, `[3]`
 
 ```mermaid
 flowchart TD
-    subgraph Update Node
+    subgraph UpdateNode [Update Node]
     A["Is leaf?"] -->|YES| B["tree[node] = val"]
     A -->|NO| C{"Is index in left child?"}
     C -->|YES| D["Update Left Child"]

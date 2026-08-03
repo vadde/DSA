@@ -41,10 +41,10 @@ flowchart TD
     A["Iterate i, height"] --> B{"Current height < stack.top height?"}
     B -->|YES| C["Pop stack for height\nCalculate width using new stack top\nUpdate max_area"]
     C --> B
-    B -->|NO| D["Push i to stack"]
+B -->|NO| D["Push i to stack"]
     D --> A
-    
-    style C fill:#fff9c4,color:#000
+
+styleCfill:#fff9c4,color:#000
 ```
 
 ## 🛑 Complexity

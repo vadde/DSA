@@ -37,13 +37,13 @@ flowchart TD
     Check -- Yes --> AddBack["backspace_count += 1"]
     AddBack --> MoveBack["P -= 1"]
     MoveBack --> Check
-    
-    Check -- No --> CheckCount{"Is backspace_count > 0?"}
+
+Check -- No --> CheckCount{"Is backspace_count > 0?"}
     
     CheckCount -- Yes --> Consume["backspace_count -= 1 (Skip this char)"]
     Consume --> MoveBack
-    
-    CheckCount -- No --> Found["Valid Character Found!\nReturn index P"]
+
+CheckCount -- No --> Found["Valid Character Found!\nReturn index P"]
 ```
 
 ## 🛑 Edge Cases & Complexity

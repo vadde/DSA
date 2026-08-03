@@ -66,11 +66,11 @@ flowchart TD
     subgraph ShrinkNeeded [Drop second 'a']
         W5["Need: a:1, b:0, c:0\n(We lost the needed 'a')\nMatched drops to 2. Invalid!"]
     end
-    
-    Needed --> Surplus
-    Surplus --> FoundAll
+
+Needed --> Surplus
+Surplus --> FoundAll
     FoundAll --> ShrinkSurplus
-    ShrinkSurplus --> ShrinkNeeded
+ShrinkSurplus --> ShrinkNeeded
     
     style FoundAll fill:#32CD32,color:#000
     style ShrinkSurplus fill:#32CD32,color:#000

@@ -38,7 +38,7 @@ flowchart TD
     E["Add to calendar\nReturn True"]
     
     A --> B
-    B -->|YES| C
+B -->|YES| C
     B -->|NO| D --> E
     
     style C fill:#ffcdd2,color:#000

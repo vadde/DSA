@@ -51,21 +51,21 @@ Here is a visualization of the counting trick that adds `window_size` to the tot
 
 ```mermaid
 flowchart TD
-    subgraph Iteration 3 [Window: 1, 2, 1]
+    subgraph Iteration3 [Iteration 3: Window: 1, 2, 1]
         W1["Window Size = 3"]
         N1["New Valid Subarrays ending at '1':\n1. [1]\n2. [2, 1]\n3. [1, 2, 1]"]
         T1["Total increases by 3!"]
     end
     
-    subgraph Iteration 4 [Window: 1, 2, 1, 2]
+    subgraph Iteration4 [Iteration 4: Window: 1, 2, 1, 2]
         W2["Window Size = 4"]
         N2["New Valid Subarrays ending at '2':\n1. [2]\n2. [1, 2]\n3. [2, 1, 2]\n4. [1, 2, 1, 2]"]
         T2["Total increases by 4!"]
     end
-    
-    Iteration 3 --> Iteration 4
-    
-    style W1 fill:#32CD32,color:#000
+
+Iteration3 --> Iteration4
+
+styleW1fill:#32CD32,color:#000
     style W2 fill:#32CD32,color:#000
 ```
 

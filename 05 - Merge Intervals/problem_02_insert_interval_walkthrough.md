@@ -44,23 +44,23 @@ Here is how the 3-Phase single pass works:
 
 ```mermaid
 flowchart TD
-    subgraph Phase 1 [Safe Before]
+    subgraph Phase1 [Phase 1: Safe Before]
         W1["Interval: [1, 3]\nNew: [4, 6]"]
         N1["3 < 4. Safe!\nAdd to list."]
     end
     
-    subgraph Phase 2 [Danger Zone: Overlap]
+    subgraph Phase2 [Phase 2: Danger Zone: Overlap]
         W2["Interval: [5, 7]\nNew: [4, 6]"]
         N2["5 <= 6. Overlaps!\nMerge into New: [4, 7]"]
     end
     
-    subgraph Phase 3 [Safe After]
+    subgraph Phase3 [Phase 3: Safe After]
         W3["Interval: [8, 12]\nMerged New: [4, 7]"]
         N3["8 is past 7. Add New.\nThen add [8, 12]."]
     end
-    
-    Phase 1 --> Phase 2
-    Phase 2 --> Phase 3
+
+Phase1 --> Phase2
+Phase2 --> Phase 3
     
     style Phase 2 fill:#ffcdd2,color:#000
     style Phase 1 fill:#c8e6c9,color:#000

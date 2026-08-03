@@ -66,21 +66,21 @@ Here is how `current_path` correctly shrinks during the backtrack phase so it ca
 
 ```mermaid
 flowchart TD
-    subgraph 1. Descend Left
+    subgraph DescendLeft ["1. Descend Left"]
         A["Node 12\npath: [12]"] --> B["Node 7\npath: [12, 7]"]
         B --> C["Node 4\npath: [12, 7, 4]\nWINNER!"]
     end
     
-    subgraph 2. Backtrack!
+    subgraph Backtrack ["2. Backtrack!"]
         D["Pop 4.\npath: [12, 7]"] --> E["Pop 7.\npath: [12]"]
     end
     
-    subgraph 3. Descend Right
+    subgraph DescendRight ["3. Descend Right"]
         F["Node 1\npath: [12, 1]"] --> G["Node 10\npath: [12, 1, 10]\nWINNER!"]
     end
-    
-    C -.-> D
-    E -.-> F
+
+C -.-> D
+E -.-> F
     
     style C fill:#c8e6c9,color:#000
     style D fill:#ffcdd2,color:#000

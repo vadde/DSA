@@ -43,13 +43,13 @@ stateDiagram-v2
     state "Node 5 (F2)" as N5
     
     N1 --> N2
-    N2 --> N3
+N2 --> N3
     N3 --> N4
-    N4 --> N5
+N4 --> N5
     N5 --> N3
-    
-    note right of N3
-        S reaches 3 on step 2.
+
+noterightofN3
+Sreaches3onstep2.
         F reaches 3 on step 1.
     end note
     

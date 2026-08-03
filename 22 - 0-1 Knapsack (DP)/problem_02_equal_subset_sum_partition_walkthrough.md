@@ -50,7 +50,7 @@ Reduces to the **Subset Sum** problem using 0/1 Knapsack Boolean DP.
 ```mermaid
 flowchart TD
     A["sum = 22, odd? NO\ntarget = 11"]
-    B["dp[0..11] = [T,F,F,...,F]"]
+    B["dp["0..11"] = [T,F,F,...,F]"]
     C["Process each num\n(0/1 Knapsack, reversed)"]
     D["After num=11:\ndp[11] = True!"]
     E["Return dp[11] = True"]

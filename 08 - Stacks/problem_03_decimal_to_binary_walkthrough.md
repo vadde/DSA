@@ -56,19 +56,19 @@ Here is how the Stack automatically reverses the order of remainders:
 
 ```mermaid
 flowchart TD
-    subgraph Division Loop
+    subgraph DivisionLoop [Division Loop]
         W1["13 % 2 = 1\n6 % 2 = 0\n3 % 2 = 1\n1 % 2 = 1"]
     end
     
-    subgraph The Stack (Bottom to Top)
+    subgraph TheStackBottomtoTop ["The Stack (Bottom to Top)"]
         S1["Bottom\n'1'\n'0'\n'1'\n'1'\nTop"]
     end
     
-    subgraph Popping (Top to Bottom)
+    subgraph PoppingToptoBottom ["Popping (Top to Bottom)"]
         P1["Read: 1, 1, 0, 1"]
     end
-    
-    Division Loop --> The Stack (Bottom to Top)
+
+DivisionLoop --> TheStack (Bottom to Top)
     The Stack (Bottom to Top) --> Popping (Top to Bottom)
     
     style S1 fill:#ffcdd2,color:#000

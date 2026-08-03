@@ -38,7 +38,7 @@ flowchart TD
     H["Restore cell\nReturn False"]
     
     A --> B
-    B -->|YES| C
+B -->|YES| C
     B -->|NO/OOB| H
     C -->|YES| D
     C -->|NO| E --> F

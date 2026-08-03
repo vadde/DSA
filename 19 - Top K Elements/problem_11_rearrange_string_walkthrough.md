@@ -77,30 +77,30 @@ Here is how the "Waiting Room" mechanism prevents the same character from being 
 
 ```mermaid
 flowchart TD
-    subgraph Iteration 1
+    subgraph Iteration1 [Iteration 1]
         H1["Heap: [(-3, 'p'), (-2, 'a')]"]
         P1["Pop (-3, 'p')"]
         W1["Waiting Room: 'p' (Freq left: 2)"]
         R1["Result: p"]
     end
     
-    subgraph Iteration 2
+    subgraph Iteration2 [Iteration 2]
         H2["Heap: [(-2, 'a')]"]
         P2["Pop (-2, 'a')"]
         H2A["Push 'p' from Waiting Room\nHeap becomes [(-2, 'p')]"]
         W2["Waiting Room: 'a' (Freq left: 1)"]
         R2["Result: p -> a"]
     end
-    
-    H1 --> P1
-    P1 --> R1
+
+H1 --> P1
+P1 --> R1
     P1 --> W1
-    
-    W1 -.->|Waits 1 turn| H2A
+
+W1 -.->|Waits 1 turn| H2A
     H2 --> P2
-    P2 --> R2
+P2 --> R2
     P2 --> W2
-    H2A -->|Available for Iter 3| Next
+H2A -->|Available for Iter 3| Next
     
     style H1 fill:#bbdefb,color:#000
     style W1 fill:#ffcc80,color:#000

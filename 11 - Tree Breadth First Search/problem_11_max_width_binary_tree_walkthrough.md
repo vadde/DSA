@@ -69,28 +69,28 @@ Here is how indices are mapped to nodes, mimicking an array:
 
 ```mermaid
 flowchart TD
-    subgraph Row 1
+    subgraph Row1 [Row 1]
         A["Node 1 (pos: 0)"]
     end
     
-    subgraph Row 2
+    subgraph Row2 [Row 2]
         B["Node 3 (pos: 0)"]
         C["Node 2 (pos: 1)"]
     end
     
-    subgraph Row 3
+    subgraph Row3 [Row 3]
         D["Node 5 (pos: 0)"]
         E["Empty (pos: 1)"]
         F["Empty (pos: 2)"]
         G["Node 9 (pos: 3)"]
     end
-    
-    A --> B
-    A --> C
+
+A --> B
+A --> C
     B --> D
-    B -.-> E
+B -.-> E
     C -.-> F
-    C --> G
+C --> G
     
     style E fill:#ffebee,stroke:#ff5252,stroke-width:2px,stroke-dasharray: 5 5
     style F fill:#ffebee,stroke:#ff5252,stroke-width:2px,stroke-dasharray: 5 5

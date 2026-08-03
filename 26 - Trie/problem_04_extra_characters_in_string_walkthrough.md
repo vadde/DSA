@@ -43,10 +43,10 @@ flowchart TD
     
     A --> B --> C
     B --> D
-    C --> E
+C --> E
     D --> E
-    
-    style C fill:#fff9c4,color:#000
+
+styleCfill:#fff9c4,color:#000
     style D fill:#c8e6c9,color:#000
 ```
 

@@ -81,19 +81,19 @@ flowchart TD
         Q0["''\n(count=0)"]
     end
     
-    subgraph Index 0 ('I')
+    subgraph Index0I ["Index 0 ('I')"]
         Q1_A["''\n(count=1)"]
         Q1_B["'I'\n(count=0)"]
     end
     
-    subgraph Index 1 ('T')
+    subgraph Index1T ["Index 1 ('T')"]
         Q2_A["''\n(count=2)"]
         Q2_B["'1T'\n(count=0)"]
         Q2_C["'I'\n(count=1)"]
         Q2_D["'IT'\n(count=0)"]
     end
     
-    subgraph Final Result (i=2)
+    subgraph FinalResultI2 ["Final Result (i=2)"]
         R_A["'2'"]
         R_B["'1T'"]
         R_C["'I1'"]

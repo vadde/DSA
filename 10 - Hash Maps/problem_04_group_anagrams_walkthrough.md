@@ -53,22 +53,22 @@ flowchart TD
         W4["tan"]
     end
     
-    subgraph Sort Function
+    subgraph SortFunction [Sort Function]
         S1["sort()"]
     end
     
-    subgraph Hash Map Buckets
+    subgraph HashMapBuckets [Hash Map Buckets]
         B1["Key: 'aet'\n['eat', 'tea', 'ate']"]
         B2["Key: 'ant'\n['tan']"]
     end
-    
-    W1 --> S1
-    W2 --> S1
+
+W1 --> S1
+W2 --> S1
     W3 --> S1
-    S1 --> B1
+S1 --> B1
     
     W4 --> S1
-    S1 --> B2
+S1 --> B2
     
     style B1 fill:#e3f2fd,color:#000
     style B2 fill:#e3f2fd,color:#000

@@ -67,7 +67,7 @@ Here is a visual showing the final crossover moment:
 
 ```mermaid
 flowchart TD
-    subgraph Final Loop State
+    subgraph FinalLoopState [Final Loop State]
         A["Array: [1, 3, 8, 10, 15]"]
         L1["Left=4 (Value: 15)"]
         R1["Right=4 (Value: 15)"]
@@ -75,18 +75,18 @@ flowchart TD
         T["Target = 12"]
     end
     
-    subgraph The Crossover
+    subgraph TheCrossover [The Crossover]
         C1["Target (12) < Mid (15)"]
         C2["Right pointer moves left: Right = Mid - 1 = 3"]
         C3["Left (4) > Right (3)\nLoop Breaks!"]
     end
     
-    subgraph The Magic
+    subgraph TheMagic [The Magic]
         M["Left pointer (4) is permanently parked\non the first number > 12"]
     end
-    
-    Final Loop State --> The Crossover
-    The Crossover --> The Magic
+
+FinalLoopState --> TheCrossover
+TheCrossover --> The Magic
     
     style L1 fill:#bbdefb,color:#000
     style R1 fill:#ffcdd2,color:#000

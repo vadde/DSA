@@ -61,12 +61,12 @@ flowchart TD
     subgraph Final
         F1["Push (75, 4)\nReturn 4"]
     end
-    
-    State --> Arrival
-    Arrival --> Absorb
+
+State --> Arrival
+Arrival --> Absorb
     Absorb --> Final
-    
-    style A1 fill:#c8e6c9,color:#000
+
+styleA1fill:#c8e6c9,color:#000
     style R1 fill:#fff9c4,color:#000
     style R2 fill:#fff9c4,color:#000
     style F1 fill:#c8e6c9,color:#000

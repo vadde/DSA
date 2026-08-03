@@ -54,19 +54,19 @@ Here is how the cyclic sort elegantly traps duplicates:
 
 ```mermaid
 flowchart TD
-    subgraph Step 3 [Index 0 has '2']
+    subgraph Step3 [Step 3: Index 0 has '2']
         W1["Array: [2, 2, 3, 1]"]
         N1["2 belongs at index 1!\nBut index 1 already has a '2'!"]
     end
     
-    subgraph The Trap
+    subgraph TheTrap [The Trap]
         W2["nums[0] == nums[1]\n2 == 2"]
         N2["It's a duplicate! We can't swap them,\nwe'd be stuck in an infinite loop!\nJust leave it trapped and i += 1."]
     end
-    
-    Step 3 --> The Trap
-    
-    style The Trap fill:#fff9c4,color:#000
+
+Step3 --> TheTrap
+
+styleTheTrapfill:#fff9c4,color:#000
     style N2 fill:#ff6b6b,color:#000
 ```
 

@@ -43,7 +43,7 @@ flowchart TD
     C --> F["Bucket[3]: [1]"]
     D --> G["Read backward: 1, 2, 3"]
     E --> G
-    F --> G
+F --> G
 ```
 
 ---

@@ -39,25 +39,25 @@ Here is a visualization of the Sliding Window mechanism:
 
 ```mermaid
 flowchart TD
-    subgraph Iteration 3 [window_end = 2]
+    subgraph Iteration3 [Iteration 3: window_end = 2]
         W1["[ 2, 1, 5 ], 1, 3, 2"]
         M1["max_sum = 8"]
     end
     
-    subgraph Iteration 4 [window_end = 3]
+    subgraph Iteration4 [Iteration 4: window_end = 3]
         Slide1["Subtract 2, Add 1"]
         W2["2, [ 1, 5, 1 ], 3, 2"]
         M2["max_sum = 8"]
     end
     
-    subgraph Iteration 5 [window_end = 4]
+    subgraph Iteration5 [Iteration 5: window_end = 4]
         Slide2["Subtract 1, Add 3"]
         W3["2, 1, [ 5, 1, 3 ], 2"]
         M3["max_sum = 9"]
     end
-    
-    Iteration 3 --> Slide1 --> Iteration 4
-    Iteration 4 --> Slide2 --> Iteration 5
+
+Iteration3 --> Slide1 --> Iteration 4
+    Iteration4 --> Slide2 --> Iteration 5
     
     style W1 fill:#32CD32,color:#000
     style W2 fill:#32CD32,color:#000

@@ -87,17 +87,17 @@ flowchart TD
         Q0["''\n(0, 0)"]
     end
     
-    subgraph Level 1
+    subgraph Level1 [Level 1]
         Q1_A["'('\n(1, 0)"]
         Q1_B["')'\n(0, 1)\nBLOCKED"]
     end
     
-    subgraph Level 2
+    subgraph Level2 [Level 2]
         Q2_A["'(('\n(2, 0)"]
         Q2_B["'()'\n(1, 1)"]
     end
     
-    subgraph Level 3
+    subgraph Level3 [Level 3]
         Q3_A["'((('\n(3, 0)\nBLOCKED"]
         Q3_B["'(()'\n(2, 1)"]
         
@@ -105,7 +105,7 @@ flowchart TD
         Q3_D["'())'\n(1, 2)\nBLOCKED"]
     end
     
-    subgraph Level 4 (Result)
+    subgraph Level4Result ["Level 4 (Result)"]
         Q4_A["'(())'\n(2, 2)"]
         Q4_B["'()()'\n(2, 2)"]
     end

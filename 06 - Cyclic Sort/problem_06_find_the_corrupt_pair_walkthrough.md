@@ -60,11 +60,11 @@ Here is how one mismatch reveals two pieces of information:
 
 ```mermaid
 flowchart TD
-    subgraph Sorted Array
+    subgraph SortedArray [Sorted Array]
         W1["Array: [1, 2, 3, 2, 5]"]
     end
     
-    subgraph Index 3 Mismatch
+    subgraph Index3Mismatch [Index 3 Mismatch]
         W2["Spot 4 should have '4'"]
         N2["It has '2'.\n1. '2' is the intruder (Duplicate)\n2. '4' is missing from the array (Missing)"]
     end
@@ -72,9 +72,9 @@ flowchart TD
     subgraph Result
         W3["Return [2, 4]"]
     end
-    
-    Sorted Array --> Index 3 Mismatch
-    Index 3 Mismatch --> Result
+
+SortedArray --> Index3Mismatch
+Index3Mismatch --> Result
     
     style W2 fill:#ffcdd2,color:#000
     style N2 fill:#fff9c4,color:#000

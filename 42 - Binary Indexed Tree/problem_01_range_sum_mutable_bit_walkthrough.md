@@ -50,18 +50,18 @@ Initialize BIT size 4 (indices 0 to 3): `tree = [0, 0, 0, 0]`
 
 ```mermaid
 flowchart TD
-    subgraph Update(i, delta)
+    subgraph UpdateIDelta ["Update(i, delta)"]
     A["i < len(tree)?"] -->|YES| B["tree[i] += delta"]
     B --> C["i += i & (-i)"]
     C --> A
-    end
-    
-    subgraph Query(i)
+end
+
+subgraphQuery(i)
     D["total = 0"] --> E["i > 0?"]
     E -->|YES| F["total += tree[i]"]
     F --> G["i -= i & (-i)"]
     G --> E
-    E -->|NO| H["Return total"]
+E -->|NO| H["Return total"]
     end
     
     style B fill:#fff9c4,color:#000

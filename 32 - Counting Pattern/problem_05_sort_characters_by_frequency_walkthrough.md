@@ -31,7 +31,7 @@ Final Output: `"eetr"` ✅
 
 ```mermaid
 flowchart TD
-    A["Count frequencies:\n{'e':2, 't':1, 'r':1}"] --> B["Create buckets[0..max_freq]"]
+    A["Count frequencies:\n{'e':2, 't':1, 'r':1}"] --> B["Create buckets["0..max_freq"]"]
     B --> C["Place chars in buckets\nbuckets[1] = ['t', 'r']\nbuckets[2] = ['e']"]
     C --> D["Iterate buckets backwards\n(from max_freq down to 1)"]
     D --> E["Append (char * freq) to result"]

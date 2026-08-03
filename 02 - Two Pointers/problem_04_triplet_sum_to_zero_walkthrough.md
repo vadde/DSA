@@ -49,11 +49,11 @@ stateDiagram-v2
     state "Move L right, move R left, continue searching..." as A2
     
     S0 --> S1
-    S1 --> S2
+S1 --> S2
     S2 --> A1
-    A1 --> S3
+A1 --> S3
     S3 --> Success
-    Success --> A2
+Success --> A2
 ```
 
 ## 🛑 Edge Cases & Complexity

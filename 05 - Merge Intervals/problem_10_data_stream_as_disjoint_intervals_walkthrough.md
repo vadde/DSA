@@ -38,29 +38,29 @@ Here is a visualization of the double-merge when inserting `2`:
 
 ```mermaid
 flowchart TD
-    subgraph State 1 [Before Insert]
+    subgraph State1 [State 1: Before Insert]
         W1["Intervals: [1, 1], [3, 3], [7, 7]"]
     end
     
-    subgraph State 2 [Insert [2, 2]]
+    subgraph State2 [State 2: Insert [2, 2]]
         W2["Intervals: [1, 1], [2, 2], [3, 3], [7, 7]"]
     end
     
-    subgraph State 3 [Merge Left]
+    subgraph State3 [State 3: Merge Left]
         W3["Left neighbor ends at 1.\n1 + 1 == 2. Merge!"]
         N3["Intervals: [1, 2], [3, 3], [7, 7]"]
     end
     
-    subgraph State 4 [Merge Right]
+    subgraph State4 [State 4: Merge Right]
         W4["Right neighbor starts at 3.\n2 + 1 == 3. Merge!"]
         N4["Intervals: [1, 3], [7, 7]"]
     end
-    
-    State 1 --> State 2
-    State 2 --> State 3
-    State 3 --> State 4
-    
-    style W3 fill:#fff9c4,color:#000
+
+State1 --> State2
+State2 --> State 3
+    State3 --> State4
+
+styleW3fill:#fff9c4,color:#000
     style W4 fill:#fff9c4,color:#000
     style N4 fill:#32CD32,color:#000
 ```

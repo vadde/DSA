@@ -195,7 +195,7 @@ flowchart TD
     D -- Yes --> E["RECORD\nresult = max(result, window_state)"]
     E --> F["SHRINK\nRemove arr[window_start]\nwindow_start += 1"]
     F --> B
-    B -- Done --> G["RETURN result"]
+B -- Done --> G["RETURN result"]
 
     style A fill:#2d9,stroke:#333
     style G fill:#2d9,stroke:#333
@@ -233,9 +233,9 @@ flowchart TD
     D -- Yes --> E["RECORD (for min)\nresult = min(result, window_len)"]
     E --> F["SHRINK\nRemove arr[window_start]\nwindow_start += 1"]
     F --> D
-    D -- "No (after shrinking)" --> H["RECORD (for max)\nresult = max(result, window_len)"]
+D -- "No (after shrinking)" --> H["RECORD (for max)\nresult = max(result, window_len)"]
     H --> B
-    B -- Done --> G["RETURN result"]
+B -- Done --> G["RETURN result"]
 
     style A fill:#29d,stroke:#333
     style G fill:#29d,stroke:#333

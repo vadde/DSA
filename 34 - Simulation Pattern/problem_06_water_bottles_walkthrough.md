@@ -46,8 +46,8 @@ flowchart TD
     B -->|YES| C["new_full = empty // numExchange\nleftovers = empty % numExchange"]
     C --> D["total += new_full\nempty = leftovers + new_full"]
     D --> B
-    
-    B -->|NO| E["Return total"]
+
+B -->|NO| E["Return total"]
     
     style E fill:#c8e6c9,color:#000
 ```

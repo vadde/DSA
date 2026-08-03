@@ -56,7 +56,7 @@ flowchart TD
         A2["List 2: [1, 3, 4]"]
     end
     
-    subgraph Min-Heap
+    subgraph MinHeap ["Min-Heap"]
         H["Always holds at most M=3 elements\n(one from each list's frontier)"]
     end
     
@@ -71,15 +71,15 @@ flowchart TD
     subgraph Result
         R["Return 4"]
     end
-    
-    A0 --> H
-    A1 --> H
+
+A0 --> H
+A1 --> H
     A2 --> H
-    
-    H --> C --> C2 --> C3 --> C4 --> C5
+
+H --> C --> C2 --> C3 --> C4 --> C5
     C5 --> R
-    
-    style H fill:#bbdefb,color:#000
+
+styleHfill:#bbdefb,color:#000
     style C5 fill:#c8e6c9,color:#000
     style R fill:#a5d6a7,color:#000
 ```

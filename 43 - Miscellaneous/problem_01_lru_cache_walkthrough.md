@@ -53,14 +53,14 @@ Init: `[Head] <-> [Tail]`
 
 ```mermaid
 flowchart LR
-    subgraph Doubly Linked List Structure
+    subgraph DoublyLinkedListStructure [Doubly Linked List Structure]
     A[Dummy Head] <--> B[Most Recent Node]
     B <--> C[...]
     C <--> D[Least Recent Node]
     D <--> E[Dummy Tail]
     end
     
-    subgraph Hash Map
+    subgraph HashMap [Hash Map]
     F[Key 1] -.-> B
     G[Key N] -.-> D
     end

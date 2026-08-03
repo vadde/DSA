@@ -60,13 +60,13 @@ Here is how the BFS explores components and why it correctly returns False for d
 
 ```mermaid
 flowchart TD
-    subgraph Component A (Reachable from 0)
+    subgraph ComponentAReachablefrom0 ["Component A (Reachable from 0)"]
         A0((City 0)) --- A1((City 1))
         A0 --- A2((City 2))
         note1["Water (BFS) starts at 0,\nspreads to 1 and 2.\nQueue empties here!"]
     end
     
-    subgraph Component B (Disconnected!)
+    subgraph ComponentBDisconnected ["Component B (Disconnected!)"]
         B3((City 3)) --- B5((City 5\nTARGET))
         B5 --- B4((City 4))
         B4 --- B3

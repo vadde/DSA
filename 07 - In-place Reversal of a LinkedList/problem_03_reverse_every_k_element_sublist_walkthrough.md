@@ -56,23 +56,23 @@ Here is how `prev` dynamically shifts to become the new anchor between groups:
 
 ```mermaid
 flowchart TD
-    subgraph Group 1 Reconnected
+    subgraph Group1Reconnected [Group 1 Reconnected]
         W1["[3] -> [2] -> [1] -> [4] -> [5]"]
     end
     
-    subgraph Setting up Group 2
+    subgraph SettingupGroup2 [Setting up Group 2]
         W2["last_node is [1]"]
         N2["We set prev = [1]!"]
     end
     
-    subgraph Group 2 Reconnected
+    subgraph Group2Reconnected [Group 2 Reconnected]
         W3["[4] and [5] are reversed to [5] -> [4]"]
         N3["node_before (which is 1) points to the new head (5)!"]
         H3["[3] -> [2] -> [1] -> [5] -> [4]"]
     end
-    
-    Group 1 Reconnected --> Setting up Group 2
-    Setting up Group 2 --> Group 2 Reconnected
+
+Group1Reconnected --> SettingupGroup2
+SettingupGroup2 --> Group 2 Reconnected
     
     style N2 fill:#fff9c4,color:#000
     style N3 fill:#fff9c4,color:#000

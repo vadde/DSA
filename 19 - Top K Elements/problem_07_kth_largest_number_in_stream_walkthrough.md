@@ -64,49 +64,49 @@ Here is how the Min-Heap maintains the threshold for the VIP club:
 
 ```mermaid
 flowchart TD
-    subgraph Initial State
+    subgraph InitialState [Initial State]
         H1["Heap: [3, 11, 5, 12]\nSize: 4"]
         R1["4th Largest = 3"]
     end
     
-    subgraph Add 6
+    subgraph Add6 [Add 6]
         P1["Push 6"]
         P2["Pop 3 (Size > 4)"]
         H2["Heap: [5, 6, 11, 12]"]
         R2["4th Largest = 5"]
     end
     
-    subgraph Add 13
+    subgraph Add13 [Add 13]
         P3["Push 13"]
         P4["Pop 5 (Size > 4)"]
         H3["Heap: [6, 12, 11, 13]"]
         R3["4th Largest = 6"]
     end
     
-    subgraph Add 4
+    subgraph Add4 [Add 4]
         P5["Push 4"]
         P6["Pop 4 (Instantly rejected)"]
         H4["Heap: [6, 12, 11, 13]"]
         R4["4th Largest = 6"]
     end
-    
-    H1 --> R1
-    R1 --> P1
+
+H1 --> R1
+R1 --> P1
     P1 --> P2
-    P2 --> H2
+P2 --> H2
     H2 --> R2
-    
-    R2 --> P3
+
+R2 --> P3
     P3 --> P4
-    P4 --> H3
+P4 --> H3
     H3 --> R3
-    
-    R3 --> P5
+
+R3 --> P5
     P5 --> P6
-    P6 --> H4
+P6 --> H4
     H4 --> R4
-    
-    style H1 fill:#bbdefb,color:#000
+
+styleH1fill:#bbdefb,color:#000
     style H2 fill:#bbdefb,color:#000
     style H3 fill:#bbdefb,color:#000
     style H4 fill:#bbdefb,color:#000

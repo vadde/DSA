@@ -64,12 +64,12 @@ Here is how the two sets differentiate between a "Safe Cross-Edge" and a "Danger
 
 ```mermaid
 flowchart TD
-    subgraph Safe Graph (No Cycle)
+    subgraph SafeGraphNoCycle ["Safe Graph (No Cycle)"]
         A["Course 0\npath_visited: {0}"] --> B["Course 1\npath_visited: {0, 1}"]
         A --> C["Course 2\npath_visited: {0, 2}"]
         B --> D["Course 3\npath_visited: {0, 1, 3}"]
         C --> D
-        note1["dfs(1) reaches 3 and finishes.\n3 is removed from path_visited.\n3 is in visited."]
+note1["dfs(1) reaches 3 and finishes.\n3 is removed from path_visited.\n3 is in visited."]
         note2["dfs(2) reaches 3.\n3 is in visited, NOT in path_visited.\nSAFE! Returns True!"]
     end
 ```

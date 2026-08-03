@@ -36,35 +36,35 @@ Here is a visualization of the Sliding Window expanding and shrinking with the H
 
 ```mermaid
 flowchart TD
-    subgraph Expand to 4 [end = 3]
+    subgraph Expandto4 [Expand to 4: end = 3]
         W1["[ a, r, a, a ], c, i"]
         M1["Freq: {a:3, r:1}"]
         N1["Valid! Max Len: 4"]
     end
     
-    subgraph Invalid Expand [end = 4]
+    subgraph InvalidExpand [Invalid Expand: end = 4]
         W2["[ a, r, a, a, c ], i"]
         M2["Freq: {a:3, r:1, c:1}"]
         N2["Invalid! Distinct = 3"]
     end
     
-    subgraph Shrink 1 [start = 1]
+    subgraph Shrink1 [Shrink 1: start = 1]
         W3["a, [ r, a, a, c ], i"]
         M3["Freq: {a:2, r:1, c:1}"]
         N3["Invalid! Distinct = 3"]
     end
     
-    subgraph Shrink 2 [start = 2]
+    subgraph Shrink2 [Shrink 2: start = 2]
         W4["a, r, [ a, a, c ], i"]
         M4["Freq: {a:2, c:1}"]
         N4["Valid! Distinct = 2. Max: 4"]
     end
-    
-    Expand to 4 --> Invalid Expand
-    Invalid Expand --> Shrink 1
-    Shrink 1 --> Shrink 2
-    
-    style W1 fill:#32CD32,color:#000
+
+Expandto4 --> InvalidExpand
+InvalidExpand --> Shrink 1
+    Shrink1 --> Shrink2
+
+styleW1fill:#32CD32,color:#000
     style W2 fill:#ff6b6b,color:#000
     style W3 fill:#ff6b6b,color:#000
     style W4 fill:#32CD32,color:#000

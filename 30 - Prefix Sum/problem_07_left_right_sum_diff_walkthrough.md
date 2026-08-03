@@ -41,8 +41,8 @@ flowchart TD
     D --> E["result.append(abs(left_sum - right_sum))"]
     E --> F["left_sum += num"]
     F --> C
-    
-    style E fill:#c8e6c9,color:#000
+
+styleEfill:#c8e6c9,color:#000
 ```
 
 ## 🛑 Complexity

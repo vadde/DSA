@@ -64,21 +64,21 @@ flowchart TD
         A["[1, 5, 12, 2, 11, 5]"]
     end
     
-    subgraph Max Heap (Negated)
+    subgraph MaxHeapNegated ["Max Heap (Negated)"]
         H1["Heap: [-12, -1, -5]\nReal Max = 12"]
     end
     
-    subgraph Process 2
+    subgraph Process2 [Process 2]
         C1["Is 2 < 12? YES!"]
         H2["Pop -12, Push -2\nHeap: [-5, -1, -2]\nReal Max = 5"]
     end
     
-    subgraph Process 11
+    subgraph Process11 [Process 11]
         C2["Is 11 < 5? NO!"]
         H3["Ignore 11\nHeap: [-5, -1, -2]\nReal Max = 5"]
     end
     
-    subgraph Process 5
+    subgraph Process5 [Process 5]
         C3["Is 5 < 5? NO!"]
         H4["Ignore 5\nHeap: [-5, -1, -2]\nReal Max = 5"]
     end
@@ -86,15 +86,15 @@ flowchart TD
     subgraph Result
         R["Return True Max\n-(-5) = 5"]
     end
-    
-    A --> H1
-    H1 --> C1
+
+A --> H1
+H1 --> C1
     C1 --> H2
-    H2 --> C2
+H2 --> C2
     C2 --> H3
-    H3 --> C3
+H3 --> C3
     C3 --> H4
-    H4 --> R
+H4 --> R
     
     style H1 fill:#ffcdd2,color:#000
     style C1 fill:#c8e6c9,color:#000

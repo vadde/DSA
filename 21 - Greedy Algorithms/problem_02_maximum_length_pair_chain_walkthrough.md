@@ -39,20 +39,20 @@ This is the classic **Activity Selection** greedy problem.
 
 ```mermaid
 flowchart LR
-    subgraph Sorted Pairs
+    subgraph SortedPairs [Sorted Pairs]
         P1["[2, 3]"]
         P2["[4, 5]"]
         P3["[1, 10]"]
     end
     
-    subgraph Chain Building
+    subgraph ChainBuilding [Chain Building]
         C1["Pick [2,3]\nEnd = 3"]
         C2["4 > 3 → Pick [4,5]\nEnd = 5"]
         C3["1 > 5? NO → Skip [1,10]"]
         R["Length = 2"]
     end
-    
-    P1 --> C1 --> C2 --> C3 --> R
+
+P1 --> C1 --> C2 --> C3 --> R
     
     style C1 fill:#c8e6c9,color:#000
     style C2 fill:#c8e6c9,color:#000

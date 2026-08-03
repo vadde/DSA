@@ -44,9 +44,9 @@ flowchart TD
     D["5 > 2! Pop 2. (Next Greater for 2 is 5) -> Stack: [5]"]
     E["Insert 3 -> 3 < 5 -> Stack: [5, 3]"]
     A --> B
-    B --> C
+B --> C
     C --> D
-    D --> E
+D --> E
 ```
 Leftovers in stack have NO next greater element!
 

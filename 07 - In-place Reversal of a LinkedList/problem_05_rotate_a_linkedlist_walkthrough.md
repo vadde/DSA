@@ -51,17 +51,17 @@ Here is a visualization of the circle-breaking logic:
 
 ```mermaid
 flowchart TD
-    subgraph Step 1: Form a Circle
+    subgraph Step1FormaCircle ["Step 1: Form a Circle"]
         C1["1 -> 2 -> 3 -> 4 -> 5"]
         N1["Connect 5 to 1!"]
     end
     
-    subgraph Step 2: Find the Break Point
+    subgraph Step2FindtheBreakPoint ["Step 2: Find the Break Point"]
         C2["1 -> 2 -> 3 (new_tail) -> 4 (new_head) -> 5"]
         N2["Walk (length - k) steps: 5 - 2 = 3.\nLand on Node 3."]
     end
     
-    subgraph Step 3: Break the Circle
+    subgraph Step3BreaktheCircle ["Step 3: Break the Circle"]
         C3["4 -> 5 -> 1 -> 2 -> 3 -> null"]
         N3["Set 3.next = null.\nReturn 4!"]
     end

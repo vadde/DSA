@@ -38,8 +38,8 @@ flowchart TD
     D -->|YES| E["mismatches += 1"]
     D -->|NO| C
     E --> C
-    
-    C -.->|Finished| F["Return mismatches"]
+
+C -.->|Finished| F["Return mismatches"]
     
     style F fill:#c8e6c9,color:#000
 ```

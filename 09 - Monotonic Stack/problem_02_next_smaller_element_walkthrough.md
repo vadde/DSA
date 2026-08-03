@@ -42,12 +42,12 @@ Here is how the '2' clears out the waiting room:
 
 ```mermaid
 flowchart TD
-    subgraph Wait Room
-        W1["Stack before 2 arrives:\n[Index 0 (Value 4)]\n[Index 2 (Value 5)]"]
+    subgraph WaitRoom [Wait Room]
+        W1["Stack before 2 arrives:\n["Index 0 (Value 4)"]\n["Index 2 (Value 5)"]"]
         N1["Notice the stack is perfectly INCREASING: 4, 5"]
     end
     
-    subgraph The Small Guy Arrives
+    subgraph TheSmallGuyArrives [The Small Guy Arrives]
         A1["'2' arrives at Index 3"]
         N2["2 breaks the increasing rule!"]
     end
@@ -57,9 +57,9 @@ flowchart TD
         R2["2 < 4. Pop Index 0. result[0] = 2"]
         N3["Push Index 3."]
     end
-    
-    Wait Room --> The Small Guy Arrives
-    The Small Guy Arrives --> Resolutions
+
+WaitRoom --> TheSmallGuyArrives
+TheSmallGuyArrives --> Resolutions
     
     style A1 fill:#c8e6c9,color:#000
     style N1 fill:#fff9c4,color:#000

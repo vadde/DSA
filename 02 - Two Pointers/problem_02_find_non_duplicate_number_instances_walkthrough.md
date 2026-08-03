@@ -53,15 +53,15 @@ stateDiagram-v2
     state "Write 9 at index 3. slow becomes 4." as A5
     
     S0 --> S1
-    S1 --> A1
+S1 --> A1
     A1 --> S2
-    S2 --> A2
+S2 --> A2
     A2 --> S3
-    S3 --> A3
+S3 --> A3
     A3 --> S4
-    S4 --> A4
+S4 --> A4
     A4 --> S5
-    S5 --> A5
+S5 --> A5
 ```
 
 ## 🛑 Edge Cases & Complexity

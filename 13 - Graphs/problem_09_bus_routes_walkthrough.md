@@ -68,7 +68,7 @@ Here is how BFS views the graph of *Routes* rather than the graph of *Stops*:
 
 ```mermaid
 flowchart TD
-    subgraph Stops (Too Complex to BFS directly)
+    subgraph StopsTooComplextoBFSdirectly ["Stops (Too Complex to BFS directly)"]
         S1((Stop 1)) --- S2((Stop 2))
         S1 --- S7((Stop 7))
         S2 --- S7
@@ -78,7 +78,7 @@ flowchart TD
         note1["Fully connected route stops create massive sub-graphs!"]
     end
     
-    subgraph Routes (Clean and Fast BFS)
+    subgraph RoutesCleanandFastBFS ["Routes (Clean and Fast BFS)"]
         R0["Route 0\n(Buses: 1)"] -->|Transfer at Stop 7| R1["Route 1\n(Buses: 2)"]
         note2["R1 contains Target Stop 6.\nReturn 2."]
     end

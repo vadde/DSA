@@ -67,11 +67,11 @@ flowchart TD
         A["Node 1\nTarget: seq[0]=1\nMATCH!"]
     end
     
-    subgraph Left Branch Pruned!
+    subgraph LeftBranchPruned ["Left Branch Pruned!"]
         B["Node 7\nTarget: seq[1]=9\n7 != 9. FALSE!"]
     end
     
-    subgraph Right Branch Progress
+    subgraph RightBranchProgress [Right Branch Progress]
         C["Node 9\nTarget: seq[1]=9\nMATCH!"]
         D["Node 2\nTarget: seq[2]=9\n2 != 9. FALSE!"]
         E["Node 9 (Leaf)\nTarget: seq[2]=9\nMATCH! WINNER!"]

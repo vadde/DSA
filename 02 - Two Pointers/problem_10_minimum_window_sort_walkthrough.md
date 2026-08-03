@@ -53,18 +53,18 @@ stateDiagram-v2
     state "arr[5] is 7. 7 < 3. No." as S9
     state "high stays 4" as S10
     
-    state "Final Window: arr[0...4] -> Length 5" as Final
+    state "Final Window: arr["0...4"] -> Length 5" as Final
     
     S0 --> S1
-    S1 --> S2
+S1 --> S2
     S2 --> S3
-    S3 --> S4
+S3 --> S4
     S4 --> S5
-    S5 --> S6
+S5 --> S6
     S6 --> S7
-    S7 --> S8
+S7 --> S8
     S8 --> S9
-    S9 --> S10
+S9 --> S10
     S10 --> Final
 ```
 

@@ -46,14 +46,14 @@ flowchart TD
     E -->|YES| F["new_arr[i] += 1\nchanged = True"]
     E -->|NO| G{"arr[i] bigger than BOTH?"}
     F --> D
-    G -->|YES| H["new_arr[i] -= 1\nchanged = True"]
+G -->|YES| H["new_arr[i] -= 1\nchanged = True"]
     G -->|NO| D
     H --> D
-    
-    D -.->|Finished| I["arr = new_arr"]
+
+D -.->|Finished| I["arr = new_arr"]
     I --> B
-    
-    B -->|NO| J["Return arr"]
+
+B -->|NO| J["Return arr"]
     
     style J fill:#c8e6c9,color:#000
 ```

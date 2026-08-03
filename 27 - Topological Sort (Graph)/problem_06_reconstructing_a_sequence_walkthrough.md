@@ -43,7 +43,7 @@ flowchart TD
     H["Return True"]
     
     A --> B
-    B -->|NO| E
+B -->|NO| E
     B -->|YES| C --> D
     D -->|NO| E
     D -->|YES| F --> G

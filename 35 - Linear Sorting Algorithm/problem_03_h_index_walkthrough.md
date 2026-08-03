@@ -50,8 +50,8 @@ flowchart TD
     H -->|YES| I["Return h"]
     H -->|NO| J["h -= 1"]
     J --> G
-    
-    style I fill:#c8e6c9,color:#000
+
+styleIfill:#c8e6c9,color:#000
 ```
 
 ## 🛑 Complexity

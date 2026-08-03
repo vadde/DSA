@@ -35,7 +35,7 @@ flowchart TD
     CHECK -- "Yes (e.g. item is bigger than stack top)" --> POP["Pop the top of the stack"]
     POP --> PROCESS["The 'item' is the Next Greater element for the popped value!"]
     PROCESS --> CHECK
-    CHECK -- "No (or stack is empty)" --> PUSH["Push 'item' to stack"]
+CHECK -- "No (or stack is empty)" --> PUSH["Push 'item' to stack"]
     PUSH --> LOOP
 ```
 

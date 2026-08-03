@@ -59,20 +59,20 @@ Here is how the queue state holds the answer at the exact moment the target is p
 
 ```mermaid
 flowchart TD
-    subgraph Pop Target
+    subgraph PopTarget [Pop Target]
         N1["Pop Node '1'"]
     end
     
-    subgraph Push Children First!
+    subgraph PushChildrenFirst ["Push Children First!"]
         N2["Queue before push: []\nPush '10', '5'\nQueue is now: [9, 2, 10, 5]"]
     end
     
-    subgraph Break and Return
+    subgraph BreakandReturn [Break and Return]
         N3["Target is '1' -> MATCH!\nBreak loop.\nSuccessor is queue[0] (which is 9)"]
     end
-    
-    N1 --> N2
-    N2 --> N3
+
+N1 --> N2
+N2 --> N3
     
     style N2 fill:#fff9c4,color:#000
     style N3 fill:#c8e6c9,color:#000

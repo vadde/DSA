@@ -74,24 +74,24 @@ Here is a visualization of the Heap state during Loop 3, showing why pushing the
 
 ```mermaid
 flowchart TD
-    subgraph Iteration 2 End State
+    subgraph Iteration2EndState [Iteration 2 End State]
         END["max_end_heap\nNext: End=2"]
         START["max_start_heap\nTop: Start=3"]
         note1["Start=3 was pushed back.\nWe need it for End=2!"]
     end
     
-    subgraph Iteration 3 Pop Loop
+    subgraph Iteration3PopLoop [Iteration 3 Pop Loop]
         POP1["Pop Start=3\n(3 >= 2)"] --> POP2["Pop Start=2\n(2 >= 2)"]
         POP2 --> CHECK["Check Start=1\n(1 < 2) STOP"]
     end
     
-    subgraph Iteration 3 Result
+    subgraph Iteration3Result [Iteration 3 Result]
         RES["best_start_idx = 1"]
         note2["The last popped value (Start=2)\nis the tightest fit!"]
     end
-    
-    Iteration 2 End State --> Iteration 3 Pop Loop
-    Iteration 3 Pop Loop --> Iteration 3 Result
+
+Iteration2EndState --> Iteration3PopLoop
+Iteration3PopLoop --> Iteration 3 Result
     
     style END fill:#bbdefb,color:#000
     style START fill:#c8e6c9,color:#000

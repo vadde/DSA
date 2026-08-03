@@ -60,28 +60,28 @@ Here is how the shift-and-subtract trick perfectly generates the mask we need:
 
 ```mermaid
 flowchart TD
-    subgraph Original Number
+    subgraph OriginalNumber [Original Number]
         N["num = 10\nBinary: 1010\nLength: 4 bits"]
     end
     
-    subgraph Generating Mask
+    subgraph GeneratingMask [Generating Mask]
         S1["Take 1\n(00001)"]
         S2["Shift left by 4 (1 << 4)\n(10000)"]
         S3["Subtract 1\n(01111)"]
     end
     
-    subgraph Flipping Bits
+    subgraph FlippingBits [Flipping Bits]
         XOR["1010 ^ 1111"]
         R["Result: 0101 (5)"]
     end
-    
-    N --> S1
-    S1 --> S2 --> S3
+
+N --> S1
+S1 --> S2 --> S3
     S3 --> XOR
-    N --> XOR
+N --> XOR
     XOR --> R
-    
-    style N fill:#bbdefb,color:#000
+
+styleNfill:#bbdefb,color:#000
     style S2 fill:#ffcc80,color:#000
     style S3 fill:#ffcc80,color:#000
     style XOR fill:#e1bee7,color:#000

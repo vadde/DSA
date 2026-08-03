@@ -39,7 +39,7 @@ flowchart LR
     A["'a'"] --> B["count[0] = 2"]
     C["'b'"] --> D["count[1] = 1"]
     E["'c'"] --> F["count[2] = 1"]
-    G["'d'-'z'"] --> H["count[3..25] = 0"]
+    G["'d'-'z'"] --> H["count["3..25"] = 0"]
 ```
 Instead of O(N log N) sorting, we can rebuild the sorted string "aabc" in O(N) time!
 

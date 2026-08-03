@@ -62,27 +62,27 @@ Here is how comparing `mid` to `mid+1` tells us which half of the mountain to se
 
 ```mermaid
 flowchart TD
-    subgraph The Mountain: [1, 3, 8, 12, 4, 2]
+    subgraph TheMountain [The Mountain:: 1, 3, 8, 12, 4, 2]
         M1["Mid=2 (Val: 8)\nNext=3 (Val: 12)"]
     end
     
-    subgraph Uphill Logic
+    subgraph UphillLogic [Uphill Logic]
         U1["8 < 12 (Uphill)"]
         U2["Peak MUST be to the right!\nleft = mid + 1"]
     end
     
-    subgraph Downhill State
+    subgraph DownhillState [Downhill State]
         M2["Mid=4 (Val: 4)\nNext=5 (Val: 2)"]
     end
     
-    subgraph Downhill Logic
+    subgraph DownhillLogic [Downhill Logic]
         D1["4 > 2 (Downhill)"]
         D2["Peak could be Mid, or to the left!\nright = mid"]
     end
-    
-    M1 --> U1 --> U2
+
+M1 --> U1 --> U2
     U2 --> M2
-    M2 --> D1 --> D2
+M2 --> D1 --> D2
     
     style M1 fill:#bbdefb,color:#000
     style U1 fill:#c8e6c9,color:#000

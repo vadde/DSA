@@ -41,15 +41,15 @@ flowchart TD
     A["Create delta array\nsize 101 (1950-2050)"] --> B["For each person [B, D]:"]
     B --> C["delta[B] += 1\ndelta[D] -= 1"]
     C --> B
-    
-    C -.->|Finished| D["Sweep year 1950 to 2050"]
+
+C -.->|Finished| D["Sweep year 1950 to 2050"]
     D --> E["running_sum += delta[year]"]
     E --> F{"running_sum > max_pop?"}
     F -->|YES| G["max_pop = running_sum\nmax_year = year"]
     F -->|NO| D
     G --> D
-    
-    style G fill:#fff9c4,color:#000
+
+styleGfill:#fff9c4,color:#000
 ```
 
 ## 🛑 Complexity

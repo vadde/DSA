@@ -45,15 +45,15 @@ flowchart LR
     C <--> A
     end
     
-    subgraph Python Adjacency List
+    subgraph PythonAdjacencyList [Python Adjacency List]
     D["{
       'A': {'B', 'C'},
       'B': {'A', 'C'},
       'C': {'A', 'B'}
     }"]
     end
-    
-    Graph -.-> D
+
+Graph -.-> D
 ```
 
 ## 🛑 Complexity

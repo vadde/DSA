@@ -68,31 +68,31 @@ Here is how the Min-Heap effortlessly serves us the two smallest pieces, then ac
 
 ```mermaid
 flowchart TD
-    subgraph Initial State
+    subgraph InitialState [Initial State]
         H1["Heap: [3, 4, 5, 6]\nCost = 0"]
     end
     
-    subgraph Step 1: Tie 3 & 4
+    subgraph Step1Tie34 ["Step 1: Tie 3 & 4"]
         P1["Pop 3, Pop 4\nMerge: 3 + 4 = 7"]
         H2["Push 7\nHeap: [5, 6, 7]\nCost = 7"]
     end
     
-    subgraph Step 2: Tie 5 & 6
+    subgraph Step2Tie56 ["Step 2: Tie 5 & 6"]
         P2["Pop 5, Pop 6\nMerge: 5 + 6 = 11"]
         H3["Push 11\nHeap: [7, 11]\nCost = 7 + 11 = 18"]
     end
     
-    subgraph Step 3: Tie 7 & 11
+    subgraph Step3Tie711 ["Step 3: Tie 7 & 11"]
         P3["Pop 7, Pop 11\nMerge: 7 + 11 = 18"]
         H4["Push 18\nHeap: [18]\nCost = 18 + 18 = 36"]
     end
-    
-    H1 --> P1
-    P1 --> H2
+
+H1 --> P1
+P1 --> H2
     H2 --> P2
-    P2 --> H3
+P2 --> H3
     H3 --> P3
-    P3 --> H4
+P3 --> H4
     
     style H1 fill:#bbdefb,color:#000
     style P1 fill:#ffcc80,color:#000

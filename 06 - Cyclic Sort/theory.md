@@ -34,7 +34,7 @@ flowchart TD
     CHECK -- "Yes" --> ADVANCE["i += 1"]
     CHECK -- "No" --> SWAP["Swap nums[i] with nums[nums[i] - 1]"]
     SWAP --> CHECK
-    ADVANCE --> END_LOOP{"Is i == N?"}
+ADVANCE --> END_LOOP{"Is i == N?"}
     END_LOOP -- "No" --> CHECK
     END_LOOP -- "Yes" --> SECOND_PASS["Iterate again to find missing/duplicates"]
 ```

@@ -67,13 +67,13 @@ flowchart TD
         O4["Push 'c'"]
     end
     
-    subgraph Final Stack
+    subgraph FinalStack [Final Stack]
         S1["[Top]\n'c'\n'a'\n[Bottom]"]
         R1["Result: /a/c"]
     end
-    
-    Path --> Operations
-    Operations --> Final Stack
+
+Path --> Operations
+Operations --> Final Stack
     
     style O3 fill:#ffcdd2,color:#000
     style S1 fill:#c8e6c9,color:#000

@@ -77,27 +77,27 @@ flowchart TD
         D["Tasks: A(3), B(2)\nCooldown K=2\nBlock Size = K+1 = 3"]
     end
     
-    subgraph Block 1
+    subgraph Block1 [Block 1]
         B1["Process: A, B\nHeap empty, n=1 left\nAdd 1 Idle"]
         I1["Intervals: 3\nWait list: A(2), B(1)"]
     end
     
-    subgraph Block 2
+    subgraph Block2 [Block 2]
         B2["Process: A, B\nHeap empty, n=1 left\nAdd 1 Idle"]
         I2["Intervals: 3+3=6\nWait list: A(1)"]
     end
     
-    subgraph Block 3
+    subgraph Block3 [Block 3]
         B3["Process: A\nHeap empty, Wait empty\nNo trailing Idle!"]
         I3["Intervals: 6+1=7\nDone!"]
     end
-    
-    D --> B1
-    B1 --> I1
+
+D --> B1
+B1 --> I1
     I1 --> B2
-    B2 --> I2
+B2 --> I2
     I2 --> B3
-    B3 --> I3
+B3 --> I3
     
     style B1 fill:#fff9c4,color:#000
     style B2 fill:#fff9c4,color:#000

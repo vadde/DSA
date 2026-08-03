@@ -46,12 +46,12 @@ stateDiagram-v2
     state "calculate sum of digit squares" as F
     
     Start --> F
-    F --> NextNode
+F --> NextNode
     NextNode --> F
-    
-    note right of Start
-        This acts just like
-        node = node.next!
+
+noterightofStart
+Thisactsjustlike
+node = node.next!
     end note
 ```
 

@@ -63,28 +63,28 @@ Here is how `appendleft` magically reverses the order of the levels without need
 
 ```mermaid
 flowchart TD
-    subgraph Iteration 1 (Top)
+    subgraph Iteration1Top ["Iteration 1 (Top)"]
         L1["current_level = [12]"]
         R1["result = [[12]]"]
     end
     
-    subgraph Iteration 2 (Middle)
+    subgraph Iteration2Middle ["Iteration 2 (Middle)"]
         L2["current_level = [7, 1]"]
         R2["result = [[7, 1], [12]]"]
     end
     
-    subgraph Iteration 3 (Bottom)
+    subgraph Iteration3Bottom ["Iteration 3 (Bottom)"]
         L3["current_level = [9, 2, 10, 5]"]
         R3["result = [[9, 2, 10, 5], [7, 1], [12]]"]
     end
-    
-    L1 --> R1
-    R1 --> Iteration 2 (Middle)
+
+L1 --> R1
+R1 --> Iteration 2 (Middle)
     L2 --> R2
-    R2 --> Iteration 3 (Bottom)
+R2 --> Iteration 3 (Bottom)
     L3 --> R3
-    
-    style R1 fill:#e3f2fd,color:#000
+
+styleR1fill:#e3f2fd,color:#000
     style R2 fill:#e3f2fd,color:#000
     style R3 fill:#c8e6c9,color:#000
 ```

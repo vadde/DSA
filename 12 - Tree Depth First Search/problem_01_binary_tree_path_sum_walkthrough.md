@@ -68,12 +68,12 @@ flowchart TD
         A["Node 12\nTarget: 23"]
     end
     
-    subgraph Left Path
+    subgraph LeftPath [Left Path]
         B["Node 7\nTarget: 11"]
         C["Node 9 (LEAF)\nTarget: 4\n9 != 4. FALSE"]
     end
     
-    subgraph Right Path
+    subgraph RightPath [Right Path]
         D["Node 1\nTarget: 11"]
         E["Node 10 (LEAF)\nTarget: 10\n10 == 10. TRUE!"]
         F["Node 5 (LEAF)\nNot checked due to short-circuit"]
@@ -84,8 +84,8 @@ flowchart TD
     A -->|"23-12=11"| D
     D -->|"11-1=10"| E
     D -.-> F
-    
-    style C fill:#ffcdd2,color:#000
+
+styleCfill:#ffcdd2,color:#000
     style E fill:#c8e6c9,color:#000
 ```
 

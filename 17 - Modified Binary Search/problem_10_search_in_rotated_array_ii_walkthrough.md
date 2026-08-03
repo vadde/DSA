@@ -73,31 +73,31 @@ Here is how the algorithm reacts when it is "blinded" by duplicates across all t
 
 ```mermaid
 flowchart TD
-    subgraph The Blind State
+    subgraph TheBlindState [The Blind State]
         B1["Array: [3, 1, 2, 3, 3, 3, 3]\nLeft: 3 (idx 0)\nMid: 3 (idx 3)\nRight: 3 (idx 6)"]
     end
     
-    subgraph The Problem
+    subgraph TheProblem [The Problem]
         P1["arr[left] <= arr[mid] is True (3 <= 3).\nIs the left half [3, 1, 2, 3] sorted?\nNO!"]
     end
     
-    subgraph The Solution
+    subgraph TheSolution [The Solution]
         S1["arr[left] == arr[mid] == arr[right]"]
         S2["left += 1 (idx 1)\nright -= 1 (idx 5)"]
     end
     
-    subgraph Clear Vision
+    subgraph ClearVision [Clear Vision]
         V1["New Slice: [1, 2, 3, 3, 3]\nLeft: 1 (idx 1)\nMid: 3 (idx 3)\nRight: 3 (idx 5)"]
         V2["Left (1) != Mid (3). We can safely use standard logic!"]
     end
-    
-    B1 --> P1
-    P1 --> S1
+
+B1 --> P1
+P1 --> S1
     S1 --> S2
-    S2 --> V1
+S2 --> V1
     V1 --> V2
-    
-    style B1 fill:#ffcdd2,color:#000
+
+styleB1fill:#ffcdd2,color:#000
     style P1 fill:#ffcc80,color:#000
     style S1 fill:#fff9c4,color:#000
     style S2 fill:#bbdefb,color:#000

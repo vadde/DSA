@@ -55,8 +55,8 @@ flowchart TD
     F --> G["hi = bisect_right(right_sums, target_max)"]
     G --> H["count += (hi - lo)"]
     H --> D
-    
-    D -.->|Finished| I["Return count"]
+
+D -.->|Finished| I["Return count"]
     
     style I fill:#c8e6c9,color:#000
 ```

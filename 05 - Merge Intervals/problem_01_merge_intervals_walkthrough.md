@@ -52,12 +52,12 @@ flowchart TD
         W4["Does 6 <= 9?\nYES! Overlap!"]
         N4["Update end: max(9, 7) = 9.\nMerged: [2, 4], [5, 9]"]
     end
-    
-    Step1 --> Step2
-    Step2 --> Step3
+
+Step1 --> Step2
+Step2 --> Step3
     Step3 --> Step4
-    
-    style W4 fill:#ffcdd2,color:#000
+
+styleW4fill:#ffcdd2,color:#000
     style N4 fill:#32CD32,color:#000
 ```
 

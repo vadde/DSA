@@ -49,8 +49,8 @@ flowchart LR
     subgraph Result
         R["additions=2\nopen_count=2\nTotal = 4"]
     end
-    
-    A --> B --> C --> D --> E --> F --> R
+
+A --> B --> C --> D --> E --> F --> R
     
     style C fill:#ffcdd2,color:#000
     style D fill:#ffcdd2,color:#000

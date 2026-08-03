@@ -40,23 +40,23 @@ Here is a visualization of the window expanding and shrinking based on the zero 
 
 ```mermaid
 flowchart TD
-    subgraph Iteration 4 [end = 3]
+    subgraph Iteration4 [Iteration 4: end = 3]
         W1["[ 0, 1, 1, 0 ], 0, 0, 1, 1..."]
         N1["Zeros: 2. Valid! Max Len = 4"]
     end
     
-    subgraph Iteration 5 Expand [end = 4]
+    subgraph Iteration5Expand [Iteration 5 Expand: end = 4]
         W2["[ 0, 1, 1, 0, 0 ], 0, 1, 1..."]
         N2["Zeros: 3. Invalid! (3 > 2)"]
     end
     
-    subgraph Iteration 5 Shrink [start = 1]
+    subgraph Iteration5Shrink [Iteration 5 Shrink: start = 1]
         W3["0, [ 1, 1, 0, 0 ], 0, 1, 1..."]
         N3["Drop arr[0] (a zero!).\nZeros: 2. Valid!"]
     end
-    
-    Iteration 4 --> Iteration 5 Expand
-    Iteration 5 Expand --> Iteration 5 Shrink
+
+Iteration4 --> Iteration5Expand
+Iteration5Expand --> Iteration 5 Shrink
     
     style W1 fill:#32CD32,color:#000
     style W2 fill:#ff6b6b,color:#000

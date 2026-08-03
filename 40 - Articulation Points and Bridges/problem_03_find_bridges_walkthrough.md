@@ -54,11 +54,11 @@ flowchart TD
     H -->|YES| I["Add [curr, neighbor] to Bridges!"]
     H -->|NO| C
     I --> C
-    
-    E -->|YES| J["low[curr] = min(low[curr], disc[neighbor])"]
+
+E -->|YES| J["low[curr] = min(low[curr], disc[neighbor])"]
     J --> C
-    
-    style I fill:#c8e6c9,color:#000
+
+styleIfill:#c8e6c9,color:#000
     style E fill:#fff9c4,color:#000
 ```
 

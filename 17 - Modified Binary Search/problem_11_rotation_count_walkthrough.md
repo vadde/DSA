@@ -74,22 +74,22 @@ flowchart TD
         A["[4, 5, 7, 9, 10, -1, 2]\nMid is 9 (idx 3)\nRight is 2 (idx 6)"]
     end
     
-    subgraph The Check
+    subgraph TheCheck [The Check]
         C["Is Mid > Right?\nIs 9 > 2?"]
     end
     
-    subgraph Result: YES
+    subgraph ResultYES ["Result: YES"]
         Y1["The numbers drop somewhere\nbetween Mid and Right!"]
         Y2["The Minimum MUST be to the right.\nleft = mid + 1"]
     end
     
-    subgraph Result: NO
+    subgraph ResultNO ["Result: NO"]
         N1["The numbers steadily increase\nfrom Mid to Right."]
         N2["The Minimum CANNOT be to the right.\nright = mid"]
     end
-    
-    A --> C
-    C -- "YES" --> Y1 --> Y2
+
+A --> C
+C -- "YES" --> Y1 --> Y2
     C -. "NO\n(Not in this case)" .-> N1 --> N2
     
     style A fill:#e3f2fd,color:#000

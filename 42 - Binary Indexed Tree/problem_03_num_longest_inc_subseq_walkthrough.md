@@ -58,7 +58,7 @@ flowchart TD
     F -->|YES (Another Path)| G["cnt[i] += cnt[j]"]
     F -->|NO| B
     E --> B
-    G --> B
+G --> B
     
     C -->|NO| B
     

@@ -51,8 +51,8 @@ flowchart TD
     G -->|NO| H["max_gap = max(max_gap, bucket.min - prev_max)"]
     H --> I["prev_max = bucket.max"]
     I --> F
-    
-    F -.->|Done| J["Return max_gap"]
+
+F -.->|Done| J["Return max_gap"]
     
     style J fill:#c8e6c9,color:#000
 ```

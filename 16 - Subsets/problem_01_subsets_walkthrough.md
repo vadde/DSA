@@ -75,15 +75,15 @@ flowchart TD
         S0["[ ]"]
     end
     
-    subgraph Add 1
+    subgraph Add1 [Add 1]
         S1["[ ]\n[1]"]
     end
     
-    subgraph Add 2
+    subgraph Add2 [Add 2]
         S2["[ ]\n[1]\n[2]\n[1, 2]"]
     end
     
-    subgraph Add 3
+    subgraph Add3 [Add 3]
         S3["[ ]\n[1]\n[2]\n[1, 2]\n[3]\n[1, 3]\n[2, 3]\n[1, 2, 3]"]
     end
     

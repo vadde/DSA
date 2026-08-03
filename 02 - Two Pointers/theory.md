@@ -55,7 +55,7 @@ flowchart TD
     C -- "Too Small" --> E["left += 1"]
     C -- "Too Large" --> F["right -= 1"]
     E --> B
-    F --> B
+F --> B
 ```
 
 ### Recipe B: Same Direction (Runner / Partitioning)
@@ -90,9 +90,9 @@ stateDiagram-v2
     state "L=2, R=4 | Sum=6 (MATCH!)" as S6
 
     S1 --> S2
-    S2 --> S3
+S2 --> S3
     S3 --> S4
-    S4 --> S5
+S4 --> S5
     S5 --> S6
 ```
 

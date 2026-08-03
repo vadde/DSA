@@ -36,8 +36,8 @@ flowchart TD
     C --> D["Convert count to Tuple"]
     D --> E["map[tuple].append(string)"]
     E --> A
-    
-    A -.->|Done| F["Return map.values()"]
+
+A -.->|Done| F["Return map.values()"]
     
     style F fill:#c8e6c9,color:#000
     style D fill:#fff9c4,color:#000

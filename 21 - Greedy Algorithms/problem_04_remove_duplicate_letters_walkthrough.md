@@ -41,14 +41,14 @@ Initial freq: `{c:4, b:2, a:1, d:1}`
 
 ```mermaid
 flowchart TD
-    subgraph Decision for each char
+    subgraph Decisionforeachchar [Decision for each char]
         A["Is char already in stack?"]
         B["Skip (duplicate)"]
         C["While stack.top > char\nAND freq of top > 0:\n  Pop top"]
         D["Push char"]
     end
     
-    subgraph Key Rule
+    subgraph KeyRule [Key Rule]
         R1["CAN pop: top has future\noccurrences (freq > 0)"]
         R2["CANNOT pop: top is the\nlast one (freq == 0)"]
     end

@@ -66,34 +66,34 @@ flowchart TD
         A["[3, 1, 5, 12, 2, 11]"]
     end
     
-    subgraph Initial State
+    subgraph InitialState [Initial State]
         H1["Heap: [1, 3, 5]"]
         M1["Min (Top) = 1"]
     end
     
-    subgraph Process 12
+    subgraph Process12 [Process 12]
         C1["Is 12 > 1? YES!"]
         H2["Pop 1, Push 12\nHeap: [3, 12, 5]\nMin = 3"]
     end
     
-    subgraph Process 2
+    subgraph Process2 [Process 2]
         C2["Is 2 > 3? NO!"]
         H3["Ignore 2\nHeap: [3, 12, 5]\nMin = 3"]
     end
     
-    subgraph Process 11
+    subgraph Process11 [Process 11]
         C3["Is 11 > 3? YES!"]
         H4["Pop 3, Push 11\nHeap: [5, 12, 11]\nMin = 5"]
     end
-    
-    A --> H1
-    H1 --> M1
+
+A --> H1
+H1 --> M1
     M1 --> C1
-    C1 --> H2
+C1 --> H2
     H2 --> C2
-    C2 --> H3
+C2 --> H3
     H3 --> C3
-    C3 --> H4
+C3 --> H4
     
     style H1 fill:#bbdefb,color:#000
     style C1 fill:#c8e6c9,color:#000

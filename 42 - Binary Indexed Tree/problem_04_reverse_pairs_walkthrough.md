@@ -54,8 +54,8 @@ flowchart TD
     C --> D["count += sum"]
     D --> E["Update BIT:\nadd 1 to index ranks[2 * num]"]
     E --> B
-    
-    B -.->|Finished| F["Return count"]
+
+B -.->|Finished| F["Return count"]
     
     style A fill:#fff9c4,color:#000
     style C fill:#e3f2fd,color:#000

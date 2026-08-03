@@ -35,18 +35,18 @@ A **Heap** is a special tree that is completely filled level by level. Because t
 ### Array vs Tree Representation (Math Magic)
 ```mermaid
 flowchart TD
-    subgraph Tree View
+    subgraph TreeView [Tree View]
     T0["Index 0"] --> T1["Index 1"]
     T0 --> T2["Index 2"]
     T1 --> T3["Index 3"]
     T1 --> T4["Index 4"]
     end
     
-    subgraph Array View
+    subgraph ArrayView [Array View]
     A["[ 0, 1, 2, 3, 4 ]"]
     end
-    
-    T2 -.-> A
+
+T2 -.-> A
 ```
 
 ### Sift Down Process (Pop)
@@ -57,7 +57,7 @@ flowchart TD
     C -->|YES| D["Swap with the SMALLEST Child"]
     D --> E["Repeat process for new position"]
     E --> C
-    C -->|NO| F["Heap Property Restored!"]
+C -->|NO| F["Heap Property Restored!"]
     
     style D fill:#ffcdd2,color:#000
     style F fill:#c8e6c9,color:#000

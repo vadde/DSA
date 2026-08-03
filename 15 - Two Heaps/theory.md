@@ -33,7 +33,7 @@ flowchart TD
     B((3))
     C((1))
     A --> B
-    A --> C
+A --> C
     end
     
     subgraph Top_Half_Min_Heap
@@ -41,7 +41,7 @@ flowchart TD
     E((10))
     F((15))
     D --> E
-    D --> F
+D --> F
     end
     
     A -.-|"Median = (5+8)/2 = 6.5"| D

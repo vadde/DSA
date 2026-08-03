@@ -79,15 +79,15 @@ flowchart TD
         A0["[0]\n4"] --- A1["[1]\n6"] --- A2["[2]\n8"] --- A3["[3]\n10"] --- A4["[4]\n12"] --- A5["[5]\n14"] --- A6["[6]\n16"] --- A7["[7]\n18"]
     end
     
-    subgraph Jump 1 (Size 2)
+    subgraph Jump1Size2 ["Jump 1 (Size 2)"]
         J1["Left=0\nRight=1 (Val: 6)"]
     end
     
-    subgraph Jump 2 (Size 4)
+    subgraph Jump2Size4 ["Jump 2 (Size 4)"]
         J2["Left=2\nRight=5 (Val: 14)"]
     end
     
-    subgraph Jump 3 (Size 8)
+    subgraph Jump3Size8 ["Jump 3 (Size 8)"]
         J3["Left=6\nRight=13 (Val: Inf)"]
         note["Target 16 is now trapped\nbetween 6 and 13!"]
     end

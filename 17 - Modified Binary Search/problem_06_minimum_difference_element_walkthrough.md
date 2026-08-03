@@ -63,13 +63,13 @@ Here is a visual showing the final crossover state that traps the target:
 
 ```mermaid
 flowchart TD
-    subgraph Final Pointers
+    subgraph FinalPointers [Final Pointers]
         R["Right = 1 (Value: 6)"]
         L["Left = 2 (Value: 10)"]
         T["Target = 7"]
     end
     
-    subgraph The Gap
+    subgraph TheGap [The Gap]
         R ---|Diff: 7 - 6 = 1| T
         T ---|Diff: 10 - 7 = 3| L
     end
@@ -77,9 +77,9 @@ flowchart TD
     subgraph Result
         Winner["Floor (6) is closer!\nReturn 6"]
     end
-    
-    Final Pointers --> The Gap
-    The Gap --> Result
+
+FinalPointers --> TheGap
+TheGap --> Result
     
     style R fill:#ffcdd2,color:#000
     style L fill:#bbdefb,color:#000

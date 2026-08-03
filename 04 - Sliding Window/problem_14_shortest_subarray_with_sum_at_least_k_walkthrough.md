@@ -39,22 +39,22 @@ Here is how the Monotonic Deque optimizes starting points:
 
 ```mermaid
 flowchart TD
-    subgraph State 1 [i=1. prefix=2]
+    subgraph State1 [State 1: i=1. prefix=2]
         W1["Deque: [idx 0(val 0), idx 1(val 2)]"]
     end
     
-    subgraph State 2 [i=2. prefix=1]
+    subgraph State2 [State 2: i=2. prefix=1]
         W2["New prefix is 1."]
         N2["1 is a BETTER starting point than 2!\nIt is mathematically smaller and physically closer."]
         A2["Pop idx 1! Add idx 2!"]
     end
     
-    subgraph State 3 [Result]
+    subgraph State3 [State 3: Result]
         W3["Deque: [idx 0(val 0), idx 2(val 1)]"]
     end
-    
-    State 1 --> State 2
-    State 2 --> State 3
+
+State1 --> State2
+State2 --> State 3
     
     style W2 fill:#ffcdd2,color:#000
     style A2 fill:#32CD32,color:#000

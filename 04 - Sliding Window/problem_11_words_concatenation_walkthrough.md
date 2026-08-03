@@ -36,17 +36,17 @@ Here is how stepping and breaking the chain works:
 
 ```mermaid
 flowchart TD
-    subgraph Iteration 1 [Start at Offset 0]
+    subgraph Iteration1 [Iteration 1: Start at Offset 0]
         W1["Window: [cat]foxbad..."]
         N1["'cat' is good! words_seen={cat:1}"]
     end
     
-    subgraph Iteration 2 [Step 3]
+    subgraph Iteration2 [Iteration 2: Step 3]
         W2["Window: [cat, fox]bad..."]
         N2["'fox' is good! matched=2. WIN! Record 0."]
     end
     
-    subgraph Iteration 3 [Step 3]
+    subgraph Iteration3 [Iteration 3: Step 3]
         W3["Window: cat, fox, [bad]..."]
         N3["'bad' is NOT in our list!"]
     end
@@ -55,12 +55,12 @@ flowchart TD
         W4["Window broken! start moves past 'bad'"]
         N4["Clear words_seen, matched=0"]
     end
-    
-    Iteration 1 --> Iteration 2
-    Iteration 2 --> Iteration 3
-    Iteration 3 --> Reset
-    
-    style Iteration 2 fill:#32CD32,color:#000
+
+Iteration1 --> Iteration2
+Iteration2 --> Iteration 3
+    Iteration3 --> Reset
+
+styleIteration2fill:#32CD32,color:#000
     style Iteration 3 fill:#ff6b6b,color:#000
     style Reset fill:#FFD700,color:#000
 ```

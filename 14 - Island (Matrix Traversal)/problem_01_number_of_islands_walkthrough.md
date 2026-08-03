@@ -83,25 +83,25 @@ Here is how the DFS spreads out to sink the island, preventing double counting:
 
 ```mermaid
 flowchart TD
-    subgraph Grid State Before DFS
+    subgraph GridStateBeforeDFS [Grid State Before DFS]
         G00((0,0 = 1)) --- G01((0,1 = 1))
         G00 --- G10((1,0 = 1))
         note1["Found 1 at (0,0).\nislands += 1"]
     end
     
-    subgraph DFS Execution
+    subgraph DFSExecution [DFS Execution]
         D00["sink_island(0,0)\nChanges 1 to 0"] --> D10["sink_island(1,0)\nChanges 1 to 0"]
         D00 --> D01["sink_island(0,1)\nChanges 1 to 0"]
     end
     
-    subgraph Grid State After DFS
+    subgraph GridStateAfterDFS [Grid State After DFS]
         F00((0,0 = 0)) --- F01((0,1 = 0))
         F00 --- F10((1,0 = 0))
         note2["Outer loop resumes.\nIt will skip (0,1) and (1,0)\nbecause they are now 0."]
     end
-    
-    Grid State Before DFS --> DFS Execution
-    DFS Execution --> Grid State After DFS
+
+GridStateBeforeDFS --> DFSExecution
+DFSExecution --> Grid State After DFS
     
     style G00 fill:#c8e6c9,color:#000
     style G01 fill:#c8e6c9,color:#000

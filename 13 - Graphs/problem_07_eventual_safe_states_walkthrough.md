@@ -64,14 +64,14 @@ Here's how the 3-color marking immediately identifies safe nodes without recompu
 
 ```mermaid
 flowchart TD
-    subgraph Cycle Detection
+    subgraph CycleDetection [Cycle Detection]
         A((0\nGRAY)) -->|dfs| B((1\nGRAY))
         B -->|dfs| D((3\nGRAY))
         D -->|dfs hits GRAY| A
         note1["dfs(0) fails because it hits the gray 0 again!"]
     end
     
-    subgraph Safe Branch
+    subgraph SafeBranch [Safe Branch]
         B -->|dfs| C((2\nBLACK))
         C -->|dfs| F((5\nBLACK))
         E((4\nBLACK)) -->|dfs hits BLACK| F

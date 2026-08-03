@@ -53,22 +53,22 @@ Here is how the out-of-bounds number $N$ is naturally ignored, leaving a hole wh
 
 ```mermaid
 flowchart TD
-    subgraph Sort Pass
+    subgraph SortPass [Sort Pass]
         W1["Array: [4, 0, 3, 1]\nN = 4"]
         N1["Sort pushes 0, 1, 3 to their spots.\n4 is ignored because there is no index 4!"]
     end
     
-    subgraph Sorted State
+    subgraph SortedState [Sorted State]
         W2["Array: [0, 1, 4, 3]"]
     end
     
-    subgraph Find Pass
+    subgraph FindPass [Find Pass]
         W3["Index 0: 0\nIndex 1: 1\nIndex 2: 4 (Should be 2!)\nIndex 3: 3"]
         N3["Return 2!"]
     end
-    
-    Sort Pass --> Sorted State
-    Sorted State --> Find Pass
+
+SortPass --> SortedState
+SortedState --> Find Pass
     
     style N1 fill:#fff9c4,color:#000
     style W3 fill:#ffcdd2,color:#000

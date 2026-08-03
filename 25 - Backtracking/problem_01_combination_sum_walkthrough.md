@@ -51,8 +51,8 @@ flowchart TD
     
     S --> A --> B --> C
     S --> D
-    
-    style C fill:#c8e6c9,color:#000
+
+styleCfill:#c8e6c9,color:#000
     style D fill:#c8e6c9,color:#000
 ```
 

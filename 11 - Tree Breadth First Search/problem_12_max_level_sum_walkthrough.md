@@ -66,29 +66,29 @@ Here is how the algorithm updates its tracking variables:
 
 ```mermaid
 flowchart TD
-    subgraph Row 1
+    subgraph Row1 [Row 1]
         S1["level_sum = 1"]
         C1{"1 > -inf ?"}
         U1["max_sum = 1\nmax_level = 1"]
     end
     
-    subgraph Row 2
+    subgraph Row2 [Row 2]
         S2["level_sum = 7 + 0 = 7"]
         C2{"7 > 1 ?"}
         U2["max_sum = 7\nmax_level = 2"]
     end
     
-    subgraph Row 3
+    subgraph Row3 [Row 3]
         S3["level_sum = 7 - 8 = -1"]
         C3{"-1 > 7 ?"}
         U3["Ignore."]
     end
-    
-    S1 --> C1 --> U1
+
+S1 --> C1 --> U1
     U1 --> S2
-    S2 --> C2 --> U2
+S2 --> C2 --> U2
     U2 --> S3
-    S3 --> C3 --> U3
+S3 --> C3 --> U3
     
     style U2 fill:#c8e6c9,color:#000
     style U3 fill:#ffcdd2,color:#000

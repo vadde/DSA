@@ -42,12 +42,12 @@ Here is why sorting by **End Time** guarantees the optimal choice:
 
 ```mermaid
 flowchart TD
-    subgraph Bad Choice [Sorted by Start Time]
+    subgraph BadChoice [Bad Choice: Sorted by Start Time]
         W1["Meetings: [1, 10], [2, 3], [4, 5]"]
         N1["If you attend [1, 10], you miss TWO meetings!\nRemoved count = 2."]
     end
     
-    subgraph Good Choice [Sorted by End Time]
+    subgraph GoodChoice [Good Choice: Sorted by End Time]
         W2["Meetings: [2, 3], [4, 5], [1, 10]"]
         N2["You attend [2, 3], then [4, 5].\nYou only miss [1, 10].\nRemoved count = 1!"]
     end

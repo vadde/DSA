@@ -63,8 +63,8 @@ flowchart TD
     
     E & F --> G["Record distinct_count for query"]
     G --> C
-    
-    style E fill:#c8e6c9,color:#000
+
+styleEfill:#c8e6c9,color:#000
     style F fill:#ffcdd2,color:#000
 ```
 

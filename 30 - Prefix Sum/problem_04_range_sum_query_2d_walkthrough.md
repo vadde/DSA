@@ -38,7 +38,7 @@ Formula using prefix matrix indices:
 
 ```mermaid
 flowchart TD
-    subgraph Inclusion-Exclusion
+    subgraph InclusionExclusion ["Inclusion-Exclusion"]
         A["Big Rectangle\n(0,0 to r2,c2)"]
         B["Subtract Top\n(0,0 to r1-1, c2)"]
         C["Subtract Left\n(0,0 to r2, c1-1)"]

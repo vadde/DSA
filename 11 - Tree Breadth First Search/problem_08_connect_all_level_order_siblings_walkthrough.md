@@ -46,28 +46,28 @@ Here is how the global `prev` pointer ignores level boundaries to stitch the who
 
 ```mermaid
 flowchart TD
-    subgraph Level 1
+    subgraph Level1 [Level 1]
         A["Node 1"]
     end
     
-    subgraph Level 2
+    subgraph Level2 [Level 2]
         B["Node 2"]
         C["Node 3"]
     end
     
-    subgraph Level 3
+    subgraph Level3 [Level 3]
         D["Node 4"]
         E["Node 5"]
         F["Node 6"]
     end
-    
-    A --> B
-    A --> C
+
+A --> B
+A --> C
     B --> D
-    B --> E
+B --> E
     C --> F
-    
-    A -.->|next| B
+
+A -.->|next| B
     B -.->|next| C
     C -.->|next| D
     D -.->|next| E

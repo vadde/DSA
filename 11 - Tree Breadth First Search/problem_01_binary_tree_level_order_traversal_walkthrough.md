@@ -71,28 +71,28 @@ Here is how the queue manages the flow of nodes level by level:
 
 ```mermaid
 flowchart TD
-    subgraph Level 1
+    subgraph Level1 [Level 1]
         Q1["Queue: [12]\nSize: 1"]
         P1["Process 12 -> Push 7, 1\nResult: [[12]]"]
     end
     
-    subgraph Level 2
+    subgraph Level2 [Level 2]
         Q2["Queue: [7, 1]\nSize: 2"]
         P2["Process 7 -> Push 9, 2\nProcess 1 -> Push 10, 5\nResult: [[12], [7, 1]]"]
     end
     
-    subgraph Level 3
+    subgraph Level3 [Level 3]
         Q3["Queue: [9, 2, 10, 5]\nSize: 4"]
         P3["Process all 4 (no children)\nResult: [[12], [7, 1], [9, 2, 10, 5]]"]
     end
-    
-    Q1 --> P1
-    P1 --> Q2
+
+Q1 --> P1
+P1 --> Q2
     Q2 --> P2
-    P2 --> Q3
+P2 --> Q3
     Q3 --> P3
-    
-    style Q1 fill:#e3f2fd,color:#000
+
+styleQ1fill:#e3f2fd,color:#000
     style P1 fill:#c8e6c9,color:#000
     style Q2 fill:#e3f2fd,color:#000
     style P2 fill:#c8e6c9,color:#000

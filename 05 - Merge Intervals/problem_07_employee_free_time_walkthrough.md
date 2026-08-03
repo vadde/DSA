@@ -38,23 +38,23 @@ Here is how tracking `max_end` perfectly identifies gaps across multiple people:
 
 ```mermaid
 flowchart TD
-    subgraph Step 1 [Shift: 1 to 3]
+    subgraph Step1 [Step 1: Shift: 1 to 3]
         W1["Max End is 3."]
     end
     
-    subgraph Step 2 [Shift: 2 to 4]
+    subgraph Step2 [Step 2: Shift: 2 to 4]
         W2["Starts at 2. Ends at 4."]
         N2["2 is not past 3. No gap.\nMax End extends to 4!"]
     end
     
-    subgraph Step 3 [Shift: 6 to 8]
+    subgraph Step3 [Step 3: Shift: 6 to 8]
         W3["Starts at 6."]
         N3["6 IS past 4!\nGAP FOUND: [4, 6]!"]
         H3["Max End extends to 8."]
     end
-    
-    Step 1 --> Step 2
-    Step 2 --> Step 3
+
+Step1 --> Step2
+Step2 --> Step 3
     
     style N3 fill:#32CD32,color:#000
     style W2 fill:#e1f5fe,color:#000

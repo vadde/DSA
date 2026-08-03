@@ -57,8 +57,8 @@ flowchart TD
     D --> E["Append sum to result"]
     E --> F["Update BIT at index 'rank' by +1"]
     F --> B
-    
-    B -.->|Finished| G["Reverse result and return"]
+
+B -.->|Finished| G["Reverse result and return"]
     
     style A fill:#fff9c4,color:#000
     style D fill:#e3f2fd,color:#000

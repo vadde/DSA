@@ -66,7 +66,7 @@ flowchart TD
         N5["num = 2 (010)"]
     end
     
-    subgraph Accumulator State
+    subgraph AccumulatorState [Accumulator State]
         S1["000 ^ 001 = 001 (1)"]
         S2["001 ^ 100 = 101 (5)"]
         S3["101 ^ 010 = 111 (7)"]

@@ -43,12 +43,12 @@ flowchart LR
         F["Store current_sum: i\n(if not seen)"]
         
         C --> D
-        D -->|YES| E
+D -->|YES| E
         D -->|NO| F
     end
-    B --> Execution
-    
-    style A fill:#bbdefb,color:#000
+B --> Execution
+
+styleAfill:#bbdefb,color:#000
     style E fill:#c8e6c9,color:#000
 ```
 

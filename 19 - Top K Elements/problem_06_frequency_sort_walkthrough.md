@@ -71,35 +71,35 @@ Here is how the data flows from raw string, to frequency counts, into the sortin
 
 ```mermaid
 flowchart TD
-    subgraph Input Phase
+    subgraph InputPhase [Input Phase]
         S["String: 'abcbab'"]
         T["Tally: {'a':2, 'b':3, 'c':1}"]
     end
     
-    subgraph Heap Phase
+    subgraph HeapPhase [Heap Phase]
         H1["Push (-2, 'a')\nPush (-3, 'b')\nPush (-1, 'c')"]
         H2["Heap Root is (-3, 'b')\n(Most negative = Highest frequency)"]
     end
     
-    subgraph Extraction Phase
+    subgraph ExtractionPhase [Extraction Phase]
         E1["Pop (-3, 'b') --> 'bbb'"]
         E2["Pop (-2, 'a') --> 'aa'"]
         E3["Pop (-1, 'c') --> 'c'"]
     end
     
-    subgraph Output Phase
+    subgraph OutputPhase [Output Phase]
         J["Join Strings"]
         O["Result: 'bbbaac'"]
     end
-    
-    S --> T
-    T --> H1
+
+S --> T
+T --> H1
     H1 --> H2
-    H2 --> E1
+H2 --> E1
     E1 --> E2
-    E2 --> E3
+E2 --> E3
     E3 --> J
-    J --> O
+J --> O
     
     style S fill:#e3f2fd,color:#000
     style T fill:#ffcc80,color:#000

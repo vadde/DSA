@@ -50,27 +50,27 @@ Clone extracted: `A' -> B' -> None` ✅
 
 ```mermaid
 flowchart TD
-    subgraph Pass 1: Weave
+    subgraph Pass1Weave ["Pass 1: Weave"]
     A["curr = head"] --> B{"curr?"}
     B -->|YES| C["clone = Node(val)\nclone.next = curr.next\ncurr.next = clone\ncurr = clone.next"]
     C --> B
-    end
-    
-    subgraph Pass 2: Assign Randoms
+end
+
+subgraphPass2: Assign Randoms
     D["curr = head"] --> E{"curr?"}
     E -->|YES| F{"curr.random exists?"}
     F -->|YES| G["curr.next.random = curr.random.next"]
     F -->|NO| H["curr = curr.next.next"]
     G --> H
-    H --> E
+H --> E
     end
     
-    subgraph Pass 3: Unweave
+    subgraph Pass3Unweave ["Pass 3: Unweave"]
     I["curr = head\nclone_head = head.next"] --> J{"curr?"}
     J -->|YES| K["clone = curr.next\ncurr.next = clone.next\nIf clone.next: clone.next = clone.next.next"]
     K --> L["curr = curr.next"]
     L --> J
-    J -->|NO| M["Return clone_head"]
+J -->|NO| M["Return clone_head"]
     end
     
     style M fill:#c8e6c9,color:#000

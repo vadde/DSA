@@ -81,25 +81,25 @@ Here is how the outer loop triggers the DFS only when necessary:
 
 ```mermaid
 flowchart TD
-    subgraph Outer Loop
+    subgraph OuterLoop [Outer Loop]
         O0["City 0\nNot visited.\nprovinces = 1\nTrigger DFS!"]
         O1["City 1\nVisited!\nSkip!"]
         O2["City 2\nNot visited.\nprovinces = 2\nTrigger DFS!"]
     end
     
-    subgraph DFS Process
+    subgraph DFSProcess [DFS Process]
         D0["dfs(0)\nFinds City 1\nMarks 1 as visited"]
         D1["dfs(1)\nDead end"]
         
         D2["dfs(2)\nDead end"]
     end
-    
-    O0 --> D0
-    D0 --> D1
+
+O0 --> D0
+D0 --> D1
     
     O2 --> D2
-    
-    style O0 fill:#c8e6c9,color:#000
+
+styleO0fill:#c8e6c9,color:#000
     style O1 fill:#ffcdd2,color:#000
     style O2 fill:#c8e6c9,color:#000
 ```

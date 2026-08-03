@@ -57,13 +57,13 @@ Here is a visualization of the reconnection phase:
 
 ```mermaid
 flowchart TD
-    subgraph Reversal Done
+    subgraph ReversalDone [Reversal Done]
         W1["node_before: [1]"]
         W2["Reversed Group: [4] -> [3] -> [2]"]
         W3["current: [5]"]
     end
     
-    subgraph Stitching it back together
+    subgraph Stitchingitbacktogether [Stitching it back together]
         N1["1. node_before.next = prev\n[1] points to [4]"]
         N2["2. last_node.next = current\n[2] points to [5]"]
     end
@@ -71,9 +71,9 @@ flowchart TD
     subgraph Result
         R1["[1] -> [4] -> [3] -> [2] -> [5]"]
     end
-    
-    Reversal Done --> Stitching it back together
-    Stitching it back together --> Result
+
+ReversalDone --> Stitchingitbacktogether
+Stitchingitbacktogether --> Result
     
     style N1 fill:#fff9c4,color:#000
     style N2 fill:#fff9c4,color:#000

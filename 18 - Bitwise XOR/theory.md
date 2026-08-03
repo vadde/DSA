@@ -39,9 +39,9 @@ flowchart TD
     Step2["1 ^ 5 = 4"]
     Step3["4 ^ 1 = 5"]
     end
-    
-    A --> Step1
-    B --> Step1
+
+A --> Step1
+B --> Step1
     Step1 --> Step2 --> Step3
     Step3 -. "The loner!" .-> Result("5")
     

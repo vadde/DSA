@@ -38,19 +38,19 @@ When you want to find a number, you just ask "Is it bigger or smaller?" and go d
 ### The 3 Deletion Cases
 ```mermaid
 flowchart TD
-    subgraph Case 1: Leaf
+    subgraph Case1Leaf ["Case 1: Leaf"]
     A1["50"] --> A2["30"]
     A1 --> A3["70"]
     A3 -.->|Delete 70| Null1["None"]
     end
     
-    subgraph Case 2: One Child
+    subgraph Case2OneChild ["Case 2: One Child"]
     B1["50"] --> B2["30"]
     B2 --> B3["20"]
     B2 -.->|Delete 30| B3
     end
     
-    subgraph Case 3: Two Children
+    subgraph Case3TwoChildren ["Case 3: Two Children"]
     C1["Delete 50"] --> C2["30"]
     C1 --> C3["70"]
     C3 --> C4["60"]

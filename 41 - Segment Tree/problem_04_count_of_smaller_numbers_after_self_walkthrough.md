@@ -45,8 +45,8 @@ flowchart TD
     C --> D["Append answer to result"]
     D --> E["Update Tree:\nIncrement frequency at index 'val'"]
     E --> A
-    
-    A -.->|Finished| F["Reverse result array\nReturn result"]
+
+A -.->|Finished| F["Reverse result array\nReturn result"]
     
     style F fill:#c8e6c9,color:#000
 ```

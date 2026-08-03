@@ -57,23 +57,23 @@ Here is how the algorithm seamlessly filters out negative numbers and large numb
 
 ```mermaid
 flowchart TD
-    subgraph Step 1 [-3 is Junk]
+    subgraph Step1 [Step 1: -3 is Junk]
         W1["nums[0] is -3"]
         N1["-3 is not between 1 and 5.\nIt's JUNK! Leave it alone and i++"]
     end
     
-    subgraph Step 4 [5 is Valid]
+    subgraph Step4 [Step 4: 5 is Valid]
         W2["nums[2] is 5"]
         N2["5 is exactly <= 5!\nSwap it into the last spot!"]
     end
     
-    subgraph End State
+    subgraph EndState [End State]
         W3["Array: [1, 2, -3, 4, 5]"]
         N3["The junk (-3) was pushed into the hole left by the missing number (3)."]
     end
-    
-    Step 1 --> Step 4
-    Step 4 --> End State
+
+Step1 --> Step4
+Step4 --> End State
     
     style W1 fill:#ffcdd2,color:#000
     style W2 fill:#c8e6c9,color:#000

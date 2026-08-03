@@ -50,8 +50,8 @@ flowchart TD
     EmptyCheck -- Yes --> DeleteMap["Delete fruit from HashMap"]
     EmptyCheck -- No --> CheckBaskets
     DeleteMap --> CheckBaskets
-    
-    CheckBaskets -- "1 or 2" --> Valid["Valid Window!"]
+
+CheckBaskets -- "1 or 2" --> Valid["Valid Window!"]
     Valid --> RecordMax["max = max(max, current_window_size)"]
 ```
 

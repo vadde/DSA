@@ -40,8 +40,8 @@ flowchart TD
     B --> C["For i from 0 to len(s)-1"]
     C --> D["count[s[i]] += 1\ncount[t[i]] -= 1"]
     D --> C
-    
-    C -.-> E["For c in count"]
+
+C -.-> E["For c in count"]
     E --> F{"Is c == 0?"}
     F -->|NO| G["Return False"]
     F -->|YES| E

@@ -31,7 +31,7 @@ Result: `[4, 3, 5]` ✅
 
 ```mermaid
 flowchart TD
-    subgraph For each element X at index i
+    subgraph ForeachelementXatindexi [For each element X at index i]
         A["Left Elements (count = i)\nSum = left_sum"]
         B["Right Elements (count = n - i - 1)\nSum = right_sum"]
         

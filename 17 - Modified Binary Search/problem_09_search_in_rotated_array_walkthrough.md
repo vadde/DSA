@@ -77,7 +77,7 @@ flowchart TD
         A["[5, 6, 7, 1, 2, 3, 4]\nMid is 1"]
     end
     
-    subgraph Evaluate Halves
+    subgraph EvaluateHalves [Evaluate Halves]
         L["Left: [5, 6, 7, 1]\nMessy!"]
         R["Right: [1, 2, 3, 4]\nPerfectly Sorted!"]
     end
@@ -89,11 +89,11 @@ flowchart TD
     subgraph Decision
         D["NO!\nIt must be in the Messy Left Half.\nright = mid - 1"]
     end
-    
-    A --> L
-    A --> R
+
+A --> L
+A --> R
     R --> Q
-    Q --> D
+Q --> D
     
     style A fill:#e3f2fd,color:#000
     style L fill:#ffcdd2,color:#000

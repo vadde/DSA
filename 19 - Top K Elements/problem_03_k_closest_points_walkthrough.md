@@ -57,23 +57,23 @@ Here is how the tuples are structured to trick Python into treating a Min-Heap a
 
 ```mermaid
 flowchart TD
-    subgraph Data Structure
+    subgraph DataStructure [Data Structure]
         T["Tuple Structure\n(-Distance, Index, Point)"]
     end
     
-    subgraph Why Negate Distance?
+    subgraph WhyNegateDistance ["Why Negate Distance?"]
         D1["We want the FARTHEST point\nat the top (Max-Heap)"]
         D2["Python only provides\nMin-Heap"]
         D3["By making distance negative,\nlargest distance becomes smallest number!"]
     end
     
-    subgraph Why Include Index?
+    subgraph WhyIncludeIndex ["Why Include Index?"]
         I1["Imagine two points have distance 10\n(-10, ?, [1, 3]) vs (-10, ?, [3, 1])"]
         I2["If distance is tied, Python\ncompares the next item in tuple."]
         I3["Index guarantees a unique tie-breaker,\npreventing list comparison crashes!"]
     end
-    
-    T --> Why_Negate_Distance?
+
+T --> Why_Negate_Distance?
     T --> Why_Include_Index?
     
     style T fill:#bbdefb,color:#000

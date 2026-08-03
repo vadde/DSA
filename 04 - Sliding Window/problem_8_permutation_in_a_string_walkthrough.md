@@ -44,7 +44,7 @@ Here is how the Fixed Window and Match Counter interact:
 
 ```mermaid
 flowchart TD
-    subgraph Iteration 5 [end=4. Window: d, b, c]
+    subgraph Iteration5 [Iteration 5: end=4. Window: d, b, c]
         W1["Add 'c'. freq['c'] reaches 0!"]
         N1["matched = 2"]
     end
@@ -54,13 +54,13 @@ flowchart TD
         N2["'d' not in pattern. freq and matched unchanged."]
     end
     
-    subgraph Iteration 6 [end=5. Window: b, c, a]
+    subgraph Iteration6 [Iteration 6: end=5. Window: b, c, a]
         W3["Add 'a'. freq['a'] reaches 0!"]
         N3["matched = 3. TARGET MET!"]
     end
-    
-    Iteration 5 --> Shrink
-    Shrink --> Iteration 6
+
+Iteration5 --> Shrink
+Shrink --> Iteration 6
     
     style W1 fill:#32CD32,color:#000
     style W2 fill:#FFD700,color:#000

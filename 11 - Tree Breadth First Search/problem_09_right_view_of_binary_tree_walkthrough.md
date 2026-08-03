@@ -58,7 +58,7 @@ Here is how the algorithm identifies the rightmost node simply by tracking the i
 
 ```mermaid
 flowchart TD
-    subgraph Level 2 Queue: 2, 3
+    subgraph Level2Queue23 ["Level 2 Queue: 2, 3"]
         N1["i = 0\nPop 2\ni != 1. Skip.\nQueue pushes 5."]
         N2["i = 1 (Last!)\nPop 3\ni == 1. Append 3!\nQueue pushes 4."]
     end
@@ -66,9 +66,9 @@ flowchart TD
     subgraph View
         V["Looking from right side:\nLevel 1: sees 1\nLevel 2: 3 blocks 2. sees 3.\nLevel 3: 4 blocks 5. sees 4."]
     end
-    
-    N1 --> N2
-    N2 --> V
+
+N1 --> N2
+N2 --> V
     
     style N2 fill:#c8e6c9,color:#000
     style V fill:#e3f2fd,color:#000

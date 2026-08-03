@@ -38,7 +38,7 @@ Differences from Sum-based:
 
 ```mermaid
 flowchart TD
-    subgraph Query Logic
+    subgraph QueryLogic [Query Logic]
     A["_query(l, r)"] --> B{"No overlap?"}
     B -->|YES| C["Return infinity"]
     B -->|NO| D{"Full overlap?"}

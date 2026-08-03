@@ -35,7 +35,7 @@ flowchart TD
     D["union(u, v)\nMerge components"]
     
     A --> B
-    B -->|YES| C
+B -->|YES| C
     B -->|NO| D --> A
     
     style C fill:#c8e6c9,color:#000

@@ -62,19 +62,19 @@ flowchart TD
         W2["We want to put 3 onto temp_stack.\nBut 31 is sitting on top, and 31 > 3!"]
     end
     
-    subgraph Make Room
+    subgraph MakeRoom [Make Room]
         W3["Move 31 back to stack!\nstack: [34, 31]\ntemp_stack: []"]
     end
     
     subgraph Place
         W4["Now put 3 down.\ntemp_stack: [3]"]
     end
-    
-    State --> Problem
-    Problem --> Make Room
-    Make Room --> Place
-    
-    style W2 fill:#ffcdd2,color:#000
+
+State --> Problem
+Problem --> Make Room
+    MakeRoom --> Place
+
+styleW2fill:#ffcdd2,color:#000
     style W3 fill:#fff9c4,color:#000
     style W4 fill:#c8e6c9,color:#000
 ```

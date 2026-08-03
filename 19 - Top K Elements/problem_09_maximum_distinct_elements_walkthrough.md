@@ -74,29 +74,29 @@ flowchart TD
         H["Min-Heap of Duplicates:\n1st: (2, 5) <-- Needs 1 deletion\n2nd: (3, 3) <-- Needs 2 deletions"]
     end
     
-    subgraph Pop Smallest Duplicate
+    subgraph PopSmallestDuplicate [Pop Smallest Duplicate]
         P1["Pop (2, 5)\nCosts 1 deletion to save"]
         C1["K (2) >= 1 ? YES!"]
         U1["K = 1\nDistinct Count = 3"]
     end
     
-    subgraph Pop Next Smallest
+    subgraph PopNextSmallest [Pop Next Smallest]
         P2["Pop (3, 3)\nCosts 2 deletions to save"]
         C2["K (1) >= 2 ? NO!"]
         U2["Use up K. K = 0\nDistinct Count = 3"]
     end
-    
-    A --> D
-    A --> H
+
+A --> D
+A --> H
     H --> P1
-    D --> U1
+D --> U1
     P1 --> C1
-    C1 --> U1
+C1 --> U1
     U1 --> P2
-    P2 --> C2
+P2 --> C2
     C2 --> U2
-    
-    style H fill:#fff9c4,color:#000
+
+styleHfill:#fff9c4,color:#000
     style C1 fill:#c8e6c9,color:#000
     style U1 fill:#bbdefb,color:#000
     style C2 fill:#ffcdd2,color:#000

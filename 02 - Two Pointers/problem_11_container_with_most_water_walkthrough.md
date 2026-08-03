@@ -48,8 +48,8 @@ flowchart TD
     
     MoveL --> EndCheck{"L < R ?"}
     MoveR --> EndCheck
-    
-    EndCheck -- Yes --> Calc
+
+EndCheck -- Yes --> Calc
     EndCheck -- No --> Return["Return max_area"]
 ```
 

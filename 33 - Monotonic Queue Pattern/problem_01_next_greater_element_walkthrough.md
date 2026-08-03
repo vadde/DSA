@@ -34,10 +34,10 @@ flowchart TD
     A["Iterate through array"] --> B{"Stack not empty AND\ncurrent > stack.top()?"}
     B -->|YES| C["popped = stack.pop()\nmap[popped] = current"]
     C --> B
-    B -->|NO| D["stack.push(current)"]
+B -->|NO| D["stack.push(current)"]
     D --> A
-    
-    style C fill:#c8e6c9,color:#000
+
+styleCfill:#c8e6c9,color:#000
 ```
 
 ## 🛑 Complexity

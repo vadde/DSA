@@ -62,8 +62,8 @@ flowchart TD
     
     H --> I["Record current_sum for query"]
     I --> D
-    
-    style B fill:#fff9c4,color:#000
+
+styleBfill:#fff9c4,color:#000
     style I fill:#c8e6c9,color:#000
 ```
 

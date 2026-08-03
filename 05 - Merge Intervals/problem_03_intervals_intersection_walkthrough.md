@@ -40,23 +40,23 @@ Here is how the pointer advancement logic gracefully handles the progression:
 
 ```mermaid
 flowchart TD
-    subgraph Step 3 [Compare a=5,6 and b=5,7]
+    subgraph Step3 [Step 3: Compare a=5,6 and b=5,7]
         W1["arr1: [5, 6]\narr2: [5, 7]"]
         N1["Overlap: [5, 6]"]
     end
     
-    subgraph Pointer Logic [Who ends first?]
+    subgraph PointerLogic [Pointer Logic: Who ends first?]
         W2["arr1 ends at 6.\narr2 ends at 7."]
         N2["arr1 is completely finished.\nMove i to the next meeting!"]
     end
     
-    subgraph Step 4 [Compare a=7,9 and b=5,7]
+    subgraph Step4 [Step 4: Compare a=7,9 and b=5,7]
         W3["arr1: [7, 9]\narr2: [5, 7]"]
         N3["Overlap: [7, 7]. Touch!"]
     end
-    
-    Step 3 --> Pointer Logic
-    Pointer Logic --> Step 4
+
+Step3 --> PointerLogic
+PointerLogic --> Step 4
     
     style W2 fill:#fff9c4,color:#000
     style N2 fill:#32CD32,color:#000

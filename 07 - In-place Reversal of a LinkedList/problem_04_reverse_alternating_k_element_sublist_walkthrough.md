@@ -66,23 +66,23 @@ Here is a visualization of how the Skip phase sets up the next Reversal phase pe
 
 ```mermaid
 flowchart TD
-    subgraph Reverse Phase Done
+    subgraph ReversePhaseDone [Reverse Phase Done]
         W1["List: [2] -> [1] -> [3] -> [4] -> [5]"]
         N1["prev is [1]\ncurrent is [3]"]
     end
     
-    subgraph Skip Phase [Skip K=2]
+    subgraph SkipPhase [Skip Phase: Skip K=2]
         W2["Advance prev and current twice!"]
         N2["prev becomes [4]\ncurrent becomes [5]"]
     end
     
-    subgraph Next Reverse Phase Begins
+    subgraph NextReversePhaseBegins [Next Reverse Phase Begins]
         W3["Start reversing at current [5]"]
         N3["When done, the reversed group reconnects to prev [4]!"]
     end
-    
-    Reverse Phase Done --> Skip Phase
-    Skip Phase --> Next Reverse Phase Begins
+
+ReversePhaseDone --> SkipPhase
+SkipPhase --> Next Reverse Phase Begins
     
     style N2 fill:#fff9c4,color:#000
     style N3 fill:#c8e6c9,color:#000

@@ -67,23 +67,23 @@ Here is how the indices help us pinpoint exactly what to erase:
 
 ```mermaid
 flowchart TD
-    subgraph Pass 1: Find Invalid
+    subgraph Pass1FindInvalid ["Pass 1: Find Invalid"]
         W1["Word: ) ) ( ("]
         N1["Index 0: ')' -> Stack empty! Add 0 to erase list.\nIndex 1: ')' -> Stack empty! Add 1 to erase list.\nIndex 2: '(' -> Push 2 to stack.\nIndex 3: '(' -> Push 3 to stack."]
     end
     
-    subgraph Clean up Stack
+    subgraph CleanupStack [Clean up Stack]
         W2["Stack contains [2, 3]"]
         N2["Indices 2 and 3 were never closed!\nAdd 2 and 3 to erase list.\nErase List: {0, 1, 2, 3}"]
     end
     
-    subgraph Pass 2: Rebuild
+    subgraph Pass2Rebuild ["Pass 2: Rebuild"]
         W3["Build new string..."]
         N3["Every index is erased. Return empty string ''!"]
     end
     
     Pass 1: Find Invalid --> Clean up Stack
-    Clean up Stack --> Pass 2: Rebuild
+    CleanupStack --> Pass2: Rebuild
     
     style N1 fill:#ffcdd2,color:#000
     style N2 fill:#ffcdd2,color:#000

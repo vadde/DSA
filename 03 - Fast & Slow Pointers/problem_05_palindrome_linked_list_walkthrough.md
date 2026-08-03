@@ -61,9 +61,9 @@ stateDiagram-v2
     state "Compare (2,2) -> (4,4) -> (6,6)" as L3
     
     S1 --> L1
-    L1 --> S2
+L1 --> S2
     S2 --> L2
-    L2 --> S3
+L2 --> S3
     S3 --> L3
 ```
 

@@ -41,7 +41,7 @@ Our custom `CircularLinkedList` in Python 3.14 is built for speed and safety:
 ### Structure of a Circular Linked List
 ```mermaid
 flowchart LR
-    subgraph Circular Linked List Wrapper
+    subgraph CircularLinkedListWrapper [Circular Linked List Wrapper]
     H[Head Pointer] -.-> N1
     T[Tail Pointer] -.-> N3
     S[Size: 3]

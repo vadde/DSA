@@ -66,20 +66,20 @@ flowchart TD
         A0["[0] 'a'"] --- A1["[1] 'c'"] --- A2["[2] 'f'"] --- A3["[3] 'h'"]
     end
     
-    subgraph Target: 'm'
+    subgraph TargetM ["Target: 'm'"]
         M1["Left pointer moves past the end: left = 4"]
     end
     
-    subgraph The Modulo Magic
+    subgraph TheModuloMagic [The Modulo Magic]
         Mod["return letters[4 % 4]"]
         Idx["letters[0] == 'a'"]
     end
-    
-    A3 -.-> M1
-    M1 --> Mod
+
+A3 -.-> M1
+M1 --> Mod
     Mod --> Idx
-    
-    style A0 fill:#bbdefb,color:#000
+
+styleA0fill:#bbdefb,color:#000
     style A3 fill:#ffcdd2,color:#000
     style M1 fill:#ffe0b2,color:#000
     style Mod fill:#c8e6c9,color:#000

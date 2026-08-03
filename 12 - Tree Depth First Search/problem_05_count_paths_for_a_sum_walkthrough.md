@@ -73,14 +73,14 @@ Notice how the backtracking prevents Node 10 from falsely seeing the `23` that w
 
 ```mermaid
 flowchart TD
-    subgraph Left Path
+    subgraph LeftPath [Left Path]
         A["Node 12 (sum=12)"] --> B["Node 7 (sum=19)"]
         B --> C["Node 4 (sum=23)\n23 - 11 = 12.\n12 exists in prefix!\nMATCH!"]
         C -.->|"BACKTRACK\nRemove 23 from prefix"| B
         B -.->|"BACKTRACK\nRemove 19 from prefix"| A
     end
     
-    subgraph Right Path
+    subgraph RightPath [Right Path]
         A --> D["Node 1 (sum=13)"]
         D --> E["Node 10 (sum=23)\n23 - 11 = 12.\n12 exists in prefix!\nMATCH!"]
     end

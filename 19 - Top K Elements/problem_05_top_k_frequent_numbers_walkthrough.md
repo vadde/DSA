@@ -52,22 +52,22 @@ Here is how the Min-Heap acts as an active filter, constantly throwing away the 
 
 ```mermaid
 flowchart TD
-    subgraph Hash Map Phase
+    subgraph HashMapPhase [Hash Map Phase]
         Tally["{1:1, 3:1, 5:1, 12:2, 11:2}"]
     end
     
-    subgraph Heap Iterations
+    subgraph HeapIterations [Heap Iterations]
         H1["Push (1, 1)\nPush (1, 3)\nHeap: [(1, 1), (1, 3)]"]
         H2["Push (1, 5)\nHeap: [(1, 1), (1, 3), (1, 5)]\nSize > 2! Pop (1, 1)"]
         H3["Push (2, 12)\nHeap: [(1, 3), (1, 5), (2, 12)]\nSize > 2! Pop (1, 3)"]
         H4["Push (2, 11)\nHeap: [(1, 5), (2, 12), (2, 11)]\nSize > 2! Pop (1, 5)"]
     end
     
-    subgraph Final State
+    subgraph FinalState [Final State]
         R["Heap: [(2, 11), (2, 12)]\nReturn [11, 12]"]
     end
-    
-    Tally --> H1 --> H2 --> H3 --> H4 --> R
+
+Tally --> H1 --> H2 --> H3 --> H4 --> R
     
     style Tally fill:#e3f2fd,color:#000
     style H2 fill:#ffcc80,color:#000

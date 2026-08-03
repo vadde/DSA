@@ -53,8 +53,8 @@ flowchart TD
     G --> H["Binary search target in right_sums[N - k]"]
     H --> I["Update min_diff with abs(total_sum - 2 * current_sum)"]
     I --> F
-    
-    E -.->|Finished| J["Return min_diff"]
+
+E -.->|Finished| J["Return min_diff"]
     
     style J fill:#c8e6c9,color:#000
 ```

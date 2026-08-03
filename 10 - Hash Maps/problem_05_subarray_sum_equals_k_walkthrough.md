@@ -48,7 +48,7 @@ flowchart TD
         W1["[ 3, 4, 7, 2, -3, 1, 4, 2 ]"]
     end
     
-    subgraph Current State
+    subgraph CurrentState [Current State]
         N1["We are at index 6 (value 4).\nCurrent Running Total (Sum from start) = 18.\nTarget K = 7."]
     end
     
@@ -56,16 +56,16 @@ flowchart TD
         N2["To get a block that equals 7 at the end,\nwe must chop off a block at the start that equals 11.\n(Because 18 - 7 = 11)"]
     end
     
-    subgraph Hash Map Check
+    subgraph HashMapCheck [Hash Map Check]
         N3["Did the running total ever equal 11 in the past?\nCheck Map: {..., 11: 1, ...}\nYES! The prefix sum was 11 at index 1!"]
         N4["Subarray found from index 2 to 6: [7, 2, -3, 1, 4] = 7!"]
     end
-    
-    Array --> Current State
-    Current State --> Logic
-    Logic --> Hash Map Check
-    
-    style N2 fill:#fff9c4,color:#000
+
+Array --> CurrentState
+CurrentState --> Logic
+    Logic --> HashMapCheck
+
+styleN2fill:#fff9c4,color:#000
     style N3 fill:#c8e6c9,color:#000
 ```
 

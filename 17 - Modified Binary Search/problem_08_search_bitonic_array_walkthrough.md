@@ -53,21 +53,21 @@ Here is how the array gets cleanly split into two distinct sub-problems:
 
 ```mermaid
 flowchart TD
-    subgraph Original Array
+    subgraph OriginalArray [Original Array]
         O["[1, 3, 8, 4, 3]"]
     end
     
-    subgraph Step 1: Find Peak
+    subgraph Step1FindPeak ["Step 1: Find Peak"]
         Peak["Peak is at Index 2 (Value 8)"]
     end
     
-    subgraph Step 2: Split and Search
+    subgraph Step2SplitandSearch ["Step 2: Split and Search"]
         LeftH["Left Half: [1, 3, 8]\nSorted: Ascending\nSearch for 4 -> NOT FOUND"]
         RightH["Right Half: [4, 3]\nSorted: Descending\nSearch for 4 -> FOUND at idx 3!"]
     end
-    
-    O --> Peak
-    Peak --> LeftH
+
+O --> Peak
+Peak --> LeftH
     LeftH -- "If Not Found" --> RightH
     
     style O fill:#e3f2fd,color:#000

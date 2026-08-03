@@ -32,13 +32,13 @@ flowchart TD
     A["Iterate j through Prefix Array P"] --> B{"P[j] - P[dq[0]] >= K?"}
     B -->|YES| C["shortest = min(shortest, j - dq[0])\ndq.popleft()"]
     C --> B
-    B -->|NO| D{"P[j] <= P[dq[-1]]?"}
+B -->|NO| D{"P[j] <= P[dq[-1]]?"}
     D -->|YES| E["dq.pop()"]
     E --> D
-    D -->|NO| F["dq.append(j)"]
+D -->|NO| F["dq.append(j)"]
     F --> A
-    
-    style C fill:#c8e6c9,color:#000
+
+styleCfill:#c8e6c9,color:#000
     style E fill:#ffcdd2,color:#000
 ```
 

@@ -42,8 +42,8 @@ flowchart TD
     B --> C["For (num, freq) in Map:"]
     C --> D["buckets[freq].append(num)"]
     D --> C
-    
-    C -.->|Filled Buckets| E["Loop i from N down to 1"]
+
+C -.->|Filled Buckets| E["Loop i from N down to 1"]
     E --> F["For num in buckets[i]:"]
     F --> G["result.append(num)"]
     G --> H{"len(result) == K?"}

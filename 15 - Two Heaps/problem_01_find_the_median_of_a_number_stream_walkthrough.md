@@ -85,14 +85,14 @@ flowchart TD
         S1["Numbers: 1, 3, 4, 5"]
     end
     
-    subgraph max_heap (Bottom Half)
+    subgraph max_heapBottomHalf ["max_heap (Bottom Half)"]
         MH1((3))
         MH2((1))
         MH1 --- MH2
         note1["Python: [-3, -1]\nRoot is -3 (Max is 3)"]
     end
     
-    subgraph min_heap (Top Half)
+    subgraph min_heapTopHalf ["min_heap (Top Half)"]
         mH1((4))
         mH2((5))
         mH1 --- mH2

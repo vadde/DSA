@@ -64,13 +64,13 @@ stateDiagram-v2
     state "Final Result: 1 -> 6 -> 2 -> 5 -> 3 -> 4 -> NULL" as Final
     
     S1 --> W1
-    S2 --> W1
+S2 --> W1
     W1 --> W2
-    W2 --> R1
+W2 --> R1
     R1 --> W3
-    W3 --> W4
+W3 --> W4
     W4 --> R2
-    R2 --> W5
+R2 --> W5
     W5 --> Final
 ```
 

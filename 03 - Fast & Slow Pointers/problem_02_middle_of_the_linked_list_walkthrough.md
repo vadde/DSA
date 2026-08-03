@@ -49,11 +49,11 @@ stateDiagram-v2
     state "NULL (F3)" as End
     
     N1 --> N2
-    N2 --> N3
+N2 --> N3
     N3 --> N4
-    N4 --> N5
+N4 --> N5
     N5 --> N6
-    N6 --> End
+N6 --> End
     
     note right of End
         When Fast falls off the edge, 

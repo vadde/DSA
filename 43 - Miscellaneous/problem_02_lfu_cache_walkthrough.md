@@ -54,7 +54,7 @@ Init: `min_freq = 0`. Maps empty.
 
 ```mermaid
 flowchart TD
-    subgraph freq_list Hash Map
+    subgraph freq_listHashMap ["freq_list Hash Map"]
     A["Freq = 1"] --> B["[Head] <-> [Key 3] <-> [Tail]"]
     C["Freq = 2"] --> D["[Head] <-> [Key 1] <-> [Tail]"]
     end
@@ -63,7 +63,7 @@ flowchart TD
     E["min_freq = 1"] -.-> A
     end
     
-    subgraph Eviction Process
+    subgraph EvictionProcess [Eviction Process]
     F["Capacity Reached?"] -->|YES| G["Go to freq_list[min_freq]"]
     G --> H["Pop Tail Node (LRU of that freq)"]
     H --> I["Delete from key_node map"]

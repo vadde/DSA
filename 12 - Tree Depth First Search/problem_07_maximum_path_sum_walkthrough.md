@@ -79,7 +79,7 @@ Here is how negative returns from the bottom are ignored (`max(child, 0)`), prev
 
 ```mermaid
 flowchart TD
-    subgraph Bottom Up Processing
+    subgraph BottomUpProcessing [Bottom Up Processing]
         L1["Node -1\nReturns: -1"]
         L2["Node -2\nReturns: -2"]
         

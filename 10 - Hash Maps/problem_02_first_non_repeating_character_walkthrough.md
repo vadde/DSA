@@ -51,15 +51,15 @@ flowchart TD
         W1["String: l-o-v-e-l-e-e-t-c-o-d-e"]
     end
     
-    subgraph Pass 1: Tally up
-        N1["Map Built:\n{'l': 2, 'o': 2, 'v': 1, 'e': 4...}"]
+    subgraph Pass1Tallyup ["Pass 1: Tally up"]
+        N1["Map Built:\n{"'l': 2, 'o': 2, 'v': 1, 'e': 4..."}"]
     end
     
-    subgraph Pass 2: Scan for 1
+    subgraph Pass2Scanfor1 ["Pass 2: Scan for 1"]
         N2["Index 0: 'l' -> Count 2 (Skip)\nIndex 1: 'o' -> Count 2 (Skip)\nIndex 2: 'v' -> Count 1 (FOUND IT!)"]
     end
-    
-    Input --> Pass 1: Tally up
+
+Input --> Pass1: Tally up
     Pass 1: Tally up --> Pass 2: Scan for 1
     
     style N1 fill:#e3f2fd,color:#000

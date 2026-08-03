@@ -66,17 +66,17 @@ Notice how the transition from Binary Tree to N-ary Tree just involves a simple 
 
 ```mermaid
 flowchart TD
-    subgraph Binary Tree Queue Push
+    subgraph BinaryTreeQueuePush [Binary Tree Queue Push]
         B["if node.left:\n  queue.append(node.left)\nif node.right:\n  queue.append(node.right)"]
     end
     
-    subgraph N-ary Tree Queue Push
+    subgraph NaryTreeQueuePush ["N-ary Tree Queue Push"]
         N["for child in node.children:\n  queue.append(child)"]
     end
-    
-    B --> N
-    
-    style B fill:#ffcdd2,color:#000
+
+B --> N
+
+styleBfill:#ffcdd2,color:#000
     style N fill:#c8e6c9,color:#000
 ```
 

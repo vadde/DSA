@@ -72,38 +72,38 @@ Here is how the pointers slide outwards from the closest match:
 
 ```mermaid
 flowchart TD
-    subgraph Initial Array
+    subgraph InitialArray [Initial Array]
         A["Array: [2, 4, 5, 6, 9] | Target: 6"]
     end
     
-    subgraph Binary Search
+    subgraph BinarySearch [Binary Search]
         BS["Find closest: Index 3 (Value 6)"]
         Ptrs["Left = 3 (val 6)\nRight = 4 (val 9)"]
     end
     
-    subgraph Pick 1
+    subgraph Pick1 [Pick 1]
         C1["Dist(6)=0 <= Dist(9)=3"]
         R1["Result: [6]\nLeft moves to 2 (val 5)"]
     end
     
-    subgraph Pick 2
+    subgraph Pick2 [Pick 2]
         C2["Dist(5)=1 <= Dist(9)=3"]
         R2["Result: [5, 6]\nLeft moves to 1 (val 4)"]
     end
     
-    subgraph Pick 3
+    subgraph Pick3 [Pick 3]
         C3["Dist(4)=2 <= Dist(9)=3"]
         R3["Result: [4, 5, 6]\nLeft moves to 0 (val 2)"]
     end
-    
-    A --> BS
-    BS --> Ptrs
+
+A --> BS
+BS --> Ptrs
     Ptrs --> C1
-    C1 --> R1
+C1 --> R1
     R1 --> C2
-    C2 --> R2
+C2 --> R2
     R2 --> C3
-    C3 --> R3
+C3 --> R3
     
     style BS fill:#bbdefb,color:#000
     style Ptrs fill:#bbdefb,color:#000

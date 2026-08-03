@@ -50,7 +50,7 @@ Our custom `LinkedList` class in Python 3.14 uses several advanced techniques to
 ### Structure of a Linked List
 ```mermaid
 flowchart LR
-    subgraph Linked List Wrapper
+    subgraph LinkedListWrapper [Linked List Wrapper]
     H[Head Pointer] -.-> N1
     T[Tail Pointer] -.-> N3
     S[Size: 3]

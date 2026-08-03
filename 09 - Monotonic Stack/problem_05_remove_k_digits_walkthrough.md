@@ -51,16 +51,16 @@ flowchart TD
         W1["Stack: [1, 4]\nIncoming digit: '3'\nErasers left: 3"]
     end
     
-    subgraph The Greedy Choice
+    subgraph TheGreedyChoice [The Greedy Choice]
         W2["Compare: 4 vs 3.\nIf we keep 4, number starts '14...'\nIf we erase 4 and keep 3, number starts '13...'\n13 is much smaller than 14!"]
     end
     
     subgraph Action
         W3["Use an eraser! Pop 4.\nStack: [1, 3]\nErasers left: 2"]
     end
-    
-    State --> The Greedy Choice
-    The Greedy Choice --> Action
+
+State --> TheGreedyChoice
+TheGreedyChoice --> Action
     
     style W2 fill:#fff9c4,color:#000
     style W3 fill:#c8e6c9,color:#000

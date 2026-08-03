@@ -53,8 +53,8 @@ flowchart TD
     I -->|YES| J["Remove nums[i - indexDiff] from buckets"]
     I -->|NO| B
     J --> B
-    
-    style E fill:#c8e6c9,color:#000
+
+styleEfill:#c8e6c9,color:#000
 ```
 
 ## 🛑 Complexity

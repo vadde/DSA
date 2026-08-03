@@ -43,13 +43,13 @@ stateDiagram-v2
     state "Target Hit! Return [1, 3]" as Success
     
     T --> S1
-    S1 --> S2
+S1 --> S2
     S2 --> A1
-    A1 --> S3
+A1 --> S3
     S3 --> S4
-    S4 --> A2
+S4 --> A2
     A2 --> S5
-    S5 --> S6
+S5 --> S6
     S6 --> Success
 ```
 

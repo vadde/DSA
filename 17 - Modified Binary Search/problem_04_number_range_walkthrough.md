@@ -71,7 +71,7 @@ flowchart TD
         A0["[0]\n4"] --- A1["[1]\n6"] --- A2["[2]\n6"] --- A3["[3]\n6"] --- A4["[4]\n9"]
     end
     
-    subgraph Initial Match
+    subgraph InitialMatch [Initial Match]
         M["Binary Search finds arr[2] == 6\nkey_index = 2"]
     end
     
@@ -84,12 +84,12 @@ flowchart TD
         R_Left["Finds another 6 at arr[1]\nkey_index = 1"]
         R_Right["Finds another 6 at arr[3]\nkey_index = 3"]
     end
-    
-    A2 -.-> M
-    M --> Left
+
+A2 -.-> M
+M --> Left
     M --> Right
-    
-    Left --> R_Left
+
+Left --> R_Left
     Right --> R_Right
     
     style A1 fill:#c8e6c9,color:#000

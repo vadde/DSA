@@ -71,27 +71,27 @@ Here is how the boolean flag controls the output construction without messing up
 
 ```mermaid
 flowchart TD
-    subgraph Level 2 Queue State
+    subgraph Level2QueueState [Level 2 Queue State]
         Q1["Queue: [7, 1]\nFlag: left_to_right = FALSE"]
     end
     
-    subgraph Process 7
+    subgraph Process7 [Process 7]
         P1["Pop 7.\nSince FALSE, use appendleft(7).\ncurrent_level = [7]\nQueue: [1]"]
     end
     
-    subgraph Process 1
+    subgraph Process1 [Process 1]
         P2["Pop 1.\nSince FALSE, use appendleft(1).\ncurrent_level = [1, 7]\nQueue: empty"]
     end
     
-    subgraph Next Level Logic
+    subgraph NextLevelLogic [Next Level Logic]
         N1["Append [1, 7] to result.\nFlip flag to TRUE.\nChildren (9, 2, 10, 5) were appended normally!"]
     end
-    
-    Q1 --> P1
-    P1 --> P2
+
+Q1 --> P1
+P1 --> P2
     P2 --> N1
-    
-    style P1 fill:#ffcdd2,color:#000
+
+styleP1fill:#ffcdd2,color:#000
     style P2 fill:#ffcdd2,color:#000
     style N1 fill:#c8e6c9,color:#000
 ```

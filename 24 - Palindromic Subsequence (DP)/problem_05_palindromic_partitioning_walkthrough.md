@@ -57,7 +57,7 @@ flowchart TD
     F["Return cuts[n]"]
     
     A --> B
-    B --> C
+B --> C
     C -->|YES| D --> F
     C -->|NO| E --> F
     

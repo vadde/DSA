@@ -57,27 +57,27 @@ Here is how the clubs (sets) merge, and how Path Compression keeps the tree flat
 
 ```mermaid
 flowchart TD
-    subgraph Initial State
+    subgraph InitialState [Initial State]
         A1((1))
         A2((2))
         A3((3))
     end
     
-    subgraph After Edge 1,2
+    subgraph AfterEdge12 ["After Edge 1,2"]
         B2((2))
         B1((1)) --> B2
         B3((3))
         note1["Root of 1 is 2"]
     end
     
-    subgraph After Edge 1,3
+    subgraph AfterEdge13 ["After Edge 1,3"]
         C3((3))
         C2((2)) --> C3
         C1((1)) --> C2
         note2["Union sets root(1) which is 2\nto point to root(3) which is 3"]
     end
     
-    subgraph Check Edge 2,3
+    subgraph CheckEdge23 ["Check Edge 2,3"]
         D3((3))
         D1((1)) --> D3
         D2((2)) --> D3

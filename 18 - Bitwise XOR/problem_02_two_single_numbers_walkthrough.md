@@ -68,12 +68,12 @@ Here is how the numbers are sorted into two buckets based on the differentiating
 
 ```mermaid
 flowchart TD
-    subgraph Original Array
+    subgraph OriginalArray [Original Array]
         O["[1, 5, 1, 9]"]
         XOR["XOR All = 12 (1100)"]
     end
     
-    subgraph Differentiating Bit
+    subgraph DifferentiatingBit [Differentiating Bit]
         DB["Rightmost Set Bit = 4 (0100)"]
     end
     
@@ -86,14 +86,14 @@ flowchart TD
         R1["num1 = 5\n(No twins to cancel)"]
         R2["num2 = 1 ^ 1 ^ 9 = 9\n(1s cancel out)"]
     end
-    
-    O --> XOR
-    XOR --> DB
+
+O --> XOR
+XOR --> DB
     DB --> G1
-    DB --> G2
+DB --> G2
     
     G1 --> R1
-    G2 --> R2
+G2 --> R2
     
     style O fill:#e3f2fd,color:#000
     style XOR fill:#bbdefb,color:#000

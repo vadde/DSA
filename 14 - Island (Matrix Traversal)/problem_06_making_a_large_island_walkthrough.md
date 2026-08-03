@@ -86,7 +86,7 @@ Here is why using a `set()` to find unique neighbors is absolutely critical in P
 
 ```mermaid
 flowchart TD
-    subgraph Grid Setup
+    subgraph GridSetup [Grid Setup]
         G01((0,1 : ID 2)) --- G11((1,1 : Water\nTARGET))
         G10((1,0 : ID 2)) --- G11
         G00((0,0 : ID 2)) --- G01
@@ -94,7 +94,7 @@ flowchart TD
         note1["This is a C-shaped island of ID 2.\nSize = 3."]
     end
     
-    subgraph Pass 2 Evaluation
+    subgraph Pass2Evaluation [Pass 2 Evaluation]
         W["We check Water at (1,1)"] --> U["Up is 2"]
         W --> L["Left is 2"]
         

@@ -75,20 +75,20 @@ Here is a tree visualization showing how the new number is inserted into every p
 
 ```mermaid
 flowchart TD
-    subgraph Level 0
+    subgraph Level0 [Level 0]
         Q0["[ ]"]
     end
     
-    subgraph Level 1: Insert 1
+    subgraph Level1Insert1 ["Level 1: Insert 1"]
         Q1["[1]"]
     end
     
-    subgraph Level 2: Insert 2
+    subgraph Level2Insert2 ["Level 2: Insert 2"]
         Q2_A["[2, 1]"]
         Q2_B["[1, 2]"]
     end
     
-    subgraph Level 3: Insert 3 (Full!)
+    subgraph Level3Insert3Full ["Level 3: Insert 3 (Full!)"]
         Q3_A["[3, 2, 1]"]
         Q3_B["[2, 3, 1]"]
         Q3_C["[2, 1, 3]"]

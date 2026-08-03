@@ -43,13 +43,13 @@ flowchart TD
     A["Initialize prefix_xor = [0] * (N+1)"] --> B["For i from 0 to N-1:"]
     B --> C["prefix_xor[i+1] = prefix_xor[i] ^ arr[i]"]
     C --> B
-    
-    B -.->|Prefix built| D["For each query (L, R):"]
+
+B -.->|Prefix built| D["For each query (L, R):"]
     D --> E["ans = prefix_xor[R+1] ^ prefix_xor[L]"]
     E --> F["result.append(ans)"]
     F --> D
-    
-    D -.->|Finished| G["Return result"]
+
+D -.->|Finished| G["Return result"]
     
     style C fill:#fff9c4,color:#000
     style E fill:#c8e6c9,color:#000

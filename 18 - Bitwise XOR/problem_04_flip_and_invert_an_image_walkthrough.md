@@ -70,40 +70,40 @@ Here is how a single row is transformed in one smooth pass using two pointers an
 
 ```mermaid
 flowchart TD
-    subgraph Initial Row
+    subgraph InitialRow [Initial Row]
         L1["Left: index 0 (Val 1)"]
         M1["Mid: index 1 (Val 1)"]
         R1["Right: index 2 (Val 0)"]
     end
     
-    subgraph Pass 1: Edges
+    subgraph Pass1Edges ["Pass 1: Edges"]
         S1["Swap & XOR 1"]
         L2["New Left: 0 ^ 1 = 1"]
         R2["New Right: 1 ^ 1 = 0"]
     end
     
-    subgraph Pass 2: Center
+    subgraph Pass2Center ["Pass 2: Center"]
         S2["Swap & XOR 1 (with self)"]
         M2["New Mid: 1 ^ 1 = 0"]
     end
     
-    subgraph Final Result
+    subgraph FinalResult [Final Result]
         F1["[1, 0, 0]"]
     end
-    
-    L1 --> S1
-    R1 --> S1
+
+L1 --> S1
+R1 --> S1
     S1 --> L2
-    S1 --> R2
+S1 --> R2
     
     M1 --> S2
-    S2 --> M2
+S2 --> M2
     
     L2 --> F1
-    M2 --> F1
+M2 --> F1
     R2 --> F1
-    
-    style S1 fill:#fff9c4,color:#000
+
+styleS1fill:#fff9c4,color:#000
     style S2 fill:#fff9c4,color:#000
     style F1 fill:#c8e6c9,color:#000
 ```

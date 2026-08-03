@@ -60,7 +60,7 @@ flowchart TD
     A["Node.val"] --> B{"For child in children"}
     B -->|Next| C["Serialize(child)"]
     C --> B
-    B -->|Done| D["Append '#'"]
+B -->|Done| D["Append '#'"]
     end
     
     subgraph Deserialize
@@ -72,9 +72,9 @@ flowchart TD
     J -->|YES| K["Return node"]
     J -->|NO| L["node.children.append(child)"]
     L --> I
-    end
-    
-    style G fill:#ffcdd2,color:#000
+end
+
+styleGfill:#ffcdd2,color:#000
     style K fill:#c8e6c9,color:#000
 ```
 

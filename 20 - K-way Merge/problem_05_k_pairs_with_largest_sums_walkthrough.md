@@ -57,22 +57,22 @@ Here is how the algorithm walks the implicit sum grid, always expanding from the
 
 ```mermaid
 flowchart TD
-    subgraph Grid of Sums
+    subgraph GridofSums [Grid of Sums]
         G["       j=0  j=1  j=2
 i=0:   15   12   10
 i=1:   14   11    9
 i=2:    8    5    3"]
     end
     
-    subgraph Heap Exploration
+    subgraph HeapExploration [Heap Exploration]
         S["Start: (0,0) sum=15"]
         N1["Pop (0,0) → 15 ✅\nExpand: (1,0)=14, (0,1)=12"]
         N2["Pop (1,0) → 14 ✅\nExpand: (2,0)=8, (1,1)=11"]
         N3["Pop (0,1) → 12 ✅\nK=3 reached!"]
     end
-    
-    G --> S
-    S --> N1 --> N2 --> N3
+
+G --> S
+S --> N1 --> N2 --> N3
     
     style S fill:#bbdefb,color:#000
     style N1 fill:#c8e6c9,color:#000

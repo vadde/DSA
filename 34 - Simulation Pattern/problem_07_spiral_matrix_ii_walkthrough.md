@@ -52,8 +52,8 @@ flowchart TD
     G -->|YES| H["Traverse Left (B to T)\nWrite num++, Left ++"]
     G -->|NO| B
     H --> B
-    
-    style B fill:#e3f2fd,color:#000
+
+styleBfill:#e3f2fd,color:#000
 ```
 
 ## 🛑 Complexity

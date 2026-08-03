@@ -52,11 +52,11 @@ stateDiagram-v2
     state "Node 6 (S1)" as N6
     
     N1 --> N2
-    N2 --> N3
+N2 --> N3
     N3 --> N4
-    N4 --> N5
+N4 --> N5
     N5 --> N6
-    N6 --> N3
+N6 --> N3
     
     note right of N1
         Phase 2:

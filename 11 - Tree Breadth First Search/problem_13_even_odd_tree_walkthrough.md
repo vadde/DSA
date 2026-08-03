@@ -71,18 +71,18 @@ Here is how the algorithm reacts when a rule is broken:
 
 ```mermaid
 flowchart TD
-    subgraph Row 2 (Even) - Must be ODD and INCREASING
+    subgraph Row2EvenMustbeODDandINCREASING ["Row 2 (Even) - Must be ODD and INCREASING"]
         Q["Queue: [3, 3]"]
         N1["Pop 3\nValue is odd.\nprev = 3"]
         N2["Pop 3\nValue is odd.\nIs 3 > prev (3)?\nNO! It's equal."]
         R["Return False!"]
     end
-    
-    Q --> N1
-    N1 --> N2
+
+Q --> N1
+N1 --> N2
     N2 --> R
-    
-    style N2 fill:#ffcdd2,color:#000
+
+styleN2fill:#ffcdd2,color:#000
     style R fill:#ff5252,color:#fff
 ```
 

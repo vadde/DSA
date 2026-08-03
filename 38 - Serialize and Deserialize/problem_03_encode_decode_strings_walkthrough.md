@@ -56,7 +56,7 @@ flowchart TD
     F --> G["Extract next 'length' chars\nas word"]
     G --> H["Move i past the word"]
     H --> D
-    D -->|NO| I["Return result list"]
+D -->|NO| I["Return result list"]
     end
     
     style I fill:#c8e6c9,color:#000

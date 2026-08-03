@@ -40,14 +40,14 @@ flowchart TD
     A["Initialize count = [0, 0, 0]"] --> B["Pass 1:\nIterate num in nums"]
     B --> C["count[num] += 1"]
     C --> B
-    
-    B -.->|Finished Pass 1| D["Pass 2:\nidx = 0"]
+
+B -.->|Finished Pass 1| D["Pass 2:\nidx = 0"]
     D --> E["For color in 0, 1, 2:"]
     E --> F["Loop count[color] times:"]
     F --> G["nums[idx] = color\nidx += 1"]
     G --> F
-    
-    style C fill:#fff9c4,color:#000
+
+styleCfill:#fff9c4,color:#000
     style G fill:#c8e6c9,color:#000
 ```
 

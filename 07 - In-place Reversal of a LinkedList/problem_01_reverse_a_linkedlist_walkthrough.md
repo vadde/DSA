@@ -42,7 +42,7 @@ Here is a snapshot of Step 2, reversing the link from `4` to `2`:
 
 ```mermaid
 flowchart LR
-    subgraph Before Step 2
+    subgraph BeforeStep2 [Before Step 2]
         P1["prev: 2"] -.-> N0["null"]
         C1["current: 4"] --> N1["6"] --> N2["8"]
     end
@@ -52,13 +52,13 @@ flowchart LR
         S2["2. current.next = prev (4 points to 2)"]
     end
     
-    subgraph After Step 2
+    subgraph AfterStep2 [After Step 2]
         C2["current (was 6)"] --> N3["8"]
         P2["prev (was 4)"] --> P3["2"] -.-> N4["null"]
     end
-    
-    Before Step 2 --> Action
-    Action --> After Step 2
+
+BeforeStep2 --> Action
+Action --> After Step 2
     
     style Action fill:#fff9c4,color:#000
     style S2 fill:#32CD32,color:#000

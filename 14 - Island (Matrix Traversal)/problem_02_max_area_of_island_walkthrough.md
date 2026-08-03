@@ -75,7 +75,7 @@ Here is how the recursion unrolls and adds up the area from the leaves of the DF
 
 ```mermaid
 flowchart TD
-    subgraph DFS Recursion Tree
+    subgraph DFSRecursionTree [DFS Recursion Tree]
         ROOT["get_area(0,0)\nReturns: 1 + 1 + 1 = 3"]
         DOWN["get_area(1,0)\nReturns: 1 + 0 + 0 + 0 + 0 = 1"]
         RIGHT["get_area(0,1)\nReturns: 1 + 0 + 0 + 0 + 0 = 1"]

@@ -36,10 +36,10 @@ flowchart TD
     A["Iterate i, temp"] --> B{"Stack not empty AND\ntemp > temps[stack.top]?"}
     B -->|YES| C["prev_idx = stack.pop()\nans[prev_idx] = i - prev_idx"]
     C --> B
-    B -->|NO| D["stack.push(i)"]
+B -->|NO| D["stack.push(i)"]
     D --> A
-    
-    style C fill:#c8e6c9,color:#000
+
+styleCfill:#c8e6c9,color:#000
 ```
 
 ## 🛑 Complexity

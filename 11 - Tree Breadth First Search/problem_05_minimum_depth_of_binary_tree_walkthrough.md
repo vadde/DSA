@@ -56,34 +56,34 @@ Here is how early termination saves us from exploring the whole tree:
 
 ```mermaid
 flowchart TD
-    subgraph Level 1 - Depth 1
+    subgraph Level1Depth1 ["Level 1 - Depth 1"]
         A["Node 12"]
     end
     
-    subgraph Level 2 - Depth 2
+    subgraph Level2Depth2 ["Level 2 - Depth 2"]
         B["Node 7\n(LEAF!)"]
         C["Node 1"]
     end
     
-    subgraph Level 3 - Depth 3
+    subgraph Level3Depth3 ["Level 3 - Depth 3"]
         D["Node 10"]
         E["Node 5"]
     end
-    
-    A --> B
-    A --> C
+
+A --> B
+A --> C
     C --> D
-    C --> E
+C --> E
     
     subgraph Process
         P1["Check 12: Not a leaf."]
         P2["Check 7: LEAF! Return Depth 2!"]
         P3["Node 1, 10, and 5 are completely ignored!\nWe saved time!"]
     end
-    
-    B -.-> P2
-    
-    style B fill:#c8e6c9,color:#000
+
+B -.-> P2
+
+styleBfill:#c8e6c9,color:#000
     style P2 fill:#c8e6c9,color:#000
     style C fill:#eeeeee,color:#999
     style D fill:#eeeeee,color:#999

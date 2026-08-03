@@ -41,13 +41,13 @@ Here is how the Min-Heap tracks active rooms:
 
 ```mermaid
 flowchart TD
-    subgraph Step 2 [Time: 2. Heap has [4]]
+    subgraph Step2 [Step 2: Time: 2. Heap has [4]]
         W1["Current Meeting: [2, 3]"]
         N1["Does 2 >= 4? No.\nMust open a NEW room!"]
         H1["Heap becomes [3, 4]\nPeak = 2"]
     end
     
-    subgraph Step 3 [Time: 3. Heap has [3, 4]]
+    subgraph Step3 [Step 3: Time: 3. Heap has [3, 4]]
         W2["Current Meeting: [3, 6]"]
         N2["Does 3 >= 3? YES!"]
         H2["Meeting ending at 3 is over.\nPop 3!\nRe-use the room.\nPush 6!"]
@@ -56,9 +56,9 @@ flowchart TD
     subgraph State [End State]
         W3["Heap becomes [4, 6]\nPeak remains 2"]
     end
-    
-    Step 2 --> Step 3
-    Step 3 --> State
+
+Step2 --> Step3
+Step3 --> State
     
     style N1 fill:#ffcdd2,color:#000
     style N2 fill:#32CD32,color:#000

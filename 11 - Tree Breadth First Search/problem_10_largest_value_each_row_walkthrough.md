@@ -60,18 +60,18 @@ Here is how `level_max` updates across a row:
 
 ```mermaid
 flowchart TD
-    subgraph Row 2 Queue: 3, 2
+    subgraph Row2Queue32 ["Row 2 Queue: 3, 2"]
         Init["level_max = -infinity"]
         N1["Pop 3\nmax(-inf, 3) = 3\nlevel_max = 3"]
         N2["Pop 2\nmax(3, 2) = 3\nlevel_max = 3"]
         Done["End of Row\nAppend 3 to result!"]
     end
-    
-    Init --> N1
-    N1 --> N2
+
+Init --> N1
+N1 --> N2
     N2 --> Done
-    
-    style Init fill:#eeeeee,color:#000
+
+styleInitfill:#eeeeee,color:#000
     style N1 fill:#fff9c4,color:#000
     style N2 fill:#fff9c4,color:#000
     style Done fill:#c8e6c9,color:#000

@@ -54,24 +54,24 @@ flowchart TD
         W1["{ [ ] }"]
     end
     
-    subgraph Step 1: Push {
+    subgraph Step1Push ["Step 1: Push {"]
         S1["Stack: Bottom -> { -> Top"]
     end
     
-    subgraph Step 2: Push [
+    subgraph Step2Push ["Step 2: Push ["]
         S2["Stack: Bottom -> { -> [ -> Top"]
     end
     
-    subgraph Step 3: See ], Pop!
+    subgraph Step3SeePop ["Step 3: See ], Pop!"]
         S3["Pop '['! Does '[' match ']'? YES!"]
         S3_2["Stack shrinks: Bottom -> { -> Top"]
     end
-    
-    Input --> Step 1
-    Step 1 --> Step 2
-    Step 2 --> Step 3
-    
-    style S2 fill:#ffcdd2,color:#000
+
+Input --> Step1
+Step1 --> Step 2
+    Step2 --> Step3
+
+styleS2fill:#ffcdd2,color:#000
     style S3 fill:#c8e6c9,color:#000
 ```
 

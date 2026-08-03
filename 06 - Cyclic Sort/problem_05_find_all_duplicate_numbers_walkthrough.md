@@ -55,18 +55,18 @@ Here is the difference between finding missing numbers and finding duplicates:
 
 ```mermaid
 flowchart TD
-    subgraph Sorted Array with Trapped Duplicates
+    subgraph SortedArraywithTrappedDuplicates [Sorted Array with Trapped Duplicates]
         W1["Array: [5, 4, 3, 4, 5]"]
     end
     
-    subgraph Index 0 Mismatch
+    subgraph Index0Mismatch [Index 0 Mismatch]
         W2["Spot 1 should have '1'"]
         N2["It has '5'.\nSince '1' is missing, add 1 to missing list.\nSince '5' is sitting here, add 5 to duplicate list!"]
     end
-    
-    Sorted Array with Trapped Duplicates --> Index 0 Mismatch
-    
-    style W2 fill:#ffcdd2,color:#000
+
+SortedArraywithTrappedDuplicates --> Index0Mismatch
+
+styleW2fill:#ffcdd2,color:#000
     style N2 fill:#fff9c4,color:#000
 ```
 

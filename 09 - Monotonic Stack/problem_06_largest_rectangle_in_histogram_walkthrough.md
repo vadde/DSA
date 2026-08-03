@@ -55,22 +55,22 @@ Here is how the arrival of height 2 at index 4 traps the taller buildings:
 
 ```mermaid
 flowchart TD
-    subgraph Wait Room
-        W1["Stack before index 4 arrives:\n[Index 1 (Height 1)]\n[Index 2 (Height 5)]\n[Index 3 (Height 6)]"]
+    subgraph WaitRoom [Wait Room]
+        W1["Stack before index 4 arrives:\n["Index 1 (Height 1)"]\n["Index 2 (Height 5)"]\n["Index 3 (Height 6)"]"]
     end
     
-    subgraph Short Building Arrives
+    subgraph ShortBuildingArrives [Short Building Arrives]
         A1["Index 4 (Height 2) arrives"]
     end
     
-    subgraph Pop & Calculate
+    subgraph PopCalculate ["Pop & Calculate"]
         R1["2 < 6. Pop Index 3 (Height 6). \nWidth = (Index 4) - (Index 2) - 1 = 1\nArea = 6 * 1 = 6"]
         R2["2 < 5. Pop Index 2 (Height 5). \nWidth = (Index 4) - (Index 1) - 1 = 2\nArea = 5 * 2 = 10"]
         R3["2 > 1. Stop popping. Push Index 4."]
     end
-    
-    Wait Room --> Short Building Arrives
-    Short Building Arrives --> Pop & Calculate
+
+WaitRoom --> ShortBuildingArrives
+ShortBuildingArrives --> Pop & Calculate
     
     style A1 fill:#c8e6c9,color:#000
     style R1 fill:#fff9c4,color:#000

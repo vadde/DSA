@@ -44,8 +44,8 @@ flowchart TD
     B --> C["Append num to result (count times)"]
     C --> D["Remove num from counts"]
     D --> B
-    
-    B -.->|Finished arr2| E["Get remaining items in counts"]
+
+B -.->|Finished arr2| E["Get remaining items in counts"]
     E --> F["Sort remaining items"]
     F --> G["Append remaining to result"]
     G --> H["Return result"]

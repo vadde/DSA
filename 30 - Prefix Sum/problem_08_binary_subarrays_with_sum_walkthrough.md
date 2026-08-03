@@ -43,7 +43,7 @@ flowchart LR
     D -->|YES| E["count += map[prefix - goal]"]
     D -->|NO| F["map[prefix]++"]
     E --> F
-    F --> B
+F --> B
     
     style E fill:#c8e6c9,color:#000
 ```

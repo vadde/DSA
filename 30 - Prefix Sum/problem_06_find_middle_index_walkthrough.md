@@ -38,15 +38,15 @@ flowchart LR
     A["Calculate total_sum"] --> B["left_sum = 0"]
     B --> C["Loop array"]
     
-    subgraph Iteration
-        C --> D["right_sum = total - left - num"]
+    subgraphIteration
+C --> D["right_sum = total - left - num"]
         D --> E{"left == right?"}
         E -->|YES| F["Return current index"]
         E -->|NO| G["left_sum += num"]
     end
-    G --> C
-    
-    style F fill:#c8e6c9,color:#000
+G --> C
+
+styleFfill:#c8e6c9,color:#000
     style A fill:#bbdefb,color:#000
 ```
 

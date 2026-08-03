@@ -69,7 +69,7 @@ Here is a visualization of the layer-by-layer topological sort (burning from the
 
 ```mermaid
 flowchart TD
-    subgraph Initial State
+    subgraph InitialState [Initial State]
         N0((0)) --- N1((1))
         N3((3)) --- N2((2))
         N1 --- N2
@@ -78,19 +78,19 @@ flowchart TD
         note1["Leaves: 0, 3, 4, 5"]
     end
     
-    subgraph Burn Layer 1
+    subgraph BurnLayer1 [Burn Layer 1]
         B1((1)) --- B2((2))
         note2["0, 3, 4, 5 burn away.\n1 loses its only neighbor (0), becomes leaf.\n2 loses 3, 4, 5, but still has 1. Degree=1. Becomes leaf!"]
     end
     
-    subgraph Final State
+    subgraph FinalState [Final State]
         F1((1)) 
         F2((2))
         note3["Remaining nodes <= 2.\nQueue = [1, 2].\nCenters found!"]
     end
-    
-    Initial State --> Burn Layer 1
-    Burn Layer 1 --> Final State
+
+InitialState --> BurnLayer1
+BurnLayer1 --> Final State
     
     style N0 fill:#ffcdd2,color:#000
     style N3 fill:#ffcdd2,color:#000

@@ -36,8 +36,8 @@ flowchart TD
     D --> E["Maintain dq increasing:\nPop back if dp[dq.back] >= dp[i]"]
     E --> F["dq.append(i)"]
     F --> A
-    
-    style D fill:#c8e6c9,color:#000
+
+styleDfill:#c8e6c9,color:#000
 ```
 
 ## 🛑 Complexity

@@ -46,11 +46,11 @@ Here is how Day 5 (temp 72) resolves the colder days that were waiting in the st
 
 ```mermaid
 flowchart TD
-    subgraph Wait Room
-        W1["Stack before Day 5 (72) arrives:\n[Index 2 (Temp 75)]\n[Index 3 (Temp 71)]\n[Index 4 (Temp 69)]"]
+    subgraph WaitRoom [Wait Room]
+        W1["Stack before Day 5 (72) arrives:\n["Index 2 (Temp 75)"]\n["Index 3 (Temp 71)"]\n["Index 4 (Temp 69)"]"]
     end
     
-    subgraph A Warm Day Arrives
+    subgraph AWarmDayArrives [A Warm Day Arrives]
         A1["Day 5 (Temp 72) arrives"]
     end
     
@@ -59,9 +59,9 @@ flowchart TD
         R2["72 > 71. Pop Day 3. result[3] = 5-3 = 2"]
         N1["72 < 75. Stop popping. Push Day 5."]
     end
-    
-    Wait Room --> A Warm Day Arrives
-    A Warm Day Arrives --> Resolutions
+
+WaitRoom --> AWarmDayArrives
+AWarmDayArrives --> Resolutions
     
     style A1 fill:#c8e6c9,color:#000
     style R1 fill:#fff9c4,color:#000

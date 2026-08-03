@@ -45,23 +45,23 @@ Here is how the Monotonic Deque dynamically maintains the maximums:
 
 ```mermaid
 flowchart TD
-    subgraph Step 3 [Window: 1, 3, -1.  end=2, nums= -1]
+    subgraph Step3 [Step 3: Window: 1, 3, -1.  end=2, nums= -1]
         W1["Deque Values: [3, -1]"]
         N1["-1 is smaller than 3, so it joins the line.\nMax is front: 3"]
     end
     
-    subgraph Step 4 [Window: 3, -1, -3.  end=3, nums= -3]
+    subgraph Step4 [Step 4: Window: 3, -1, -3.  end=3, nums= -3]
         W2["Deque Values: [3, -1, -3]"]
         N2["Max is front: 3. But 3 is at window_start!\nPopleft! Deque becomes [-1, -3]"]
     end
     
-    subgraph Step 5 [Window: -1, -3, 5. end=4, nums= 5]
+    subgraph Step5 [Step 5: Window: -1, -3, 5. end=4, nums= 5]
         W3["New item '5' is larger than -3 and -1!"]
         N3["Pop -3! Pop -1! Add 5!\nDeque Values: [5]\nMax is front: 5"]
     end
-    
-    Step 3 --> Step 4
-    Step 4 --> Step 5
+
+Step3 --> Step4
+Step4 --> Step 5
     
     style W1 fill:#e1f5fe,color:#000
     style W2 fill:#e1f5fe,color:#000

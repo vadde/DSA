@@ -44,8 +44,8 @@ flowchart TD
     F -->|YES| G["length += 1"]
     F -->|NO| H["Return length"]
     G --> H
-    
-    style H fill:#c8e6c9,color:#000
+
+styleHfill:#c8e6c9,color:#000
 ```
 
 ## 🛑 Complexity

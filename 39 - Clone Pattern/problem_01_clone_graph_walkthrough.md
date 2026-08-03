@@ -58,7 +58,7 @@ flowchart TD
     G --> H["For neighbor in curr.neighbors:"]
     H --> I["clone.neighbors.append(dfs(neighbor))"]
     I --> H
-    H -.->|Done| J["Return clone"]
+H -.->|Done| J["Return clone"]
     
     style E fill:#c8e6c9,color:#000
     style G fill:#fff9c4,color:#000

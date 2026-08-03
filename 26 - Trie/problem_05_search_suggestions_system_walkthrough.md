@@ -35,19 +35,19 @@ Querying `"mouse"` prefix by prefix:
 
 ```mermaid
 flowchart TD
-    subgraph Build Phase
+    subgraph BuildPhase [Build Phase]
         A["Sort products\n['mobile','moneypot','monitor','mouse','mousepad']"]
         B["Insert each into Trie\nAt each node, store ≤3 suggestions"]
     end
     
-    subgraph Query Phase
+    subgraph QueryPhase [Query Phase]
         C["For each char in search_word:"]
         D{"char in node.children?"}
         E["node = node.children[char]\nappend node.suggestions"]
         F["node = None\nappend []"]
     end
-    
-    A --> B --> C --> D
+
+A --> B --> C --> D
     D -->|YES| E --> C
     D -->|NO| F --> C
     

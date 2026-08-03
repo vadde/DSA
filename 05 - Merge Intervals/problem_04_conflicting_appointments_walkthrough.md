@@ -42,11 +42,11 @@ Here is how sorting makes identifying conflicts effortless:
 
 ```mermaid
 flowchart TD
-    subgraph Step 1 [Sort by Start Time]
+    subgraph Step1 [Step 1: Sort by Start Time]
         W1["[4, 5], [2, 3], [3, 6]\nbecomes\n[2, 3], [3, 6], [4, 5]"]
     end
     
-    subgraph Step 2 [Compare Adjacent Pairs]
+    subgraph Step2 [Step 2: Compare Adjacent Pairs]
         W2["Pair 1: [2, 3] and [3, 6]"]
         N2["3 < 3? No. Boundary touch is allowed!"]
         
@@ -54,17 +54,17 @@ flowchart TD
         N3["4 < 6? YES! Overlap detected!"]
     end
     
-    subgraph Step 3 [Result]
+    subgraph Step3 [Step 3: Result]
         W4["Return False instantly!"]
     end
-    
-    Step 1 --> W2
-    W2 --> N2
+
+Step1 --> W2
+W2 --> N2
     N2 --> W3
-    W3 --> N3
+W3 --> N3
     N3 --> W4
-    
-    style N2 fill:#c8e6c9,color:#000
+
+styleN2fill:#c8e6c9,color:#000
     style N3 fill:#ffcdd2,color:#000
     style W4 fill:#ffcdd2,color:#000
 ```

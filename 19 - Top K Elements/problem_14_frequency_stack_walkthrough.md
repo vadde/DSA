@@ -75,22 +75,22 @@ Here's how the snapshots stack up in the heap, effortlessly maintaining history 
 
 ```mermaid
 flowchart TD
-    subgraph Push Phase
+    subgraph PushPhase [Push Phase]
         P1["push(1)\nSeq=1"] --> H1["Heap: [(-1, -1, 1)]"]
         P2["push(2)\nSeq=2"] --> H2["Heap: [(-1, -2, 2),\n (-1, -1, 1)]"]
         P3["push(1)\nSeq=3"] --> H3["Heap: [(-2, -3, 1),\n (-1, -2, 2),\n (-1, -1, 1)]"]
     end
     
-    subgraph Pop 1
+    subgraph Pop1 [Pop 1]
         H3 --> Pop1["heappop()"]
         Pop1 --> R1["Returns 1"]
-        R1 --> H4["Heap recovers:\n[(-1, -2, 2),\n (-1, -1, 1)]"]
+        R1 --> H4["Heap recovers:\n["(-1, -2, 2),\n (-1, -1, 1)"]"]
     end
     
-    subgraph Pop 2
+    subgraph Pop2 [Pop 2]
         H4 --> Pop2["heappop()"]
         Pop2 --> R2["Returns 2"]
-        R2 --> H5["Heap recovers:\n[(-1, -1, 1)]"]
+        R2 --> H5["Heap recovers:\n["(-1, -1, 1)"]"]
     end
     
     style H1 fill:#e3f2fd,color:#000

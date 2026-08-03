@@ -50,7 +50,7 @@ Define `dp[w]` = the maximum value achievable using any subset of items with tot
 
 ```mermaid
 flowchart TD
-    A["Initialize dp[0..W] = 0"]
+    A["Initialize dp["0..W"] = 0"]
     B["For each item i:"]
     C["For w = capacity → weight_i (REVERSED):"]
     D["dp[w] = max(dp[w], dp[w-w_i] + v_i)"]
@@ -59,7 +59,7 @@ flowchart TD
     A --> B --> C --> D --> D
     D -->|done| E
     
-    subgraph Why Reverse?
+    subgraph WhyReverse ["Why Reverse?"]
         R["Forward iteration allows\nusing item MULTIPLE times!"]
         R2["Reverse iteration ensures\neach item used AT MOST ONCE."]
     end

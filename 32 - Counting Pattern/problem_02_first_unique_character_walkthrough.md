@@ -33,7 +33,7 @@ flowchart LR
     A["Pass 1:\nCount character frequencies"] --> B["Hash Map built"]
     B --> C["Pass 2:\nIterate chars in order"]
     
-    subgraph Finding the unique
+    subgraph Findingtheunique [Finding the unique]
         C --> D{"Count == 1?"}
         D -->|YES| E["Return index"]
         D -->|NO| C
