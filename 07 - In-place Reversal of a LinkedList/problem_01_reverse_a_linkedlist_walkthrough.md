@@ -58,7 +58,7 @@ flowchart LR
     end
 
 BeforeStep2 --> Action
-Action --> After Step 2
+Action --> AfterStep2
     
     style Action fill:#fff9c4,color:#000
     style S2 fill:#32CD32,color:#000
