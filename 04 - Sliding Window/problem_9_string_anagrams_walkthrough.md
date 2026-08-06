@@ -45,23 +45,23 @@ Here is how multiple overlapping anagrams are found smoothly (e.g. `s = "abab"`,
 
 ```mermaid
 flowchart TD
-    subgraph Step2 [Step 2: end=1. Window: [a, b]]
+    subgraph Step2 ["Step 2: end=1. Window: (a, b)"]
         W1["Match! Record index 0"]
         S1["Shrink: Drop 'a'. start=1"]
     end
     
-    subgraph Step3 [Step 3: end=2. Window: [b, a]]
+    subgraph Step3 ["Step 3: end=2. Window: (b, a)"]
         W2["Add 'a'. Match! Record index 1"]
         S2["Shrink: Drop 'b'. start=2"]
     end
     
-    subgraph Step4 [Step 4: end=3. Window: [a, b]]
+    subgraph Step4 ["Step 4: end=3. Window: (a, b)"]
         W3["Add 'b'. Match! Record index 2"]
         S3["Shrink: Drop 'a'. start=3"]
     end
 
 Step2 --> Step3
-Step3 --> Step 4
+Step3 --> Step4
 ```
 
 ## 🛑 Edge Cases & Complexity

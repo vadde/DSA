@@ -56,7 +56,7 @@ Here is how the arrival of height 2 at index 4 traps the taller buildings:
 ```mermaid
 flowchart TD
     subgraph WaitRoom [Wait Room]
-        W1["Stack before index 4 arrives:\n["Index 1 (Height 1)"]\n["Index 2 (Height 5)"]\n["Index 3 (Height 6)"]"]
+        W1["Stack before index 4 arrives:\nIndex 1 (Height 1)\nIndex 2 (Height 5)\nIndex 3 (Height 6)"]
     end
     
     subgraph ShortBuildingArrives [Short Building Arrives]

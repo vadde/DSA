@@ -48,8 +48,8 @@ N2 --> N3
 N4 --> N5
     N5 --> N3
 
-noterightofN3
-Sreaches3onstep2.
+    note right of N3
+        S reaches 3 on step 2.
         F reaches 3 on step 1.
     end note
     

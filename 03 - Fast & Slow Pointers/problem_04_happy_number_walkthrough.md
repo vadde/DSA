@@ -49,9 +49,9 @@ stateDiagram-v2
 F --> NextNode
     NextNode --> F
 
-noterightofStart
-Thisactsjustlike
-node = node.next!
+    note right of Start
+        This acts just like
+        node = node.next!
     end note
 ```
 

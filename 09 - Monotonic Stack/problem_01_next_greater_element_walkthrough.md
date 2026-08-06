@@ -45,7 +45,7 @@ Here is how the giant '8' resolves everyone waiting in the stack:
 ```mermaid
 flowchart TD
     subgraph WaitRoom [Wait Room]
-        W1["Stack before 8 arrives:\n["Index 1 (Value 6)"]\n["Index 2 (Value 3)"]\n["Index 3 (Value 2)"]"]
+        W1["Stack before 8 arrives:\nIndex 1 (Value 6)\nIndex 2 (Value 3)\nIndex 3 (Value 2)"]
     end
     
     subgraph TheGiantArrives [The Giant Arrives]

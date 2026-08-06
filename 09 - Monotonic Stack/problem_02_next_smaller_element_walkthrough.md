@@ -43,7 +43,7 @@ Here is how the '2' clears out the waiting room:
 ```mermaid
 flowchart TD
     subgraph WaitRoom [Wait Room]
-        W1["Stack before 2 arrives:\n["Index 0 (Value 4)"]\n["Index 2 (Value 5)"]"]
+        W1["Stack before 2 arrives:\nIndex 0 (Value 4)\nIndex 2 (Value 5)"]
         N1["Notice the stack is perfectly INCREASING: 4, 5"]
     end
     

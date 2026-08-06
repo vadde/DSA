@@ -73,7 +73,7 @@ flowchart TD
     end
 
 Step1 --> Step4
-Step4 --> End State
+Step4 --> EndState
     
     style W1 fill:#ffcdd2,color:#000
     style W2 fill:#c8e6c9,color:#000

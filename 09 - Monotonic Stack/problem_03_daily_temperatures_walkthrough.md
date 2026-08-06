@@ -47,7 +47,7 @@ Here is how Day 5 (temp 72) resolves the colder days that were waiting in the st
 ```mermaid
 flowchart TD
     subgraph WaitRoom [Wait Room]
-        W1["Stack before Day 5 (72) arrives:\n["Index 2 (Temp 75)"]\n["Index 3 (Temp 71)"]\n["Index 4 (Temp 69)"]"]
+        W1["Stack before Day 5 (72) arrives:\nIndex 2 (Temp 75)\nIndex 3 (Temp 71)\nIndex 4 (Temp 69)"]
     end
     
     subgraph AWarmDayArrives [A Warm Day Arrives]

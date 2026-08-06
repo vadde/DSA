@@ -50,7 +50,7 @@ Define `dp[w]` = the maximum value achievable using any subset of items with tot
 
 ```mermaid
 flowchart TD
-    A["Initialize dp["0..W"] = 0"]
+    A["Initialize dp[0..W] = 0"]
     B["For each item i:"]
     C["For w = capacity → weight_i (REVERSED):"]
     D["dp[w] = max(dp[w], dp[w-w_i] + v_i)"]

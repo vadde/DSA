@@ -43,7 +43,7 @@ Here is how the duplicate is caught trying to steal a spot that is already occup
 
 ```mermaid
 flowchart TD
-    subgraph Step4 [Step 4: i = 3. Array is [1, 2, 3, 3, ...]]
+    subgraph Step4 ["Step 4: i=3. Array is (1, 2, 3, 3, ...)"]
         W1["nums[3] is '3'"]
         N1["3 wants to go to index 2!"]
     end
@@ -55,7 +55,7 @@ flowchart TD
 
 Step4 --> TheClash
 
-styleTheClashfill:#ffcdd2,color:#000
+    style TheClash fill:#ffcdd2,color:#000
     style N2 fill:#ff6b6b,color:#000
 ```
 
