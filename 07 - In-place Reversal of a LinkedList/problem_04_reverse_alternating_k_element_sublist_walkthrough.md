@@ -82,7 +82,7 @@ flowchart TD
     end
 
 ReversePhaseDone --> SkipPhase
-SkipPhase --> Next Reverse Phase Begins
+SkipPhase --> NextReversePhaseBegins
     
     style N2 fill:#fff9c4,color:#000
     style N3 fill:#c8e6c9,color:#000

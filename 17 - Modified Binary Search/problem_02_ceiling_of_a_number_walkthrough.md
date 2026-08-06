@@ -86,7 +86,7 @@ flowchart TD
     end
 
 FinalLoopState --> TheCrossover
-TheCrossover --> The Magic
+TheCrossover --> TheMagic
     
     style L1 fill:#bbdefb,color:#000
     style R1 fill:#ffcdd2,color:#000

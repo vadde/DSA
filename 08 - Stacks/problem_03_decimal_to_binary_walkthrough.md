@@ -68,8 +68,8 @@ flowchart TD
         P1["Read: 1, 1, 0, 1"]
     end
 
-DivisionLoop --> TheStack (Bottom to Top)
-    The Stack (Bottom to Top) --> Popping (Top to Bottom)
+DivisionLoop --> TheStackBottomtoTop
+    TheStackBottomtoTop --> PoppingToptoBottom
     
     style S1 fill:#ffcdd2,color:#000
     style P1 fill:#c8e6c9,color:#000

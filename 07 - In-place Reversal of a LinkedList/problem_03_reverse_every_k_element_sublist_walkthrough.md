@@ -72,7 +72,7 @@ flowchart TD
     end
 
 Group1Reconnected --> SettingupGroup2
-SettingupGroup2 --> Group 2 Reconnected
+SettingupGroup2 --> Group2Reconnected
     
     style N2 fill:#fff9c4,color:#000
     style N3 fill:#fff9c4,color:#000

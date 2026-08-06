@@ -60,7 +60,7 @@ flowchart TD
     end
 
 Expandto8 --> Shrink1
-Shrink1 --> Expand to 8 again
+Shrink1 --> Expandto8again
     Expandto8again --> Shrink2
 
 styleW1fill:#32CD32,color:#000

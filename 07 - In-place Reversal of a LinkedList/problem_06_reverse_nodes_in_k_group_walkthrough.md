@@ -70,7 +70,7 @@ flowchart TD
         N3["Break loop immediately.\nLeftover nodes [4] -> [5] are safe!"]
     end
 
-Group1Done --> Look-Ahead Check
+Group1Done --> LookAheadCheck
     Look-Ahead Check --> Action
     
     style W2 fill:#fff9c4,color:#000

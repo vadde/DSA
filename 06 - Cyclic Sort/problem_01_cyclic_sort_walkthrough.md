@@ -66,7 +66,7 @@ flowchart TD
     end
 
 Step1 --> Step2
-Step2 --> Step 3
+Step2 --> Step3
     Step3 --> Step4
 
 styleW1fill:#ffcdd2,color:#000

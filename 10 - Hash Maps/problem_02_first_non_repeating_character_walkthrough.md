@@ -59,8 +59,8 @@ flowchart TD
         N2["Index 0: 'l' -> Count 2 (Skip)\nIndex 1: 'o' -> Count 2 (Skip)\nIndex 2: 'v' -> Count 1 (FOUND IT!)"]
     end
 
-Input --> Pass1: Tally up
-    Pass 1: Tally up --> Pass 2: Scan for 1
+Input --> Pass1Tallyup
+    Pass1Tallyup --> Pass2Scanfor1
     
     style N1 fill:#e3f2fd,color:#000
     style N2 fill:#c8e6c9,color:#000

@@ -61,7 +61,7 @@ flowchart TD
     end
 
 Expandto4 --> InvalidExpand
-InvalidExpand --> Shrink 1
+InvalidExpand --> Shrink1
     Shrink1 --> Shrink2
 
 styleW1fill:#32CD32,color:#000

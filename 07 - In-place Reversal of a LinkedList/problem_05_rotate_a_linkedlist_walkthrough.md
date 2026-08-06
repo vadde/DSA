@@ -66,8 +66,8 @@ flowchart TD
         N3["Set 3.next = null.\nReturn 4!"]
     end
     
-    Step 1: Form a Circle --> Step 2: Find the Break Point
-    Step 2: Find the Break Point --> Step 3: Break the Circle
+    Step1FormaCircle --> Step2FindtheBreakPoint
+    Step2FindtheBreakPoint --> Step3BreaktheCircle
     
     style N1 fill:#fff9c4,color:#000
     style N2 fill:#fff9c4,color:#000

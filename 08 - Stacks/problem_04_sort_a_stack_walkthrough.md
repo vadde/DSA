@@ -71,7 +71,7 @@ flowchart TD
     end
 
 State --> Problem
-Problem --> Make Room
+Problem --> MakeRoom
     MakeRoom --> Place
 
 styleW2fill:#ffcdd2,color:#000

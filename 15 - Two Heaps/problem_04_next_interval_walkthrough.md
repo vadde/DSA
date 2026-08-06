@@ -91,7 +91,7 @@ flowchart TD
     end
 
 Iteration2EndState --> Iteration3PopLoop
-Iteration3PopLoop --> Iteration 3 Result
+Iteration3PopLoop --> Iteration3Result
     
     style END fill:#bbdefb,color:#000
     style START fill:#c8e6c9,color:#000

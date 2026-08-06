@@ -54,7 +54,7 @@ flowchart TD
     end
 
 Step1 --> Step2
-Step2 --> Step 3
+Step2 --> Step3
     
     style W2 fill:#ffcdd2,color:#000
     style N3 fill:#32CD32,color:#000

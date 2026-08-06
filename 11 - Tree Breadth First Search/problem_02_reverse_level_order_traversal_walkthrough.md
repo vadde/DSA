@@ -79,9 +79,9 @@ flowchart TD
     end
 
 L1 --> R1
-R1 --> Iteration 2 (Middle)
+R1 --> Iteration2Middle
     L2 --> R2
-R2 --> Iteration 3 (Bottom)
+R2 --> Iteration3Bottom
     L3 --> R3
 
 styleR1fill:#e3f2fd,color:#000

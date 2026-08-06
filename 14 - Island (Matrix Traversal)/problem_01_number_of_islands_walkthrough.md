@@ -101,7 +101,7 @@ flowchart TD
     end
 
 GridStateBeforeDFS --> DFSExecution
-DFSExecution --> Grid State After DFS
+DFSExecution --> GridStateAfterDFS
     
     style G00 fill:#c8e6c9,color:#000
     style G01 fill:#c8e6c9,color:#000

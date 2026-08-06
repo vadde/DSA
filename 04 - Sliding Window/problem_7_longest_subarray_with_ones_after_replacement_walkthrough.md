@@ -56,7 +56,7 @@ flowchart TD
     end
 
 Iteration4 --> Iteration5Expand
-Iteration5Expand --> Iteration 5 Shrink
+Iteration5Expand --> Iteration5Shrink
     
     style W1 fill:#32CD32,color:#000
     style W2 fill:#ff6b6b,color:#000

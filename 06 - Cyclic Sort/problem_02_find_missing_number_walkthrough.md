@@ -68,7 +68,7 @@ flowchart TD
     end
 
 SortPass --> SortedState
-SortedState --> Find Pass
+SortedState --> FindPass
     
     style N1 fill:#fff9c4,color:#000
     style W3 fill:#ffcdd2,color:#000

@@ -88,7 +88,7 @@ flowchart TD
     end
 
 Setup --> Pop7
-Pop7 --> Pop 1
+Pop7 --> Pop1
     
     style S1 fill:#eeeeee,color:#000
     style P1 fill:#fff9c4,color:#000

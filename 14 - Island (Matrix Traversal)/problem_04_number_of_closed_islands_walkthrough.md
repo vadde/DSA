@@ -91,8 +91,8 @@ S2["sink(3,0)"] --> B3
         note2["Only the Closed island remains!\nScan finds it, counts it, and sinks it."]
     end
 
-InitialGrid --> Pass1: Border Patrol
-    Pass 1: Border Patrol --> Pass 2: Safe Zone Scan
+InitialGrid --> Pass1BorderPatrol
+    Pass1BorderPatrol --> Pass2SafeZoneScan
     
     style B1 fill:#ffcdd2,color:#000
     style B2 fill:#ffcdd2,color:#000

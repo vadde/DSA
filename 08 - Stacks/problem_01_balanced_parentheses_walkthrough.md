@@ -68,7 +68,7 @@ flowchart TD
     end
 
 Input --> Step1
-Step1 --> Step 2
+Step1 --> Step2Push
     Step2 --> Step3
 
 styleS2fill:#ffcdd2,color:#000

@@ -73,7 +73,7 @@ flowchart TD
     end
 
 Path --> Operations
-Operations --> Final Stack
+Operations --> FinalStack
     
     style O3 fill:#ffcdd2,color:#000
     style S1 fill:#c8e6c9,color:#000

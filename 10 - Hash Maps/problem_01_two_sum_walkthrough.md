@@ -64,7 +64,7 @@ flowchart TD
     end
 
 Data --> Iteration1
-Iteration1 --> Iteration 2
+Iteration1 --> Iteration2
     Iteration2 --> Iteration3
 
 styleA2fill:#e3f2fd,color:#000

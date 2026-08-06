@@ -57,7 +57,7 @@ flowchart TD
     end
 
 Iteration1 --> Iteration2
-Iteration2 --> Iteration 3
+Iteration2 --> Iteration3
     Iteration3 --> Reset
 
 styleIteration2fill:#32CD32,color:#000

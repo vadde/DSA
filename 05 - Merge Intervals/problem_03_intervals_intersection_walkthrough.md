@@ -56,7 +56,7 @@ flowchart TD
     end
 
 Step3 --> PointerLogic
-PointerLogic --> Step 4
+PointerLogic --> Step4
     
     style W2 fill:#fff9c4,color:#000
     style N2 fill:#32CD32,color:#000

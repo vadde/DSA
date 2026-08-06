@@ -60,7 +60,7 @@ flowchart TD
     end
 
 Phase1 --> Phase2
-Phase2 --> Phase 3
+Phase2 --> Phase3
     
     style Phase 2 fill:#ffcdd2,color:#000
     style Phase 1 fill:#c8e6c9,color:#000

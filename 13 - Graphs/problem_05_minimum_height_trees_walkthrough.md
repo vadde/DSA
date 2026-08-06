@@ -90,7 +90,7 @@ flowchart TD
     end
 
 InitialState --> BurnLayer1
-BurnLayer1 --> Final State
+BurnLayer1 --> FinalState
     
     style N0 fill:#ffcdd2,color:#000
     style N3 fill:#ffcdd2,color:#000

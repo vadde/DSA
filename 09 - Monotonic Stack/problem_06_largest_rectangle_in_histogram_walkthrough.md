@@ -70,7 +70,7 @@ flowchart TD
     end
 
 WaitRoom --> ShortBuildingArrives
-ShortBuildingArrives --> Pop & Calculate
+ShortBuildingArrives --> PopCalculate
     
     style A1 fill:#c8e6c9,color:#000
     style R1 fill:#fff9c4,color:#000

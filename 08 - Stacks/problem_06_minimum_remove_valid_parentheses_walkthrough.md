@@ -82,8 +82,8 @@ flowchart TD
         N3["Every index is erased. Return empty string ''!"]
     end
     
-    Pass 1: Find Invalid --> Clean up Stack
-    CleanupStack --> Pass2: Rebuild
+    Pass1FindInvalid --> CleanupStack
+    CleanupStack --> Pass2Rebuild
     
     style N1 fill:#ffcdd2,color:#000
     style N2 fill:#ffcdd2,color:#000

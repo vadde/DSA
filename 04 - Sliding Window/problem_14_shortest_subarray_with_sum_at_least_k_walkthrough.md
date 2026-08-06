@@ -54,7 +54,7 @@ flowchart TD
     end
 
 State1 --> State2
-State2 --> State 3
+State2 --> State3
     
     style W2 fill:#ffcdd2,color:#000
     style A2 fill:#32CD32,color:#000
