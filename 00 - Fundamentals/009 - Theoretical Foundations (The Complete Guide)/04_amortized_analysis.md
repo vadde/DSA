@@ -7,32 +7,32 @@
 ## 🧒 Explain Like I'm 5: The Coffee Machine Piggy Bank
 
 Imagine you love espresso:
-- Everyday espresso beans and water cost **$1**.
-- But after every **16 cups**, the machine needs a deep clean and descaling cartridge that costs **$16**.
+- Everyday espresso beans and water cost **\$1**.
+- But after every **16 cups**, the machine needs a deep clean and descaling cartridge that costs **\$16**.
 
 ```
 Day 1 to 15:  Cost = $1 per cup
 Day 16:       Cost = $1 + $16 = $17!
 ```
 
-If you look *only* at Day 16, you might panic: *"Coffee costs $17! This is too expensive!"*  
+If you look *only* at Day 16, you might panic: *"Coffee costs \$17! This is too expensive!"*  
 **The Solution (The Piggy Bank)**:
-- On Days 1 through 15, you pay **$2** per cup: $1 goes to the coffee, and **$1 goes into a piggy bank**.
-- By Day 16, your piggy bank holds **$16**.
+- On Days 1 through 15, you pay **\$2** per cup: \$1 goes to the coffee, and **\$1 goes into a piggy bank**.
+- By Day 16, your piggy bank holds **\$16**.
 - When the expensive descaling arrives, you break the piggy bank and pay for it.
-- **Your true, predictable daily cost is always $2.**
+- **Your true, predictable daily cost is always \$2.**
 
 ```mermaid
 flowchart LR
     subgraph DailyOps["Days 1 to 15: Cheap Operations"]
-        O1["Actual Cost: $1"] --> PIGGY["🪙 Save $1 in Piggy Bank (Credit)"]
-        A1["Charged: $2 (Amortized)"]
+        O1["Actual Cost: 1 dollar"] --> PIGGY["🪙 Save 1 dollar in Piggy Bank (Credit)"]
+        A1["Charged: 2 dollars (Amortized)"]
     end
 
     subgraph BigOp["Day 16: Expensive Reallocation"]
-        O16["Actual Cost: $17"]
-        PIGGY -->|"Withdraw $16 Stored Credit"| PAY["Pay $17 Total"]
-        A16["Charged: $2 (Amortized)"]
+        O16["Actual Cost: 17 dollars"]
+        PIGGY -->|"Withdraw 16 dollars Stored Credit"| PAY["Pay 17 dollars Total"]
+        A16["Charged: 2 dollars (Amortized)"]
     end
 
     style DailyOps fill:#064e3b,color:#f8fafc,stroke:#10b981
@@ -79,10 +79,10 @@ $$\sum_{i=1}^k \hat{c}_i \ge \sum_{i=1}^k c_i \quad \text{for all } k \ge 1$$
 
 *Example: Dynamic Array with Amortized Cost $\hat{c} = 3$*:
 - When inserting an element into an empty slot:
-  - $1$ dollar pays for the actual insertion.
-  - $1$ dollar is attached to the element itself as credit.
-  - $1$ dollar is attached to an older element that was moved earlier.
-- When the table is full (e.g., size $N$), every element in the second half has $\$2$ in credit attached to it.
+  - 1 dollar pays for the actual insertion.
+  - 1 dollar is attached to the element itself as credit.
+  - 1 dollar is attached to an older element that was moved earlier.
+- When the table is full (e.g., size $N$), every element in the second half has 2 dollars in credit attached to it.
 - Total stored credit $= \frac{N}{2} \times 2 = N$.
 - Table doubles to $2N$: We need to copy $N$ elements $\implies$ Cost is $N$.
 - Stored credit pays for the entire copy! **Bank balance remains $\ge 0$.**
@@ -146,10 +146,10 @@ Implementing a FIFO Queue using two LIFO Stacks (`in_stack` and `out_stack`):
 - `DEQUEUE()`: If `out_stack` is empty, pop *all* items from `in_stack` and push to `out_stack`. Then `out_stack.pop()`.
 
 #### The Potential Proof:
-Define $\Phi = 2 \times |in\_stack|$.
+Define $\Phi = 2 \times |S_{in}|$.
 1. **`ENQUEUE`**:
    - Actual cost $c_i = 1$.
-   - $\Delta \Phi = 2(|in\_stack| + 1) - 2|in\_stack| = 2$.
+   - $\Delta \Phi = 2(|S_{in}| + 1) - 2|S_{in}| = 2$.
    - $\hat{c} = 1 + 2 = 3 = O(1)$.
 2. **`DEQUEUE` (when `out_stack` is empty and has $k$ items in `in_stack`)**:
    - Actual cost: $k$ pops $+ k$ pushes $+ 1$ final pop $= 2k + 1$.

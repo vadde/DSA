@@ -40,8 +40,8 @@ $$M = \langle Q, \Sigma, \Gamma, \delta, q_0, q_{accept}, q_{reject} \rangle$$
 
 Where:
 1. $Q$ is a finite, non-empty set of **states**.
-2. $\Sigma$ is the **input alphabet** (not containing the blank symbol $\text{\textvisiblespace}$).
-3. $\Gamma$ is the **tape alphabet**, where $\Sigma \subset \Gamma$ and $\text{\textvisiblespace} \in \Gamma$.
+2. $\Sigma$ is the **input alphabet** (not containing the blank symbol $\sqcup$).
+3. $\Gamma$ is the **tape alphabet**, where $\Sigma \subset \Gamma$ and $\sqcup \in \Gamma$.
 4. $\delta : Q \times \Gamma \to Q \times \Gamma \times \{L, R\}$ is the **transition function**. Given the current state and current scanned symbol, it outputs: (next state, symbol to write, direction to move head).
 5. $q_0 \in Q$ is the **start state**.
 6. $q_{accept} \in Q$ is the **accepting state**.
