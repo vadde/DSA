@@ -276,4 +276,5 @@ if __name__ == "__main__":
 3. Every internal node in a binary comparison tree has at most 2 children (corresponding to the boolean answers YES or NO). At depth 0 there is $2^0 = 1$ node; at depth 1 there are $2^1 = 2$ nodes; at depth $h$ there are at most $2^h$ nodes.
 4. Using the lower bound formula $\lceil \frac{3n}{2} \rceil - 2$: For $n = 1000$, comparisons $= \frac{3(1000)}{2} - 2 = 1500 - 2 = 1498$ comparisons.
 5. An algorithm's Big-O upper bound describes the maximum resource cost of *one specific algorithm* that has been written. A problem's Big-Omega lower bound describes the minimum resource cost that *any conceivable algorithm* must expend to solve the problem, even algorithms not yet invented.
+
 </details>

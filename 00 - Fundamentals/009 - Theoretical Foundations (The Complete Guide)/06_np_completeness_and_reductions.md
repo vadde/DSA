@@ -364,4 +364,5 @@ if __name__ == "__main__":
 3. In a Karp reduction ($A \le_P B$), you transform instance $x$ of $A$ into a single instance $f(x)$ of $B$, where the answers match directly ($x \in A \iff f(x) \in B$). In a Cook reduction ($A \le_T^P B$), you can call an oracle for $B$ multiple times as a subroutine, invert answers, and perform intermediate polynomial computations.
 4. Knapsack is weakly $NP$-hard because it can be solved in pseudo-polynomial time $O(NW)$ via Dynamic Programming when numbers are small. 3-SAT is strongly $NP$-hard because its hardness does not depend on large numerical values; there is no pseudo-polynomial algorithm for 3-SAT unless $P = NP$.
 5. They reduced in the **wrong direction**! Reducing problem $X$ to 3-SAT ($X \le_P \text{3-SAT}$) only proves that $X$ is no harder than 3-SAT (it shows $X \in NP$). To prove $X$ is $NP$-hard, they must reduce **from** 3-SAT **to** $X$ ($\text{3-SAT} \le_P X$).
+
 </details>

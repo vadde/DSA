@@ -292,4 +292,5 @@ if __name__ == "__main__":
 3. If Quicksort deterministically chooses the first (or last) element as the pivot, an already sorted array partitions into sizes $0$ and $n-1$ at every step. This triggers the catastrophic worst-case runtime of $\Theta(n^2)$. Randomly choosing the pivot ensures balanced splits on average, regardless of initial order.
 4. $k = \frac{m}{n} \ln 2 \approx 0.693 \frac{m}{n}$. For roughly 10 bits per element ($m/n = 10$), the optimal number of hash functions is $k = 7$.
 5. By promoting nodes to higher levels through independent geometric coin flips (each element has a $1/2$ probability of advancing to level $i+1$). Because the number of nodes decreases by a factor of 2 at each higher level, the total expected height is bounded at $O(\log n)$ without requiring rebalancing rotations.
+
 </details>

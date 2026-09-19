@@ -278,4 +278,5 @@ if __name__ == "__main__":
 3. The regularity condition is $a \cdot f(n/b) \le c \cdot f(n)$ for some constant $c < 1$. It ensures that the cost at the root genuinely dominates the sum of costs at all lower levels. If violated, the Master Theorem cannot be used.
 4. $a=4, b=2 \implies n^{\log_2 4} = n^2$. $f(n) = n = O(n^{2 - 1})$ with $\epsilon = 1$. This is **Case 1 (Leaf-Heavy)**. Therefore, $T(n) = \Theta(n^2)$.
 5. Find $p$ such that $(1/5)^p + (4/5)^p = 1 \implies p = 1$. Then evaluate the Akra-Bazzi integral: $T(n) = \Theta(n(1 + \int_1^n \frac{u}{u^2} du)) = \Theta(n \log n)$.
+
 </details>

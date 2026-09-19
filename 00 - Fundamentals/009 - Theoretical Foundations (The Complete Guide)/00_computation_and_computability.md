@@ -340,4 +340,5 @@ if __name__ == "__main__":
 3. **False**. Checking line count is a **syntactic** property, not a semantic property. Syntactic properties are easily decidable via a parser. Rice's theorem only applies to semantic properties (properties of the language recognized by the program).
 4. Because the class of computable functions reflects the fundamental limits of discrete symbol manipulation. The Church-Turing Thesis states that any physically realizable discrete mechanical process maps to these equivalent formulations.
 5. **Rice's Theorem**. Throwing an unhandled exception on some input is a non-trivial semantic property of program behavior. Therefore, a sound and complete checker for all arbitrary programs is undecidable.
+
 </details>

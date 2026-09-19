@@ -344,4 +344,5 @@ Now, return to the **43 Patterns** with the full power of theoretical computer s
 3. (1) When the overall input size is very small ($N \le 25$, where Backtracking or Meet-in-the-Middle works in seconds); or (2) when the exponential parameter $k$ is small ($k \le 15$) and the problem is **Fixed-Parameter Tractable ($FPT$)** with runtime $O(f(k) \cdot N)$.
 4. Because flat arrays enjoy **spatial cache locality**; CPU hardware pre-fetchers load 64-byte cache lines, resulting in 0 cache misses and fast SIMD vectorization. A linked list scatters nodes across heap memory, incurring a 200-cycle memory stall on almost every pointer dereference.
 5. If the weight/value capacity $W$ is small ($W \le 10^5$), the pseudo-polynomial DP algorithm runs in $O(NW)$ time and produces the **exact optimum**. If $W$ is massive ($W \ge 10^{15}$), the DP table exceeds memory and time limits, dictating an **FPTAS approximation scheme** or Meet-in-the-Middle.
+
 </details>

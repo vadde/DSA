@@ -247,4 +247,5 @@ if __name__ == "__main__":
    - If you reject or delay the write until side B is reachable $\implies$ **Availability is lost**.
 4. Suppose an algorithm could compress all files of length $N$ bits into files of length $< N$ bits. There are $2^N$ files of length $N$, but only $\sum_{i=0}^{N-1} 2^i = 2^N - 1$ possible compressed files. By the Pigeonhole Principle, at least two different inputs would map to the identical compressed output, making lossless decompression mathematically impossible!
 5. In high dimensions, the **Curse of Dimensionality** causes the distance between any two random points to concentrate (the ratio of max distance to min distance approaches 1). Spatial partitioning trees rely on hyperplanes to separate points into distinct halves; in high dimensions, almost every query overlaps every partition bounding box, causing the search to degenerate into an $O(N)$ linear scan.
+
 </details>

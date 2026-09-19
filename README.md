@@ -117,8 +117,8 @@ flowchart TD
 
 ### 🚨 The Decision Rule:
 - **Problem is in $P$ (or $N$ fits the table)** $\longrightarrow$ 🔥 **GO KILL MODE**: Derive the exact optimal pattern, eliminate allocations, exploit CPU cache locality, and nail the proof.
-- **Problem is $NP$-Hard and $N > 30$** $\longrightarrow$ 🛑 **PULL THE PLUG**: Stop searching for polynomial exact algorithms ($P \ne NP$). Switch to **Approximations** ([Ch 7](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20(The%20Complete%20Guide)/07_approximation_algorithms.md)), **Randomization** ([Ch 8](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20(The%20Complete%20Guide)/08_randomized_algorithms.md)), or **Metaheuristics** ([Ch 9](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20(The%20Complete%20Guide)/09_heuristics_and_metaheuristics.md)).
-- **Need the full engineering decision framework?** Explore [009 - Chapter 12: Kill Mode vs Pull the Plug](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20(The%20Complete%20Guide)/12_kill_mode_vs_pull_plug.md).
+- **Problem is $NP$-Hard and $N > 30$** $\longrightarrow$ 🛑 **PULL THE PLUG**: Stop searching for polynomial exact algorithms ($P \ne NP$). Switch to **Approximations** ([Ch 7](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/07_approximation_algorithms.md)), **Randomization** ([Ch 8](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/08_randomized_algorithms.md)), or **Metaheuristics** ([Ch 9](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/09_heuristics_and_metaheuristics.md)).
+- **Need the full engineering decision framework?** Explore [009 - Chapter 12: Kill Mode vs Pull the Plug](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md).
 
 ---
 
@@ -400,9 +400,9 @@ def union(x, y):
   - [006 - Min and Max Heap](./00%20-%20Fundamentals/006%20-%20Min%20and%20Max%20Heap/)
   - [007 - Trie](./00%20-%20Fundamentals/007%20-%20Trie/)
   - [008 - Graph](./00%20-%20Fundamentals/008%20-%20Graph/)
-  - [009 - Theoretical Foundations (The Complete Guide)](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20(The%20Complete%20Guide)/)
-  - [010 - Trees (The Complete Guide)](./00%20-%20Fundamentals/010%20-%20Trees%20(The%20Complete%20Guide)/)
-  - [011 - Graphs (The Complete Guide)](./00%20-%20Fundamentals/011%20-%20Graphs%20(The%20Complete%20Guide)/)
+  - [009 - Theoretical Foundations (The Complete Guide)](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/)
+  - [010 - Trees (The Complete Guide)](./00%20-%20Fundamentals/010%20-%20Trees%20%28The%20Complete%20Guide%29/)
+  - [011 - Graphs (The Complete Guide)](./00%20-%20Fundamentals/011%20-%20Graphs%20%28The%20Complete%20Guide%29/)
   - [TREES_AND_GRAPHS_GUIDE.md](./00%20-%20Fundamentals/TREES_AND_GRAPHS_GUIDE.md)
 - [01 - Warmup](./01%20-%20Warmup/)
 - [02 - Two Pointers](./02%20-%20Two%20Pointers/)
@@ -417,7 +417,7 @@ def union(x, y):
 - [11 - Tree Breadth First Search](./11%20-%20Tree%20Breadth%20First%20Search/)
 - [12 - Tree Depth First Search](./12%20-%20Tree%20Depth%20First%20Search/)
 - [13 - Graphs](./13%20-%20Graphs/)
-- [14 - Island (Matrix Traversal)](./14%20-%20Island%20(Matrix%20Traversal)/)
+- [14 - Island (Matrix Traversal)](./14%20-%20Island%20%28Matrix%20Traversal%29/)
 - [15 - Two Heaps](./15%20-%20Two%20Heaps/)
 - [16 - Subsets](./16%20-%20Subsets/)
 - [17 - Modified Binary Search](./17%20-%20Modified%20Binary%20Search/)
@@ -425,12 +425,12 @@ def union(x, y):
 - [19 - Top K Elements](./19%20-%20Top%20K%20Elements/)
 - [20 - K-way Merge](./20%20-%20K-way%20Merge/)
 - [21 - Greedy Algorithms](./21%20-%20Greedy%20Algorithms/)
-- [22 - 0-1 Knapsack (DP)](./22%20-%200-1%20Knapsack%20(DP)/)
-- [23 - Fibonacci Numbers (DP)](./23%20-%20Fibonacci%20Numbers%20(DP)/)
-- [24 - Palindromic Subsequence (DP)](./24%20-%20Palindromic%20Subsequence%20(DP)/)
+- [22 - 0-1 Knapsack (DP)](./22%20-%200-1%20Knapsack%20%28DP%29/)
+- [23 - Fibonacci Numbers (DP)](./23%20-%20Fibonacci%20Numbers%20%28DP%29/)
+- [24 - Palindromic Subsequence (DP)](./24%20-%20Palindromic%20Subsequence%20%28DP%29/)
 - [25 - Backtracking](./25%20-%20Backtracking/)
 - [26 - Trie](./26%20-%20Trie/)
-- [27 - Topological Sort (Graph)](./27%20-%20Topological%20Sort%20(Graph)/)
+- [27 - Topological Sort (Graph)](./27%20-%20Topological%20Sort%20%28Graph%29/)
 - [28 - Union Find](./28%20-%20Union%20Find/)
 - [29 - Ordered Set](./29%20-%20Ordered%20Set/)
 - [30 - Prefix Sum](./30%20-%20Prefix%20Sum/)

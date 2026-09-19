@@ -266,4 +266,5 @@ if __name__ == "__main__":
 3. A code is prefix-free if no valid symbol's codeword forms the beginning prefix of any other codeword (e.g., if `'a'` is `01`, no other symbol can start with `01`). This ensures that the receiver can decode bits instantaneously on the fly without needing lookahead buffers or delimiter markers.
 4. If $K(s)$ were computable, we could enumerate all programs in order of length and find the smallest integer that cannot be described in under $M$ characters. But the program that does this enumeration would itself describe that integer in fewer than $M$ characters — triggering the **Berry Paradox**.
 5. $I(x) = -\log_2(p) = -\log_2(1/1024) = \log_2(1024) = \mathbf{10\text{ bits}}$ of information.
+
 </details>

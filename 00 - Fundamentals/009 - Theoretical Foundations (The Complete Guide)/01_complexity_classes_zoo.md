@@ -305,4 +305,5 @@ if __name__ == "__main__":
 3. An $NP$-Complete problem must be in $NP$ (verifiable in polynomial time). An $NP$-Hard problem is at least as hard as everything in $NP$, but does not need to be in $NP$. Example: The **Halting Problem** is $NP$-hard (any $NP$ problem can be reduced to it), but it is undecidable, so it is not in $NP$.
 4. Both have polynomial-time certificates. For Hamiltonian Cycle, a certificate is the ordered sequence of vertices: checking that each pair is connected by an edge and visits every vertex once takes $O(V)$ time.
 5. In real systems, the parameter that causes exponential blowup ($k$) is often very small (e.g., $k \le 15$ concurrent users, tree-depth $k \le 8$, budget $k \le 20$), while $N$ is massive ($10^7$). An $FPT$ algorithm with runtime $O(2^k \cdot N)$ runs in milliseconds on massive $N$, whereas an $O(N^k)$ algorithm would stall completely.
+
 </details>

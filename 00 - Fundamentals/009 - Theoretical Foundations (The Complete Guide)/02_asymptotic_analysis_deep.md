@@ -273,4 +273,5 @@ if __name__ == "__main__":
 3. Fast pointer advances 2 steps while slow advances 1. The distance between them in the cycle decreases by 1 on each iteration. In a cycle of length $C$, they meet in at most $C$ steps. Since $C \le N$, total steps $\le 2N = O(N)$.
 4. A Galactic Algorithm has a superior asymptotic runtime as $N \to \infty$, but its constant factors or crossover points are so astronomically large that it is completely impractical on any real dataset. Example: Harvey-Hoeven $O(N \log N)$ integer multiplication or Coppersmith-Winograd matrix multiplication.
 5. Because researchers have proven that if Edit Distance could be solved in $O(N^{2-\epsilon})$ time, then SAT could be solved in $(2-\delta)^n$ time, which would violate SETH. Thus, the classic $O(N^2)$ DP is conditionally optimal.
+
 </details>

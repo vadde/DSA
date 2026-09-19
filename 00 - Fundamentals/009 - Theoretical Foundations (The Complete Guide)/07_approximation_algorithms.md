@@ -328,4 +328,5 @@ if __name__ == "__main__":
 3. In a PTAS, the runtime is polynomial in $n$, but can be exponential in $1/\epsilon$ (e.g., $O(n^{1/\epsilon})$). In an FPTAS, the runtime is polynomial in **both** $n$ and $1/\epsilon$ (e.g., $O(n^2 / \epsilon^2)$). An FPTAS guarantees that demanding high precision (small $\epsilon$) does not cause catastrophic exponential slowdown.
 4. Metric TSP obeys the **Triangle Inequality** ($c(u, w) \le c(u, v) + c(v, w)$), which guarantees that shortcutting intermediate nodes never increases path length. General TSP does not have the triangle inequality; bypassing a vertex could incur an astronomical penalty, allowing arbitrary $NP$-complete languages to be hidden in edge weights.
 5. **No**. The approximation ratio is an **upper bound on the worst-case error**. In practice, the 2-approximation for Vertex Cover or Metric TSP often produces solutions within 5% to 10% of the true optimum.
+
 </details>

@@ -300,4 +300,5 @@ if __name__ == "__main__":
 3. The NFL theorem proves that no general-purpose optimization algorithm can outperform random search on average over all possible problems. Therefore, an engineer must **never use a generic black-box heuristic** without tailoring the representation, neighborhood function, and operators to the specific mathematical structure of the domain.
 4. Mutation injects **random diversity** into the population. If the mutation rate is set to 0, the genetic diversity of the population rapidly collapses (premature convergence); if all individuals share a gene, crossover can never reintroduce a missing alternate allele.
 5. Tabu Search maintains a short-term memory called the **Tabu List**, which forbids recently executed moves or recently visited states for a specified duration (tabu tenure). This prevents the algorithm from endlessly bouncing back and forth between two solutions.
+
 </details>

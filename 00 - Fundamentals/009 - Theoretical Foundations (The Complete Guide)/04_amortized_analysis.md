@@ -298,4 +298,5 @@ if __name__ == "__main__":
 3. **$\Theta(N)$ (linear)** amortized cost per append. Resizing occurs every 100 appends. The total copies across $N$ elements is $\approx \sum_{k=1}^{N/100} (100k) \approx \frac{N^2}{200}$. Dividing by $N$ operations gives $\approx N / 200 = \Theta(N)$ cost per operation!
 4. An element can only be popped from the stack if it was previously pushed. Over $N$ inputs, exactly $N$ elements are pushed. Therefore, across the *entire lifetime* of the algorithm, the inner while loop can execute a maximum of $N$ pop operations total. $N$ pushes $+ N$ pops over $N$ steps $= 2N / N = O(1)$ amortized per element.
 5. In geometric growth with $k=2$, the powers of 2 satisfy $1 + 2 + 4 + \dots + 2^{k-1} = 2^k - 1 < 2^k$. The sum of all previously deallocated memory blocks is strictly smaller than the next block requested. Therefore, the memory allocator cannot reuse the previously deallocated contiguous space.
+
 </details>

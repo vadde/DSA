@@ -152,4 +152,4 @@ Before a tree problem, quickly ask yourself:
 
 ---
 
-*← [Chapter 6: Special Trees](06_special_trees.md) | Start Graphs: [Chapter 1: What Is a Graph? →](../011%20-%20Graphs%20(The%20Complete%20Guide)/01_what_is_a_graph.md)*
+*← [Chapter 6: Special Trees](06_special_trees.md) | Start Graphs: [Chapter 1: What Is a Graph? →](../011%20-%20Graphs%20%28The%20Complete%20Guide%29/01_what_is_a_graph.md)*
