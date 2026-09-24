@@ -307,3 +307,12 @@ if __name__ == "__main__":
 5. In real systems, the parameter that causes exponential blowup ($k$) is often very small (e.g., $k \le 15$ concurrent users, tree-depth $k \le 8$, budget $k \le 20$), while $N$ is massive ($10^7$). An $FPT$ algorithm with runtime $O(2^k \cdot N)$ runs in milliseconds on massive $N$, whereas an $O(N^k)$ algorithm would stall completely.
 
 </details>
+
+---
+
+## 🧭 Navigation
+
+| ← Previous | ↑ Master Index | Next → |
+|:---|:---:|---:|
+| [← Ch 00: Computation & Computability](00_computation_and_computability.md) | [🏛️ Theoretical Foundations Index](README.md) | [Ch 02: Asymptotic Analysis Deep Cuts →](02_asymptotic_analysis_deep.md) |
+

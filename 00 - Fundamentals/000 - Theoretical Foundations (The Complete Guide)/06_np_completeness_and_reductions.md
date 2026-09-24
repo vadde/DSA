@@ -366,3 +366,12 @@ if __name__ == "__main__":
 5. They reduced in the **wrong direction**! Reducing problem $X$ to 3-SAT ($X \le_P \text{3-SAT}$) only proves that $X$ is no harder than 3-SAT (it shows $X \in NP$). To prove $X$ is $NP$-hard, they must reduce **from** 3-SAT **to** $X$ ($\text{3-SAT} \le_P X$).
 
 </details>
+
+---
+
+## 🧭 Navigation
+
+| ← Previous | ↑ Master Index | Next → |
+|:---|:---:|---:|
+| [← Ch 05: Lower Bounds & Impossibility](05_lower_bounds_and_impossibility.md) | [🏛️ Theoretical Foundations Index](README.md) | [Ch 07: Approximation Algorithms →](07_approximation_algorithms.md) |
+

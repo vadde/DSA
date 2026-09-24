@@ -12,13 +12,13 @@
 │ 🏛️ PILLAR 0: THEORETICAL FOUNDATIONS (The Physics of Computation)          │
 │ Computability (Turing/Rice) • Complexity Zoo (P, NP, PSPACE) • Lower Bounds │
 │ Asymptotics • Amortization • Approximations • Heuristics • Engineering Triage│
-│ 📂 00 - Fundamentals/009 - Theoretical Foundations (The Complete Guide)/   │
+│ 📂 00 - Fundamentals/000 - Theoretical Foundations (The Complete Guide)/   │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ ⚙️ PILLAR 1: DATA STRUCTURE ENGINE ROOMS (The Concrete Mechanics)           │
 │ Stacks • Queues • Linked Lists • Heaps • BSTs • Tries • Trees • Graphs      │
-│ 📂 00 - Fundamentals/ (001 - 008, 010 Trees Guide, 011 Graphs Guide)        │
+│ 📂 00 - Fundamentals/ (001 - 008, 009 Trees Guide, 010 Graphs Guide)        │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -117,8 +117,8 @@ flowchart TD
 
 ### 🚨 The Decision Rule:
 - **Problem is in $P$ (or $N$ fits the table)** $\longrightarrow$ 🔥 **GO KILL MODE**: Derive the exact optimal pattern, eliminate allocations, exploit CPU cache locality, and nail the proof.
-- **Problem is $NP$-Hard and $N > 30$** $\longrightarrow$ 🛑 **PULL THE PLUG**: Stop searching for polynomial exact algorithms ($P \ne NP$). Switch to **Approximations** ([Ch 7](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/07_approximation_algorithms.md)), **Randomization** ([Ch 8](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/08_randomized_algorithms.md)), or **Metaheuristics** ([Ch 9](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/09_heuristics_and_metaheuristics.md)).
-- **Need the full engineering decision framework?** Explore [009 - Chapter 12: Kill Mode vs Pull the Plug](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md).
+- **Problem is $NP$-Hard and $N > 30$** $\longrightarrow$ 🛑 **PULL THE PLUG**: Stop searching for polynomial exact algorithms ($P \ne NP$). Switch to **Approximations** ([Ch 7](./00%20-%20Fundamentals/000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/07_approximation_algorithms.md)), **Randomization** ([Ch 8](./00%20-%20Fundamentals/000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/08_randomized_algorithms.md)), or **Metaheuristics** ([Ch 9](./00%20-%20Fundamentals/000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/09_heuristics_and_metaheuristics.md)).
+- **Need the full engineering decision framework?** Explore [000 - Chapter 12: Kill Mode vs Pull the Plug](./00%20-%20Fundamentals/000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md).
 
 ---
 
@@ -391,7 +391,7 @@ def union(x, y):
 ## 📚 The Pattern Index
 
 - [00 - Fundamentals](./00%20-%20Fundamentals/)
-  - [000 - The Pattern Cracker](./00%20-%20Fundamentals/000%20-%20The%20Pattern%20Cracker/)
+  - [000 - Theoretical Foundations (The Complete Guide)](./00%20-%20Fundamentals/000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/)
   - [001 - Queue and Stack](./00%20-%20Fundamentals/001%20-%20Queue%20and%20Stack/)
   - [002 - Linked List](./00%20-%20Fundamentals/002%20-%20Linked%20List/)
   - [003 - Doubly Linked List](./00%20-%20Fundamentals/003%20-%20Doubly%20Linked%20List/)
@@ -400,9 +400,9 @@ def union(x, y):
   - [006 - Min and Max Heap](./00%20-%20Fundamentals/006%20-%20Min%20and%20Max%20Heap/)
   - [007 - Trie](./00%20-%20Fundamentals/007%20-%20Trie/)
   - [008 - Graph](./00%20-%20Fundamentals/008%20-%20Graph/)
-  - [009 - Theoretical Foundations (The Complete Guide)](./00%20-%20Fundamentals/009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/)
-  - [010 - Trees (The Complete Guide)](./00%20-%20Fundamentals/010%20-%20Trees%20%28The%20Complete%20Guide%29/)
-  - [011 - Graphs (The Complete Guide)](./00%20-%20Fundamentals/011%20-%20Graphs%20%28The%20Complete%20Guide%29/)
+  - [009 - Trees (The Complete Guide)](./00%20-%20Fundamentals/009%20-%20Trees%20%28The%20Complete%20Guide%29/)
+  - [010 - Graphs (The Complete Guide)](./00%20-%20Fundamentals/010%20-%20Graphs%20%28The%20Complete%20Guide%29/)
+  - [011 - The Pattern Cracker](./00%20-%20Fundamentals/011%20-%20The%20Pattern%20Cracker/)
   - [TREES_AND_GRAPHS_GUIDE.md](./00%20-%20Fundamentals/TREES_AND_GRAPHS_GUIDE.md)
 - [01 - Warmup](./01%20-%20Warmup/)
 - [02 - Two Pointers](./02%20-%20Two%20Pointers/)

@@ -330,3 +330,12 @@ if __name__ == "__main__":
 5. **No**. The approximation ratio is an **upper bound on the worst-case error**. In practice, the 2-approximation for Vertex Cover or Metric TSP often produces solutions within 5% to 10% of the true optimum.
 
 </details>
+
+---
+
+## 🧭 Navigation
+
+| ← Previous | ↑ Master Index | Next → |
+|:---|:---:|---:|
+| [← Ch 06: NP-Completeness & Reductions](06_np_completeness_and_reductions.md) | [🏛️ Theoretical Foundations Index](README.md) | [Ch 08: Randomized Algorithms →](08_randomized_algorithms.md) |
+

@@ -249,3 +249,12 @@ if __name__ == "__main__":
 5. In high dimensions, the **Curse of Dimensionality** causes the distance between any two random points to concentrate (the ratio of max distance to min distance approaches 1). Spatial partitioning trees rely on hyperplanes to separate points into distinct halves; in high dimensions, almost every query overlaps every partition bounding box, causing the search to degenerate into an $O(N)$ linear scan.
 
 </details>
+
+---
+
+## 🧭 Navigation
+
+| ← Previous | ↑ Master Index | Next → |
+|:---|:---:|---:|
+| [← Ch 10: Information Theory & Entropy](10_information_theory_and_entropy.md) | [🏛️ Theoretical Foundations Index](README.md) | [Ch 12: Kill Mode vs Pull the Plug →](12_kill_mode_vs_pull_plug.md) |
+

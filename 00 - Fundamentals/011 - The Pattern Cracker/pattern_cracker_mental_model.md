@@ -402,3 +402,17 @@ union(x,y): px, py = find(x), find(y) → attach smaller rank to bigger
 4. **The hardest problems combine 2 patterns.** "Sliding Window + Hash Map", "Binary Search + Greedy", "DFS + Backtracking". Once you master individual patterns, start thinking about combos.
 
 5. **Speed comes from repetition, not intelligence.** The first time you see Topological Sort, it takes 30 minutes. The 10th time, it takes 3 minutes. There are no shortcuts. Do the reps.
+
+---
+
+## 🧭 Navigation & Cross-Pillar Bridges
+
+| ← Previous (Pillar 1: Data Structures) | ↑ Fundamentals Hub | Next (Pillar 2: Patterns) → |
+|:---|:---:|---:|
+| [🕸️ 010 - Graphs (The Complete Guide)](../010%20-%20Graphs%20%28The%20Complete%20Guide%29/) | [📚 Fundamentals Index](../README.md) | [01 - Warmup Patterns →](../../01%20-%20Warmup/) |
+
+> ### 🏛️ Theoretical Foundations & Engine Room Links:
+> - **The Decision Physics:** Need the formal complexity triage behind these 5 questions? Consult [000 - Chapter 12: Kill Mode vs Pull the Plug](../000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md).
+> - **Trees Engine Room:** Review the full hierarchical taxonomy in [009 - Trees (The Complete Guide)](../009%20-%20Trees%20%28The%20Complete%20Guide%29/).
+> - **Graphs Engine Room:** Review traversals and representations in [010 - Graphs (The Complete Guide)](../010%20-%20Graphs%20%28The%20Complete%20Guide%29/).
+

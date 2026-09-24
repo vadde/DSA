@@ -278,3 +278,12 @@ if __name__ == "__main__":
 5. An algorithm's Big-O upper bound describes the maximum resource cost of *one specific algorithm* that has been written. A problem's Big-Omega lower bound describes the minimum resource cost that *any conceivable algorithm* must expend to solve the problem, even algorithms not yet invented.
 
 </details>
+
+---
+
+## 🧭 Navigation
+
+| ← Previous | ↑ Master Index | Next → |
+|:---|:---:|---:|
+| [← Ch 04: Amortized Analysis](04_amortized_analysis.md) | [🏛️ Theoretical Foundations Index](README.md) | [Ch 06: NP-Completeness & Reductions →](06_np_completeness_and_reductions.md) |
+

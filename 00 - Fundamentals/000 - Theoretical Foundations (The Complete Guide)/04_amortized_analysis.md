@@ -300,3 +300,12 @@ if __name__ == "__main__":
 5. In geometric growth with $k=2$, the powers of 2 satisfy $1 + 2 + 4 + \dots + 2^{k-1} = 2^k - 1 < 2^k$. The sum of all previously deallocated memory blocks is strictly smaller than the next block requested. Therefore, the memory allocator cannot reuse the previously deallocated contiguous space.
 
 </details>
+
+---
+
+## 🧭 Navigation
+
+| ← Previous | ↑ Master Index | Next → |
+|:---|:---:|---:|
+| [← Ch 03: Recurrences & Master Theorem](03_recurrences_and_master_theorem.md) | [🏛️ Theoretical Foundations Index](README.md) | [Ch 05: Lower Bounds & Impossibility →](05_lower_bounds_and_impossibility.md) |
+

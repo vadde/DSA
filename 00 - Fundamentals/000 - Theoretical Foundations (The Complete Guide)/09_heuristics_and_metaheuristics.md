@@ -302,3 +302,12 @@ if __name__ == "__main__":
 5. Tabu Search maintains a short-term memory called the **Tabu List**, which forbids recently executed moves or recently visited states for a specified duration (tabu tenure). This prevents the algorithm from endlessly bouncing back and forth between two solutions.
 
 </details>
+
+---
+
+## 🧭 Navigation
+
+| ← Previous | ↑ Master Index | Next → |
+|:---|:---:|---:|
+| [← Ch 08: Randomized Algorithms](08_randomized_algorithms.md) | [🏛️ Theoretical Foundations Index](README.md) | [Ch 10: Information Theory & Entropy →](10_information_theory_and_entropy.md) |
+

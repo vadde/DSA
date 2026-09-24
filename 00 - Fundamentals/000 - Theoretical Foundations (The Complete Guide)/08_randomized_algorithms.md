@@ -294,3 +294,12 @@ if __name__ == "__main__":
 5. By promoting nodes to higher levels through independent geometric coin flips (each element has a $1/2$ probability of advancing to level $i+1$). Because the number of nodes decreases by a factor of 2 at each higher level, the total expected height is bounded at $O(\log n)$ without requiring rebalancing rotations.
 
 </details>
+
+---
+
+## 🧭 Navigation
+
+| ← Previous | ↑ Master Index | Next → |
+|:---|:---:|---:|
+| [← Ch 07: Approximation Algorithms](07_approximation_algorithms.md) | [🏛️ Theoretical Foundations Index](README.md) | [Ch 09: Heuristics & Metaheuristics →](09_heuristics_and_metaheuristics.md) |
+

@@ -268,3 +268,12 @@ if __name__ == "__main__":
 5. $I(x) = -\log_2(p) = -\log_2(1/1024) = \log_2(1024) = \mathbf{10\text{ bits}}$ of information.
 
 </details>
+
+---
+
+## 🧭 Navigation
+
+| ← Previous | ↑ Master Index | Next → |
+|:---|:---:|---:|
+| [← Ch 09: Heuristics & Metaheuristics](09_heuristics_and_metaheuristics.md) | [🏛️ Theoretical Foundations Index](README.md) | [Ch 11: Metatheorems & Folklore →](11_metatheorems_and_folklore.md) |
+

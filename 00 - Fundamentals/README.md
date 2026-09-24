@@ -13,7 +13,7 @@ The foundational curriculum is organized into **Three Core Pillars**:
 ```mermaid
 flowchart TD
     subgraph P0["🏛️ Pillar 0: Theoretical Foundations (The Physics)"]
-        TF0["009 - Theoretical Foundations (The Complete Guide)"]
+        TF0["000 - Theoretical Foundations (The Complete Guide)"]
         TF1["• Computability & Rice's Theorem"]
         TF2["• The Complexity Zoo (P, NP, NP-C, NP-H, PSPACE, #P)"]
         TF3["• Asymptotics, Amortization & Lower Bounds"]
@@ -28,15 +28,15 @@ flowchart TD
 
     subgraph P1["⚙️ Pillar 1: Data Structure Engine Rooms (The Mechanics)"]
         DS1["Primitive Implementations (001 - 008)"]
-        DS2["010 - Trees (The Complete Guide)"]
-        DS3["011 - Graphs (The Complete Guide)"]
+        DS2["009 - Trees (The Complete Guide)"]
+        DS3["010 - Graphs (The Complete Guide)"]
         DS4["TREES_AND_GRAPHS_GUIDE.md (Unified Index)"]
         DS1 --> DS2
         DS1 --> DS3
     end
 
     subgraph P2["⚔️ Pillar 2: Pattern Recognition (The Tactics)"]
-        PC["000 - The Pattern Cracker"]
+        PC["011 - The Pattern Cracker"]
         PC1["• SIFT Framework (10-Second Signal Detection)"]
         PC2["• The 5-Layer Elimination Funnel"]
         PC3["• 7 Master Pattern Families"]
@@ -61,25 +61,25 @@ flowchart TD
 
 ### 🏛️ Pillar 0: Theoretical Foundations (The Physics of Computation)
 
-[📂 **`009 - Theoretical Foundations (The Complete Guide)/`**](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/)
+[📂 **`000 - Theoretical Foundations (The Complete Guide)/`**](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/)
 
 The comprehensive, 13-chapter reference taking you from Kindergarten analogies all the way to PhD-level formal proofs, impossibility theorems, and engineering triage:
 
 | Chapter | Title | Key Concepts |
 |---|---|---|
-| **Ch 00** | [Computation & Computability](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/00_computation_and_computability.md) | Turing Machines, Church-Turing Thesis, Halting Problem, Rice's Theorem, Gödel |
-| **Ch 01** | [The Complexity Zoo](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/01_complexity_classes_zoo.md) | P, NP, NP-Complete, NP-Hard, co-NP, PSPACE, BPP, #P, Parameterized FPT |
-| **Ch 02** | [Asymptotic Analysis Deep Cuts](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/02_asymptotic_analysis_deep.md) | The Big-5 ($\Theta, \Omega, O, o, \omega$), Galactic Algorithms, Cache Locality, Input-Sensitivity |
-| **Ch 03** | [Recurrences & Master Theorem](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/03_recurrences_and_master_theorem.md) | Induction, Recursion Trees, 3 Master Cases, Akra-Bazzi, Recurrence Catalog |
-| **Ch 04** | [Amortized Analysis](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/04_amortized_analysis.md) | Aggregate, Banker's (Accounting), Physicist's (Potential), Dynamic Arrays, DSU $\alpha(n)$ |
-| **Ch 05** | [Lower Bounds & Impossibility](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/05_lower_bounds_and_impossibility.md) | Comparison Sorting $\Omega(n \log n)$, Adversary Arguments, Cell Probe Model |
-| **Ch 06** | [NP-Completeness & Reductions](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/06_np_completeness_and_reductions.md) | Karp vs Cook Reductions, Cook-Levin, Karp's 21 Web, Reduction Proving Recipe |
-| **Ch 07** | [Approximation Algorithms](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/07_approximation_algorithms.md) | $\rho$-Approximations, Christofides Metric TSP, Greedy Set Cover, PTAS/FPTAS, PCP |
-| **Ch 08** | [Randomized Algorithms](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/08_randomized_algorithms.md) | Las Vegas vs Monte Carlo, Chernoff/Markov/Chebyshev, Bloom Filters, Skip Lists |
-| **Ch 09** | [Heuristics & Metaheuristics](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/09_heuristics_and_metaheuristics.md) | Simulated Annealing, Genetic Algorithms, Tabu Search, No Free Lunch (NFL) Theorem |
-| **Ch 10** | [Information Theory & Entropy](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/10_information_theory_and_entropy.md) | Shannon Entropy, Huffman Codes, Kolmogorov Complexity, Fundamental Sorting Bounds |
-| **Ch 11** | [Metatheorems & Folklore](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/11_metatheorems_and_folklore.md) | Amdahl vs Gustafson, Little's Law, CAP, Pigeonhole, ETH, Curse of Dimensionality |
-| **Ch 12** | [Kill Mode vs Pull the Plug](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md) | Master Decision Flowchart, Constraint Limits, Triage Matrix, Pattern Complexity Map |
+| **Ch 00** | [Computation & Computability](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/00_computation_and_computability.md) | Turing Machines, Church-Turing Thesis, Halting Problem, Rice's Theorem, Gödel |
+| **Ch 01** | [The Complexity Zoo](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/01_complexity_classes_zoo.md) | P, NP, NP-Complete, NP-Hard, co-NP, PSPACE, BPP, #P, Parameterized FPT |
+| **Ch 02** | [Asymptotic Analysis Deep Cuts](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/02_asymptotic_analysis_deep.md) | The Big-5 ($\Theta, \Omega, O, o, \omega$), Galactic Algorithms, Cache Locality, Input-Sensitivity |
+| **Ch 03** | [Recurrences & Master Theorem](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/03_recurrences_and_master_theorem.md) | Induction, Recursion Trees, 3 Master Cases, Akra-Bazzi, Recurrence Catalog |
+| **Ch 04** | [Amortized Analysis](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/04_amortized_analysis.md) | Aggregate, Banker's (Accounting), Physicist's (Potential), Dynamic Arrays, DSU $\alpha(n)$ |
+| **Ch 05** | [Lower Bounds & Impossibility](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/05_lower_bounds_and_impossibility.md) | Comparison Sorting $\Omega(n \log n)$, Adversary Arguments, Cell Probe Model |
+| **Ch 06** | [NP-Completeness & Reductions](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/06_np_completeness_and_reductions.md) | Karp vs Cook Reductions, Cook-Levin, Karp's 21 Web, Reduction Proving Recipe |
+| **Ch 07** | [Approximation Algorithms](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/07_approximation_algorithms.md) | $\rho$-Approximations, Christofides Metric TSP, Greedy Set Cover, PTAS/FPTAS, PCP |
+| **Ch 08** | [Randomized Algorithms](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/08_randomized_algorithms.md) | Las Vegas vs Monte Carlo, Chernoff/Markov/Chebyshev, Bloom Filters, Skip Lists |
+| **Ch 09** | [Heuristics & Metaheuristics](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/09_heuristics_and_metaheuristics.md) | Simulated Annealing, Genetic Algorithms, Tabu Search, No Free Lunch (NFL) Theorem |
+| **Ch 10** | [Information Theory & Entropy](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/10_information_theory_and_entropy.md) | Shannon Entropy, Huffman Codes, Kolmogorov Complexity, Fundamental Sorting Bounds |
+| **Ch 11** | [Metatheorems & Folklore](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/11_metatheorems_and_folklore.md) | Amdahl vs Gustafson, Little's Law, CAP, Pigeonhole, ETH, Curse of Dimensionality |
+| **Ch 12** | [Kill Mode vs Pull the Plug](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md) | Master Decision Flowchart, Constraint Limits, Triage Matrix, Pattern Complexity Map |
 
 ---
 
@@ -98,15 +98,15 @@ The underlying containers that power every algorithmic pattern:
 - [**`008 - Graph`**](./008%20-%20Graph/): Adjacency list and matrix implementations, directed/undirected edge management.
 
 #### 2. Deep-Dive Guides
-- [**`010 - Trees (The Complete Guide)`**](./010%20-%20Trees%20%28The%20Complete%20Guide%29/): 7-chapter book covering binary trees, traversals, AVL, Red-Black, B-Trees, and cheat sheets.
-- [**`011 - Graphs (The Complete Guide)`**](./011%20-%20Graphs%20%28The%20Complete%20Guide%29/): 8-chapter book covering representations, Dijkstra, Bellman-Ford, Floyd-Warshall, Kruskal, Prim, and topological ordering.
+- [**`009 - Trees (The Complete Guide)`**](./009%20-%20Trees%20%28The%20Complete%20Guide%29/): 7-chapter book covering binary trees, traversals, AVL, Red-Black, B-Trees, and cheat sheets.
+- [**`010 - Graphs (The Complete Guide)`**](./010%20-%20Graphs%20%28The%20Complete%20Guide%29/): 8-chapter book covering representations, Dijkstra, Bellman-Ford, Floyd-Warshall, Kruskal, Prim, and topological ordering.
 - [**`TREES_AND_GRAPHS_GUIDE.md`**](./TREES_AND_GRAPHS_GUIDE.md): Quick-reference hub mapping trees and graphs to their underlying patterns.
 
 ---
 
 ### ⚔️ Pillar 2: Pattern Recognition & Tactics
 
-- [**`000 - The Pattern Cracker`**](./000%20-%20The%20Pattern%20Cracker/): The universal mental model for cracking technical interview problems in under 10 seconds.
+- [**`011 - The Pattern Cracker`**](./011%20-%20The%20Pattern%20Cracker/): The universal mental model for cracking technical interview problems in under 10 seconds.
   - **The 5-Question Funnel**: Input type $\to$ Output expectation $\to$ Exploitable constraints $\to$ Memory requirements $\to$ Problem shrinkage.
   - **Trigger Word Matrix**: Direct keywords to instant patterns.
   - **Pattern DNA Skeletons**: Minimal, muscle-memory templates for all primary patterns.
@@ -119,23 +119,23 @@ Choose your pathway based on your immediate goals and background:
 
 ### 🟢 Path A: The Coding Assessment Sprint (2–4 Days)
 *Goal: Fast interview readiness for senior/staff engineer candidates with solid CS foundations.*
-1. Read [000 - The Pattern Cracker](./000%20-%20The%20Pattern%20Cracker/pattern_cracker_mental_model.md)
-2. Skim [009 - Chapter 12: Kill Mode vs Pull the Plug](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md) (Constraint sizing and triage)
-3. Review [010 - Trees Cheat Sheet](./010%20-%20Trees%20%28The%20Complete%20Guide%29/07_trees_cheat_sheet.md) & [011 - Graphs Cheat Sheet](./011%20-%20Graphs%20%28The%20Complete%20Guide%29/08_graphs_cheat_sheet.md)
+1. Read [011 - The Pattern Cracker](./011%20-%20The%20Pattern%20Cracker/pattern_cracker_mental_model.md)
+2. Skim [000 - Chapter 12: Kill Mode vs Pull the Plug](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md) (Constraint sizing and triage)
+3. Review [009 - Trees Cheat Sheet](./009%20-%20Trees%20%28The%20Complete%20Guide%29/07_trees_cheat_sheet.md) & [010 - Graphs Cheat Sheet](./010%20-%20Graphs%20%28The%20Complete%20Guide%29/08_graphs_cheat_sheet.md)
 4. Jump straight into the 43 patterns (starting with [02 - Two Pointers](../02%20-%20Two%20Pointers/) and [04 - Sliding Window](../04%20-%20Sliding%20Window/)).
 
 ### 🟡 Path B: The Computer Science Undergraduate / Master's Foundation (1–2 Weeks)
 *Goal: Build rock-solid CS core competence and bridge the gap between academic theory and practical coding.*
-1. [009 - Chapter 00: Computation & Computability](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/00_computation_and_computability.md)
-2. [009 - Chapter 01: Complexity Zoo](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/01_complexity_classes_zoo.md)
-3. [009 - Chapter 02: Asymptotic Analysis Deep Cuts](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/02_asymptotic_analysis_deep.md)
-4. [009 - Chapter 03: Recurrences & Master Theorem](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/03_recurrences_and_master_theorem.md)
-5. [009 - Chapter 04: Amortized Analysis](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/04_amortized_analysis.md)
-6. [009 - Chapter 06: NP-Completeness & Reductions](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/06_np_completeness_and_reductions.md)
-7. [010 - Trees (Complete Guide)](./010%20-%20Trees%20%28The%20Complete%20Guide%29/) and [011 - Graphs (Complete Guide)](./011%20-%20Graphs%20%28The%20Complete%20Guide%29/)
+1. [000 - Chapter 00: Computation & Computability](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/00_computation_and_computability.md)
+2. [000 - Chapter 01: Complexity Zoo](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/01_complexity_classes_zoo.md)
+3. [000 - Chapter 02: Asymptotic Analysis Deep Cuts](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/02_asymptotic_analysis_deep.md)
+4. [000 - Chapter 03: Recurrences & Master Theorem](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/03_recurrences_and_master_theorem.md)
+5. [000 - Chapter 04: Amortized Analysis](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/04_amortized_analysis.md)
+6. [000 - Chapter 06: NP-Completeness & Reductions](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/06_np_completeness_and_reductions.md)
+7. [009 - Trees (Complete Guide)](./009%20-%20Trees%20%28The%20Complete%20Guide%29/) and [010 - Graphs (Complete Guide)](./010%20-%20Graphs%20%28The%20Complete%20Guide%29/)
 
 ### 🔴 Path C: The Principal / Staff / Researcher Deep Dive (3+ Weeks)
 *Goal: Uncompromising mastery of theoretical limits, metatheorems, approximation hardness, and system engineering laws.*
-1. Full end-to-end traversal of all 13 chapters in [009 - Theoretical Foundations (The Complete Guide)](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/).
+1. Full end-to-end traversal of all 13 chapters in [000 - Theoretical Foundations (The Complete Guide)](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/).
 2. Deep dive into the PhD Horizon sections (collapsible dropdown blocks) covering Gödel's incompleteness, Rice's theorem proofs, the PCP Theorem, the Exponential Time Hypothesis, and Communication Complexity.
-3. Master [009 - Chapter 12](./009%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md) to lead architectural triage reviews in real-world distributed systems.
+3. Master [000 - Chapter 12](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md) to lead architectural triage reviews in real-world distributed systems.

@@ -342,3 +342,12 @@ if __name__ == "__main__":
 5. **Rice's Theorem**. Throwing an unhandled exception on some input is a non-trivial semantic property of program behavior. Therefore, a sound and complete checker for all arbitrary programs is undecidable.
 
 </details>
+
+---
+
+## 🧭 Navigation
+
+| ← Previous | ↑ Master Index | Next → |
+|:---|:---:|---:|
+| — | [🏛️ Theoretical Foundations Index](README.md) | [Ch 01: The Complexity Zoo →](01_complexity_classes_zoo.md) |
+

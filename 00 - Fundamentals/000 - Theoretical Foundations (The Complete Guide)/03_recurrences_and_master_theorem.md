@@ -280,3 +280,12 @@ if __name__ == "__main__":
 5. Find $p$ such that $(1/5)^p + (4/5)^p = 1 \implies p = 1$. Then evaluate the Akra-Bazzi integral: $T(n) = \Theta(n(1 + \int_1^n \frac{u}{u^2} du)) = \Theta(n \log n)$.
 
 </details>
+
+---
+
+## 🧭 Navigation
+
+| ← Previous | ↑ Master Index | Next → |
+|:---|:---:|---:|
+| [← Ch 02: Asymptotic Analysis Deep Cuts](02_asymptotic_analysis_deep.md) | [🏛️ Theoretical Foundations Index](README.md) | [Ch 04: Amortized Analysis →](04_amortized_analysis.md) |
+

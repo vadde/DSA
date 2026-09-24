@@ -275,3 +275,12 @@ if __name__ == "__main__":
 5. Because researchers have proven that if Edit Distance could be solved in $O(N^{2-\epsilon})$ time, then SAT could be solved in $(2-\delta)^n$ time, which would violate SETH. Thus, the classic $O(N^2)$ DP is conditionally optimal.
 
 </details>
+
+---
+
+## 🧭 Navigation
+
+| ← Previous | ↑ Master Index | Next → |
+|:---|:---:|---:|
+| [← Ch 01: The Complexity Zoo](01_complexity_classes_zoo.md) | [🏛️ Theoretical Foundations Index](README.md) | [Ch 03: Recurrences & Master Theorem →](03_recurrences_and_master_theorem.md) |
+
