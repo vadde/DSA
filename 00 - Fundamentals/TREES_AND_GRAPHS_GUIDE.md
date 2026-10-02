@@ -6,34 +6,34 @@
 
 ## 🌲 Part 1: Trees — Complete Guide
 
-[📂 `009 - Trees (The Complete Guide)/`](009%20-%20Trees%20%28The%20Complete%20Guide%29/)
+[📂 `015 - Trees (The Complete Guide)/`](015%20-%20Trees%20%28The%20Complete%20Guide%29/)
 
 | Chapter | File | Topics Covered |
 |---------|------|---------------|
-| **Ch 1** | [What Is a Tree?](009%20-%20Trees%20%28The%20Complete%20Guide%29/01_what_is_a_tree.md) | Formal definition, complete terminology bible (root/leaf/height/depth/level/ancestor/subtree), N−1 edges property, recursive definition, Handshaking Lemma, tree taxonomy |
-| **Ch 2** | [Binary Trees](009%20-%20Trees%20%28The%20Complete%20Guide%29/02_binary_trees.md) | 5 types (full/complete/perfect/balanced/degenerate), all math formulas, array representation, heap connection, Python TreeNode |
-| **Ch 3** | [Tree Traversals](009%20-%20Trees%20%28The%20Complete%20Guide%29/03_tree_traversals.md) | All 4 traversals (BFS/pre/in/post-order), recursive + iterative Python, call stack visualization, generator pattern, DFS vs BFS space |
-| **Ch 4** | [Binary Search Trees](009%20-%20Trees%20%28The%20Complete%20Guide%29/04_binary_search_trees.md) | BST property, all 3 delete cases, in-order successor/predecessor, complexity (balanced vs skewed), BST↔sorted array duality, interview patterns |
-| **Ch 5** | [Balanced Trees](009%20-%20Trees%20%28The%20Complete%20Guide%29/05_balanced_trees.md) | Why BSTs fail, AVL balance factor + 4 rotations, Red-Black 5 properties + O(log N) proof, B-Trees, Python SortedList/heapq |
-| **Ch 6** | [Special Trees](009%20-%20Trees%20%28The%20Complete%20Guide%29/06_special_trees.md) | N-ary trees, Trie, Segment Tree, Fenwick Tree, Heap, Expression Trees — structure + code + pattern links |
-| **⚡ Ch 7** | [Trees Cheat Sheet](009%20-%20Trees%20%28The%20Complete%20Guide%29/07_trees_cheat_sheet.md) | All formulas, traversal mnemonics, complexity table, which-tree decision flowchart, pattern map, top 10 traps |
+| **Ch 1** | [What Is a Tree?](015%20-%20Trees%20%28The%20Complete%20Guide%29/01_what_is_a_tree.md) | Formal definition, complete terminology bible (root/leaf/height/depth/level/ancestor/subtree), N−1 edges property, recursive definition, Handshaking Lemma, tree taxonomy |
+| **Ch 2** | [Binary Trees](015%20-%20Trees%20%28The%20Complete%20Guide%29/02_binary_trees.md) | 5 types (full/complete/perfect/balanced/degenerate), all math formulas, array representation, heap connection, Python TreeNode |
+| **Ch 3** | [Tree Traversals](015%20-%20Trees%20%28The%20Complete%20Guide%29/03_tree_traversals.md) | All 4 traversals (BFS/pre/in/post-order), recursive + iterative Python, call stack visualization, generator pattern, DFS vs BFS space |
+| **Ch 4** | [Binary Search Trees](015%20-%20Trees%20%28The%20Complete%20Guide%29/04_binary_search_trees.md) | BST property, all 3 delete cases, in-order successor/predecessor, complexity (balanced vs skewed), BST↔sorted array duality, interview patterns |
+| **Ch 5** | [Balanced Trees](015%20-%20Trees%20%28The%20Complete%20Guide%29/05_balanced_trees.md) | Why BSTs fail, AVL balance factor + 4 rotations, Red-Black 5 properties + O(log N) proof, B-Trees, Python SortedList/heapq |
+| **Ch 6** | [Special Trees](015%20-%20Trees%20%28The%20Complete%20Guide%29/06_special_trees.md) | N-ary trees, Trie, Segment Tree, Fenwick Tree, Heap, Expression Trees — structure + code + pattern links |
+| **⚡ Ch 7** | [Trees Cheat Sheet](015%20-%20Trees%20%28The%20Complete%20Guide%29/07_trees_cheat_sheet.md) | All formulas, traversal mnemonics, complexity table, which-tree decision flowchart, pattern map, top 10 traps |
 
 ---
 
 ## 🕸️ Part 2: Graphs — Complete Guide
 
-[📂 `010 - Graphs (The Complete Guide)/`](010%20-%20Graphs%20%28The%20Complete%20Guide%29/)
+[📂 `016 - Graphs (The Complete Guide)/`](016%20-%20Graphs%20%28The%20Complete%20Guide%29/)
 
 | Chapter | File | Topics Covered |
 |---------|------|---------------|
-| **Ch 1** | [What Is a Graph?](010%20-%20Graphs%20%28The%20Complete%20Guide%29/01_what_is_a_graph.md) | Formal G=(V,E), complete terminology bible, Handshaking Lemma with proof, Euler's Formula, Tree as special graph, graph density |
-| **Ch 2** | [Graph Types](010%20-%20Graphs%20%28The%20Complete%20Guide%29/02_graph_types.md) | Directed/undirected, weighted, DAG, bipartite, complete, connected/strongly connected, sparse/dense, planar — all with diagrams |
-| **Ch 3** | [Graph Representations](010%20-%20Graphs%20%28The%20Complete%20Guide%29/03_graph_representations.md) | Adjacency list/matrix/edge list — code, full trade-off table, grid as implicit graph, Python tips |
-| **Ch 4** | [Graph Traversals](010%20-%20Graphs%20%28The%20Complete%20Guide%29/04_graph_traversals.md) | BFS/DFS with visited set, step-by-step traces, when-to-use flowchart, connected components, multi-source BFS, 0-1 BFS |
-| **Ch 5** | [Shortest Paths](010%20-%20Graphs%20%28The%20Complete%20Guide%29/05_shortest_paths.md) | BFS (unweighted), Dijkstra's (positive weights), Bellman-Ford (negative weights), Floyd-Warshall (all-pairs) — traces + code + comparison |
-| **Ch 6** | [Minimum Spanning Trees](010%20-%20Graphs%20%28The%20Complete%20Guide%29/06_minimum_spanning_trees.md) | Cut property, Kruskal's (Union-Find), Prim's (min-heap) — step-by-step traces + code + real-world apps |
-| **Ch 7** | [Advanced Graph Concepts](010%20-%20Graphs%20%28The%20Complete%20Guide%29/07_advanced_graph_concepts.md) | Cycle detection (undirected+directed), topological sort (DFS+Kahn's), Union-Find, SCCs, bridges, graph coloring, relationship map |
-| **⚡ Ch 8** | [Graphs Cheat Sheet](010%20-%20Graphs%20%28The%20Complete%20Guide%29/08_graphs_cheat_sheet.md) | All algorithms + complexity, representation table, master decision flowchart, pattern map, top 10 traps, interview checklist |
+| **Ch 1** | [What Is a Graph?](016%20-%20Graphs%20%28The%20Complete%20Guide%29/01_what_is_a_graph.md) | Formal G=(V,E), complete terminology bible, Handshaking Lemma with proof, Euler's Formula, Tree as special graph, graph density |
+| **Ch 2** | [Graph Types](016%20-%20Graphs%20%28The%20Complete%20Guide%29/02_graph_types.md) | Directed/undirected, weighted, DAG, bipartite, complete, connected/strongly connected, sparse/dense, planar — all with diagrams |
+| **Ch 3** | [Graph Representations](016%20-%20Graphs%20%28The%20Complete%20Guide%29/03_graph_representations.md) | Adjacency list/matrix/edge list — code, full trade-off table, grid as implicit graph, Python tips |
+| **Ch 4** | [Graph Traversals](016%20-%20Graphs%20%28The%20Complete%20Guide%29/04_graph_traversals.md) | BFS/DFS with visited set, step-by-step traces, when-to-use flowchart, connected components, multi-source BFS, 0-1 BFS |
+| **Ch 5** | [Shortest Paths](016%20-%20Graphs%20%28The%20Complete%20Guide%29/05_shortest_paths.md) | BFS (unweighted), Dijkstra's (positive weights), Bellman-Ford (negative weights), Floyd-Warshall (all-pairs) — traces + code + comparison |
+| **Ch 6** | [Minimum Spanning Trees](016%20-%20Graphs%20%28The%20Complete%20Guide%29/06_minimum_spanning_trees.md) | Cut property, Kruskal's (Union-Find), Prim's (min-heap) — step-by-step traces + code + real-world apps |
+| **Ch 7** | [Advanced Graph Concepts](016%20-%20Graphs%20%28The%20Complete%20Guide%29/07_advanced_graph_concepts.md) | Cycle detection (undirected+directed), topological sort (DFS+Kahn's), Union-Find, SCCs, bridges, graph coloring, relationship map |
+| **⚡ Ch 8** | [Graphs Cheat Sheet](016%20-%20Graphs%20%28The%20Complete%20Guide%29/08_graphs_cheat_sheet.md) | All algorithms + complexity, representation table, master decision flowchart, pattern map, top 10 traps, interview checklist |
 
 ---
 
@@ -62,8 +62,8 @@ BFS Pattern = Level-order traversal generalized to graphs
 | Tree DFS (root-to-leaf) | `12 - Tree Depth First Search/` |
 | Graph traversal + components | `13 - Graphs/` |
 | Grid/matrix traversal | `14 - Island (Matrix Traversal)/` |
-| Heaps | `06 - Min and Max Heap/`, `15 - Two Heaps/`, `19 - Top K Elements/` |
-| Trie | `07 - Trie/`, `26 - Trie/` |
+| Heaps | `010 - Min and Max Heap/`, `15 - Two Heaps/`, `19 - Top K Elements/` |
+| Trie | `011 - Trie/`, `26 - Trie/` |
 | Topological sort (DAG) | `27 - Topological Sort %28Graph%29/` |
 | Union-Find (DSU) | `28 - Union Find/` |
 | Segment Tree | `41 - Segment Tree/` |

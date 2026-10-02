@@ -194,7 +194,7 @@ Left child of index 1 (value=2): 2(1)+1 = 3 → value=4 ✅
 Right child of index 1 (value=2): 2(1)+2 = 4 → value=5 ✅
 ```
 
-**This is exactly how Min-Heaps and Max-Heaps work.** See [Fundamentals 006 - Min and Max Heap](../006%20-%20Min%20and%20Max%20Heap/heap_walkthrough.md).
+**This is exactly how Min-Heaps and Max-Heaps work.** See [Fundamentals 010 - Min and Max Heap](../010%20-%20Min%20and%20Max%20Heap/heap_walkthrough.md).
 
 ```python
 # Heap array navigation in Python

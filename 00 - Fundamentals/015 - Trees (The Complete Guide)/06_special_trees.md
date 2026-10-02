@@ -161,7 +161,7 @@ class Trie:
 
 ### Pattern Connection
 - **Pattern 26**: Trie (full deep-dive with 5 problems → `26 - Trie/`)
-- **Fundamentals 007**: Full implementation → [007 - Trie](../007%20-%20Trie/trie_walkthrough.md)
+- **Fundamentals 011**: Full implementation → [011 - Trie](../011%20-%20Trie/trie_walkthrough.md)
 
 ---
 
@@ -309,7 +309,7 @@ Min-Heap tree:        Array representation:
 | Peek min | O(1) | `heap[0]` |
 
 ### Pattern Connection
-- **Fundamentals 006**: Full implementation → [006 - Min and Max Heap](../006%20-%20Min%20and%20Max%20Heap/heap_walkthrough.md)
+- **Fundamentals 010**: Full implementation → [010 - Min and Max Heap](../010%20-%20Min%20and%20Max%20Heap/heap_walkthrough.md)
 - **Pattern 15**: Two Heaps
 - **Pattern 19**: Top K Elements
 

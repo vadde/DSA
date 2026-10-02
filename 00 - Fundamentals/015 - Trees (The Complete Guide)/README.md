@@ -112,4 +112,4 @@ Mastering this guide unlocks direct proficiency in these primary pattern modules
 
 | ← Previous Pillar | ↑ Fundamentals Hub | Next Module → |
 |:---|:---:|---:|
-| [🏛️ 000 - Theoretical Foundations](../000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/) | [📚 Fundamentals Index](../README.md) | [🕸️ 010 - Graphs (The Complete Guide) →](../010%20-%20Graphs%20%28The%20Complete%20Guide%29/) |
+| [🏛️ 000 - Theoretical Foundations](../000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/) | [📚 Fundamentals Index](../README.md) | [🕸️ 016 - Graphs (The Complete Guide) →](../016%20-%20Graphs%20%28The%20Complete%20Guide%29/) |

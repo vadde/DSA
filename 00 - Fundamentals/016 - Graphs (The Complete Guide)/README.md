@@ -119,4 +119,4 @@ Mastering this guide unlocks direct proficiency in these primary pattern modules
 
 | ← Previous Module | ↑ Fundamentals Hub | Next Pillar → |
 |:---|:---:|---:|
-| [🌲 009 - Trees (The Complete Guide)](../009%20-%20Trees%20%28The%20Complete%20Guide%29/) | [📚 Fundamentals Index](../README.md) | [⚔️ 011 - The Pattern Cracker →](../011%20-%20The%20Pattern%20Cracker/) |
+| [🌲 015 - Trees (The Complete Guide)](../015%20-%20Trees%20%28The%20Complete%20Guide%29/) | [📚 Fundamentals Index](../README.md) | [⚔️ 017 - The Pattern Cracker →](../017%20-%20The%20Pattern%20Cracker/) |

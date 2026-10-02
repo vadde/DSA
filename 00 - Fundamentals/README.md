@@ -27,16 +27,16 @@ flowchart TD
     end
 
     subgraph P1["⚙️ Pillar 1: Data Structure Engine Rooms (The Mechanics)"]
-        DS1["Primitive Implementations (001 - 008)"]
-        DS2["009 - Trees (The Complete Guide)"]
-        DS3["010 - Graphs (The Complete Guide)"]
+        DS1["Primitive Implementations (001 - 014)"]
+        DS2["015 - Trees (The Complete Guide)"]
+        DS3["016 - Graphs (The Complete Guide)"]
         DS4["TREES_AND_GRAPHS_GUIDE.md (Unified Index)"]
         DS1 --> DS2
         DS1 --> DS3
     end
 
     subgraph P2["⚔️ Pillar 2: Pattern Recognition (The Tactics)"]
-        PC["011 - The Pattern Cracker"]
+        PC["017 - The Pattern Cracker"]
         PC1["• SIFT Framework (10-Second Signal Detection)"]
         PC2["• The 5-Layer Elimination Funnel"]
         PC3["• 7 Master Pattern Families"]
@@ -87,26 +87,32 @@ The comprehensive, 13-chapter reference taking you from Kindergarten analogies a
 
 The underlying containers that power every algorithmic pattern:
 
-#### 1. Primitive Engines
-- [**`001 - Queue and Stack`**](./001%20-%20Queue%20and%20Stack/): LIFO and FIFO primitives, array-backed vs pointer-backed queues, ring buffers.
-- [**`002 - Linked List`**](./002%20-%20Linked%20List/): Singly-linked list node mechanics, sentinel dummy heads, pointer manipulations.
-- [**`003 - Doubly Linked List`**](./003%20-%20Doubly%20Linked%20List/): Bidirectional node links, $O(1)$ arbitrary deletions, foundation for LRU Cache.
-- [**`004 - Circular Linked List`**](./004%20-%20Circular%20Linked%20List/): Cycle mechanics, round-robin scheduling, split and merge operations.
-- [**`005 - Binary Search Tree`**](./005%20-%20Binary%20Search%20Tree/): Node insertion, recursive and iterative deletion, in-order predecessor/successor.
-- [**`006 - Min and Max Heap`**](./006%20-%20Min%20and%20Max%20Heap/): Array representation of binary heaps, sift-up, sift-down, Floyd's $O(n)$ heapify.
-- [**`007 - Trie`**](./007%20-%20Trie/): Prefix tree nodes, character dictionary transitions, prefix search, end-of-word markers.
-- [**`008 - Graph`**](./008%20-%20Graph/): Adjacency list and matrix implementations, directed/undirected edge management.
+#### 1. Linear Containers & Primitive Engines
+- [**`001 - Array and String`**](./001%20-%20Array%20and%20String/): Contiguous memory model, dynamic resizing, amortized $O(1)$ append, string immutability.
+- [**`002 - Hash Table`**](./002%20-%20Hash%20Table/): Hash functions, collision resolution (chaining vs open addressing), load factor, rehashing.
+- [**`003 - Recursion and the Call Stack`**](./003%20-%20Recursion%20and%20the%20Call%20Stack/): Stack frames, base cases, call stack mechanics, recursion tree drawing.
+- [**`004 - Sorting Algorithms`**](./004%20-%20Sorting%20Algorithms/): Comparison (Merge, Quick, Heap) vs non-comparison (Counting, Radix), stability, in-place.
+- [**`005 - Queue and Stack`**](./005%20-%20Queue%20and%20Stack/): LIFO and FIFO primitives, array-backed vs pointer-backed queues, ring buffers.
+- [**`006 - Linked List`**](./006%20-%20Linked%20List/): Singly-linked list node mechanics, sentinel dummy heads, pointer manipulations.
+- [**`007 - Doubly Linked List`**](./007%20-%20Doubly%20Linked%20List/): Bidirectional node links, $O(1)$ arbitrary deletions, foundation for LRU Cache.
+- [**`008 - Circular Linked List`**](./008%20-%20Circular%20Linked%20List/): Cycle mechanics, round-robin scheduling, split and merge operations.
+- [**`009 - Binary Search Tree`**](./009%20-%20Binary%20Search%20Tree/): Node insertion, recursive and iterative deletion, in-order predecessor/successor.
+- [**`010 - Min and Max Heap`**](./010%20-%20Min%20and%20Max%20Heap/): Array representation of binary heaps, sift-up, sift-down, Floyd's $O(n)$ heapify.
+- [**`011 - Trie`**](./011%20-%20Trie/): Prefix tree nodes, character dictionary transitions, prefix search, end-of-word markers.
+- [**`012 - Graph`**](./012%20-%20Graph/): Adjacency list and matrix implementations, directed/undirected edge management.
+- [**`013 - Union-Find (Disjoint Set)`**](./013%20-%20Union-Find%20%28Disjoint%20Set%29/): Disjoint-set forests, union-by-rank, path compression, $\alpha(n)$ amortized complexity.
+- [**`014 - Bit Manipulation`**](./014%20-%20Bit%20Manipulation/): Two's complement, bitwise arithmetic, masking, Brian Kernighan's trick.
 
 #### 2. Deep-Dive Guides
-- [**`009 - Trees (The Complete Guide)`**](./009%20-%20Trees%20%28The%20Complete%20Guide%29/): 7-chapter book covering binary trees, traversals, AVL, Red-Black, B-Trees, and cheat sheets.
-- [**`010 - Graphs (The Complete Guide)`**](./010%20-%20Graphs%20%28The%20Complete%20Guide%29/): 8-chapter book covering representations, Dijkstra, Bellman-Ford, Floyd-Warshall, Kruskal, Prim, and topological ordering.
+- [**`015 - Trees (The Complete Guide)`**](./015%20-%20Trees%20%28The%20Complete%20Guide%29/): 7-chapter book covering binary trees, traversals, AVL, Red-Black, B-Trees, and cheat sheets.
+- [**`016 - Graphs (The Complete Guide)`**](./016%20-%20Graphs%20%28The%20Complete%20Guide%29/): 8-chapter book covering representations, Dijkstra, Bellman-Ford, Floyd-Warshall, Kruskal, Prim, and topological ordering.
 - [**`TREES_AND_GRAPHS_GUIDE.md`**](./TREES_AND_GRAPHS_GUIDE.md): Quick-reference hub mapping trees and graphs to their underlying patterns.
 
 ---
 
 ### ⚔️ Pillar 2: Pattern Recognition & Tactics
 
-- [**`011 - The Pattern Cracker`**](./011%20-%20The%20Pattern%20Cracker/): The universal mental model for cracking technical interview problems in under 10 seconds.
+- [**`017 - The Pattern Cracker`**](./017%20-%20The%20Pattern%20Cracker/): The universal mental model for cracking technical interview problems in under 10 seconds.
   - **The 5-Question Funnel**: Input type $\to$ Output expectation $\to$ Exploitable constraints $\to$ Memory requirements $\to$ Problem shrinkage.
   - **Trigger Word Matrix**: Direct keywords to instant patterns.
   - **Pattern DNA Skeletons**: Minimal, muscle-memory templates for all primary patterns.
@@ -119,9 +125,9 @@ Choose your pathway based on your immediate goals and background:
 
 ### 🟢 Path A: The Coding Assessment Sprint (2–4 Days)
 *Goal: Fast interview readiness for senior/staff engineer candidates with solid CS foundations.*
-1. Read [011 - The Pattern Cracker](./011%20-%20The%20Pattern%20Cracker/pattern_cracker_mental_model.md)
+1. Read [017 - The Pattern Cracker](./017%20-%20The%20Pattern%20Cracker/pattern_cracker_mental_model.md)
 2. Skim [000 - Chapter 12: Kill Mode vs Pull the Plug](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md) (Constraint sizing and triage)
-3. Review [009 - Trees Cheat Sheet](./009%20-%20Trees%20%28The%20Complete%20Guide%29/07_trees_cheat_sheet.md) & [010 - Graphs Cheat Sheet](./010%20-%20Graphs%20%28The%20Complete%20Guide%29/08_graphs_cheat_sheet.md)
+3. Review [015 - Trees Cheat Sheet](./015%20-%20Trees%20%28The%20Complete%20Guide%29/07_trees_cheat_sheet.md) & [016 - Graphs Cheat Sheet](./016%20-%20Graphs%20%28The%20Complete%20Guide%29/08_graphs_cheat_sheet.md)
 4. Jump straight into the 43 patterns (starting with [02 - Two Pointers](../02%20-%20Two%20Pointers/) and [04 - Sliding Window](../04%20-%20Sliding%20Window/)).
 
 ### 🟡 Path B: The Computer Science Undergraduate / Master's Foundation (1–2 Weeks)
@@ -132,7 +138,7 @@ Choose your pathway based on your immediate goals and background:
 4. [000 - Chapter 03: Recurrences & Master Theorem](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/03_recurrences_and_master_theorem.md)
 5. [000 - Chapter 04: Amortized Analysis](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/04_amortized_analysis.md)
 6. [000 - Chapter 06: NP-Completeness & Reductions](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/06_np_completeness_and_reductions.md)
-7. [009 - Trees (Complete Guide)](./009%20-%20Trees%20%28The%20Complete%20Guide%29/) and [010 - Graphs (Complete Guide)](./010%20-%20Graphs%20%28The%20Complete%20Guide%29/)
+7. [015 - Trees (Complete Guide)](./015%20-%20Trees%20%28The%20Complete%20Guide%29/) and [016 - Graphs (Complete Guide)](./016%20-%20Graphs%20%28The%20Complete%20Guide%29/)
 
 ### 🔴 Path C: The Principal / Staff / Researcher Deep Dive (3+ Weeks)
 *Goal: Uncompromising mastery of theoretical limits, metatheorems, approximation hardness, and system engineering laws.*

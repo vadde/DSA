@@ -409,10 +409,10 @@ union(x,y): px, py = find(x), find(y) → attach smaller rank to bigger
 
 | ← Previous (Pillar 1: Data Structures) | ↑ Fundamentals Hub | Next (Pillar 2: Patterns) → |
 |:---|:---:|---:|
-| [🕸️ 010 - Graphs (The Complete Guide)](../010%20-%20Graphs%20%28The%20Complete%20Guide%29/) | [📚 Fundamentals Index](../README.md) | [01 - Warmup Patterns →](../../01%20-%20Warmup/) |
+| [🕸️ 016 - Graphs (The Complete Guide)](../016%20-%20Graphs%20%28The%20Complete%20Guide%29/) | [📚 Fundamentals Index](../README.md) | [01 - Warmup Patterns →](../../01%20-%20Warmup/) |
 
 > ### 🏛️ Theoretical Foundations & Engine Room Links:
 > - **The Decision Physics:** Need the formal complexity triage behind these 5 questions? Consult [000 - Chapter 12: Kill Mode vs Pull the Plug](../000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md).
-> - **Trees Engine Room:** Review the full hierarchical taxonomy in [009 - Trees (The Complete Guide)](../009%20-%20Trees%20%28The%20Complete%20Guide%29/).
-> - **Graphs Engine Room:** Review traversals and representations in [010 - Graphs (The Complete Guide)](../010%20-%20Graphs%20%28The%20Complete%20Guide%29/).
+> - **Trees Engine Room:** Review the full hierarchical taxonomy in [015 - Trees (The Complete Guide)](../015%20-%20Trees%20%28The%20Complete%20Guide%29/).
+> - **Graphs Engine Room:** Review traversals and representations in [016 - Graphs (The Complete Guide)](../016%20-%20Graphs%20%28The%20Complete%20Guide%29/).
 

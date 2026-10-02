@@ -52,8 +52,8 @@ Rather than memorizing 43 disconnected patterns, recognize which family the prob
 - **Kill Mode vs Pull the Plug**: If $N \le 20$ for an NP-Hard problem, go Kill Mode with Bitmask DP. If $N \ge 100$, Pull the Plug and switch to heuristics or greedy approximations ([Ch 12](../000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md)).
 
 ### ⚙️ Midstream: Concrete Engines (Pillar 1)
-- **Hierarchical problems**: Review [009 - Trees (The Complete Guide)](../009%20-%20Trees%20%28The%20Complete%20Guide%29/).
-- **Mesh / Dependency problems**: Review [010 - Graphs (The Complete Guide)](../010%20-%20Graphs%20%28The%20Complete%20Guide%29/).
+- **Hierarchical problems**: Review [015 - Trees (The Complete Guide)](../015%20-%20Trees%20%28The%20Complete%20Guide%29/).
+- **Mesh / Dependency problems**: Review [016 - Graphs (The Complete Guide)](../016%20-%20Graphs%20%28The%20Complete%20Guide%29/).
 
 ### ⚔️ Downstream: Tactical Patterns (Pillar 2)
 - Jump directly into the patterns catalog:
@@ -70,4 +70,4 @@ Rather than memorizing 43 disconnected patterns, recognize which family the prob
 
 | ← Previous (Pillar 1: Graphs) | ↑ Fundamentals Hub | Next (Pillar 2: Patterns) → |
 |:---|:---:|---:|
-| [🕸️ 010 - Graphs (The Complete Guide)](../010%20-%20Graphs%20%28The%20Complete%20Guide%29/) | [📚 Fundamentals Index](../README.md) | [01 - Warmup Patterns →](../../01%20-%20Warmup/) |
+| [🕸️ 016 - Graphs (The Complete Guide)](../016%20-%20Graphs%20%28The%20Complete%20Guide%29/) | [📚 Fundamentals Index](../README.md) | [01 - Warmup Patterns →](../../01%20-%20Warmup/) |

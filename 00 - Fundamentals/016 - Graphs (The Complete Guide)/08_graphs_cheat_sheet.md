@@ -140,16 +140,16 @@ Before any graph problem, ask:
 
 ## 📚 Full Guide Navigation
 
-### Trees (009 - Trees The Complete Guide)
-1. [What Is a Tree?](../009%20-%20Trees%20%28The%20Complete%20Guide%29/01_what_is_a_tree.md)
-2. [Binary Trees](../009%20-%20Trees%20%28The%20Complete%20Guide%29/02_binary_trees.md)
-3. [Tree Traversals](../009%20-%20Trees%20%28The%20Complete%20Guide%29/03_tree_traversals.md)
-4. [Binary Search Trees](../009%20-%20Trees%20%28The%20Complete%20Guide%29/04_binary_search_trees.md)
-5. [Balanced Trees](../009%20-%20Trees%20%28The%20Complete%20Guide%29/05_balanced_trees.md)
-6. [Special Trees](../009%20-%20Trees%20%28The%20Complete%20Guide%29/06_special_trees.md)
-7. [Trees Cheat Sheet](../009%20-%20Trees%20%28The%20Complete%20Guide%29/07_trees_cheat_sheet.md)
+### Trees (015 - Trees The Complete Guide)
+1. [What Is a Tree?](../015%20-%20Trees%20%28The%20Complete%20Guide%29/01_what_is_a_tree.md)
+2. [Binary Trees](../015%20-%20Trees%20%28The%20Complete%20Guide%29/02_binary_trees.md)
+3. [Tree Traversals](../015%20-%20Trees%20%28The%20Complete%20Guide%29/03_tree_traversals.md)
+4. [Binary Search Trees](../015%20-%20Trees%20%28The%20Complete%20Guide%29/04_binary_search_trees.md)
+5. [Balanced Trees](../015%20-%20Trees%20%28The%20Complete%20Guide%29/05_balanced_trees.md)
+6. [Special Trees](../015%20-%20Trees%20%28The%20Complete%20Guide%29/06_special_trees.md)
+7. [Trees Cheat Sheet](../015%20-%20Trees%20%28The%20Complete%20Guide%29/07_trees_cheat_sheet.md)
 
-### Graphs (010 - Graphs The Complete Guide)
+### Graphs (016 - Graphs The Complete Guide)
 1. [What Is a Graph?](01_what_is_a_graph.md)
 2. [Graph Types](02_graph_types.md)
 3. [Graph Representations](03_graph_representations.md)

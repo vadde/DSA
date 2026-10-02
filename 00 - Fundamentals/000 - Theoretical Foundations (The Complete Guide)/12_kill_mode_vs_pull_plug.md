@@ -353,11 +353,11 @@ Now, return to the **43 Patterns** with the full power of theoretical computer s
 
 | ← Previous | ↑ Master Index | Next Pillar → |
 |:---|:---:|---:|
-| [← Ch 11: Metatheorems & Folklore](11_metatheorems_and_folklore.md) | [🏛️ Theoretical Foundations Index](README.md) | [Pillar 1: Primitive Engines (Queue & Stack) →](../001%20-%20Queue%20and%20Stack/) |
+| [← Ch 11: Metatheorems & Folklore](11_metatheorems_and_folklore.md) | [🏛️ Theoretical Foundations Index](README.md) | [Pillar 1: Array & String →](../001%20-%20Array%20and%20String/) |
 
 > ### 🌉 Bridging from Theory to Code:
 > Now that you possess the theoretical compass, dive into the concrete data structures that implement these bounds:
-> - 🌲 **Pillar 1 (Trees Complete Guide):** [009 - Trees (The Complete Guide)](../009%20-%20Trees%20%28The%20Complete%20Guide%29/)
-> - 🕸️ **Pillar 1 (Graphs Complete Guide):** [010 - Graphs (The Complete Guide)](../010%20-%20Graphs%20%28The%20Complete%20Guide%29/)
-> - ⚔️ **Pillar 2 (Tactics & Mental Model):** [011 - The Pattern Cracker](../011%20-%20The%20Pattern%20Cracker/)
+> - 🌲 **Pillar 1 (Trees Complete Guide):** [015 - Trees (The Complete Guide)](../015%20-%20Trees%20%28The%20Complete%20Guide%29/)
+> - 🕸️ **Pillar 1 (Graphs Complete Guide):** [016 - Graphs (The Complete Guide)](../016%20-%20Graphs%20%28The%20Complete%20Guide%29/)
+> - ⚔️ **Pillar 2 (Tactics & Mental Model):** [017 - The Pattern Cracker](../017%20-%20The%20Pattern%20Cracker/)
 
