@@ -57,6 +57,20 @@ flowchart TD
 
 ---
 
+## 🎯 The Universal 5-Level Learning Framework
+
+Every topic across **Theoretical Foundations** and all **14 Concrete Data Structures** is structured using a rigorous, pedagogical 5-level format designed for fast mental encoding and permanent retention:
+
+| Level | Name | Target Persona & Time | Purpose & Core Content |
+| :---: | :--- | :--- | :--- |
+| **100** | **The Napkin Sketch** | Anyone (30 seconds) | **Physical real-world analogy**, intuitive diagram, zero math. Answers: *"Why does this exist?"* |
+| **200** | **Street Fundamentals** | FAANG Candidate (5 mins) | **Interview cheat card**, mental model box, operations complexity table, decision matrix & triage rules. |
+| **300** | **Working Professional** | Senior Engineer (15 mins) | **Production-grade Python 3.14 code**, edge case handling, step-by-step dry runs, sentinel patterns. |
+| **400** | **Staff & Senior Architect** | Staff / Principal (30 mins) | **Hardware reality**, CPU cache lines (64B), memory locality, scale limits, production case studies. |
+| **500** | **Researcher's Corner** | Academic / Researcher | **Formal mathematical proofs**, invariant theorems, advanced variants (collapsible dropdowns). |
+
+---
+
 ## 📚 Master Directory & Curriculum Index
 
 ### 🏛️ Pillar 0: Theoretical Foundations (The Physics of Computation)

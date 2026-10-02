@@ -18,7 +18,7 @@
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ ⚙️ PILLAR 1: DATA STRUCTURE ENGINE ROOMS (The Concrete Mechanics)           │
 │ Stacks • Queues • Linked Lists • Heaps • BSTs • Tries • Trees • Graphs      │
-│ 📂 00 - Fundamentals/ (001 - 008, 009 Trees Guide, 010 Graphs Guide)        │
+│ 📂 00 - Fundamentals/ (001 - 014 Engines, 015 Trees Guide, 016 Graphs Guide) │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
