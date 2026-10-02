@@ -4,7 +4,7 @@
 
 ---
 
-## 🧒 Explain Like I'm 5: The Kitchen Recipes
+## 📍 Level 100 — The Napkin Sketch: The Kitchen Recipes
 
 Imagine you are a chef in a restaurant kitchen:
 - **Class $P$ (The 5-Minute Salad)**: You get an order. You slice the lettuce and toss it. Even if the table orders 100 salads, you just chop 100 times. It scales linearly or quadratically. Easy, predictable, done.
@@ -15,7 +15,27 @@ Imagine you are a chef in a restaurant kitchen:
 
 ---
 
-## 🟢 Undergraduate Foundation: The Core Landscape
+## 🎯 Level 200 — Street Fundamentals: The FAANG Interview Complexity Triage
+
+> 🧠 **Mental Model Card**
+> - **Class P:** Solvable in polynomial time $O(N^k)$. (e.g. Sorting, Shortest Path, Binary Search). If it's in P, write the optimal algorithm.
+> - **Class NP:** Verifiable in polynomial time $O(N^k)$ if given a certificate/hint. (Sudoku, Traveling Salesperson, Subset Sum).
+> - **NP-Complete:** The hardest problems in NP. If you find a polynomial algorithm for *one* of them, you solve *all* of them (and win $1,000,000).
+> - **NP-Hard:** At least as hard as NP-Complete, but does not even need to be in NP (e.g. Halting Problem, TSP Optimization).
+> - **The Interview Rule:** When an interviewer hands you an NP-Complete problem (0/1 Knapsack, TSP, Graph Coloring), NEVER attempt to find an $O(N^2)$ algorithm. You will fail. Immediately recognize it as NP-Hard, check constraint $N$, and decide: **Kill Mode** (Bitmask/Backtracking if $N \le 20$) or **Pull the Plug** (Greedy approximation if $N \ge 100$).
+
+### The 4-Way Decision Grid
+
+| Class | Can We Solve It in Poly Time? | Can We Check a Given Answer in Poly Time? | Canonical Examples |
+|---|:---:|:---:|---|
+| **$P$** | ✅ Yes ($O(N^k)$) | ✅ Yes | MergeSort, Dijkstra, BFS, Two Sum |
+| **$NP$** | ❓ Unknown (likely No) | ✅ Yes | 3-SAT, Traveling Salesperson, Sudoku |
+| **$NP$-Complete** | ❌ No known poly algorithm | ✅ Yes | 3-SAT, Hamiltonian Cycle, Vertex Cover |
+| **$NP$-Hard** | ❌ No known poly algorithm | ❓ Not necessarily | Halting Problem, TSP Optimization, Chess ($N \times N$) |
+
+---
+
+## ⚙️ Level 300 — Working Professional: The Core Landscape
 
 ```mermaid
 flowchart TD
@@ -131,7 +151,7 @@ flowchart TD
 
 ---
 
-## 🟡 Master's Deep-Dive: The Extended Zoo
+## 🔬 Level 400 — Staff & Senior Engineer: The Extended Zoo
 
 ### 1. $co\text{-}NP$: The Complement Universe
 If $L \in NP$ asks *"Is there a certificate that says YES?"*, then $co\text{-}NP$ asks *"Can you verify a NO in polynomial time?"*
@@ -177,7 +197,7 @@ When a problem is $NP$-hard, we don't give up. We look for a parameter $k$ (e.g.
 
 ---
 
-## 🔴 PhD Horizon: The Three Barriers of $P$ vs $NP$
+## 🎓 Level 500 — Researcher's Corner: The Three Barriers of $P$ vs $NP$
 
 <details>
 <summary><strong>Expand PhD Deep-Dive: Why P vs NP is So Impossibly Hard to Prove</strong></summary>

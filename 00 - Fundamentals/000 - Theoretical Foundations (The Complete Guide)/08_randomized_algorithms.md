@@ -4,7 +4,7 @@
 
 ---
 
-## 🧒 Explain Like I'm 5: The Sneaky Magician
+## 📍 Level 100 — The Napkin Sketch: The Sneaky Magician
 
 Imagine a sneaky magician hides a gold coin in one of **1,000 closed boxes**:
 - If you use a predictable, deterministic rule (like *"I always check Box 1, then Box 2..."*), the magician watches your eyes and moves the coin to the very last box you check. You do **1,000 checks**.
@@ -24,7 +24,27 @@ By introducing random coin tosses into the code, we strip the adversary of their
 
 ---
 
-## 🟢 Undergraduate Foundation: Las Vegas vs Monte Carlo
+## 🎯 Level 200 — Street Fundamentals: Las Vegas vs Monte Carlo
+
+> 🧠 **Mental Model Card**
+> - **Las Vegas Algorithm:** Always gives the 100% correct answer; running time is a random variable.
+>   - Example: Randomized QuickSort. You always get a perfectly sorted array; you just flip coins to dodge $O(N^2)$ pivots.
+> - **Monte Carlo Algorithm:** Always runs in deterministic time; correctness has a small probability of error $\le \epsilon$.
+>   - Example: Miller-Rabin Primality Test, Bloom Filter. Fast, but might occasionally say "Probably Prime" with $1/4^k$ error.
+> - **The Amplification Weapon:** If a Monte Carlo algorithm has error probability $1/2$, repeating it $k$ times independently shrinks the error to $(1/2)^k$. For $k = 100$, $(1/2)^{100} \approx 10^{-30}$ (lower than the probability of cosmic rays flipping a bit in your CPU).
+
+### The Street Decision Matrix
+
+| Dimension | Las Vegas | Monte Carlo |
+|---|---|---|
+| **Correctness** | 100% Guaranteed | Probabilistic ($1 - \epsilon$) |
+| **Runtime** | Probabilistic (Expected $O(T)$) | 100% Deterministic ($O(T)$) |
+| **Canonical Example** | Randomized QuickSort, Treaps, Skip Lists | Bloom Filter, HyperLogLog, Miller-Rabin |
+| **Production Use Case** | When incorrect answers corrupt data | When memory/speed is vital and 0.01% error is tolerable |
+
+---
+
+## ⚙️ Level 300 — Working Professional: Las Vegas vs Monte Carlo
 
 Every randomized algorithm belongs to one of two fundamental families:
 
@@ -77,7 +97,7 @@ Suppose a Monte Carlo algorithm has an error probability $\le 1/2$ (e.g., it rep
 
 ---
 
-## 🟡 Master's Deep-Dive: The Mathematical Toolkit
+## 🔬 Level 400 — Staff & Senior Engineer: The Mathematical Toolkit
 
 How do we prove that a randomized algorithm will not blow up in production? We use the **Three Classical Probability Inequalities**.
 
@@ -165,7 +185,7 @@ Level 0: [HEAD] ─►5─►7─►10─►15─►20─►22─►25─►30�
 
 ---
 
-## 🔴 PhD Horizon: Karger's Min-Cut & Derandomization
+## 🎓 Level 500 — Researcher's Corner: Karger's Min-Cut & Derandomization
 
 <details>
 <summary><strong>Expand PhD Deep-Dive: Karger's Min-Cut & The Derandomization Hypothesis</strong></summary>

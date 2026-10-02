@@ -4,7 +4,7 @@
 
 ---
 
-## 🧒 Explain Like I'm 5: The Corporate Delegation Tree
+## 📍 Level 100 — The Napkin Sketch: The Corporate Delegation Tree
 
 Imagine a CEO at a massive company with a project containing 1,000 tasks:
 - The CEO cuts the project into **2 sub-projects of 500 tasks** and delegates them to **2 Vice Presidents**.
@@ -51,7 +51,32 @@ This is the **Master Theorem**.
 
 ---
 
-## 🟢 Undergraduate Foundation: The Big Three Methods
+## 🎯 Level 200 — Street Fundamentals: The Master Theorem Cookbook
+
+> 🧠 **Mental Model Card**
+> - **The Standard Recurrence:** $T(n) = a T(n/b) + f(n)$
+>   - $a$ = number of subproblems (branches created at each step).
+>   - $b$ = factor by which input size shrinks.
+>   - $f(n) = O(n^d)$ = work done to split and merge subproblems at the current level.
+> - **The Critical Exponent:** $c_{\text{crit}} = \log_b a$. This measures leaf growth rate: there are $n^{\log_b a}$ base cases at the bottom of the tree.
+> - **Who Wins? Compare $d$ vs $\log_b a$**:
+>   - **Case 1 ($d < \log_b a$):** Leaves win! $T(n) = \Theta(n^{\log_b a})$.
+>   - **Case 2 ($d = \log_b a$):** Tie! Every level does equal work. $T(n) = \Theta(n^d \log n)$.
+>   - **Case 3 ($d > \log_b a$):** Root wins! Top level dominates. $T(n) = \Theta(n^d)$.
+
+### The 10-Second Interview Reference Table
+
+| Algorithm | Recurrence | $a$ | $b$ | $f(n)$ | $\log_b a$ vs $d$ | Case | Final Tight Bound $\Theta$ |
+|---|---|:---:|:---:|:---:|:---:|:---:|---|
+| **Binary Search** | $T(n) = T(n/2) + O(1)$ | 1 | 2 | $n^0$ | $\log_2 1 = 0 = d$ | Case 2 | $\Theta(\log n)$ |
+| **Merge Sort** | $T(n) = 2T(n/2) + O(n)$ | 2 | 2 | $n^1$ | $\log_2 2 = 1 = d$ | Case 2 | $\Theta(n \log n)$ |
+| **Karatsuba Multiplication** | $T(n) = 3T(n/2) + O(n)$ | 3 | 2 | $n^1$ | $\log_2 3 \approx 1.585 > 1$ | Case 1 | $\Theta(n^{1.585})$ |
+| **Strassen Matrix Mult** | $T(n) = 7T(n/2) + O(n^2)$ | 7 | 2 | $n^2$ | $\log_2 7 \approx 2.807 > 2$ | Case 1 | $\Theta(n^{2.807})$ |
+| **Tree Traversal (Full)** | $T(n) = 2T(n/2) + O(1)$ | 2 | 2 | $n^0$ | $\log_2 2 = 1 > 0$ | Case 1 | $\Theta(n)$ |
+
+---
+
+## ⚙️ Level 300 — Working Professional: The Big Three Methods
 
 A divide-and-conquer recurrence takes the canonical form:
 
@@ -127,7 +152,7 @@ Use this when you need an ironclad mathematical proof:
 
 ---
 
-## 🟡 Master's Deep-Dive: Gaps & The Akra-Bazzi Theorem
+## 🔬 Level 400 — Staff & Senior Engineer: Gaps & The Akra-Bazzi Theorem
 
 ### 1. The Master Theorem Gaps
 The Master Theorem does not cover every polynomial recurrence. There are two common traps:
@@ -178,7 +203,7 @@ $$T(n) = \sum_{i=1}^k a_i T(b_i n) + g(n)$$
 
 ---
 
-## 🔴 PhD Horizon: Non-Smooth Divide-and-Conquer
+## 🎓 Level 500 — Researcher's Corner: Non-Smooth Divide-and-Conquer
 
 <details>
 <summary><strong>Expand PhD Deep-Dive: Roura's Continuous Master Theorem</strong></summary>

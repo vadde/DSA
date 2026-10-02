@@ -4,7 +4,7 @@
 
 ---
 
-## 🧒 Explain Like I'm 5: The 20 Questions Game
+## 📍 Level 100 — The Napkin Sketch: The 20 Questions Game
 
 Imagine you are playing "20 Questions":
 - Your friend thinks of an animal out of $1,000,000$ possible species.
@@ -26,7 +26,26 @@ A **Lower Bound** is not a complaint about your code. It is an immutable law of 
 
 ---
 
-## 🟢 Undergraduate Foundation: The Decision Tree Model
+## 🎯 Level 200 — Street Fundamentals: The 3 Information Barriers
+
+> 🧠 **Mental Model Card**
+> - **Upper Bound vs Lower Bound:** An upper bound ($O$) belongs to an *algorithm* ("My code sorts in $O(N \log N)$"). A lower bound ($\Omega$) belongs to the *problem itself* ("No comparison algorithm in the universe can ever sort in less than $\Omega(N \log N)$").
+> - **The 20-Questions Intuition:** Each comparison `a < b` returns a binary answer (Yes/No), yielding at most 1 bit of information. If a problem has $K$ possible answers, you *must* ask at least $\lceil \log_2 K \rceil$ questions.
+> - **How to Beat a Lower Bound:** You don't violate math; you change the computation model! (e.g. use Counting Sort with integer memory addressing instead of pairwise comparisons).
+
+### Street Lower Bounds Cheat Sheet
+
+| Problem | Computational Model | Lower Bound | Optimal Algorithm Achieving It | How to "Cheat" the Bound |
+|---|---|:---:|---|---|
+| **General Sorting** | Comparison Tree | $\Omega(N \log N)$ | MergeSort, HeapSort | Counting / Radix Sort: $O(N)$ (Word RAM) |
+| **Search in Unsorted Array** | Comparison / Probe | $\Omega(N)$ | Linear Search | Hash Table: $O(1)$ or Pre-sort: $O(\log N)$ |
+| **Search in Sorted Array** | Comparison Tree | $\Omega(\log N)$ | Binary Search | Direct array index: $O(1)$ |
+| **Find Min and Max** | Comparison Tree | $\lceil 3N/2 \rceil - 2$ | Pairwise Tournament | $2N - 2$ naive scan |
+| **Element Distinctness** | Algebraic Computation Tree | $\Omega(N \log N)$ | Sort + adjacent scan | Hash Set: $O(N)$ average |
+
+---
+
+## ⚙️ Level 300 — Working Professional: The Decision Tree Model
 
 ### 1. Algorithm Upper Bound vs Problem Lower Bound
 Do not confuse these two fundamentally different concepts:
@@ -90,7 +109,7 @@ If $\Omega(n \log n)$ is a mathematical law, how do **Counting Sort**, **Radix S
 
 ---
 
-## 🟡 Master's Deep-Dive: Adversary Arguments
+## 🔬 Level 400 — Staff & Senior Engineer: Adversary Arguments
 
 How do you prove a lower bound when the problem doesn't easily reduce to permutations? **You play against a malicious Adversary.**
 
@@ -146,7 +165,7 @@ Given $n$ real numbers, are any two elements equal?
 
 ---
 
-## 🔴 PhD Horizon: The Cell Probe Model & Communication Complexity
+## 🎓 Level 500 — Researcher's Corner: The Cell Probe Model & Communication Complexity
 
 <details>
 <summary><strong>Expand PhD Deep-Dive: Cell Probe Model & Communication Complexity</strong></summary>

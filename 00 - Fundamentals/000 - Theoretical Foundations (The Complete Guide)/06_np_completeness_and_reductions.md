@@ -4,7 +4,7 @@
 
 ---
 
-## 🧒 Explain Like I'm 5: The Universal Language
+## 📍 Level 100 — The Napkin Sketch: The Universal Language
 
 Imagine you run a library containing 1,000 ancient locked puzzle boxes from 1,000 different civilizations:
 - An Egyptian lock, a Mayan lock, a Viking lock, a Babylonian lock...
@@ -31,7 +31,37 @@ This is **$NP$-Completeness**. The "Roman Padlock" is Boolean Satisfiability (SA
 
 ---
 
-## 🟢 Undergraduate Foundation: Reductions & Cook-Levin
+## 🎯 Level 200 — Street Fundamentals: The Converter Box & Reduction Recipe
+
+> 🧠 **Mental Model Card**
+> - **The Reduction Principle ($A \le_P B$):** "Problem $A$ reduces to Problem $B$ in polynomial time."
+>   - Meaning: Problem $B$ is *at least as hard* as Problem $A$. If you have a magic solver for $B$, you can solve $A$ by transforming inputs.
+> - **The Direction Rule (Never Get Backwards!):**
+>   - To prove $B$ is Hard: Reduce a **KNOWN HARD problem** to your problem ($3\text{-SAT} \le_P B$).
+>   - To solve $A$ with existing code: Reduce your problem to a **KNOWN EASY problem** ($A \le_P \text{Max-Flow}$).
+> - **The 4 Canonical Interview NP-Complete Families:**
+>   1. Satisfiability (3-SAT)
+>   2. Graph Cover/Pack (Vertex Cover, Independent Set, Clique)
+>   3. Sequencing/Tour (Hamiltonian Path, Traveling Salesperson)
+>   4. Partition/Knapsack (Subset Sum, Partition, 0/1 Knapsack)
+
+### Street Reduction Recipe
+
+```mermaid
+flowchart LR
+    InA["Input to Problem A\n(e.g., 3-SAT Formula)"] -->|"Poly-Time Transform f"| InB["Input to Problem B\n(e.g., Graph G, k)"]
+    InB --> SolverB["Black-Box Solver\nfor Problem B"]
+    SolverB --> OutB["Answer to B\n(YES / NO)"]
+    OutB --> OutA["Answer to A\n(YES / NO)"]
+
+    style InA fill:#111936,color:#e2e8f0,stroke:#3b82f6,stroke-width:2px
+    style InB fill:#162521,color:#e2e8f0,stroke:#10b981,stroke-width:2px
+    style SolverB fill:#2a1829,color:#e2e8f0,stroke:#ec4899,stroke-width:2px
+```
+
+---
+
+## ⚙️ Level 300 — Working Professional: Reductions & Cook-Levin
 
 ### 1. Polynomial-Time Reductions ($A \le_P B$)
 Let $A$ and $B$ be two decision problems (languages).
@@ -112,7 +142,7 @@ When an interviewer or professor asks you to prove a new problem $X$ is $NP$-com
 
 ---
 
-## 🟡 Master's Deep-Dive: Karp's 21 NP-Complete Web
+## 🔬 Level 400 — Staff & Senior Engineer: Karp's 21 NP-Complete Web
 
 In 1972, Richard Karp published his landmark paper showing that 21 fundamental problems across graph theory, logic, routing, and set packing were all $NP$-complete via chain reductions.
 
@@ -209,7 +239,7 @@ Why can we solve 0/1 Knapsack in $O(N \cdot W)$ using Dynamic Programming (Patte
 
 ---
 
-## 🔴 PhD Horizon: Ladner's Theorem & The Intermediate Realm
+## 🎓 Level 500 — Researcher's Corner: Ladner's Theorem & The Intermediate Realm
 
 <details>
 <summary><strong>Expand PhD Deep-Dive: Ladner's Theorem & NP-Intermediate Problems</strong></summary>

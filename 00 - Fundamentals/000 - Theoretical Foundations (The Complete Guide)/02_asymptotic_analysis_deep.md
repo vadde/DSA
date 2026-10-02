@@ -4,7 +4,7 @@
 
 ---
 
-## 🧒 Explain Like I'm 5: The Grand Animal Race
+## 📍 Level 100 — The Napkin Sketch: The Grand Animal Race
 
 Imagine a race across the Sahara desert between different creatures:
 - 🐢 **Tortoise**: Walks at a steady 1 meter per minute, carrying a rock.
@@ -20,7 +20,30 @@ Race to the Moon:     🚀 Rocket obliterates the Racehorse before the horse lea
 
 ---
 
-## 🟢 Undergraduate Foundation: The Big-Five Rigorous Definitions
+## 🎯 Level 200 — Street Fundamentals: The 5 Bounds & The Growth Ladder
+
+> 🧠 **Mental Model Card**
+> - **$O(g(n))$ [Upper Bound]:** "Will never run worse than $C \cdot g(n)$." (Guaranteed ceiling)
+> - **$\Omega(g(n))$ [Lower Bound]:** "Will never run better than $c \cdot g(n)$." (Guaranteed floor)
+> - **$\Theta(g(n))$ [Tight Bound]:** "Trapped between ceiling and floor." The exact asymptotic behavior!
+> - **$o(g(n))$ / $\omega(g(n))$ [Strict]:** Strict inequality — strictly grows slower or faster.
+> - **The $10^8$ Operations Rule:** A standard CPU core runs roughly $10^8$ operations per second. If your algorithm takes $> 10^8$ operations for input size $N$, it will Time Out (TLE)!
+
+### The Universal Growth Hierarchy & Input Size Limits
+
+| Growth Class | Name | Operations for $N = 10^5$ | Max Safe $N$ for 1s Limit | Canonical Interview Example |
+|---|---|---|---|---|
+| **$O(1)$** | Constant | 1 | $10^{18}+$ | Hash map lookup, stack pop |
+| **$O(\log N)$** | Logarithmic | $\approx 17$ | $10^{18}+$ | Binary search, binary exponentiation |
+| **$O(N)$** | Linear | $10^5$ | $10^7$ | Two Pointers, Sliding Window, Prefix Sum |
+| **$O(N \log N)$** | Linearithmic | $\approx 1.7 \times 10^6$ | $10^5$ to $10^6$ | MergeSort, QuickSort, HeapSort |
+| **$O(N^2)$** | Quadratic | $10^{10}$ 💥 (TLE!) | $10^3$ to $5 \times 10^3$ | Nested loops, Bubble sort, Floyd-Warshall |
+| **$O(2^N)$** | Exponential | $2^{100000}$ 💥💥 | $N \le 20$ | Subset generation, Bitmask DP |
+| **$O(N!)$** | Factorial | Heat death of Universe | $N \le 11$ | Permutations, brute-force TSP |
+
+---
+
+## ⚙️ Level 300 — Working Professional: The Big-Five Rigorous Definitions
 
 Many programmers carelessly say *"The algorithm is Big-O of N"* when they actually mean **Theta ($\Theta$)**. In formal computer science and staff-level design, precision matters.
 
@@ -105,7 +128,7 @@ Never confuse **Cases** (which input distribution you are analyzing) with **Boun
 
 ---
 
-## 🟡 Master's Deep-Dive: When Big-O Lies in Production
+## 🔬 Level 400 — Staff & Senior Engineer: When Big-O Lies in Production
 
 ### 1. The Hardware Reality: Cache Lines & Memory Pyramids
 Big-O assumes the **Uniform Cost RAM Model**: accessing *any* memory address takes $O(1)$ time.  
@@ -164,7 +187,7 @@ Real-world datasets are rarely completely random. Often they are partially sorte
 
 ---
 
-## 🔴 PhD Horizon: Fine-Grained Complexity & The Hardness Conjectures
+## 🎓 Level 500 — Researcher's Corner: Fine-Grained Complexity & The Hardness Conjectures
 
 <details>
 <summary><strong>Expand PhD Deep-Dive: Fine-Grained Complexity (SETH & 3SUM)</strong></summary>

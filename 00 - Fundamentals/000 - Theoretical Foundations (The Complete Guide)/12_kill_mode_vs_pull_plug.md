@@ -4,7 +4,7 @@
 
 ---
 
-## 🧒 Explain Like I'm 5: The ER Triage Doctor
+## 📍 Level 100 — The Napkin Sketch: The ER Triage Doctor
 
 Imagine you are the Head Trauma Surgeon in a busy emergency room:
 - **Patient A** has a minor scratch: You hand them a bandage and send them home in 5 seconds ($O(1)$).
@@ -26,7 +26,16 @@ An engineer who tries to write an exact polynomial algorithm for an $NP$-hard pr
 
 ---
 
-## 🟢 Undergraduate Foundation: The Constraint Sizing Table
+## 🎯 Level 200 — Street Fundamentals: The 10-Second Constraint Sizing Rule
+
+> 🧠 **Mental Model Card**
+> - **The $10^8$ Operations Clock:** 1 CPU second $\approx 10^8$ operations.
+> - **Kill Mode Trigger:** When problem is in P (or NP-Hard with $N \le 20$). Write optimal code down to the bare metal.
+> - **Pull the Plug Trigger:** When problem is NP-Hard and $N \ge 100$. Stop hunting for $O(N^2)$ optimal algorithms; switch immediately to Greedy Approximations or Heuristics.
+
+---
+
+## ⚙️ Level 300 — Working Professional: The Constraint Sizing Table
 
 Modern CPU cores execute approximately **$10^8$ basic operations per second** (the standard 1.0-second timeout on LeetCode, Codeforces, and production microservices).
 
@@ -85,7 +94,7 @@ flowchart TD
 
 ---
 
-## 🟡 Master's Deep-Dive: The Two Battle Protocols
+## 🔬 Level 400 — Staff & Senior Engineer: The Two Battle Protocols
 
 ### PROTOCOL A: When to Go Full "KILL MODE"
 

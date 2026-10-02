@@ -4,7 +4,7 @@
 
 ---
 
-## 🧒 Explain Like I'm 5: The GPS Route Guarantee
+## 📍 Level 100 — The Napkin Sketch: The GPS Route Guarantee
 
 Imagine you are driving across a continent and need to visit 20 cities:
 - Finding the *exact single shortest route* down to the centimeter (Traveling Salesperson Problem) would take a supercomputer **10,000 years** of crunching.
@@ -27,7 +27,32 @@ You reach your destination on time. You didn't waste 10,000 years. This is an **
 
 ---
 
-## 🟢 Undergraduate Foundation: The Approximation Ratio
+## 🎯 Level 200 — Street Fundamentals: The Menu of Approximation Guarantees
+
+> 🧠 **Mental Model Card**
+> - **The Trade-Off:** NP-Hard means you cannot get **Optimal + Fast + Universal**.
+>   - Pick any two! Approximation algorithms choose **Fast + Universal** and sacrifice a small fraction of optimality.
+> - **Approximation Ratio $\rho$:**
+>   - For minimization (TSP, Vertex Cover): $\text{Cost} \le \rho \cdot \text{OPT}$ ($\rho > 1$).
+>   - For maximization (Knapsack): $\text{Profit} \ge \alpha \cdot \text{OPT}$ ($\alpha < 1$).
+> - **PTAS vs FPTAS:**
+>   - PTAS: $1 + \epsilon$ approximation in $O(N^{f(1/\epsilon)})$ time (polynomial in $N$, but exponent can blow up).
+>   - FPTAS: $1 + \epsilon$ approximation in $O((N/\epsilon)^k)$ time (polynomial in both $N$ AND $1/\epsilon$ — the gold standard).
+
+### Street Approximation Guarantees Cheat Sheet
+
+| NP-Hard Problem | Fast Approximation Algorithm | Guarantee Ratio $\rho$ | Runtime |
+|---|---|:---:|---|
+| **Vertex Cover** | Greedy Maximal Matching | $2.0 \times \text{OPT}$ | $O(V + E)$ |
+| **Metric TSP** | MST Doubling | $2.0 \times \text{OPT}$ | $O(V^2)$ |
+| **Metric TSP** | Christofides' Algorithm | $1.5 \times \text{OPT}$ | $O(V^3)$ |
+| **Set Cover** | Greedy Frequency Pick | $(\ln N + 1) \times \text{OPT}$ | $O(N \cdot M)$ |
+| **0/1 Knapsack** | Value-Grid Dynamic Programming | $(1 - \epsilon) \times \text{OPT}$ (FPTAS) | $O(N^3 / \epsilon)$ |
+| **General TSP** | None (Inapproximable!) | $\infty$ | Unless P = NP, no poly approx exists! |
+
+---
+
+## ⚙️ Level 300 — Working Professional: The Approximation Ratio
 
 ### 1. Formal Definition of Approximation Ratio
 Let $\Pi$ be an optimization problem (minimization or maximization). An algorithm $A$ is an **$\alpha$-approximation algorithm** if for every instance of size $n$, it runs in **polynomial time** and produces a solution with cost $C$ satisfying:
@@ -118,7 +143,7 @@ For 44 years, Christofides was the world record. (In 2020, Karlin, Klein, and Ov
 
 ---
 
-## 🟡 Master's Deep-Dive: Approximation Schemes (PTAS & FPTAS)
+## 🔬 Level 400 — Staff & Senior Engineer: Approximation Schemes (PTAS & FPTAS)
 
 Not all problems are restricted to fixed constants like $1.5$ or $2$. Some allow you to get **arbitrarily close to the optimum**.
 
@@ -169,7 +194,7 @@ Greedy Set Cover achieves an approximation ratio of $\ln n + 1$.
 
 ---
 
-## 🔴 PhD Horizon: The PCP Theorem & Hardness of Approximation
+## 🎓 Level 500 — Researcher's Corner: The PCP Theorem & Hardness of Approximation
 
 <details>
 <summary><strong>Expand PhD Deep-Dive: The PCP Theorem & The Unique Games Conjecture</strong></summary>

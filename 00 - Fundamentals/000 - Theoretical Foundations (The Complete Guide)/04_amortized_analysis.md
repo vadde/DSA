@@ -4,7 +4,7 @@
 
 ---
 
-## 🧒 Explain Like I'm 5: The Coffee Machine Piggy Bank
+## 📍 Level 100 — The Napkin Sketch: The Coffee Machine Piggy Bank
 
 Imagine you love espresso:
 - Everyday espresso beans and water cost **\$1**.
@@ -43,7 +43,28 @@ This is **Amortized Analysis**. Individual operations lie. Aggregate truth is re
 
 ---
 
-## 🟢 Undergraduate Foundation: The Three Classical Methods
+## 🎯 Level 200 — Street Fundamentals: The 3 Methods & The Credit Card Analogy
+
+> 🧠 **Mental Model Card**
+> - **Amortized != Average:** Average time assumes inputs arrive from a random probability distribution. Amortized time guarantees the average cost over *any* worst-case sequence of operations!
+> - **The Credit Card Principle:** You overcharge cheap operations (e.g. paying \$3 for a \$1 array write) and deposit the extra \$2 into a savings account. When the expensive \$N resize hits, the savings account pays the bill in full.
+> - **The 3 Methods in Plain English:**
+>   - **Aggregate Method:** Total cost of $N$ operations divided by $N$.
+>   - **Banker's (Accounting) Method:** Assign fictitious charges; store prepaid credits on data structure elements.
+>   - **Physicist's (Potential) Method:** A mathematical energy function $\Phi$ measuring "tension" stored in the data structure.
+
+### Street Amortized Analysis Cheat Sheet
+
+| Operation | Worst-Case Single Time | Amortized Time | Why the Difference? |
+|---|:---:|:---:|---|
+| **Dynamic Array `append`** | $O(N)$ (when resizing) | $O(1)$ | Resizing happens exponentially rarely ($1, 2, 4, 8, \dots$). |
+| **Queue via Two Stacks** | $O(N)$ (when flipping) | $O(1)$ | Each element is pushed and popped at most twice in its entire lifetime. |
+| **Binary Counter Increment** | $O(k)$ (flipping all bits) | $O(1)$ | Bit 0 flips every time; bit 1 flips half the time; bit $j$ flips $1/2^j$ of the time. |
+| **Union-Find with Rank + Path Comp** | $O(\log N)$ | $O(\alpha(N))$ | Expensive `find` calls permanently flatten the tree, accelerating all future calls. |
+
+---
+
+## ⚙️ Level 300 — Working Professional: The Three Classical Methods
 
 > **Critical Distinction**: Amortized analysis is **NOT** average-case analysis!  
 > - Average-case analysis relies on probability and assumes an input distribution.
@@ -121,7 +142,7 @@ Total amortized cost is an **upper bound on total actual cost**!
 
 ---
 
-## 🟡 Master's Deep-Dive: Canonical Case Studies
+## 🔬 Level 400 — Staff & Senior Engineer: Canonical Case Studies
 
 ### 1. Dynamic Array Growth Factors: $1.5\times$ vs $2\times$
 Why do C++ (MSVC / FB folly) use $1.5\times$ while GCC and Python use $2\times$?
@@ -171,7 +192,7 @@ When you perform $m$ operations on $n$ elements using **Union by Rank** and **Pa
 
 ---
 
-## 🔴 PhD Horizon: Splay Trees & Dynamic Optimality
+## 🎓 Level 500 — Researcher's Corner: Splay Trees & Dynamic Optimality
 
 <details>
 <summary><strong>Expand PhD Deep-Dive: Splay Trees & The Dynamic Optimality Conjecture</strong></summary>

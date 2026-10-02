@@ -4,7 +4,7 @@
 
 ---
 
-## 🧒 Explain Like I'm 5: The Magic Typewriter
+## 📍 Level 100 — The Napkin Sketch: The Magic Typewriter
 
 Imagine a mechanical typewriter sitting on an infinitely long bench:
 - It has an **endless roll of paper tape** divided into square boxes.
@@ -31,7 +31,25 @@ This typewriter is the **Turing Machine**. Alan Turing proved in 1936 that this 
 
 ---
 
-## 🟢 Undergraduate Foundation: The Architecture of Computation
+## 🎯 Level 200 — Street Fundamentals: The 3 Truths Every Senior Engineer Must Know
+
+> 🧠 **Mental Model Card**
+> - **The Core Truth:** A computer program is just data. You can pass a Python script into another Python script as a text string.
+> - **The Fundamental Limit (Halting Problem):** You can *never* write a static analyzer or test suite that detects whether *every* arbitrary program will terminate or enter an infinite loop.
+> - **The Engineer's Defense:** Because perfect static analysis is mathematically impossible (Rice's Theorem), production systems rely on **Timeouts**, **Deadlines**, and **Circuit Breakers**.
+
+### The Street Cheat Card
+
+| Theoretical Concept | What Academics Call It | What It Means in Production Systems |
+|---|---|---|
+| **Turing Completeness** | Universal Turing Machine | Any language with conditionals, loops, and unbounded memory can compute whatever any other language can. |
+| **Halting Problem** | $A_{TM}$ is Undecidable | Why Kubernetes uses `livenessProbe` and HTTP has `timeout: 30s` — software cannot know if a service is stuck or working. |
+| **Rice's Theorem** | All non-trivial semantic properties are undecidable | Why linters (ESLint, Pylint) and security scanners can only warn with heuristics and false positives, never absolute certainty. |
+| **Decidable vs Recognizable** | Recursive vs Recursively Enumerable | Decidable = guaranteed to finish with Yes/No. Recognizable = if Yes, it will eventually tell you; if No, it might run forever. |
+
+---
+
+## ⚙️ Level 300 — Working Professional: The Architecture of Computation
 
 ### 1. The Formal Definition of a Turing Machine
 Mathematically, a deterministic one-tape Turing Machine (TM) is a 7-tuple:
@@ -124,7 +142,7 @@ Since both cases lead to a logical contradiction, the assumption that `halts` co
 
 ---
 
-## 🟡 Master's Deep-Dive: Rice's Theorem & Reduction
+## 🔬 Level 400 — Staff & Senior Engineer: Rice's Theorem & Reduction
 
 ### 1. Rice's Theorem: The Universal Wall of Static Analysis
 Students often think: *"Okay, halting is undecidable, but surely I can check if a function returns 0, or if it has dead code, or if it sorts an array?"*
@@ -167,7 +185,7 @@ Thus, if $R_P$ existed, we would have solved the Halting Problem. Since the Halt
 
 ---
 
-## 🔴 PhD Horizon: Gödel's Incompleteness & The Arithmetical Hierarchy
+## 🎓 Level 500 — Researcher's Corner: Gödel's Incompleteness & The Arithmetical Hierarchy
 
 <details>
 <summary><strong>Expand PhD Deep-Dive: Formal Incompleteness & Arithmetical Hierarchy</strong></summary>

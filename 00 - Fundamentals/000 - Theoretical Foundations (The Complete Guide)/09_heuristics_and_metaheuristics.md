@@ -4,7 +4,7 @@
 
 ---
 
-## 🧒 Explain Like I'm 5: Climbing in the Fog
+## 📍 Level 100 — The Napkin Sketch: Climbing in the Fog
 
 Imagine you are dropped by helicopter into a mountain range covered in **dense fog**:
 - You cannot see more than 1 meter in front of you.
@@ -35,7 +35,31 @@ To find the true global peak, you need **Metaheuristics**:
 
 ---
 
-## 🟢 Undergraduate Foundation: Local Search & The Traps
+## 🎯 Level 200 — Street Fundamentals: The 4 Escape Strategies
+
+> 🧠 **Mental Model Card**
+> - **When Math Gives Up:** When a problem is NP-Hard and $N = 10,000$, formal proofs and approximation schemes may be too slow or nonexistent. Metaheuristics find high-quality solutions within a tight time budget (e.g. 500ms).
+> - **The Core Dilemma: Exploration vs Exploitation:**
+>   - **Exploitation (Greedy/Hill Climbing):** Climb uphill toward the nearest peak. Ultra-fast, but gets trapped in the first local optimum.
+>   - **Exploration (Random Walks/Mutation):** Jump randomly across the landscape to discover new continents of solutions.
+> - **The 4 Metaheuristic Strategies:**
+>   1. **Hill Climbing:** Take best uphill step; stop when all neighbors are worse.
+>   2. **Simulated Annealing:** Accept worse moves with probability $e^{-\Delta E / T}$; cool down over time.
+>   3. **Genetic Algorithms:** Breed pairs of high-fitness solutions; mutate genes randomly.
+>   4. **Tabu Search:** Keep a short-term memory list of recently visited states to forbid cycling.
+
+### The Street Comparison Matrix
+
+| Metaheuristic | Inspiration | How It Escapes Local Optima | Memory Overhead | Tuning Complexity |
+|---|---|---|:---:|:---:|
+| **Hill Climbing** | Blind hiker | Restarts from random points | $O(1)$ | None |
+| **Simulated Annealing** | Metallurgy cooling | Accepts downhill moves when hot | $O(1)$ | Cooling schedule ($T_0, \alpha$) |
+| **Genetic Algorithms** | Biological evolution | Recombination + mutation across population | $O(\text{PopSize} \cdot N)$ | Population size, mutation rate |
+| **Tabu Search** | Cognitive psychology | Forbids recent moves via tabu tenure list | $O(\text{Tenure} \cdot N)$ | Tabu list tenure length |
+
+---
+
+## ⚙️ Level 300 — Working Professional: Local Search & The Traps
 
 ### 1. Constructive Heuristics vs Local Search
 Every heuristic falls into one of two operational modes:
@@ -66,7 +90,7 @@ Fitness
 
 ---
 
-## 🟡 Master's Deep-Dive: The Big Metaheuristic Engines
+## 🔬 Level 400 — Staff & Senior Engineer: The Big Metaheuristic Engines
 
 ### 1. Simulated Annealing (Kirkpatrick, Gelatt, Vecchi, 1983)
 Inspired by metallurgy: heating metal to high temperatures and cooling it slowly (**annealing**) allows atoms to settle into a minimum-energy, defect-free crystalline lattice. Rapid cooling (**quenching**) produces brittle, irregular structures.
@@ -154,7 +178,7 @@ $$\sum_{f} P(y \mid f, m, A_1) = \sum_{f} P(y \mid f, m, A_2)$$
 
 ---
 
-## 🔴 PhD Horizon: Fitness Landscapes & MCMC Convergence
+## 🎓 Level 500 — Researcher's Corner: Fitness Landscapes & MCMC Convergence
 
 <details>
 <summary><strong>Expand PhD Deep-Dive: Markov Chain Monte Carlo & Fitness Landscapes</strong></summary>

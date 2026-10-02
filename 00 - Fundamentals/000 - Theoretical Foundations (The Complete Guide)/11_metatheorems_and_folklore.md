@@ -4,7 +4,7 @@
 
 ---
 
-## 🧒 Explain Like I'm 5: The Unwritten Laws of the Universe
+## 📍 Level 100 — The Napkin Sketch: The Unwritten Laws of the Universe
 
 Just as the physical world has gravity, the speed of light, and the laws of thermodynamics, computer science has **immutable metatheorems**:
 - You cannot build a perpetual motion machine in physics.
@@ -27,7 +27,28 @@ These are the **unwritten laws** of engineering. When you know them, you never w
 
 ---
 
-## 🟢 Undergraduate Foundation: The Core Systems & Proof Laws
+## 🎯 Level 200 — Street Fundamentals: The 6 Laws Every Staff Engineer Uses
+
+> 🧠 **Mental Model Card**
+> - **Amdahl's Law:** Throwing 1,000 CPU cores at an algorithm with a 5% serial bottleneck yields at most a 20x speedup ($1 / 0.05 = 20$). The sequential bottleneck caps parallel scalability.
+> - **Little's Law ($L = \lambda W$):** The number of concurrent requests in a system equals arrival rate $\times$ average latency. Sizing thread pools, connection pools, and microservice buffers.
+> - **Pigeonhole Principle:** Putting $N+1$ items into $N$ slots guarantees at least one slot holds $\ge 2$ items. Cycle detection in linked lists and hash collisions.
+> - **CAP Theorem:** In a distributed network with partitions, you can choose Consistency OR Availability, never both.
+
+### The 6 Laws Cheat Sheet
+
+| Law / Theorem | Core Formula / Rule | Staff Engineer Takeaway |
+|---|---|---|
+| **Amdahl's Law** | $S(s) = \frac{1}{(1-p) + p/s} \le \frac{1}{1-p}$ | Optimize the serial portion first before adding GPU/multithreading. |
+| **Little's Law** | $L = \lambda \cdot W$ | Sizing Kubernetes pods: 1,000 req/sec $\times$ 50ms latency $= 50$ in-flight requests. |
+| **Pigeonhole Principle** | $\lceil N / K \rceil$ items in 1 bucket | Floyd's cycle finding, duplicate detection in range $[1, N]$. |
+| **CAP & PACELC** | Consistency vs Availability during Partition | DynamoDB (AP) vs CockroachDB (CP). Latency vs Consistency when normal. |
+| **Exponential Time Hypothesis** | 3-SAT requires $2^{cn}$ time | Don't hunt for $2^{o(n)}$ algorithms for NP-complete problems. |
+| **Curse of Dimensionality** | Sphere volume collapses to boundary | High-dimensional vector search requires HNSW / approximate nearest neighbor. |
+
+---
+
+## ⚙️ Level 300 — Working Professional: The Core Systems & Proof Laws
 
 ### 1. Amdahl's Law vs Gustafson's Law
 How much faster does your algorithm run when you throw more CPU cores at it?
@@ -115,7 +136,7 @@ The CAP theorem only describes behavior during rare network partitions. PACELC e
 
 ---
 
-## 🟡 Master's Deep-Dive: Hypotheses & Discrete Physics
+## 🔬 Level 400 — Staff & Senior Engineer: Hypotheses & Discrete Physics
 
 ### 1. The Exponential Time Hypothesis (ETH)
 Formulated by Impagliazzo and Paturi (2001):
@@ -151,7 +172,7 @@ When algorithms manipulate data in high-dimensional vector spaces (e.g., embeddi
 
 ---
 
-## 🔴 PhD Horizon: Courcelle's Theorem & Graph Minors
+## 🎓 Level 500 — Researcher's Corner: Courcelle's Theorem & Graph Minors
 
 <details>
 <summary><strong>Expand PhD Deep-Dive: Courcelle's Theorem & Robertson-Seymour</strong></summary>

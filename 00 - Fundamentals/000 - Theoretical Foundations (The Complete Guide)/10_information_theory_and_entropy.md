@@ -5,7 +5,7 @@
 
 ---
 
-## 🧒 Explain Like I'm 5: The Weather in the Sahara
+## 📍 Level 100 — The Napkin Sketch: The Weather in the Sahara
 
 Imagine your friend calls you every morning from two different places:
 - **Location 1: The Sahara Desert**.  
@@ -28,7 +28,28 @@ flowchart LR
 
 ---
 
-## 🟢 Undergraduate Foundation: Shannon Entropy
+## 🎯 Level 200 — Street Fundamentals: Entropy = Average Surprise
+
+> 🧠 **Mental Model Card**
+> - **Entropy is Surprise:** If a message tells you *"The sun rose this morning"*, the surprise is 0 $\implies$ 0 bits of information. If a message tells you *"Snowing in Miami in July!"*, surprise is maximum $\implies$ lots of bits.
+> - **Formula in Plain English:** $H(X) = \sum p(x) \log_2 \frac{1}{p(x)}$.
+>   - Rare event ($p = 0.001$) $\implies \log_2(1000) \approx 10$ bits of information.
+>   - Certain event ($p = 1.0$) $\implies \log_2(1) = 0$ bits of information.
+> - **The Compression Limit:** You can *never* compress data into fewer bits than its Shannon Entropy $H(X)$ without losing information.
+> - **The Sorting Lower Bound:** Sorting an unsorted array of $N$ items requires distinguishing between $N!$ equally likely outcomes. Entropy $= \log_2(N!) \approx N \log_2 N$. That is the true physical reason why comparison sorting is $\Omega(N \log N)$!
+
+### Street Information Theory Cheat Sheet
+
+| Concept | Meaning | Engineering Application |
+|---|---|---|
+| **Shannon Entropy $H(X)$** | Theoretical minimum average bits per symbol | gzip, zstd, Brotli compression limits |
+| **Huffman Coding** | Prefix-free variable-length binary tree | JPEG, MP3, Gzip deflation phase |
+| **Kolmogorov Complexity** | Length of shortest program that outputs string | Software complexity, Occam's Razor |
+| **Information Limit on Sorting** | $\lceil \log_2(N!) \rceil \approx N \log_2 N$ bits | Proof that comparison sorting cannot beat $\Omega(N \log N)$ |
+
+---
+
+## ⚙️ Level 300 — Working Professional: Shannon Entropy
 
 In 1948, Claude Shannon published *"A Mathematical Theory of Communication"*, single-handedly founding the digital information age.
 
@@ -94,7 +115,7 @@ $$H(X) \le L_{\text{Huffman}} < H(X) + 1$$
 
 ---
 
-## 🟡 Master's Deep-Dive: Information Theory in Data Structures
+## 🔬 Level 400 — Staff & Senior Engineer: Information Theory in Data Structures
 
 ### 1. The Information-Theoretic Sorting Bound: The Real Reason for $\Omega(n \log n)$
 Why does comparison sorting require $n \log n$ comparisons?
@@ -130,7 +151,7 @@ Consider two strings of 10,000 digits:
 
 ---
 
-## 🔴 PhD Horizon: The Incompressibility Method in DSA Proofs
+## 🎓 Level 500 — Researcher's Corner: The Incompressibility Method in DSA Proofs
 
 <details>
 <summary><strong>Expand PhD Deep-Dive: The Incompressibility Method & Shellsort</strong></summary>
