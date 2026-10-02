@@ -22,6 +22,9 @@ Race to the Moon:     🚀 Rocket obliterates the Racehorse before the horse lea
 
 ## 🎯 Level 200 — Street Fundamentals: The 5 Bounds & The Growth Ladder
 
+> 🧠 **The Permanent Memory Mantra**  
+> *"Big-O measures the upper ceiling on the worst-case curve, not the average; hardware cache lines and constant factors eat Big-O for breakfast when $N$ fits in RAM."*
+
 > 🧠 **Mental Model Card**
 > - **$O(g(n))$ [Upper Bound]:** "Will never run worse than $C \cdot g(n)$." (Guaranteed ceiling)
 > - **$\Omega(g(n))$ [Lower Bound]:** "Will never run better than $c \cdot g(n)$." (Guaranteed floor)
@@ -40,6 +43,25 @@ Race to the Moon:     🚀 Rocket obliterates the Racehorse before the horse lea
 | **$O(N^2)$** | Quadratic | $10^{10}$ 💥 (TLE!) | $10^3$ to $5 \times 10^3$ | Nested loops, Bubble sort, Floyd-Warshall |
 | **$O(2^N)$** | Exponential | $2^{100000}$ 💥💥 | $N \le 20$ | Subset generation, Bitmask DP |
 | **$O(N!)$** | Factorial | Heat death of Universe | $N \le 11$ | Permutations, brute-force TSP |
+
+---
+
+### 🎯 The FAANG Bar-Raiser Squeeze Box
+
+When you give the textbook Big-O answer, Principal & Bar-Raiser interviewers will squeeze you with these three traps:
+
+1. **The Identical Keys QuickSort Catastrophe**:
+   - *The Trap*: "You wrote QuickSort and said it's $O(N \log N)$. What happens if every element in the array is identical: `[7, 7, 7, ..., 7]`?"
+   - *The Flaw*: Naive Lomuto partitioning puts all equals on one side $\implies$ recursion depth degrades to $N$, triggering $O(N^2)$ TLE!
+   - *The Staff Defense*: Switch to Hoare partitioning or Dutch National Flag 3-Way Partitioning (see [`01 - Two Pointers`](../../01%20-%20Two%20Pointers/theory.md)), which groups identical elements in $O(N)$ time and achieves $O(N)$ best-case.
+2. **The Cross-Boundary Big-O Fallacy**:
+   - *The Trap*: "Which is faster: an $O(1)$ seek on an NVMe SSD or an $O(N)$ sequential scan through 10,000 integers in L1 cache?"
+   - *The Flaw*: Assuming $O(1)$ is always faster than $O(N)$.
+   - *The Staff Defense*: Big-O is strictly valid within a **uniform memory tier**. An SSD page seek takes $\approx 20,000\text{ ns}$; scanning 10,000 integers in contiguous RAM takes $\approx 1,500\text{ ns}$ due to SIMD and hardware prefetching. The $O(N)$ RAM scan is over **$10\times$ faster**!
+3. **The False Tight-Bound Assertion**:
+   - *The Trap*: "Is hash map lookup $O(1)$?"
+   - *The Flaw*: Saying "Yes, it is $O(1)$."
+   - *The Staff Defense*: "It is **average-case** $O(1)$. Under worst-case adversarial input (hash collision attack), it degrades to $\Theta(N)$ (or $\Theta(\log N)$ in Java 8+ TreeMap buckets). In mission-critical latency SLAs, we use SipHash or balanced trees ([`29 - Ordered Set`](../../29%20-%20Ordered%20Set/theory.md))."
 
 ---
 
@@ -272,11 +294,13 @@ if __name__ == "__main__":
 
 ---
 
-## 🔗 Connections to Coding Patterns
+## 🔗 Connections to Coding Patterns & Data Structures
 
-- **Pattern 02: Two Pointers**: Works in $O(N)$ time with $O(1)$ auxiliary space and sequential index increments — maximizes cache line utilization.
-- **Pattern 10: Hash Maps**: Average-case $O(1)$ lookup, but worst-case $\Theta(N)$ under hash collisions. In latency-critical systems, worst-case $\Theta(\log N)$ balanced trees (Pattern 29: Ordered Set) are preferred over hash maps.
-- **Pattern 35: Linear Sorting Algorithm**: Radix and Counting sort achieve $O(N)$ by operating in the non-comparison model, circumventing the $\Omega(N \log N)$ comparison barrier.
+- [**`001 - Array and String`**](../001%20-%20Array%20and%20String/dynamic_array.py) (`DynamicArray`): Contiguous memory model, maximizing 64-byte L1 cache-line spatial locality and branch prefetching.
+- [**`004 - Sorting Algorithms`**](../004%20-%20Sorting%20Algorithms/sorting.py) (`quick_sort`, `merge_sort`): Demonstrates the crossover point where constant factors dictate when to switch from QuickSort to InsertionSort for $N < 16$.
+- [**`Pattern 01: Two Pointers`**](../../01%20-%20Two%20Pointers/theory.md): Achieves optimal $\Theta(N)$ time with $O(1)$ auxiliary space and sequential memory traversal.
+- [**`Pattern 10: Hash Maps`**](../../10%20-%20Hash%20Maps/theory.md): Average-case $O(1)$ lookup, but worst-case $\Theta(N)$ under hash collisions. In latency-critical systems, worst-case $\Theta(\log N)$ balanced trees ([`Pattern 29: Ordered Set`](../../29%20-%20Ordered%20Set/theory.md)) are preferred over hash maps.
+- [**`Pattern 35: Linear Sorting Algorithm`**](../../35%20-%20Linear%20Sorting%20Algorithm/theory.md): Radix and Counting sort achieve $O(N)$ by operating in the non-comparison model, circumventing the $\Omega(N \log N)$ comparison barrier.
 
 ---
 

@@ -53,6 +53,9 @@ This is the **Master Theorem**.
 
 ## 🎯 Level 200 — Street Fundamentals: The Master Theorem Cookbook
 
+> 🧠 **The Permanent Memory Mantra**  
+> *"Master Theorem is a tug-of-war between the root and the leaves: if leaf branching outpaces work reduction, leaves win (Case 1); if splitting work dwarfs leaf growth, the root wins (Case 3); if balanced, multiply by tree height $\log n$ (Case 2)."*
+
 > 🧠 **Mental Model Card**
 > - **The Standard Recurrence:** $T(n) = a T(n/b) + f(n)$
 >   - $a$ = number of subproblems (branches created at each step).
@@ -73,6 +76,23 @@ This is the **Master Theorem**.
 | **Karatsuba Multiplication** | $T(n) = 3T(n/2) + O(n)$ | 3 | 2 | $n^1$ | $\log_2 3 \approx 1.585 > 1$ | Case 1 | $\Theta(n^{1.585})$ |
 | **Strassen Matrix Mult** | $T(n) = 7T(n/2) + O(n^2)$ | 7 | 2 | $n^2$ | $\log_2 7 \approx 2.807 > 2$ | Case 1 | $\Theta(n^{2.807})$ |
 | **Tree Traversal (Full)** | $T(n) = 2T(n/2) + O(1)$ | 2 | 2 | $n^0$ | $\log_2 2 = 1 > 0$ | Case 1 | $\Theta(n)$ |
+
+---
+
+### 🎯 The FAANG Bar-Raiser Squeeze Box
+
+1. **The Non-Polynomial Gap Trap**:
+   - *The Trap*: "Solve $T(n) = 2T(n/2) + \frac{n}{\log n}$. Which Master Theorem case applies?"
+   - *The Flaw*: Candidate picks Case 1 because $\frac{n}{\log n} < n$, or Case 2 because the degree is 'roughly 1'.
+   - *The Staff Defense*: "Neither! The Master Theorem **fails** here. Case 1 requires $f(n) = O(n^{1-\epsilon})$ for some $\epsilon > 0$. But $\frac{n}{\log n}$ is only logarithmically smaller, not polynomially smaller. We sum the levels directly: $\sum_{i=0}^{\log n} \frac{n}{\log(n/2^i)} \implies \Theta(n \log \log n)$."
+2. **The Asymmetric Subproblem Trap**:
+   - *The Trap*: "In Quickselect with uneven partitioning, what is the runtime of $T(n) = T(n/3) + T(2n/3) + O(n)$?"
+   - *The Flaw*: Attempting to average $b = 1.5$ and applying standard Master Theorem.
+   - *The Staff Defense*: "Master Theorem requires equal subproblem sizes. For asymmetric splits, we use the **Akra-Bazzi method**: find $p$ such that $(1/3)^p + (2/3)^p = 1 \implies p = 1$. The integral $\int_1^n \frac{u}{u^2} du = \ln n$ yields $T(n) = \Theta(n \log n)$."
+3. **The Stack Frame & Memory Ceiling Reality**:
+   - *The Trap*: "Can we write our divide-and-conquer algorithm recursively for $N = 10^6$?"
+   - *The Flaw*: Claiming space complexity is $O(1)$ because no new arrays were allocated.
+   - *The Staff Defense*: "No. Every recursive call pushes an execution stack frame ($\approx 64-128$ bytes for registers, return IP, and locals). On Linux with a default 8MB stack limit, recursion depth $\ge 65,000$ triggers an uncatchable **OS SIGSEGV (Stack Overflow)**. For $N = 10^6$, recursive algorithms like QuickSort must either limit depth via introspective heap switching ([`Introsort`](../004%20-%20Sorting%20Algorithms/sorting.py)) or simulate the stack explicitly on the heap."
 
 ---
 
@@ -279,11 +299,13 @@ if __name__ == "__main__":
 
 ---
 
-## 🔗 Connections to Coding Patterns
+## 🔗 Connections to Coding Patterns & Data Structures
 
-- **Pattern 17: Modified Binary Search**: $T(n) = T(n/2) + O(1) \implies O(\log n)$. Cutting the search space in half with $O(1)$ work is the holy grail of sub-linear search.
-- **Pattern 20: K-way Merge**: Merging $K$ lists of total size $N$ using a min-heap yields $T(N) = O(N \log K)$.
-- **Pattern 36: Meet in the Middle**: Instead of solving $T(N) = 2^N$, splitting the search in half yields $2 \cdot 2^{N/2} + 2^{N/2} \log(2^{N/2}) = O(N \cdot 2^{N/2})$.
+- [**`003 - Recursion and the Call Stack`**](../003%20-%20Recursion%20and%20the%20Call%20Stack/walkthrough.md): Visualizing call frames, base cases, and stack consumption before applying divide-and-conquer recurrences.
+- [**`004 - Sorting Algorithms`**](../004%20-%20Sorting%20Algorithms/sorting.py) (`merge_sort`): Canonical Case 2 recurrence $T(n) = 2T(n/2) + O(n) \implies \Theta(n \log n)$.
+- [**`Pattern 17: Modified Binary Search`**](../../17%20-%20Modified%20Binary%20Search/theory.md): $T(n) = T(n/2) + O(1) \implies \Theta(\log n)$. Cutting the search space in half with $O(1)$ work is the gold standard of sub-linear retrieval.
+- [**`Pattern 20: K-way Merge`**](../../20%20-%20K-way%20Merge/theory.md): Merging $K$ lists of total size $N$ using a min-heap yields $T(N) = O(N \log K)$.
+- [**`Pattern 36: Meet in the Middle`**](../../36%20-%20Meet%20in%20the%20Middle/theory.md): Instead of solving $T(N) = 2^N$, splitting the search in half yields $2 \cdot 2^{N/2} + 2^{N/2} \log(2^{N/2}) = O(N \cdot 2^{N/2})$.
 
 ---
 

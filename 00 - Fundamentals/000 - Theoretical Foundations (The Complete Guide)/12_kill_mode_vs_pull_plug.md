@@ -28,10 +28,30 @@ An engineer who tries to write an exact polynomial algorithm for an $NP$-hard pr
 
 ## 🎯 Level 200 — Street Fundamentals: The 10-Second Constraint Sizing Rule
 
+> 🧠 **The Permanent Memory Mantra**  
+> *"Know your $N$ before writing a single line of code: if $N \le 20$, go Bitmask Kill Mode; if $N \le 10^5$, go $O(N \log N)$ Sort/Heap Kill Mode; if $N > 10^5$ and NP-hard, pull the plug immediately and approximate."*
+
 > 🧠 **Mental Model Card**
-> - **The $10^8$ Operations Clock:** 1 CPU second $\approx 10^8$ operations.
-> - **Kill Mode Trigger:** When problem is in P (or NP-Hard with $N \le 20$). Write optimal code down to the bare metal.
-> - **Pull the Plug Trigger:** When problem is NP-Hard and $N \ge 100$. Stop hunting for $O(N^2)$ optimal algorithms; switch immediately to Greedy Approximations or Heuristics.
+> - **The $10^8$ Operations Clock:** 1 CPU second $\approx 10^8$ basic instructions.
+> - **Kill Mode Trigger:** When the problem is in P (or NP-Hard with $N \le 20$). Write optimal code down to the bare metal.
+> - **Pull the Plug Trigger:** When the problem is NP-Hard and $N \ge 100$. Stop hunting for $O(N^2)$ optimal algorithms; switch immediately to Greedy Approximations or Metaheuristics.
+
+---
+
+### 🎯 The FAANG Bar-Raiser Squeeze Box
+
+1. **The Pseudo-Polynomial Fallacy**:
+   - *The Trap*: "0/1 Knapsack is polynomial time because my DP table runs in $O(N \cdot W)$."
+   - *The Flaw*: Confusing numerical magnitude $W$ with input length in bits ($\log W$).
+   - *The Staff Defense*: "Knapsack is **weakly NP-complete**. The running time $O(N \cdot W)$ is *pseudo-polynomial*. If $W = 10^{12}$ (which fits in a 64-bit integer), the table requires trillions of operations and terabytes of memory! Only when $W$ is bounded by a small polynomial in $N$ ($W \le 10^5$) can we use Kill Mode DP."
+2. **The Graph Density Crossover (Fibonacci vs Flat Array)**:
+   - *The Trap*: "Dijkstra with a Fibonacci Heap runs in $O(E + V \log V)$, which is theoretically optimal, so I should always use a heap."
+   - *The Flaw*: Blindly reciting textbook asymptotics without analyzing edge density $E$.
+   - *The Staff Defense*: "For **dense graphs** where $E \approx V^2$ (e.g. complete graphs or flight networks), simple Array-based Dijkstra runs in $O(V^2)$ time with zero heap overhead and sequential memory layout. Fibonacci and binary heaps incur pointer chasing and L1 cache misses. On dense inputs, the flat array scan is **$3\times$ to $5\times$ faster** in wall-clock execution!"
+3. **The Inapproximability Barrier (Metric vs General TSP)**:
+   - *The Trap*: "If TSP is NP-Hard, I will just apply Christofides algorithm to guarantee a 1.5-approximation."
+   - *The Flaw*: Assuming all TSP instances can be approximated.
+   - *The Staff Defense*: "Christofides and 2-approximation MST doubling **strictly require the Metric property** (triangle inequality: $d(u, v) \le d(u, w) + d(w, v)$). If edge weights can be arbitrary (General TSP), **no polynomial-time approximation algorithm can exist within any factor $2^{N}$ unless $P = NP$!** When the metric property fails, we must pull the plug completely and switch to Genetic Algorithms or Simulated Annealing."
 
 ---
 

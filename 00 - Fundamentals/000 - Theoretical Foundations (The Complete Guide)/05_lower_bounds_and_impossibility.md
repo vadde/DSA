@@ -28,6 +28,9 @@ A **Lower Bound** is not a complaint about your code. It is an immutable law of 
 
 ## 🎯 Level 200 — Street Fundamentals: The 3 Information Barriers
 
+> 🧠 **The Permanent Memory Mantra**  
+> *"An upper bound measures an algorithm's cleverness; a lower bound measures the universe's resistance. You cannot beat a lower bound by writing faster code—you can only cheat it by changing the computational model."*
+
 > 🧠 **Mental Model Card**
 > - **Upper Bound vs Lower Bound:** An upper bound ($O$) belongs to an *algorithm* ("My code sorts in $O(N \log N)$"). A lower bound ($\Omega$) belongs to the *problem itself* ("No comparison algorithm in the universe can ever sort in less than $\Omega(N \log N)$").
 > - **The 20-Questions Intuition:** Each comparison `a < b` returns a binary answer (Yes/No), yielding at most 1 bit of information. If a problem has $K$ possible answers, you *must* ask at least $\lceil \log_2 K \rceil$ questions.
@@ -42,6 +45,23 @@ A **Lower Bound** is not a complaint about your code. It is an immutable law of 
 | **Search in Sorted Array** | Comparison Tree | $\Omega(\log N)$ | Binary Search | Direct array index: $O(1)$ |
 | **Find Min and Max** | Comparison Tree | $\lceil 3N/2 \rceil - 2$ | Pairwise Tournament | $2N - 2$ naive scan |
 | **Element Distinctness** | Algebraic Computation Tree | $\Omega(N \log N)$ | Sort + adjacent scan | Hash Set: $O(N)$ average |
+
+---
+
+### 🎯 The FAANG Bar-Raiser Squeeze Box
+
+1. **The Timsort "Cheating" Confusion**:
+   - *The Trap*: "Python's `list.sort()` runs in $O(N)$ time on an already sorted list. Did Python disprove the $\Omega(N \log N)$ comparison sorting lower bound?"
+   - *The Flaw*: Confusing best-case input behavior with the worst-case lower bound of a decision tree.
+   - *The Staff Defense*: "No. Lower bounds apply to the **worst-case depth of the decision tree** across all $N!$ input permutations. A decision tree can have short branches of depth $N$ (e.g. confirming an already sorted list in $N-1$ comparisons), but because the tree has $N!$ distinct leaves, its maximum height must mathematically satisfy $h \ge \lceil \log_2(N!) \rceil = \Omega(N \log N)$. Timsort's worst-case is still $\Theta(N \log N)$."
+2. **The Simultaneous Min-Max Tournament**:
+   - *The Trap*: "What is the minimum number of comparisons needed to find BOTH the minimum and maximum of an unsorted array of size $N$?"
+   - *The Flaw*: Saying $2N - 2$ comparisons by scanning once for min and once for max.
+   - *The Staff Defense*: "We can do it in exactly **$\lceil 3N/2 \rceil - 2$ comparisons** using a pairwise tournament. Pair adjacent elements and compare them ($\lfloor N/2 \rfloor$ comparisons). Then compare the winners against the running max ($\lfloor N/2 \rfloor$ comparisons) and the losers against the running min ($\lfloor N/2 \rfloor$ comparisons). This achieves the theoretical adversary lower bound."
+3. **The Adversary Argument in Median Finding**:
+   - *The Trap*: "Can an algorithm find the median of an array without examining at least $N/2$ elements?"
+   - *The Flaw*: Believing binary search tricks can find a median without examining the data.
+   - *The Staff Defense*: "No. Using an **adversary argument**, an adversary can dynamically change any unexamined element to either $-\infty$ or $+\infty$ after the algorithm terminates. If fewer than $\lceil N/2 \rceil$ elements are inspected, the adversary can alter the median value without contradicting any previously answered comparisons, invalidating the answer."
 
 ---
 

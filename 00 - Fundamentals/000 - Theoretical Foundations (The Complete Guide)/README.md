@@ -86,11 +86,11 @@ flowchart TD
 
 ## 📑 Complete Chapter Catalog
 
-Each chapter features a unified 5-level curriculum:
-- 📍 **Level 100 — The Napkin Sketch**: Kindergarten-style tangible physical analogy (30 seconds)
-- 🎯 **Level 200 — Street Fundamentals**: Core interview cheat card, decision matrix, triage rule (5 minutes)
+Each chapter features a unified 5-level curriculum reinforced by 4 engineering lenses:
+- 📍 **Level 100 — The Napkin Sketch**: Tangible physical analogy, zero jargon (30 seconds)
+- 🎯 **Level 200 — Street Fundamentals**: Permanent Memory Mantra & **🎯 The FAANG Bar-Raiser Squeeze Box** (3 interview traps) (5 minutes)
 - ⚙️ **Level 300 — Working Professional**: Core mechanics, production code, edge cases (15 minutes)
-- 🔬 **Level 400 — Staff & Senior Engineer**: Hardware cache lines, scale limits, formal complexity (30 minutes)
+- 🔬 **Level 400 — Staff & Senior Engineer**: Hardware cache lines, branch prediction, memory pyramids, scale limits (30 minutes)
 - 🎓 **Level 500 — Researcher's Corner**: Formal theorems, open conjectures, seminal papers (collapsible)
 
 | # | Chapter Title | Core Topics | Key Theorems / Concepts |

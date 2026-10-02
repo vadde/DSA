@@ -45,6 +45,9 @@ This is **Amortized Analysis**. Individual operations lie. Aggregate truth is re
 
 ## 🎯 Level 200 — Street Fundamentals: The 3 Methods & The Credit Card Analogy
 
+> 🧠 **The Permanent Memory Mantra**  
+> *"Amortized analysis is a prepaid transit card: by slightly overcharging cheap operations now, you build an invariant credit balance so the occasional $O(N)$ system reallocation is completely paid in advance."*
+
 > 🧠 **Mental Model Card**
 > - **Amortized != Average:** Average time assumes inputs arrive from a random probability distribution. Amortized time guarantees the average cost over *any* worst-case sequence of operations!
 > - **The Credit Card Principle:** You overcharge cheap operations (e.g. paying \$3 for a \$1 array write) and deposit the extra \$2 into a savings account. When the expensive \$N resize hits, the savings account pays the bill in full.
@@ -61,6 +64,23 @@ This is **Amortized Analysis**. Individual operations lie. Aggregate truth is re
 | **Queue via Two Stacks** | $O(N)$ (when flipping) | $O(1)$ | Each element is pushed and popped at most twice in its entire lifetime. |
 | **Binary Counter Increment** | $O(k)$ (flipping all bits) | $O(1)$ | Bit 0 flips every time; bit 1 flips half the time; bit $j$ flips $1/2^j$ of the time. |
 | **Union-Find with Rank + Path Comp** | $O(\log N)$ | $O(\alpha(N))$ | Expensive `find` calls permanently flatten the tree, accelerating all future calls. |
+
+---
+
+### 🎯 The FAANG Bar-Raiser Squeeze Box
+
+1. **The Thrashing Reallocation Antipattern**:
+   - *The Trap*: "If a dynamic array doubles when full, should we halve its capacity when it becomes half empty to save memory?"
+   - *The Flaw*: "Yes, that keeps memory usage proportional to the elements."
+   - *The Staff Defense*: "Fatal mistake! If an adversary alternates `append()` and `pop()` at the capacity boundary $N$, every single operation triggers an $O(N)$ memory copy, destroying amortized $O(1)$ and degrading the entire system to $\Theta(N)$ per operation! To prevent thrashing, we use **hysteresis**: double at $100\%$ capacity, but only shrink to half when occupancy drops below **$25\%$ ($1/4$)**."
+2. **The p99 Tail-Latency SLA Breach**:
+   - *The Trap*: "Our payment gateway handles 50,000 req/sec with an SLA of $< 5\text{ms}$. Can we use an in-memory hash table with amortized $O(1)$ inserts?"
+   - *The Flaw*: "Yes, amortized $O(1)$ means the operations run in constant time."
+   - *The Staff Defense*: "No. Amortized $O(1)$ is an aggregate guarantee across a sequence, **not a real-time latency guarantee**. When a 10-million element table resizes, the realloc and re-bucket pass can freeze the thread for $200\text{ms}$, instantly violating p99.9 latency SLAs. Real-time distributed engines (like Redis `dict.c`) use **Incremental Rehashing**: allocating two tables and migrating 100 buckets per user request to distribute the spike evenly."
+3. **The Union-Find Dual-Optimization Requirement**:
+   - *The Trap*: "Is Path Compression alone sufficient to achieve $O(\alpha(N))$ in Union-Find?"
+   - *The Flaw*: "Yes, path compression flattens the tree completely on every find."
+   - *The Staff Defense*: "Incorrect. Path compression alone guarantees only $O(M \log_{1 + M/N} N)$, which degrades to $O(M \log N)$ when operations are sparse. Union-by-Rank alone guarantees $O(M \log N)$. Only when **BOTH** Union-by-Rank AND Path Compression work together does the Ackermann bound $O(M \alpha(N))$ hold."
 
 ---
 
@@ -296,10 +316,12 @@ if __name__ == "__main__":
 
 ---
 
-## 🔗 Connections to Coding Patterns
+## 🔗 Connections to Coding Patterns & Data Structures
 
-- **Pattern 28: Union Find**: The classic textbook demonstration of amortized $O(\alpha(N))$ operations.
-- **Pattern 08: Stacks & Pattern 33: Monotonic Queue**: In a monotonic queue or stack, each element is pushed once and popped at most once. Over $N$ total operations, the while loop executes at most $N$ total times $\implies$ **Amortized $O(1)$ per step**!
+- [**`001 - Array and String`**](../001%20-%20Array%20and%20String/dynamic_array.py) (`DynamicArray`): Complete implementation of geometric capacity doubling and amortized $O(1)$ append.
+- [**`013 - Union-Find (Disjoint Set)`**](../013%20-%20Union-Find%20%28Disjoint%20Set%29/union_find.py) (`UnionFind`): Implements rank-heuristic and path compression to achieve $O(\alpha(N))$ amortized queries.
+- [**`Pattern 28: Union Find`**](../../28%20-%20Union%20Find/theory.md): The classic interview demonstration of Tarjan's inverse Ackermann amortized bound.
+- [**`Pattern 08: Monotonic Stack`**](../../08%20-%20Monotonic%20Stack/theory.md) & [**`Pattern 33: Monotonic Queue`**](../../33%20-%20Monotonic%20Queue%20Pattern/theory.md): In a monotonic window, each element is pushed once and popped at most once. Over $N$ total operations, the while loop executes at most $N$ total times $\implies$ **Amortized $O(1)$ per step**!
 
 ---
 

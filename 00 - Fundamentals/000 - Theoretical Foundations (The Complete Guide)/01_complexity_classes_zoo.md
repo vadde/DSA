@@ -17,6 +17,9 @@ Imagine you are a chef in a restaurant kitchen:
 
 ## 🎯 Level 200 — Street Fundamentals: The FAANG Interview Complexity Triage
 
+> 🧠 **The Permanent Memory Mantra**  
+> *"$P$ is cooking the meal; $NP$ is tasting the soup; $NP$-Complete is the master recipe that unlocks the entire cookbook."*
+
 > 🧠 **Mental Model Card**
 > - **Class P:** Solvable in polynomial time $O(N^k)$. (e.g. Sorting, Shortest Path, Binary Search). If it's in P, write the optimal algorithm.
 > - **Class NP:** Verifiable in polynomial time $O(N^k)$ if given a certificate/hint. (Sudoku, Traveling Salesperson, Subset Sum).
@@ -32,6 +35,23 @@ Imagine you are a chef in a restaurant kitchen:
 | **$NP$** | ❓ Unknown (likely No) | ✅ Yes | 3-SAT, Traveling Salesperson, Sudoku |
 | **$NP$-Complete** | ❌ No known poly algorithm | ✅ Yes | 3-SAT, Hamiltonian Cycle, Vertex Cover |
 | **$NP$-Hard** | ❌ No known poly algorithm | ❓ Not necessarily | Halting Problem, TSP Optimization, Chess ($N \times N$) |
+
+---
+
+### 🎯 The FAANG Bar-Raiser Squeeze Box
+
+1. **The "Non-Polynomial" Acronym Trap**:
+   - *The Trap*: "What does the 'NP' in NP-Complete stand for?"
+   - *The Flaw*: Answering "Non-Polynomial".
+   - *The Staff Defense*: "NP stands for **Nondeterministic Polynomial time**. It means an algorithm on a nondeterministic Turing machine can solve it in polynomial time, or equivalently, a standard deterministic computer can **verify** a candidate solution certificate in polynomial time. Every problem in P is automatically in NP ($P \subseteq NP$)."
+2. **The Cryptographic Average-Case Trap**:
+   - *The Trap*: "Since NP-Complete problems are the hardest problems in computation, why don't we base RSA and AES encryption keys on 3-SAT or TSP?"
+   - *The Flaw*: Assuming worst-case hardness implies cryptographic security.
+   - *The Staff Defense*: "NP-Completeness is strictly a **worst-case** hardness guarantee. An NP-Complete problem can be excruciatingly hard on pathological instances, but trivial to solve on $99\%$ of randomly generated inputs! Cryptography demands **average-case hardness**—every randomly generated key must be virtually impossible to crack. This is why cryptography relies on number-theoretic problems like integer factorization and discrete logarithms rather than NP-Complete problems."
+3. **The Co-NP Asymmetry Trap**:
+   - *The Trap*: "If finding a Hamiltonian Cycle is in NP, is proving that a graph has NO Hamiltonian Cycle also in NP?"
+   - *The Flaw*: Assuming that yes and no certificates are symmetric.
+   - *The Staff Defense*: "No, that belongs to **co-NP**. If someone gives you a valid Hamiltonian cycle, you can verify it in $O(N)$ time (a single certificate). But how do you verify someone's claim that *no* cycle exists? You would have to verify that all $N!$ permutations fail! Unless $NP = \text{co-}NP$ (widely believed false), verifying negation requires exponential proof certificates."
 
 ---
 
