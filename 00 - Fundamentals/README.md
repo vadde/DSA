@@ -77,23 +77,23 @@ Every topic across **Theoretical Foundations** and all **14 Concrete Data Struct
 
 [📂 **`000 - Theoretical Foundations (The Complete Guide)/`**](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/)
 
-The comprehensive, 13-chapter reference taking you from Kindergarten analogies all the way to PhD-level formal proofs, impossibility theorems, and engineering triage:
+The comprehensive, 13-chapter reference designed for Senior/Lead engineers preparing for FAANG live coding rounds:
 
-| Chapter | Title | Key Concepts |
+| Chapter | Title | Key Concepts & Interview Weapons |
 |---|---|---|
-| **Ch 00** | [Computation & Computability](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/00_computation_and_computability.md) | Turing Machines, Church-Turing Thesis, Halting Problem, Rice's Theorem, Gödel |
-| **Ch 01** | [The Complexity Zoo](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/01_complexity_classes_zoo.md) | P, NP, NP-Complete, NP-Hard, co-NP, PSPACE, BPP, #P, Parameterized FPT |
-| **Ch 02** | [Asymptotic Analysis Deep Cuts](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/02_asymptotic_analysis_deep.md) | The Big-5 ($\Theta, \Omega, O, o, \omega$), Galactic Algorithms, Cache Locality, Input-Sensitivity |
-| **Ch 03** | [Recurrences & Master Theorem](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/03_recurrences_and_master_theorem.md) | Induction, Recursion Trees, 3 Master Cases, Akra-Bazzi, Recurrence Catalog |
-| **Ch 04** | [Amortized Analysis](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/04_amortized_analysis.md) | Aggregate, Banker's (Accounting), Physicist's (Potential), Dynamic Arrays, DSU $\alpha(n)$ |
-| **Ch 05** | [Lower Bounds & Impossibility](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/05_lower_bounds_and_impossibility.md) | Comparison Sorting $\Omega(n \log n)$, Adversary Arguments, Cell Probe Model |
-| **Ch 06** | [NP-Completeness & Reductions](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/06_np_completeness_and_reductions.md) | Karp vs Cook Reductions, Cook-Levin, Karp's 21 Web, Reduction Proving Recipe |
-| **Ch 07** | [Approximation Algorithms](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/07_approximation_algorithms.md) | $\rho$-Approximations, Christofides Metric TSP, Greedy Set Cover, PTAS/FPTAS, PCP |
-| **Ch 08** | [Randomized Algorithms](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/08_randomized_algorithms.md) | Las Vegas vs Monte Carlo, Chernoff/Markov/Chebyshev, Bloom Filters, Skip Lists |
-| **Ch 09** | [Heuristics & Metaheuristics](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/09_heuristics_and_metaheuristics.md) | Simulated Annealing, Genetic Algorithms, Tabu Search, No Free Lunch (NFL) Theorem |
-| **Ch 10** | [Information Theory & Entropy](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/10_information_theory_and_entropy.md) | Shannon Entropy, Huffman Codes, Kolmogorov Complexity, Fundamental Sorting Bounds |
-| **Ch 11** | [Metatheorems & Folklore](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/11_metatheorems_and_folklore.md) | Amdahl vs Gustafson, Little's Law, CAP, Pigeonhole, ETH, Curse of Dimensionality |
-| **Ch 12** | [Kill Mode vs Pull the Plug](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md) | Master Decision Flowchart, Constraint Limits, Triage Matrix, Pattern Complexity Map |
+| **Ch 00** | [Computation & Computability](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/00_computation_and_computability.md) | The Broken Code Reviewer (Halting Problem), Rice's Theorem, Proving Termination, Accidental Turing Completeness |
+| **Ch 01** | [The Complexity Zoo](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/01_complexity_classes_zoo.md) | Sudoku Analogy (P vs NP), Hardness Radar, Pseudo-Polynomial DP Traps ($O(N \cdot W)$), LeetCode NP-Hard Disguises |
+| **Ch 02** | [Asymptotic Analysis Deep Cuts](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/02_asymptotic_analysis_deep.md) | Speed Limit (Big-O / $\Theta$ / $\Omega$), The 1-Second Rule ($10^8$ ops), Stack vs Heap Space, CPU Cache Lines (Array vs Linked List) |
+| **Ch 03** | [Recurrences & Master Theorem](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/03_recurrences_and_master_theorem.md) | Corporate Hierarchy (Recursion Trees), 3 Master Cases in Plain English, Merge/Binary/Quick Recurrences, Stack Frame Tax |
+| **Ch 04** | [Amortized Analysis](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/04_amortized_analysis.md) | Piggy Bank Model, Two-Pointer & Sliding Window $O(N)$ Proof, Monotonic Stack Amortization, DSU $\alpha(N)$, P99 Latency Spikes |
+| **Ch 05** | [Lower Bounds & Impossibility](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/05_lower_bounds_and_impossibility.md) | 20-Questions Game ($\Omega(N \log N)$ Sorting Ceiling), Non-Comparison Escapes (Counting/Bucket/Radix Sort), Hybrid Standard Libraries |
+| **Ch 06** | [NP-Completeness & Reductions](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/06_np_completeness_and_reductions.md) | The Mask / Costume Party, Big-5 LeetCode Hard Disguises (Subset Sum, TSP, Bin Packing), The $N \le 20$ Bitmask Giveaway |
+| **Ch 07** | [Approximation Algorithms](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/07_approximation_algorithms.md) | The Moving Truck (80/20 Rule), 2-Approximation for Vertex Cover in $O(E)$, Power of Two Choices, Bipartite Matching Escape |
+| **Ch 08** | [Randomized Algorithms](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/08_randomized_algorithms.md) | Las Vegas vs Monte Carlo, Random Pivots Defeating Adversaries, Dutch National Flag 3-Way Partition, Redis Skip Lists |
+| **Ch 09** | [Heuristics & Metaheuristics](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/09_heuristics_and_metaheuristics.md) | The Foggy Mountain Compass, $A^*$ Search vs Dijkstra, Admissible Heuristics, Backtracking Constraint Propagation |
+| **Ch 10** | [Information Theory & Entropy](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/10_information_theory_and_entropy.md) | Morse Code & 1-Bit Decisions, Huffman Min-Heap Encoding, Top 5 Bit Manipulation Tricks (Brian Kernighan, XOR, Bitmasks) |
+| **Ch 11** | [Metatheorems & Folklore](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/11_metatheorems_and_folklore.md) | 9-Women Pregnancy Myth (Amdahl's Law), Little's Law ($L = \lambda W$), Pigeonhole Cycle Detection, PACELC / CAP Reality |
+| **Ch 12** | [Master Interview Triage](./000%20-%20Theoretical%20Foundations%20%28The%20Complete%20Guide%29/12_kill_mode_vs_pull_plug.md) | ER Trauma Protocol, 45-Minute Emergency Playbook, Master Algorithm Decision Tree, Constraint Sizing Rosetta Stone |
 
 ---
 

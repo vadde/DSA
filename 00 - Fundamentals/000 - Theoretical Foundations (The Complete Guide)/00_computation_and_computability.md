@@ -1,391 +1,134 @@
-# Chapter 00: Computation & Computability — What Can a Machine Even Do?
+# Chapter 00: Computation & Computability — The Limits of Code
 
-> *"Before asking how fast an algorithm can run, you must answer a more terrifying question: Can an algorithm exist at all?"*
+> *"Before asking how fast an algorithm can run, you must answer a more practical question: Can an algorithm solve this at all, and is your code guaranteed to terminate?"*
 
 ---
 
-## 📍 Level 100 — The Napkin Sketch: The Magic Typewriter
+## 💡 1. The Napkin Analogy: The Program-Checking Machine That Broke
 
-Imagine a mechanical typewriter sitting on an infinitely long bench:
-- It has an **endless roll of paper tape** divided into square boxes.
-- Each box can hold a single symbol (like `0`, `1`, or blank `_`).
-- A movable **read/write stamp head** hovers over one box at a time.
-- Inside the typewriter is a **tiny rulebook** with a fixed number of rules:
-  > *"If you are in state A and see a 0: write 1, move the tape right one square, switch to state B."*
-- It has two special bells: a **Green Bell (Accept)** and a **Red Bell (Reject)**.
+Imagine you are a Staff Engineer tasked with building the **Ultimate Automated Code Reviewer**:
+- You want to write a program `will_it_halt(code, input_data)` that analyzes any given function and returns `True` if it finishes, or `False` if it enters an infinite loop.
+- Can you build this tool? **Mathematically, NO.**
 
-```mermaid
-flowchart LR
-    TapeLeft["... | 1 | 0 |"] --- Cell["[ 1 ] (Current Head)"] --- TapeRight["| _ | _ | ..."]
-    Head["🖨️ Read/Write Head"] --> Cell
-    State["⚙️ State Machine (State q_k)"] --> Head
-    Rules["📖 Finite Rulebook δ(q, σ)"] --> State
+Alan Turing proved in 1936 that no computer program can ever decide whether an arbitrary program will halt or loop forever.
 
-    style Cell fill:#3b82f6,color:#ffffff,stroke:#1d4ed8,stroke-width:2px
-    style Head fill:#f59e0b,color:#000000
-    style State fill:#10b981,color:#ffffff
-    style Rules fill:#6366f1,color:#ffffff
+```
+Suppose `will_it_halt(func)` exists.
+Now write an evil function `paradox()`:
+
+def paradox():
+    if will_it_halt(paradox) == True:
+        while True: pass  # Loop forever!
+    else:
+        return            # Halt immediately!
+
+💥 If paradox() halts, will_it_halt() predicted it loops forever (WRONG!)
+💥 If paradox() loops forever, will_it_halt() predicted it halts (WRONG!)
 ```
 
-This typewriter is the **Turing Machine**. Alan Turing proved in 1936 that this astonishingly simple mechanical contraption can simulate *every computer that has ever existed or will ever exist* — from supercomputers to quantum processors.
+This is the famous **Halting Problem**. It proves that there are fundamental, mathematical limits to what software can predict about software.
 
 ---
 
-## 🎯 Level 200 — Street Fundamentals: The 3 Truths Every Senior Engineer Must Know
-
-> 🧠 **The Permanent Memory Mantra**  
-> *"If software cannot mathematically prove that arbitrary code terminates, your architecture must enforce deadlines, timeouts, and circuit breakers."*
-
-> 🧠 **Mental Model Card**
-> - **The Core Truth:** A computer program is just data. You can pass a Python script into another Python script as a text string.
-> - **The Fundamental Limit (Halting Problem):** You can *never* write a static analyzer or test suite that detects whether *every* arbitrary program will terminate or enter an infinite loop.
-> - **The Engineer's Defense:** Because perfect static analysis is mathematically impossible (Rice's Theorem), production systems rely on **Timeouts**, **Deadlines**, and **Circuit Breakers**.
-
-### The Street Cheat Card
-
-| Theoretical Concept | What Academics Call It | What It Means in Production Systems |
-|---|---|---|
-| **Turing Completeness** | Universal Turing Machine | Any language with conditionals, loops, and unbounded memory can compute whatever any other language can. |
-| **Halting Problem** | $A_{TM}$ is Undecidable | Why Kubernetes uses `livenessProbe` and HTTP has `timeout: 30s` — software cannot know if a service is stuck or working. |
-| **Rice's Theorem** | All non-trivial semantic properties are undecidable | Why linters (ESLint, Pylint) and security scanners can only warn with heuristics and false positives, never absolute certainty. |
-| **Decidable vs Recognizable** | Recursive vs Recursively Enumerable | Decidable = guaranteed to finish with Yes/No. Recognizable = if Yes, it will eventually tell you; if No, it might run forever. |
-
----
-
-### 🎯 The FAANG Bar-Raiser Squeeze Box
-
-1. **The Perfect Security Scanner Fantasy**:
-   - *The Trap*: "Can we build a static analysis linter that flags every memory leak, SQL injection, and infinite loop with zero false positives?"
-   - *The Flaw*: Assuming that with better AI or better AST parsers, static analyzers can achieve 100% precision.
-   - *The Staff Defense*: "Mathematically impossible by **Rice's Theorem**. Any non-trivial semantic property of program behavior is undecidable. Static analysis tools must make an inevitable trade-off: **Soundness** (catch all bugs but report false positives) vs **Completeness** (zero false alarms but miss real bugs). In production, we complement static analysis with runtime limits (cgroups, CPU quotas, memory limits)."
-2. **The FLP Impossibility in Distributed Systems**:
-   - *The Trap*: "Can an asynchronous distributed cluster guarantee consensus if nodes can crash?"
-   - *The Flaw*: Believing that an algorithm like Paxos or Raft guarantees termination under asynchronous network partitions.
-   - *The Staff Defense*: "The **Fischer-Lynch-Paterson (FLP) Impossibility Theorem** proves that in an asynchronous network, no deterministic consensus protocol can guarantee both safety and liveness if even a single process can crash. Raft and Paxos sacrifice liveness (progress) during partitions to preserve safety, relying on partially synchronous timeouts to recover."
-3. **The Accidental Turing Completeness Trap**:
-   - *The Trap*: "Can an analyst bring down our database server with a single read-only SQL query?"
-   - *The Flaw*: Assuming read-only queries cannot loop infinitely.
-   - *The Staff Defense*: "Yes. Since SQL:1999 introduced `WITH RECURSIVE` common table expressions, SQL is formally **Turing-complete**. A user can accidentally write a recursive CTE that simulates a non-halting Turing machine, pegging a database CPU core at 100% until killed. Production DBs enforce `statement_timeout` to guard against the Halting Problem."
-
----
-
-## ⚙️ Level 300 — Working Professional: The Architecture of Computation
-
-### 1. The Formal Definition of a Turing Machine
-Mathematically, a deterministic one-tape Turing Machine (TM) is a 7-tuple:
-
-$$M = \langle Q, \Sigma, \Gamma, \delta, q_0, q_{accept}, q_{reject} \rangle$$
-
-Where:
-1. $Q$ is a finite, non-empty set of **states**.
-2. $\Sigma$ is the **input alphabet** (not containing the blank symbol $\sqcup$).
-3. $\Gamma$ is the **tape alphabet**, where $\Sigma \subset \Gamma$ and $\sqcup \in \Gamma$.
-4. $\delta : Q \times \Gamma \to Q \times \Gamma \times \{L, R\}$ is the **transition function**. Given the current state and current scanned symbol, it outputs: (next state, symbol to write, direction to move head).
-5. $q_0 \in Q$ is the **start state**.
-6. $q_{accept} \in Q$ is the **accepting state**.
-7. $q_{reject} \in Q$ is the **rejecting state** ($q_{reject} \ne q_{accept}$).
-
-### 2. The Three Possible Fates of a Program
-When a Turing Machine runs on an input string $w$, exactly one of three outcomes occurs:
-1. **Accept**: Enters $q_{accept}$ and halts.
-2. **Reject**: Enters $q_{reject}$ and halts.
-3. **Loop Forever**: Never enters an accept or reject state. It consumes infinite time.
-
-A language $L$ is **Turing-Recognizable** (or Recursively Enumerable) if some TM accepts all strings in $L$ (and either rejects or loops on strings not in $L$).  
-A language $L$ is **Turing-Decidable** (or Recursive) if some TM accepts strings in $L$ and rejects strings not in $L$, **guaranteeing it never loops forever**.
+## 📊 2. The Visual Whiteboard: Solvable vs. Unsolvable
 
 ```mermaid
 flowchart TD
-    ALL["All Possible Languages (Uncountably Infinite: 2^Σ*)"]
-    RE["Turing-Recognizable Languages (Semi-Decidable)"]
-    DEC["Turing-Decidable Languages (Decidable / Algorithms)"]
-    P["Polynomial Time (P)"]
+    Universe["All Computational Problems"] --> Decidable["Decidable Problems\n(Guaranteed to finish with Yes or No)"]
+    Universe --> Undecidable["Undecidable Problems\n(No general algorithm can ever exist!)"]
 
-    DEC --- P
-    RE --- DEC
-    ALL --- RE
+    Decidable --> DSA["DSA / LeetCode Universe\n• Sorting\n• Graph Traversal\n• Dynamic Programming\n• Shortest Paths"]
 
-    style ALL fill:#1e1b4b,color:#f8fafc,stroke:#4338ca
-    style RE fill:#064e3b,color:#f8fafc,stroke:#059669
-    style DEC fill:#1e3a8a,color:#f8fafc,stroke:#2563eb
-    style P fill:#701a75,color:#f8fafc,stroke:#a21caf
+    Undecidable --> Halting["The Halting Problem\n(Detecting infinite loops statically)"]
+    Undecidable --> Rice["Rice's Theorem\n(Perfect static analysis of code behavior)"]
+    Undecidable --> Defense["Senior Engineering Defense:\n• Timeouts (30s HTTP limit)\n• Circuit Breakers\n• Kubernetes Liveness Probes\n• Max Recursion Limits"]
+
+    style Decidable fill:#14532d,stroke:#4ade80,stroke-width:2px,color:#fff
+    style Undecidable fill:#7f1d1d,stroke:#f87171,stroke-width:2px,color:#fff
+    style DSA fill:#1e3a8a,stroke:#60a5fa,stroke-width:2px,color:#fff
+    style Defense fill:#78350f,stroke:#fde047,stroke-width:2px,color:#fff
 ```
 
-### 3. The Church-Turing Thesis
-> **The Thesis**: Any real-world algorithmic computation can be simulated by a Turing Machine.
+### Why Rice's Theorem Matters to a Lead Engineer
+Rice's Theorem states: **Any non-trivial semantic property of program code is undecidable.**
+- "Does this function ever dereference a null pointer?" $\implies$ Undecidable.
+- "Does this service have a memory leak?" $\implies$ Undecidable.
+- "Is this endpoint vulnerable to SQL injection?" $\implies$ Undecidable.
 
-This is a *thesis* (a philosophical assertion about physical reality), not a mathematical theorem, because "intuitive algorithm" is an informal concept. However, every model of computation ever conceived — $\lambda$-calculus (Alonzo Church), register machines, cellular automata, quantum computers, Python interpreters — has been proven equivalent in computing power to a standard Turing machine.
+**The Production Takeaway**: This is why linters (ESLint, SonarQube, Pylint) and security scanners can **never be 100% perfect**. They must choose between **false positives** (warning you about safe code) or **false negatives** (missing real bugs).
 
-### 4. The Halting Problem: The First Impossibility Proof
-Can we write a program `halts(program_code, input_data)` that analyzes any program and returns `True` if it finishes, or `False` if it runs forever?
+---
 
-**Theorem (Alan Turing, 1936)**: The Halting Problem is **undecidable**. No such algorithm exists.
+## 🗣️ 3. The 30-Second Interview Talk Track
 
-#### Proof via Diagonalization (Cantor's Method)
-Assume for contradiction that an analyzer function `halts(f, x)` exists that never hangs:
+### How to Prove Termination in a Live Coding Round
+When writing recursive algorithms or complex `while` loops, interviewers look for candidates who proactively prove their code cannot loop forever:
 
-```python
-def halts(target_function, input_arg) -> bool:
-    """Hypothetical perfect analyzer that always halts and tells the truth."""
-    pass  # Imagine this works
+> *"To guarantee termination and prevent infinite loops, our recursive function maintains two strict invariants:*  
+> *1. **A definitive base case**: If the array is empty or the node is null, we return immediately.*  
+> *2. **Monotonic progress**: At every recursive call, the search space $high - low$ strictly decreases by at least 1. Since the search space is finite and bounded below by 0, the recursion is mathematically guaranteed to terminate."*
+
+### How to Explain Timeouts in Systems Design
+> *"Because software cannot statically determine whether a hanging database query or third-party API call will ever terminate, our architecture must assume unreliability. We enforce strict client timeouts, circuit breakers, and dead-letter queues to prevent thread exhaustion."*
+
+---
+
+## 🧠 4. Senior Systems Reality: Accidental Turing Completeness
+
+A system is **Turing-complete** if it can simulate any arbitrary computer program. When systems accidentally become Turing-complete, developers can unintentionally create infinite loops that take down production:
+
+```
+┌──────────────────────────────────────┬─────────────────────────────────────────────────────────┐
+│ System                               │ How It Accidentally Becomes An Infinite Loop            │
+├──────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+│ SQL Databases (PostgreSQL / MySQL)   │ `WITH RECURSIVE` CTEs can loop infinitely, pegging CPU. │
+│ Regex Engines                        │ Catastrophic Backtracking on expressions like (a+)+$   │
+│ TypeScript Type Systems              │ Recursive type definitions can hang the compiler.       │
+│ CSS (CSS3 Selectors & Checkboxes)    │ Cellular automata can be simulated entirely in CSS.     │
+└──────────────────────────────────────┴─────────────────────────────────────────────────────────┘
 ```
 
-Now, construct the troublemaker program `opposite(f)`:
+### The Production Defenses
+- **Database CPU Guard**: Always set `statement_timeout = '5000ms'` in Postgres so non-terminating queries are automatically terminated.
+- **Regex Timeout**: Avoid nested quantifiers (`(a+)+`), or use linear-time regex engines like Google's `re2`.
 
+---
+
+## 🎯 5. Constraint Triage & FAANG Traps
+
+### Trap 1: The Missing Base-Case Progress
 ```python
-def opposite(target_function):
-    """If target_function halts on itself, loop forever. If it loops, halt immediately."""
-    if halts(target_function, target_function):
-        while True:
-            pass  # Loop infinitely
+# ❌ TRAP: Infinite loop / Stack Overflow!
+def binary_search(nums, low, high, target):
+    if low > high:
+        return -1
+    mid = (low + high) // 2
+    if nums[mid] == target:
+        return mid
+    elif nums[mid] < target:
+        # 💥 BUG: Forgot to add +1! If low == mid, range never shrinks!
+        return binary_search(nums, mid, high, target)
     else:
-        return True  # Halt immediately
+        return binary_search(nums, low, mid - 1, target)
+
+# ✅ SENIOR FIX: Always strictly advance bounds
+return binary_search(nums, mid + 1, high, target)
 ```
 
-Now ask: **What happens if we run `opposite(opposite)`?**
-- **Case 1**: `halts(opposite, opposite)` returns `True` (it predicts `opposite` halts).  
-  Then by definition of `opposite`, it enters `while True:` and **loops forever**. Contradiction!
-- **Case 2**: `halts(opposite, opposite)` returns `False` (it predicts `opposite` loops forever).  
-  Then by definition of `opposite`, it hits `return True` and **halts immediately**. Contradiction!
-
-Since both cases lead to a logical contradiction, the assumption that `halts` could exist is false. Q.E.D.
-
-```
-                  PROGRAM INPUTS
-               P1      P2      P3     ...   opposite
-        P1   HALT    LOOP    HALT    ...     HALT
-        P2   LOOP    LOOP    HALT    ...     LOOP
-        P3   HALT    HALT    LOOP    ...     HALT
-        ...  ...     ...     ...     ...     ...
-  opposite   LOOP    HALT    LOOP    ...      💥 PARADOX!
-```
-
----
-
-## 🔬 Level 400 — Staff & Senior Engineer: Rice's Theorem & Reduction
-
-### 1. Rice's Theorem: The Universal Wall of Static Analysis
-Students often think: *"Okay, halting is undecidable, but surely I can check if a function returns 0, or if it has dead code, or if it sorts an array?"*
-
-**Rice's Theorem (Henry Gordon Rice, 1953)** crushes this hope:
-> Any non-trivial semantic property of a Turing-recognizable language is undecidable.
-
-- **Semantic Property**: A property about what the program *computes* (its input-output behavior), rather than its syntax (number of lines, variable names).
-- **Non-trivial**: At least one program has the property, and at least one program does not.
-
-#### Formal Proof by Reduction from $A_{TM}$
-Let $P$ be a non-trivial semantic property. Without loss of generality, assume the empty language $\emptyset \notin P$. Since $P$ is non-trivial, there exists some machine $M_L$ such that $L(M_L) \in P$.
-
-Suppose a decider $R_P$ exists for property $P$. We can build a decider for the Halting problem $A_{TM} = \{\langle M, w \rangle \mid M \text{ accepts } w\}$:
-
-```text
-Algorithm Decider_A_TM(M, w):
-  1. Construct a new machine M_prime(x):
-       a. Run original machine M on input w.
-       b. If M accepts w:
-            Run machine M_L on input x, and return its result.
-       c. If M does not accept:
-            Loop or reject.
-  2. Run decider R_P on <M_prime>.
-  3. If R_P accepts: return ACCEPT. Else: return REJECT.
-```
-
-- If $M$ accepts $w$, then $M'$ behaves identically to $M_L$, so $L(M') = L(M_L) \in P$. $R_P$ outputs ACCEPT.
-- If $M$ does not accept $w$, then $M'$ never accepts anything, so $L(M') = \emptyset \notin P$. $R_P$ outputs REJECT.
-
-Thus, if $R_P$ existed, we would have solved the Halting Problem. Since the Halting Problem is undecidable, $R_P$ cannot exist. Rice's Theorem holds. Q.E.D.
-
-#### Practical Engineering Takeaway
-| What You Want to Build | Can It Be 100% Sound and Complete? | Rice's Theorem Verdict |
-|---|---|---|
-| Perfect Antivirus | ❌ No | Cannot decide if program executes malicious payload |
-| Perfect Dead Code Eliminator | ❌ No | Cannot decide if branch is mathematically reachable |
-| Perfect Memory Leak Detector | ❌ No | Cannot decide if allocated pointer will be dereferenced |
-| Linting / Type Checking | ⚠️ Must be heuristic | Must reject some valid code or miss some bugs |
-
----
-
-## 🎓 Level 500 — Researcher's Corner: Gödel's Incompleteness & The Arithmetical Hierarchy
-
-<details>
-<summary><strong>Expand PhD Deep-Dive: Formal Incompleteness & Arithmetical Hierarchy</strong></summary>
-
-### 1. Gödel's First Incompleteness Theorem (1931)
-Kurt Gödel proved that in any consistent formal mathematical system $F$ capable of doing basic arithmetic (like Peano Arithmetic):
-1. There exist statements in $F$ that are **true**, but cannot be proven within $F$.
-2. The consistency of $F$ cannot be proven within $F$ itself.
-
-**The Isomorphism to Computability**:
-Gödel's proof constructs a statement $G$: *"This statement is not provable in F."*  
-In computer science terms:
-Define $T = \{ \langle M \rangle \mid M \text{ never halts on blank input} \}$. The statement that a specific $M$ loops forever is a mathematical truth, but because the Halting Problem is undecidable, there is no mechanical deductive system that can prove this property for all such machines.
-
-### 2. The Arithmetical Hierarchy ($\Sigma_n^0, \Pi_n^0, \Delta_n^0$)
-Not all undecidable problems are equally hard. Computability theory stratifies undecidability into the **Arithmetical Hierarchy**:
-
-$$\Delta_1^0 = \text{Decidable (Recursive)}$$
-$$\Sigma_1^0 = \text{Turing-Recognizable} = \{ x \mid \exists y \, R(x, y) \}$$
-$$\Pi_1^0 = \text{Co-Turing-Recognizable} = \{ x \mid \forall y \, R(x, y) \}$$
-$$\Sigma_2^0 = \{ x \mid \exists y \, \forall z \, R(x, y, z) \} \quad (\text{e.g., } L_{TOTAL} = \{ \langle M \rangle \mid M \text{ halts on ALL inputs} \})$$
-
-Every additional alternation of existential ($\exists$) and universal ($\forall$) quantifiers moves up a level of uncomputability. The problem of determining whether a program halts on *all* inputs ($\Sigma_2^0$-complete) is strictly more uncomputable than whether it halts on *one* input ($\Sigma_1^0$-complete)!
-
-</details>
-
----
-
-## 💻 Python 3.14 Verification: A Turing Machine Simulator
-
-Here is a fully functional, executable Turing Machine in Python 3.14 implementing a binary incrementer (takes binary `1011` $\to$ outputs `1100`):
-
+### Trap 2: Loop Pointer Stagnation
 ```python
-from collections import defaultdict
-from dataclasses import dataclass
-from typing import Literal
-
-type Direction = Literal["L", "R"]
-type State = str
-
-
-@dataclass(frozen=True)
-class Transition:
-    next_state: State
-    write_symbol: str
-    direction: Direction
-
-
-class TuringMachine:
-
-    def __init__(
-        self,
-        states: set[State],
-        alphabet: set[str],
-        tape_alphabet: set[str],
-        transitions: dict[tuple[State, str], Transition],
-        start_state: State,
-        accept_state: State,
-        reject_state: State,
-        blank_symbol: str = "_",
-    ):
-        self.states = states
-        self.alphabet = alphabet
-        self.tape_alphabet = tape_alphabet
-        self.transitions = transitions
-        self.start_state = start_state
-        self.accept_state = accept_state
-        self.reject_state = reject_state
-        self.blank = blank_symbol
-
-    def run(self, input_string: str, max_steps: int = 1000) -> tuple[bool, str]:
-        tape: defaultdict[int, str] = defaultdict(lambda: self.blank)
-        for i, char in enumerate(input_string):
-            tape[i] = char
-
-        head: int = 0
-        state: State = self.start_state
-        steps: int = 0
-
-        while steps < max_steps:
-            if state == self.accept_state:
-                return True, self._read_tape(tape)
-            if state == self.reject_state:
-                return False, self._read_tape(tape)
-
-            current_sym = tape[head]
-            key = (state, current_sym)
-            if key not in self.transitions:
-                return False, self._read_tape(tape)  # No transition -> halt reject
-
-            trans = self.transitions[key]
-            tape[head] = trans.write_symbol
-            head += 1 if trans.direction == "R" else -1
-            state = trans.next_state
-            steps += 1
-
-        raise TimeoutError("Execution exceeded maximum steps (Potential infinite loop)")
-
-    def _read_tape(self, tape: defaultdict[int, str]) -> str:
-        if not tape:
-            return ""
-        min_idx = min(tape.keys())
-        max_idx = max(tape.keys())
-        return "".join(tape[i] for i in range(min_idx, max_idx + 1)).strip(self.blank)
-
-
-# ─────────────────────────────────────────────────────────────
-# Example: Binary Incrementer (+1 to a binary string)
-# e.g., "1011" (11) + 1 = "1100" (12)
-# ─────────────────────────────────────────────────────────────
-if __name__ == "__main__":
-    rules = {
-        # Scan to the right end of the number
-        ("q_scan", "0"): Transition("q_scan", "0", "R"),
-        ("q_scan", "1"): Transition("q_scan", "1", "R"),
-        ("q_scan", "_"): Transition("q_add", "_", "L"),
-        # Add 1: carry when seeing 1, flip to 0 and move left
-        ("q_add", "1"): Transition("q_add", "0", "L"),
-        ("q_add", "0"): Transition("q_done", "1", "L"),
-        ("q_add", "_"): Transition("q_done", "1", "L"),  # overflow digit (e.g. 111 -> 1000)
-        # Rewind to start
-        ("q_done", "0"): Transition("q_done", "0", "L"),
-        ("q_done", "1"): Transition("q_done", "1", "L"),
-        ("q_done", "_"): Transition("q_accept", "_", "R"),
-    }
-
-    tm = TuringMachine(
-        states={"q_scan", "q_add", "q_done", "q_accept", "q_reject"},
-        alphabet={"0", "1"},
-        tape_alphabet={"0", "1", "_"},
-        transitions=rules,
-        start_state="q_scan",
-        accept_state="q_accept",
-        reject_state="q_reject",
-    )
-
-    accepted, result = tm.run("1011")
-    assert accepted is True
-    assert result == "1100", f"Expected 1100, got {result}"
-
-    accepted, result = tm.run("111")
-    assert result == "1000", f"Expected 1000, got {result}"
-
-    print("✅ Turing Machine verification passed! (1011 + 1 = 1100, 111 + 1 = 1000)")
+# ❌ TRAP: If nums[left] and nums[right] do not match any branch,
+# pointers never move, causing a live-lock infinite loop!
+while left < right:
+    if nums[left] + nums[right] == target:
+        return [left, right]
+    elif nums[left] + nums[right] < target:
+        left += 1
+    # 💥 BUG: Missing `else: right -= 1` branch!
 ```
-
----
-
-## 🔗 Connections to Coding Patterns
-
-- **Pattern 25: Backtracking & Pattern 34: Simulation**: Recursion trees are state-space explorations of Turing configurations. A backtracking algorithm that fails to prune cyclic branches becomes an undecidable loop.
-- **Pattern 10: Hash Maps**: Hashing attempts to construct finite finger-prints of infinite input sets. Rice's Theorem tells us that no hash function can classify semantic behavior.
-- **Pattern 03: Fast & Slow Pointers**: Floyd's cycle detection solves the "Halting Problem" for finite state spaces ($O(N)$ memory), but cannot solve it when memory is unbounded.
-
----
-
-## 🧪 Self-Test Questions
-
-1. **Why does the Halting Problem proof fail if we assume the analyzer function itself can loop infinitely?**
-2. **What is the difference between a language being Turing-Recognizable versus Turing-Decidable?**
-3. **True or False**: Rice's theorem states that you cannot determine if a Python program has more than 50 lines of code. Explain why.
-4. **Why did Church and Turing's independent formulations (Lambda Calculus vs Turing Machines) end up with the exact same computational boundaries?**
-5. **A junior engineer claims to have written a GitHub Action that checks if any function in your repository will ever throw an unhandled exception for all possible inputs. What theorem refutes this?**
-
-<details>
-<summary><strong>Click to view answers</strong></summary>
-
-1. If the analyzer is allowed to loop, the construction of `opposite` does not create a paradox: when `opposite` is fed to `opposite`, the analyzer simply loops forever instead of asserting a contradictory boolean output.
-2. For a Decidable language, the machine must halt on **all** inputs (either Accept or Reject). For a Recognizable language, the machine is only required to halt on inputs that are in the language; on inputs not in the language, it is allowed to run forever.
-3. **False**. Checking line count is a **syntactic** property, not a semantic property. Syntactic properties are easily decidable via a parser. Rice's theorem only applies to semantic properties (properties of the language recognized by the program).
-4. Because the class of computable functions reflects the fundamental limits of discrete symbol manipulation. The Church-Turing Thesis states that any physically realizable discrete mechanical process maps to these equivalent formulations.
-5. **Rice's Theorem**. Throwing an unhandled exception on some input is a non-trivial semantic property of program behavior. Therefore, a sound and complete checker for all arbitrary programs is undecidable.
-
-</details>
 
 ---
 
 ## 🧭 Navigation
-
-| ← Previous | ↑ Master Index | Next → |
-|:---|:---:|---:|
-| — | [🏛️ Theoretical Foundations Index](README.md) | [Ch 01: The Complexity Zoo →](01_complexity_classes_zoo.md) |
-
+- **Hub**: [🏛️ Back to Foundations README](./README.md)
+- **Next**: [Ch 01: The Complexity Zoo](./01_complexity_classes_zoo.md)

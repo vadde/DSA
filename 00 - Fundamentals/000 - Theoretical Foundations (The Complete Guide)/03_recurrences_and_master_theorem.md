@@ -1,338 +1,154 @@
-# Chapter 03: Recurrences & The Master Theorem — Solving Divide-and-Conquer
+# Chapter 03: Recurrences & Divide-and-Conquer — The Recursion Tree Model
 
-> *"Divide et impera (Divide and rule) is the secret of algorithmic speed — but only if you know who pays for combining the pieces."*
+> *"You do not need integrals or Greek letters to solve recurrences. You only need to see who does the work: the root, the leaves, or everyone equally."*
 
 ---
 
-## 📍 Level 100 — The Napkin Sketch: The Corporate Delegation Tree
+## 💡 1. The Napkin Analogy: The Corporate Hierarchy
 
-Imagine a CEO at a massive company with a project containing 1,000 tasks:
-- The CEO cuts the project into **2 sub-projects of 500 tasks** and delegates them to **2 Vice Presidents**.
-- The CEO spends **100 hours** organizing and coordinating the division ($f(n)$).
-- Each VP cuts their 500 tasks into 2 pieces of 250 and delegates to 4 Directors, spending 50 hours coordinating.
-- This continues down the pyramid until **junior interns** execute 1 task each.
+Think of a recursive algorithm like a corporate delegation hierarchy:
 
 ```
-Who did the most total work across the entire company?
+                  [ 👔 CEO (Root) ]  ────────── Work done at top: f(N)
+                     /         \
+          [ 🏢 VP 1 ]           [ 🏢 VP 2 ]  ── Sub-problems delegated
+            /     \               /     \
+         [Mgr]   [Mgr]         [Mgr]   [Mgr]
+         /   \   /   \         /   \   /   \
+       [👷] [👷] [👷] [👷]   [👷] [👷] [👷] [👷]  ── Ground workers (Leaves, N=1)
 ```
+
+Whenever you see a recurrence relation $T(N) = a \cdot T(N/b) + f(N)$:
+- $a$ = Number of subordinates created at each step.
+- $b$ = How much smaller each subordinate's task is (e.g., cut in half $\implies b = 2$).
+- $f(N)$ = The work the current manager does personally (splitting, combining, merging).
+
+The entire Master Theorem boils down to **one simple question: Who does the most work?**
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 1. CEO does all the work?        ➜ O(f(N))     (Root Dominates)             │
+│ 2. Everyone does equal work?     ➜ O(f(N) · log N) (Balanced Tree)          │
+│ 3. Ground workers do all work?   ➜ O(Leaves)   (Leaves Dominate)            │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📊 2. The Visual Whiteboard: The Master Theorem in 3 Plain Sentences
+
+No calculus, no integrals. Just compare the **work at the root ($f(N)$)** against the **number of leaves ($N^{\log_b a}$)**:
 
 ```mermaid
 flowchart TD
-    CEO["CEO: Coordinates Top Level f(n)"]
-    VP1["VP 1: f(n/2)"]
-    VP2["VP 2: f(n/2)"]
-    DIR1["Director: f(n/4)"]
-    DIR2["Director: f(n/4)"]
-    DIR3["Director: f(n/4)"]
-    DIR4["Director: f(n/4)"]
-    INTERNS["Interns: Millions of Base Cases (Leaves)"]
+    Start["Analyze T(N) = a · T(N/b) + f(N)"] --> Compare{"Compare Root Work f(N)\nvs Leaves (N^log_b a)"}
 
-    CEO --> VP1
-    CEO --> VP2
-    VP1 --> DIR1
-    VP1 --> DIR2
-    VP2 --> DIR3
-    VP2 --> DIR4
-    DIR1 -.-> INTERNS
-    DIR2 -.-> INTERNS
-    DIR3 -.-> INTERNS
-    DIR4 -.-> INTERNS
+    Compare -- "Leaves Grow Faster\n(Bottom-heavy)" --> Case1["Case 1: Leaves Dominate\nRuntime = O(N^log_b a)\nExample: Karatsuba Multiplication"]
+    Compare -- "Work is Equal at Every Level\n(Evenly distributed)" --> Case2["Case 2: Balanced Work\nRuntime = O(f(N) · log N)\nExample: MergeSort O(N log N)"]
+    Compare -- "Root Grows Faster\n(Top-heavy)" --> Case3["Case 3: Root Dominates\nRuntime = O(f(N))\nExample: QuickSelect O(N) average"]
 
-    style CEO fill:#1e3a8a,color:#f8fafc,stroke:#3b82f6,stroke-width:2px
-    style INTERNS fill:#7f1d1d,color:#f8fafc,stroke:#ef4444,stroke-width:2px
+    style Case1 fill:#7f1d1d,stroke:#f87171,stroke-width:2px,color:#fff
+    style Case2 fill:#14532d,stroke:#4ade80,stroke-width:2px,color:#fff
+    style Case3 fill:#1e3a8a,stroke:#60a5fa,stroke-width:2px,color:#fff
 ```
 
-There are only **Three Possibilities**:
-1. 🍂 **The Interns Do All The Work (Case 1)**: There are so many interns at the bottom that their collective work dwarfs all management coordination combined.
-2. ⚖️ **Perfect Work-Life Balance (Case 2)**: Every layer in the company does the exact same total amount of work. The total cost is simply (work per layer $\times$ number of layers).
-3. 👑 **The CEO Does All The Work (Case 3)**: The coordination cost at the top was so gigantic that the work done by the lower levels is negligible.
+### The 5 Recurrences That Appear in 99% of Interviews
 
-This is the **Master Theorem**.
-
----
-
-## 🎯 Level 200 — Street Fundamentals: The Master Theorem Cookbook
-
-> 🧠 **The Permanent Memory Mantra**  
-> *"Master Theorem is a tug-of-war between the root and the leaves: if leaf branching outpaces work reduction, leaves win (Case 1); if splitting work dwarfs leaf growth, the root wins (Case 3); if balanced, multiply by tree height $\log n$ (Case 2)."*
-
-> 🧠 **Mental Model Card**
-> - **The Standard Recurrence:** $T(n) = a T(n/b) + f(n)$
->   - $a$ = number of subproblems (branches created at each step).
->   - $b$ = factor by which input size shrinks.
->   - $f(n) = O(n^d)$ = work done to split and merge subproblems at the current level.
-> - **The Critical Exponent:** $c_{\text{crit}} = \log_b a$. This measures leaf growth rate: there are $n^{\log_b a}$ base cases at the bottom of the tree.
-> - **Who Wins? Compare $d$ vs $\log_b a$**:
->   - **Case 1 ($d < \log_b a$):** Leaves win! $T(n) = \Theta(n^{\log_b a})$.
->   - **Case 2 ($d = \log_b a$):** Tie! Every level does equal work. $T(n) = \Theta(n^d \log n)$.
->   - **Case 3 ($d > \log_b a$):** Root wins! Top level dominates. $T(n) = \Theta(n^d)$.
-
-### The 10-Second Interview Reference Table
-
-| Algorithm | Recurrence | $a$ | $b$ | $f(n)$ | $\log_b a$ vs $d$ | Case | Final Tight Bound $\Theta$ |
-|---|---|:---:|:---:|:---:|:---:|:---:|---|
-| **Binary Search** | $T(n) = T(n/2) + O(1)$ | 1 | 2 | $n^0$ | $\log_2 1 = 0 = d$ | Case 2 | $\Theta(\log n)$ |
-| **Merge Sort** | $T(n) = 2T(n/2) + O(n)$ | 2 | 2 | $n^1$ | $\log_2 2 = 1 = d$ | Case 2 | $\Theta(n \log n)$ |
-| **Karatsuba Multiplication** | $T(n) = 3T(n/2) + O(n)$ | 3 | 2 | $n^1$ | $\log_2 3 \approx 1.585 > 1$ | Case 1 | $\Theta(n^{1.585})$ |
-| **Strassen Matrix Mult** | $T(n) = 7T(n/2) + O(n^2)$ | 7 | 2 | $n^2$ | $\log_2 7 \approx 2.807 > 2$ | Case 1 | $\Theta(n^{2.807})$ |
-| **Tree Traversal (Full)** | $T(n) = 2T(n/2) + O(1)$ | 2 | 2 | $n^0$ | $\log_2 2 = 1 > 0$ | Case 1 | $\Theta(n)$ |
+| Pattern / Algorithm | Recurrence Form | Tree Depth | Work per Level | Overall Time |
+|---|---|---|---|---|
+| **Binary Search** | $T(N) = T(N/2) + O(1)$ | $\log_2 N$ | $O(1)$ | **$O(\log N)$** |
+| **Full Tree Traversal** | $T(N) = 2T(N/2) + O(1)$ | $\log_2 N$ | Doubles each level | **$O(N)$** |
+| **MergeSort** | $T(N) = 2T(N/2) + O(N)$ | $\log_2 N$ | $O(N)$ at every level | **$O(N \log N)$** |
+| **QuickSelect (Average)** | $T(N) = T(N/2) + O(N)$ | $\log_2 N$ | Halves: $N + \frac{N}{2} + \frac{N}{4} \dots$ | **$O(N)$** |
+| **Naive Fibonacci / Subsets** | $T(N) = 2T(N-1) + O(1)$ | $N$ | Doubles each step | **$O(2^N)$** |
 
 ---
 
-### 🎯 The FAANG Bar-Raiser Squeeze Box
+## 🗣️ 3. The 30-Second Interview Talk Track
 
-1. **The Non-Polynomial Gap Trap**:
-   - *The Trap*: "Solve $T(n) = 2T(n/2) + \frac{n}{\log n}$. Which Master Theorem case applies?"
-   - *The Flaw*: Candidate picks Case 1 because $\frac{n}{\log n} < n$, or Case 2 because the degree is 'roughly 1'.
-   - *The Staff Defense*: "Neither! The Master Theorem **fails** here. Case 1 requires $f(n) = O(n^{1-\epsilon})$ for some $\epsilon > 0$. But $\frac{n}{\log n}$ is only logarithmically smaller, not polynomially smaller. We sum the levels directly: $\sum_{i=0}^{\log n} \frac{n}{\log(n/2^i)} \implies \Theta(n \log \log n)$."
-2. **The Asymmetric Subproblem Trap**:
-   - *The Trap*: "In Quickselect with uneven partitioning, what is the runtime of $T(n) = T(n/3) + T(2n/3) + O(n)$?"
-   - *The Flaw*: Attempting to average $b = 1.5$ and applying standard Master Theorem.
-   - *The Staff Defense*: "Master Theorem requires equal subproblem sizes. For asymmetric splits, we use the **Akra-Bazzi method**: find $p$ such that $(1/3)^p + (2/3)^p = 1 \implies p = 1$. The integral $\int_1^n \frac{u}{u^2} du = \ln n$ yields $T(n) = \Theta(n \log n)$."
-3. **The Stack Frame & Memory Ceiling Reality**:
-   - *The Trap*: "Can we write our divide-and-conquer algorithm recursively for $N = 10^6$?"
-   - *The Flaw*: Claiming space complexity is $O(1)$ because no new arrays were allocated.
-   - *The Staff Defense*: "No. Every recursive call pushes an execution stack frame ($\approx 64-128$ bytes for registers, return IP, and locals). On Linux with a default 8MB stack limit, recursion depth $\ge 65,000$ triggers an uncatchable **OS SIGSEGV (Stack Overflow)**. For $N = 10^6$, recursive algorithms like QuickSort must either limit depth via introspective heap switching ([`Introsort`](../004%20-%20Sorting%20Algorithms/sorting.py)) or simulate the stack explicitly on the heap."
+When explaining recursive time complexity on a whiteboard:
 
----
+### The MergeSort Script ($O(N \log N)$)
+> *"At each recursion level, we split the array in half and do $O(N)$ work merging the results. Since we divide by 2 each time, the recursion tree has a depth of $\log_2 N$. Because every single level performs $O(N)$ combined merge work across all its nodes, the total time is simply $O(N) \times \log_2 N = O(N \log N)$."*
 
-## ⚙️ Level 300 — Working Professional: The Big Three Methods
-
-A divide-and-conquer recurrence takes the canonical form:
-
-$$T(n) = a \cdot T\left(\frac{n}{b}\right) + f(n)$$
-
-Where:
-- $a \ge 1$: The number of recursive subproblems created.
-- $b > 1$: The factor by which the input size is reduced.
-- $f(n)$: The cost of dividing the problem and combining the subproblem results.
-
----
-
-### Method 1: The Master Theorem Formula
-The Master Theorem compares $f(n)$ to the **Watershed Function** $n^{\log_b a}$ (the number of leaves in the recursion tree).
-
-```mermaid
-flowchart TD
-    START["Compare f(n) with n^(log_b a)"] --> Q{"Which grows faster?"}
-
-    Q -->|"n^(log_b a) grows polynomially faster\nf(n) = O(n^(log_b a - ε))"| C1["CASE 1: Leaves Dominate\nT(n) = Θ(n^(log_b a))"]
-    Q -->|"Both grow at the same rate\nf(n) = Θ(n^(log_b a) · log^k n)"| C2["CASE 2: Balanced Work\nT(n) = Θ(n^(log_b a) · log^(k+1) n)"]
-    Q -->|"f(n) grows polynomially faster\nf(n) = Ω(n^(log_b a + ε)) + Regularity"| C3["CASE 3: Root Dominates\nT(n) = Θ(f(n))"]
-
-    style C1 fill:#7f1d1d,color:#ffffff
-    style C2 fill:#14532d,color:#ffffff
-    style C3 fill:#1e3a8a,color:#ffffff
+```
+Level 0:                 [ N ]                     = N work
+                         /   \
+Level 1:           [ N/2 ]   [ N/2 ]               = N/2 + N/2 = N work
+                    /   \     /   \
+Level 2:        [N/4]  [N/4] [N/4]  [N/4]          = 4 * (N/4) = N work
+... (log N levels total)
+────────────────────────────────────────────────────────────────────────
+Total Work = N * log₂ N
 ```
 
-#### The Three Formal Cases:
+### The QuickSelect Script ($O(N)$ Average)
+> *"In QuickSelect, after partitioning in $O(N)$ time, we only recurse into **one** half where our target $k$-th element lies. The work shrinks as a geometric series: $N + N/2 + N/4 + N/8 + \dots \le 2N$. Therefore, the average time complexity is bounded by $O(N)$."*
 
-1. **Case 1 (Leaf-Heavy)**:  
-   If $f(n) = O(n^{\log_b a - \epsilon})$ for some constant $\epsilon > 0$:
-   $$T(n) = \Theta(n^{\log_b a})$$
-   *Example*: $T(n) = 8T(n/2) + 1000n^2$.  
-   $a=8, b=2 \implies n^{\log_2 8} = n^3$.  
-   Compare $n^2$ vs $n^3$: Since $n^2 = O(n^{3 - 1})$, leaves dominate $\implies T(n) = \Theta(n^3)$.
-
-2. **Case 2 (Evenly Balanced)**:  
-   If $f(n) = \Theta(n^{\log_b a} \cdot \log^k n)$ for some $k \ge 0$:
-   $$T(n) = \Theta(n^{\log_b a} \cdot \log^{k+1} n)$$
-   *Example (Merge Sort)*: $T(n) = 2T(n/2) + cn$.  
-   $a=2, b=2 \implies n^{\log_2 2} = n^1$.  
-   Here $f(n) = cn = \Theta(n^1 \cdot \log^0 n) \implies T(n) = \Theta(n \log n)$.
-
-3. **Case 3 (Root-Heavy)**:  
-   If $f(n) = \Omega(n^{\log_b a + \epsilon})$ for some constant $\epsilon > 0$, **AND** $f(n)$ satisfies the **Regularity Condition** ($a \cdot f(n/b) \le c \cdot f(n)$ for some constant $c < 1$ and all large $n$):
-   $$T(n) = \Theta(f(n))$$
-   *Example*: $T(n) = 2T(n/2) + n^2$.  
-   $a=2, b=2 \implies n^{\log_2 2} = n^1$.  
-   $f(n) = n^2 = \Omega(n^{1 + 1})$.  
-   Regularity check: $2 \cdot (n/2)^2 = 2 \cdot \frac{n^2}{4} = \frac{1}{2} n^2 \le c \cdot n^2$ (holds with $c = 1/2$).  
-   Therefore, root dominates $\implies T(n) = \Theta(n^2)$.
+### The Binary Search Script ($O(\log N)$)
+> *"At each step, we perform an $O(1)$ comparison and discard half the remaining elements. The search space shrinks as $N, N/2, N/4, \dots, 1$. Halving $N$ down to 1 takes exactly $\log_2 N$ steps, yielding $O(\log N)$ time."*
 
 ---
 
-### Method 2: The Recursion Tree Method
-When the Master Theorem cannot be applied, sketch the recursion tree:
-- **Depth of tree**: $\log_b n$.
-- **Number of nodes at depth $i$**: $a^i$.
-- **Size of input at depth $i$**: $n / b^i$.
-- **Cost at depth $i$**: $a^i \cdot f(n / b^i)$.
-- **Total Cost**: $\sum_{i=0}^{\log_b n} a^i \cdot f(n / b^i) + \Theta(n^{\log_b a})$.
+## 🧠 4. Senior Systems Reality: The Call Stack Memory Tax
+
+On a whiteboard, recursion looks clean. In production systems, **every recursion level consumes real physical stack memory**:
+
+```
+High Memory
+┌────────────────────────────────────────────────────────┐
+│ Stack Frame 3: dfs(node.left.left)                     │
+│  - Return Address: 0x7fff4820                          │
+│  - Local variables, parameter pointers (64-128 bytes)  │
+├────────────────────────────────────────────────────────┤
+│ Stack Frame 2: dfs(node.left)                          │
+├────────────────────────────────────────────────────────┤
+│ Stack Frame 1: dfs(root)                               │
+└────────────────────────────────────────────────────────┘
+Low Memory (Stack grows downward towards Heap)
+```
+
+### The Production Hazards
+1. **The Stack Overflow Threshold**:
+   - The default call stack limit in OS threads is typically **1 MB to 8 MB**.
+   - In Python, `sys.getrecursionlimit()` defaults to **1,000 frames**! If an unbalanced tree or recursive DFS exceeds 1,000 calls, Python raises `RecursionError`.
+   - In Java / C++, a recursion depth of $\approx 10^5$ will instantly crash with `StackOverflowError` / segmentation fault.
+2. **Converting to Explicit Stack (Heap-Backed)**:
+   - When constraints say $N = 10^5$, recursive DFS is dangerous if the graph/tree can be degenerate (a straight line).
+   - Senior engineers convert deep recursion to an **iterative loop with an explicit array stack** stored on the heap, which has gigabytes of space rather than megabytes.
 
 ---
 
-### Method 3: The Substitution Method (Mathematical Induction)
-Use this when you need an ironclad mathematical proof:
-1. **Guess** the form of the solution (e.g., $T(n) \le c \cdot n \log n$).
-2. **Inductive Step**: Substitute your guess into the recurrence:
-   $$T(n) \le 2\left[c \frac{n}{2} \log\left(\frac{n}{2}\right)\right] + n = c n (\log n - \log 2) + n = c n \log n - c n + n$$
-3. **Establish Constants**: We need $c n \log n - c n + n \le c n \log n$, which holds whenever $-cn + n \le 0 \implies c \ge 1$.
-4. **Base Case**: Show $T(n_0) \le c n_0 \log n_0$ for suitable initial boundary values.
+## 🎯 5. Constraint Triage & FAANG Traps
 
----
-
-## 🔬 Level 400 — Staff & Senior Engineer: Gaps & The Akra-Bazzi Theorem
-
-### 1. The Master Theorem Gaps
-The Master Theorem does not cover every polynomial recurrence. There are two common traps:
-
-#### Trap A: Non-Polynomial Gaps
-Consider: $T(n) = 2T(n/2) + \frac{n}{\log n}$.  
-Here $a=2, b=2 \implies n^{\log_b a} = n$.  
-$f(n) = \frac{n}{\log n}$ is smaller than $n$, but it is **not polynomially smaller**! (The ratio is $\log n$, which is asymptotically smaller than $n^\epsilon$ for any $\epsilon > 0$).  
-👉 **Master Theorem fails here!**  
-(Solution via recursion tree: $T(n) = \Theta(n \log \log n)$).
-
-#### Trap B: Failure of Regularity
-Consider: $T(n) = T(n/2) + n(2 - \cos n)$.  
-$f(n)$ oscillates. It is $\Omega(n)$, but it violates the regularity condition $a f(n/b) \le c f(n)$.  
-👉 **Master Theorem fails!**
-
----
-
-### 2. The Akra-Bazzi Generalization (1998)
-In real-world divide-and-conquer (like uneven quickselect partitions), subproblems are rarely equal in size:
-
-$$T(n) = \sum_{i=1}^k a_i T(b_i n) + g(n)$$
-
-*Example*: $T(n) = T(n/3) + T(2n/3) + O(n)$. (A tree where the left branch shrinks by $1/3$ and the right branch by $2/3$).
-
-#### The Akra-Bazzi Recipe:
-1. Find the unique real number $p$ that satisfies:
-   $$\sum_{i=1}^k a_i b_i^p = 1$$
-   For $T(n/3) + T(2n/3)$: $(1/3)^p + (2/3)^p = 1 \implies p = 1$.
-2. The closed-form solution is:
-   $$T(n) = \Theta\left(n^p \left(1 + \int_1^n \frac{g(u)}{u^{p+1}} du\right)\right)$$
-3. Plugging in $p=1$ and $g(u) = u$:
-   $$T(n) = \Theta\left(n^1 \left(1 + \int_1^n \frac{u}{u^2} du\right)\right) = \Theta(n(1 + \ln n)) = \Theta(n \log n)$$
-
----
-
-## 📚 Canonical Recurrence Catalog for LeetCode & DSA
-
-| Algorithm | Recurrence Relation | Master Case | Closed-Form Complexity |
-|---|---|---|---|
-| **Binary Search** | $T(n) = T(n/2) + O(1)$ | Case 2 ($k=0$) | $\Theta(\log n)$ |
-| **Tree Traversal (Full)** | $T(n) = 2T(n/2) + O(1)$ | Case 1 | $\Theta(n)$ |
-| **Merge Sort** | $T(n) = 2T(n/2) + O(n)$ | Case 2 ($k=0$) | $\Theta(n \log n)$ |
-| **Karatsuba Integer Mult** | $T(n) = 3T(n/2) + O(n)$ | Case 1 | $\Theta(n^{\log_2 3}) \approx \Theta(n^{1.585})$ |
-| **Strassen Matrix Mult** | $T(n) = 7T(n/2) + O(n^2)$ | Case 1 | $\Theta(n^{\log_2 7}) \approx \Theta(n^{2.807})$ |
-| **Closest Pair of Points** | $T(n) = 2T(n/2) + O(n)$ | Case 2 ($k=0$) | $\Theta(n \log n)$ |
-| **Median of Medians** | $T(n) \le T(n/5) + T(7n/10) + O(n)$ | Akra-Bazzi | $\Theta(n)$ |
-
----
-
-## 🎓 Level 500 — Researcher's Corner: Non-Smooth Divide-and-Conquer
-
-<details>
-<summary><strong>Expand PhD Deep-Dive: Roura's Continuous Master Theorem</strong></summary>
-
-What happens when subproblem sizes are driven by continuous probability distributions (e.g., randomized Quicksort where the pivot falls at $x \in [0, 1]$)?
-
-**Continuous Master Theorem (Salvador Roura, 2001)**:
-For recurrences of the form:
-$$T(n) = \int_0^1 T(z \cdot n) w(z) dz + f(n)$$
-Roura showed that the asymptotic behavior depends on the shape of the weighting function $w(z)$ and its moments $\int_0^1 z^p w(z) dz = 1$. This unified the discrete Master Theorem and randomized probabilistic recurrences into a single continuous differential framework.
-
-</details>
-
----
-
-## 💻 Python 3.14 Verification: Automated Recurrence Empirical Validator
-
-Here is a Python 3.14 simulator that solves recurrences numerically and empirically calculates the slope $\alpha = \frac{\log(T(2n) / T(n))}{\log 2}$ to identify the asymptotic exponent:
-
+### Trap 1: Passing Slices into Recursive Calls
 ```python
-import math
-from typing import Callable
+# ❌ TRAP: O(N log N) Extra Space and O(N^2) Time!
+# `nums[:mid]` copies the elements into a new list at every call!
+def merge_sort(nums):
+    if len(nums) <= 1:
+        return nums
+    mid = len(nums) // 2
+    left = merge_sort(nums[:mid])   # 💥 Creates a copy!
+    right = merge_sort(nums[mid:])  # 💥 Creates a copy!
+    return merge(left, right)
 
-
-def empirical_recurrence_exponent(
-    t_func: Callable[[int], float], n_base: int = 1024
-) -> float:
-    """Empirically calculates the growth exponent alpha where T(n) ~ n^alpha
-
-    using the doubling ratio: alpha = log2(T(2n) / T(n)).
-    """
-    t_n = t_func(n_base)
-    t_2n = t_func(2 * n_base)
-    ratio = t_2n / t_n
-    return math.log2(ratio)
-
-
-# 1. Simulating Karatsuba: T(n) = 3T(n/2) + n
-# Theory: n^(log2 3) = n^1.58496...
-def karatsuba_sim(n: int) -> float:
-    if n <= 1:
-        return 1.0
-    return 3.0 * karatsuba_sim(n // 2) + float(n)
-
-
-# 2. Simulating Strassen: T(n) = 7T(n/2) + n^2
-# Theory: n^(log2 7) = n^2.80735...
-def strassen_sim(n: int) -> float:
-    if n <= 1:
-        return 1.0
-    return 7.0 * strassen_sim(n // 2) + float(n * n)
-
-
-if __name__ == "__main__":
-    n = 2048
-
-    # Verify Karatsuba
-    exp_karatsuba = empirical_recurrence_exponent(karatsuba_sim, n)
-    theory_karatsuba = math.log2(3)
-    print(f"Karatsuba Empirical Exponent : {exp_karatsuba:.4f}")
-    print(f"Karatsuba Theoretical Exponent: {theory_karatsuba:.4f}")
-    assert abs(exp_karatsuba - theory_karatsuba) < 0.05
-
-    # Verify Strassen
-    exp_strassen = empirical_recurrence_exponent(strassen_sim, n)
-    theory_strassen = math.log2(7)
-    print(f"Strassen Empirical Exponent  : {exp_strassen:.4f}")
-    print(f"Strassen Theoretical Exponent : {theory_strassen:.4f}")
-    assert abs(exp_strassen - theory_strassen) < 0.05
-
-    print("✅ Empirical recurrence validations perfectly matched Master Theorem!")
+# ✅ SENIOR FIX: Pass Index Pointers (O(log N) Space)
+def merge_sort(nums, left, right):
+    if left >= right:
+        return
+    mid = (left + right) // 2
+    merge_sort(nums, left, mid)
+    merge_sort(nums, mid + 1, right)
 ```
 
----
-
-## 🔗 Connections to Coding Patterns & Data Structures
-
-- [**`003 - Recursion and the Call Stack`**](../003%20-%20Recursion%20and%20the%20Call%20Stack/walkthrough.md): Visualizing call frames, base cases, and stack consumption before applying divide-and-conquer recurrences.
-- [**`004 - Sorting Algorithms`**](../004%20-%20Sorting%20Algorithms/sorting.py) (`merge_sort`): Canonical Case 2 recurrence $T(n) = 2T(n/2) + O(n) \implies \Theta(n \log n)$.
-- [**`Pattern 17: Modified Binary Search`**](../../17%20-%20Modified%20Binary%20Search/theory.md): $T(n) = T(n/2) + O(1) \implies \Theta(\log n)$. Cutting the search space in half with $O(1)$ work is the gold standard of sub-linear retrieval.
-- [**`Pattern 20: K-way Merge`**](../../20%20-%20K-way%20Merge/theory.md): Merging $K$ lists of total size $N$ using a min-heap yields $T(N) = O(N \log K)$.
-- [**`Pattern 36: Meet in the Middle`**](../../36%20-%20Meet%20in%20the%20Middle/theory.md): Instead of solving $T(N) = 2^N$, splitting the search in half yields $2 \cdot 2^{N/2} + 2^{N/2} \log(2^{N/2}) = O(N \cdot 2^{N/2})$.
-
----
-
-## 🧪 Self-Test Questions
-
-1. **Why can't the Master Theorem solve $T(n) = 2T(n/2) + n \log n$? (Be precise about which case is violated).**
-2. **In Karatsuba multiplication, why was replacing 4 sub-multiplications with 3 sub-multiplications a revolutionary breakthrough?**
-3. **What is the regularity condition in Case 3 of the Master Theorem, and what happens if it is violated?**
-4. **Solve the recurrence $T(n) = 4T(n/2) + n$. Which case of the Master Theorem applies?**
-5. **How does the Akra-Bazzi method solve recurrences with unequal subproblems like $T(n) = T(n/5) + T(4n/5) + n$?**
-
-<details>
-<summary><strong>Click to view answers</strong></summary>
-
-1. $a=2, b=2 \implies n^{\log_2 2} = n^1$. We compare $f(n) = n \log n$ with $n^1$. Although $n \log n$ is asymptotically larger than $n$, it is **not polynomially larger** (there is no constant $\epsilon > 0$ such that $n \log n = \Omega(n^{1+\epsilon})$). Hence Case 3 fails. (Case 2 extended can solve this to yield $\Theta(n \log^2 n)$).
-2. Standard multiplication does 4 sub-multiplications of size $n/2$: $T(n) = 4T(n/2) + O(n) \implies n^{\log_2 4} = \Theta(n^2)$. By cleverly using algebra to compute $(a+b)(c+d)$, Karatsuba reduced it to 3 multiplications: $T(n) = 3T(n/2) + O(n) \implies \Theta(n^{\log_2 3}) \approx \Theta(n^{1.585})$, breaking the quadratic barrier for the first time in history!
-3. The regularity condition is $a \cdot f(n/b) \le c \cdot f(n)$ for some constant $c < 1$. It ensures that the cost at the root genuinely dominates the sum of costs at all lower levels. If violated, the Master Theorem cannot be used.
-4. $a=4, b=2 \implies n^{\log_2 4} = n^2$. $f(n) = n = O(n^{2 - 1})$ with $\epsilon = 1$. This is **Case 1 (Leaf-Heavy)**. Therefore, $T(n) = \Theta(n^2)$.
-5. Find $p$ such that $(1/5)^p + (4/5)^p = 1 \implies p = 1$. Then evaluate the Akra-Bazzi integral: $T(n) = \Theta(n(1 + \int_1^n \frac{u}{u^2} du)) = \Theta(n \log n)$.
-
-</details>
+### Trap 2: Unbalanced QuickSort Degradation
+- If you always pick the first element as pivot on an **already sorted array**, the recursion tree does not divide by 2!
+- Recurrence becomes: $T(N) = T(N-1) + O(N) \implies O(N^2)$ time and $O(N)$ stack depth.
+- **The Defense**: Always use **Randomized Pivot Selection** or median-of-three to guarantee $O(N \log N)$ expected time.
 
 ---
 
 ## 🧭 Navigation
-
-| ← Previous | ↑ Master Index | Next → |
-|:---|:---:|---:|
-| [← Ch 02: Asymptotic Analysis Deep Cuts](02_asymptotic_analysis_deep.md) | [🏛️ Theoretical Foundations Index](README.md) | [Ch 04: Amortized Analysis →](04_amortized_analysis.md) |
-
+- **Previous**: [Ch 02: Asymptotic Analysis](./02_asymptotic_analysis_deep.md)
+- **Next**: [Ch 04: Amortized Analysis](./04_amortized_analysis.md)
