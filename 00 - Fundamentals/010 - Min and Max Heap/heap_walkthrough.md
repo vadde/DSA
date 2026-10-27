@@ -95,8 +95,8 @@ This is one of the most common pitfalls in FAANG interviews:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│  To find Top-K LARGEST elements  ════► Maintain a MIN-HEAP of size K!        │
-│  To find Top-K SMALLEST elements ════► Maintain a MAX-HEAP of size K!        │
+│  To find Top-K LARGEST elements  ════► Maintain a MIN-HEAP of size K!       │
+│  To find Top-K SMALLEST elements ════► Maintain a MAX-HEAP of size K!       │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 

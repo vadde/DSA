@@ -15,8 +15,8 @@ Think about communication efficiency:
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ 💾 HUFFMAN ENCODING:                                                        │
-│ Use a Min-Heap to repeatedly merge the two lowest-frequency symbols.         │
-│ Produces a prefix-free optimal binary tree in O(N log N) time.               │
+│ Use a Min-Heap to repeatedly merge the two lowest-frequency symbols.        │
+│ Produces a prefix-free optimal binary tree in O(N log N) time.              │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 

@@ -83,7 +83,7 @@ Every Senior / Lead engineer knows the CAP theorem:
 ┌──────────────────────────────────────┬─────────────────────────────────────────────────────────┐
 │ System                               │ CAP Stance during Network Partitions                    │
 ├──────────────────────────────────────┼─────────────────────────────────────────────────────────┤
-│ PostgreSQL / MySQL (Primary-Replica) │ CP: Refuses inconsistent writes to preserve data safety│
+│ PostgreSQL / MySQL (Primary-Replica) │ CP: Refuses inconsistent writes to preserve data safety │
 │ Cassandra / DynamoDB (AP Mode)       │ AP: Accepts local writes, reconciles with Eventual      │
 │                                      │     Consistency (Vector Clocks / LWW)                   │
 └──────────────────────────────────────┴─────────────────────────────────────────────────────────┘

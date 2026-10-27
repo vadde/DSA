@@ -1,28 +1,33 @@
 # 🧠 Data Structures & Algorithms — The Complete Pattern Bible
 
-> *"You don't need to memorize 43 patterns. You need to memorize **5 questions**, **7 families**, and **1 mantra**."*
+[![Living Documentation Portal](https://img.shields.io/badge/Living_Docs_Portal-vadde.github.io%2FDSA-00f2fe?style=for-the-badge&logo=githubpages&logoColor=black)](https://vadde.github.io/DSA/)
+[![Quality Gate](https://img.shields.io/badge/12--Gate_Verification-100%25_Passing-10b981?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/vadde/DSA/actions)
 
+> 🚀 **Explore the Interactive Living Documentation Portal**: **[https://vadde.github.io/DSA/](https://vadde.github.io/DSA/)**  
+> Complete interactive architecture with 44 patterns, 14 engines, 460 isolated visual diagrams, full-text Cmd+K search, SIFT simulator, and multi-theme cosmic liquid-glass UI.
+
+> *"You don't need to memorize 43 patterns. You need to memorize **5 questions**, **7 families**, and **1 mantra**."*
 
 ---
 
 ## 🏛️ The Three Pillars of Mastery
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ 🏛️ PILLAR 0: THEORETICAL FOUNDATIONS (The Physics of Computation)          │
-│ Computability (Turing/Rice) • Complexity Zoo (P, NP, PSPACE) • Lower Bounds │
-│ Asymptotics • Amortization • Approximations • Heuristics • Engineering Triage│
-│ 📂 00 - Fundamentals/000 - Theoretical Foundations (The Complete Guide)/   │
-└──────────────────────────────────────┬──────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ 🏛️ PILLAR 0: THEORETICAL FOUNDATIONS (The Physics of Computation)             │
+│ Computability (Turing/Rice) • Complexity Zoo (P, NP, PSPACE) • Lower Bounds   │
+│ Asymptotics • Amortization • Approximations • Heuristics • Engineering Triage │
+│ 📂 00 - Fundamentals/000 - Theoretical Foundations (The Complete Guide)/      │
+└───────────────────────────────────────┬───────────────────────────────────────┘
                                        ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ ⚙️ PILLAR 1: DATA STRUCTURE ENGINE ROOMS (The Concrete Mechanics)           │
-│ Stacks • Queues • Linked Lists • Heaps • BSTs • Tries • Trees • Graphs      │
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ ⚙️ PILLAR 1: DATA STRUCTURE ENGINE ROOMS (The Concrete Mechanics)             │
+│ Stacks • Queues • Linked Lists • Heaps • BSTs • Tries • Trees • Graphs       │
 │ 📂 00 - Fundamentals/ (001 - 014 Engines, 015 Trees Guide, 016 Graphs Guide) │
-└──────────────────────────────────────┬──────────────────────────────────────┘
+└──────────────────────────────────────┬───────────────────────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ ⚔️ PILLAR 2: ALGORITHMIC PATTERNS (The Tactical Arsenal)                    │
+│ ⚔️ PILLAR 2: ALGORITHMIC PATTERNS (The Tactical Arsenal)                     │
 │ 43 Patterns • SIFT Method • 7 Pattern Families • Muscle Memory Skeletons    │
 │ 📂 01 - Warmup/ ... 43 - Miscellaneous/                                     │
 └─────────────────────────────────────────────────────────────────────────────┘

@@ -85,3 +85,8 @@ temp/
 *.dylib
 *.so
 _internal/
+
+# --- Documentation Build & Headless Testing ---
+_site/
+.playwright-mcp/
+*.png

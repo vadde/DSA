@@ -12,7 +12,7 @@ Imagine driving on a highway:
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ 🚗 Big-O (Upper Bound)    = The Speed Limit: "You won't exceed 70 mph"      │
 │ 🛑 Big-Ω (Lower Bound)    = The Minimum Speed: "Traffic forces at least 15" │
-│ 🎯 Big-Θ (Tight Bound)    = Cruise Control: "Locked exactly at 55 mph"     │
+│ 🎯 Big-Θ (Tight Bound)    = Cruise Control: "Locked exactly at 55 mph"      │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 

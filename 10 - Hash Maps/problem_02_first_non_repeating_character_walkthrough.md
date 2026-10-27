@@ -52,7 +52,7 @@ flowchart TD
     end
     
     subgraph Pass1Tallyup ["Pass 1: Tally up"]
-        N1["Map Built:\n{"'l': 2, 'o': 2, 'v': 1, 'e': 4..."}"]
+        N1["Map Built:\n{'l': 2, 'o': 2, 'v': 1, 'e': 4...}"]
     end
     
     subgraph Pass2Scanfor1 ["Pass 2: Scan for 1"]

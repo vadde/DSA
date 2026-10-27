@@ -12,14 +12,14 @@ Welcome to **Graphs (The Complete Guide)** — a comprehensive, from-first-princ
 While arrays and trees enforce strict structural constraints (linear order or acyclic hierarchy), graphs model **arbitrary relationships**:
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ TREES (Specialized Subgraph)             GRAPHS (General Topology)          │
-│ • Exactly 1 connected component          • Multiple components allowed      │
-│ • No cycles (Acyclic)                    • Cycles are common                │
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ TREES (Specialized Subgraph)             GRAPHS (General Topology)           │
+│ • Exactly 1 connected component          • Multiple components allowed       │
+│ • No cycles (Acyclic)                    • Cycles are common                 │
 │ • N nodes ⟹ exactly N - 1 edges          • 0 to N(N-1)/2 edges (undirected) │
-│ • Unique path between any two nodes      • Multiple alternative paths       │
-│ • Natural root-child hierarchy           • Symmetric or asymmetric relations│
-└─────────────────────────────────────────────────────────────────────────────┘
+│ • Unique path between any two nodes      • Multiple alternative paths        │
+│ • Natural root-child hierarchy           • Symmetric or asymmetric relations │
+└──────────────────────────────────────────────────────────────────────────────┘
 ```
 
 In technical interviews and production distributed systems:
