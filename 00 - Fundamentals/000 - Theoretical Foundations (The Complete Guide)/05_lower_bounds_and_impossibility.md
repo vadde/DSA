@@ -100,16 +100,16 @@ When asked why BFS/DFS is optimal for graph traversal:
 Standard libraries in Python, Java, and C++ do not use purely textbook algorithms:
 
 ```
-┌─────────────────┬──────────────────────┬─────────────────────────────────────────────────────────┐
-│ Language        │ Algorithm            │ Why This Hybrid Architecture?                           │
-├─────────────────┼──────────────────────┼─────────────────────────────────────────────────────────┤
-│ Python & Java   │ Timsort              │ MergeSort + InsertionSort hybrid. Detects naturally     │
-│ (Objects)       │                      │ ordered runs. Stable (preserves object identity order). │
-├─────────────────┼──────────────────────┼─────────────────────────────────────────────────────────┤
-│ C++ (`std::sort`)│ Introsort            │ QuickSort + HeapSort + InsertionSort. Starts fast with   │
-│                 │                      │ QuickSort; switches to HeapSort if depth > 2 log N      │
-│                 │                      │ to avoid O(N²) worst-case degradation.                  │
-└─────────────────┴──────────────────────┴─────────────────────────────────────────────────────────┘
+┌───────────────────┬──────────────────────┬─────────────────────────────────────────────────────────┐
+│ Language          │ Algorithm            │ Why This Hybrid Architecture?                           │
+├───────────────────┼──────────────────────┼─────────────────────────────────────────────────────────┤
+│ Python & Java     │ Timsort              │ MergeSort + InsertionSort hybrid. Detects naturally     │
+│ (Objects)         │                      │ ordered runs. Stable (preserves object identity order). │
+├───────────────────┼──────────────────────┼─────────────────────────────────────────────────────────┤
+│ C++ (`std::sort`) │ Introsort            │ QuickSort + HeapSort + InsertionSort. Starts fast with  │
+│                   │                      │ QuickSort; switches to HeapSort if depth > 2 log N      │
+│                   │                      │ to avoid O(N²) worst-case degradation.                  │
+└───────────────────┴──────────────────────┴─────────────────────────────────────────────────────────┘
 ```
 
 ### The Small-$N$ Insertion Sort Switch

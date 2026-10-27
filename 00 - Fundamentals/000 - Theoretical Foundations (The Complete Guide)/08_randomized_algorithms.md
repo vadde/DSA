@@ -12,11 +12,11 @@ Think of the difference between two famous gambling capitals:
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ 🎰 LAS VEGAS ALGORITHM:                                                     │
 │ Always gives the 100% CORRECT answer, but RUNTIME depends on luck.          │
-│ • Example: QuickSort with a random pivot.                                    │
-│ • It will NEVER return a corrupted or mis-sorted array. Worst case is slow,  │
+│ • Example: QuickSort with a random pivot.                                   │
+│ • It will NEVER return a corrupted or mis-sorted array. Worst case is slow, │
 │   but expected runtime is always O(N log N).                                │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ 🎲 MONTE CARLO ALGORITHM:                                                    │
+│ 🎲 MONTE CARLO ALGORITHM:                                                   │
 │ Always finishes in FIXED FAST TIME, but has a tiny chance of error.         │
 │ • Example: Bloom Filter, Miller-Rabin Primality Test.                       │
 │ • "It might say Yes when it means No (false positive), but it never misses  │

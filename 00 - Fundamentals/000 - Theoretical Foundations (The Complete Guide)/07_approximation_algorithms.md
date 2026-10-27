@@ -14,7 +14,7 @@ Imagine packing a moving truck with boxes of different sizes:
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ 📐 APPROXIMATION ALGORITHM:                                                 │
-│ An algorithm that runs in fast polynomial time (e.g., O(N) or O(N log N))    │
+│ An algorithm that runs in fast polynomial time (e.g., O(N) or O(N log N))   │
 │ and provides a MATHEMATICAL GUARANTEE that its result is within a bounded   │
 │ factor (e.g., at most 2×) of the theoretical optimum.                       │
 └─────────────────────────────────────────────────────────────────────────────┘

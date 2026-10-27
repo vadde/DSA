@@ -12,11 +12,11 @@ Imagine sitting at a coffee table with a blank 9x9 Sudoku puzzle:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ 🟢 P (Polynomial Time)    = Easy to SOLVE (Sorting, BFS, Binary Search)      │
+│ 🟢 P (Polynomial Time)    = Easy to SOLVE (Sorting, BFS, Binary Search)     │
 │ 🟡 NP (Nondet. Poly Time) = Hard to solve, but Easy to VERIFY (Sudoku)      │
 │ 🔴 NP-Complete            = The hardest problems in NP (If one is solved,   │
 │                             ALL are solved: P = NP!)                        │
-│ 🟣 NP-Hard                = At least as hard as NP-Complete (e.g., Halting)  │
+│ 🟣 NP-Hard                = At least as hard as NP-Complete (e.g., Halting) │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 

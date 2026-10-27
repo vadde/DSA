@@ -15,7 +15,7 @@ Imagine descending a mountain in dense fog:
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ 🧭 HEURISTIC:                                                               │
 │ A computational rule of thumb that estimates the distance to the goal.      │
-│ It does not guarantee perfection on its own, but it guides the search away   │
+│ It does not guarantee perfection on its own, but it guides the search away  │
 │ from billions of dead-end paths.                                            │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```

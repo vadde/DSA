@@ -69,9 +69,9 @@ flowchart TD
         N4["Finished note!\nReturn True."]
     end
 
-Initialization --> ProcessNote 'a'
-    Process Note 'a' --> Process Note 'a' (again)
-    Process Note 'a' (again) --> Done
+Initialization --> ProcessNoteA
+    ProcessNoteA --> ProcessNoteAAgain
+    ProcessNoteAAgain --> Done
     
     style N1 fill:#e3f2fd,color:#000
     style N2 fill:#fff9c4,color:#000

@@ -1,8 +1,8 @@
-name: DSA Quality & Security Gate
+name: DSA Continuous Quality & Security Gate
 
 on:
   push:
-    branches: [main]
+    branches: ["**"]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -12,35 +12,74 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  syntax-and-compilation:
-    name: Python AST & Compilation Check
+  python-ast-check:
+    name: Python AST Compilation Matrix
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ["3.12", "3.13"]
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Compile all Python files
+      - name: Compile Algorithm Implementations
         run: |
           python -m compileall -q .
-          echo "✅ All algorithm pattern implementations compiled successfully without SyntaxErrors."
+          echo "✅ All Python pattern implementations compiled successfully without SyntaxErrors."
 
-      - name: Basic Syntax & Import Linter
+  lint-and-box-alignment:
+    name: Code Linter & Box Alignment Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install Lint Dependencies
         run: |
           pip install ruff
+
+      - name: Run Ruff Syntax Linter
+        run: |
           ruff check . --select=E9,F63,F7,F82 --output-format=github
+
+      - name: Run Unicode Monospace Box-Drawing Alignment Linter
+        run: |
+          python scripts/audit_ascii_boxes.py --check
+
+  docs-portal-audit:
+    name: 12-Gate Living Docs Verification Suite
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build & Run 12-Gate Headless Audit Suite
+        run: |
+          chmod +x scripts/build-docs.sh scripts/test-docs.sh scripts/audit_ascii_boxes.py
+          make docs-test
 
   security-scan:
     name: Gitleaks Secret Audit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 

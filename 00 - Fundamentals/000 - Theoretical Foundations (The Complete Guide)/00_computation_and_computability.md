@@ -82,7 +82,7 @@ A system is **Turing-complete** if it can simulate any arbitrary computer progra
 │ System                               │ How It Accidentally Becomes An Infinite Loop            │
 ├──────────────────────────────────────┼─────────────────────────────────────────────────────────┤
 │ SQL Databases (PostgreSQL / MySQL)   │ `WITH RECURSIVE` CTEs can loop infinitely, pegging CPU. │
-│ Regex Engines                        │ Catastrophic Backtracking on expressions like (a+)+$   │
+│ Regex Engines                        │ Catastrophic Backtracking on expressions like (a+)+$    │
 │ TypeScript Type Systems              │ Recursive type definitions can hang the compiler.       │
 │ CSS (CSS3 Selectors & Checkboxes)    │ Cellular automata can be simulated entirely in CSS.     │
 └──────────────────────────────────────┴─────────────────────────────────────────────────────────┘
