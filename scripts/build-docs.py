@@ -940,6 +940,12 @@ def generate_html(fundamentals_modules, catalog, all_problems_index):
   <header class="header-glass">
     <div class="header-left-cluster">
       <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Open Navigation">☰</button>
+      <button class="sidebar-dock-toggle" id="sidebar-dock-toggle" aria-label="Toggle Navigation Sidebar" title="Toggle Sidebar (⌘B / [)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="9" y1="3" x2="9" y2="21"></line>
+        </svg>
+      </button>
       <a href="#" class="brand-badge">
         <div class="brand-logo-icon">Ω</div>
         <div class="brand-text-group">
@@ -985,9 +991,31 @@ def generate_html(fundamentals_modules, catalog, all_problems_index):
   <!-- Layout Container -->
   <div class="layout-container">
     <div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop" aria-hidden="true"></div>
+    <button class="floating-sidebar-toggle" id="floating-sidebar-toggle" aria-label="Open Navigation Sidebar" title="Open Sidebar (⌘B / [)">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="9" y1="3" x2="9" y2="21"></line>
+        <path d="m13 15 3-3-3-3"></path>
+      </svg>
+      <span>Navigation</span>
+    </button>
 
     <!-- Navigation Sidebar -->
     <aside class="sidebar" id="main-sidebar">
+      <div class="sidebar-top-bar">
+        <div class="sidebar-top-title">
+          <span class="sidebar-top-icon">🧭</span>
+          <span>NAVIGATION TREE</span>
+        </div>
+        <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close navigation sidebar" title="Collapse sidebar (⌘B / [)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+            <path d="m14 9-3 3 3 3"></path>
+          </svg>
+        </button>
+      </div>
+
       <div class="sidebar-search-box">
         <span class="sidebar-search-icon">🔍</span>
         <input type="text" class="sidebar-search-input" id="sidebar-filter-input" placeholder="Filter 44 patterns &amp; engines...">
