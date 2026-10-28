@@ -1002,23 +1002,18 @@ def generate_html(fundamentals_modules, catalog, all_problems_index):
 
     <!-- Navigation Sidebar -->
     <aside class="sidebar" id="main-sidebar">
-      <div class="sidebar-top-bar">
-        <div class="sidebar-top-title">
-          <span class="sidebar-top-icon">🧭</span>
-          <span>NAVIGATION TREE</span>
+      <div class="sidebar-search-row">
+        <div class="sidebar-search-box">
+          <span class="sidebar-search-icon">🔍</span>
+          <input type="text" class="sidebar-search-input" id="sidebar-filter-input" placeholder="Filter 44 patterns &amp; engines...">
         </div>
-        <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close navigation sidebar" title="Collapse sidebar (⌘B / [)">
+        <button class="sidebar-collapse-pill sidebar-close-btn" id="sidebar-close-btn" aria-label="Close navigation sidebar" title="Collapse sidebar (⌘B / [)">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
             <line x1="9" y1="3" x2="9" y2="21"></line>
             <path d="m14 9-3 3 3 3"></path>
           </svg>
         </button>
-      </div>
-
-      <div class="sidebar-search-box">
-        <span class="sidebar-search-icon">🔍</span>
-        <input type="text" class="sidebar-search-input" id="sidebar-filter-input" placeholder="Filter 44 patterns &amp; engines...">
       </div>
 
       <div class="tree-controls-bar">

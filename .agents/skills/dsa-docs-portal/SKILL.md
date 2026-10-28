@@ -81,8 +81,11 @@ The navigation sidebar supports both continuous draggable resizing and full coll
 <div class="layout-container">
   <button class="floating-sidebar-toggle" id="floating-sidebar-toggle" aria-label="Open Navigation Sidebar" title="Open Sidebar (⌘B / [)">...</button>
   <aside class="sidebar" id="main-sidebar">
-    <div class="sidebar-top-bar">
-      <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close navigation sidebar" title="Collapse sidebar (⌘B / [)">...</button>
+    <div class="sidebar-search-row">
+      <div class="sidebar-search-box">
+        <input type="text" class="sidebar-search-input" id="sidebar-filter-input" ...>
+      </div>
+      <button class="sidebar-collapse-pill sidebar-close-btn" id="sidebar-close-btn" aria-label="Close navigation sidebar" title="Collapse sidebar (⌘B / [)">...</button>
     </div>
   </aside>
   <div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="Resize navigation sidebar" title="Drag to adjust sidebar width (Double-click to reset)"></div>
