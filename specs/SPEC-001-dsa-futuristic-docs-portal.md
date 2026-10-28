@@ -406,3 +406,8 @@ jobs:
   - [x] Added `HapticAudio` engine providing tactile acoustic feedback (ascending expand chirp, descending collapse tuck, sliding panel glide, latch clicks, dual-tone copy chimes, holographic search pings, and tap pops).
   - [x] 100% audio consistency between left navigation and main content problem/theory accordions (`<details class="problem-card">`).
   - [x] Enhanced Gate 6 headless audit in `scripts/test-docs.sh` to permanently verify collapsible rail and audio invariants.
+- [x] **Phase 16: Sidebar Command Rail Zen Refinement**
+  - [x] Removed redundant `🧭 NAVIGATION TREE` title bar, recovering 38px of high-value vertical real estate.
+  - [x] Unified the top rail into a streamlined `.sidebar-search-row` integrating `.sidebar-search-box` (`flex: 1`) and `.sidebar-collapse-pill` (`id="sidebar-close-btn"`).
+  - [x] Pixel-calibrated 36px squircle heights with cyber-cyan hover glow and latch haptics matching `#floating-sidebar-toggle`.
+  - [x] Maintained 100% backwards compatibility with Gate 6 automated audit and desktop/mobile toggle bindings.
