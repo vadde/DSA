@@ -14,7 +14,8 @@
   const STATE = {
     theme: localStorage.getItem('dsa_theme') || 'liquid',
     sidebarWidth: parseInt(localStorage.getItem('dsa_sidebar_width'), 10) || 330,
-    audioEnabled: localStorage.getItem('dsa_audio_enabled') === 'true',
+    isSidebarCollapsed: localStorage.getItem('dsa_sidebar_collapsed') === 'true',
+    audioEnabled: localStorage.getItem('dsa_audio_enabled') !== 'false', // Default ON for tactile haptic feedback
     isFocusMode: true, // Default to Focus Mode (one expanded chapter at a time)
     isBatchExpanding: false, // Prevents synchronous batch render freeze
     manifest: null,
@@ -25,31 +26,230 @@
   };
 
   // ---------------------------------------------------------------------------
-  // 1. WEB AUDIO TELEMETRY ENGINE (Zero external dependencies)
+  // 1. HAPTIC AUDIO ENGINE (Curated Web Audio Synthesis, Zero Dependencies)
   // ---------------------------------------------------------------------------
   let audioCtx = null;
-  function playCyberBeep(frequency = 880, type = 'sine', duration = 0.05) {
-    if (!STATE.audioEnabled) return;
-    try {
+  let lastAudioTimestamp = 0;
+
+  const HapticAudio = {
+    canPlay() {
+      return STATE.audioEnabled && !!(window.AudioContext || window.webkitAudioContext);
+    },
+
+    getContext() {
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
       if (audioCtx.state === 'suspended') {
         audioCtx.resume();
       }
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = type;
-      osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(frequency * 0.5, audioCtx.currentTime + duration);
-      gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime + duration);
-    } catch (e) {
-      // Audio context restricted or disabled
+      return audioCtx;
+    },
+
+    throttle(intervalMs = 18) {
+      const now = performance.now();
+      if (now - lastAudioTimestamp < intervalMs) return true;
+      lastAudioTimestamp = now;
+      return false;
+    },
+
+    // 1. Snappy Ascending Micro-Chirp for EXPAND (Chapters, Problems, Theory)
+    expand() {
+      if (!this.canPlay() || this.throttle(18)) return;
+      try {
+        const ctx = this.getContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(540, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.038);
+        gain.gain.setValueAtTime(0.045, now);
+        gain.gain.exponentialRampToValueAtTime(0.0005, now + 0.038);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.04);
+      } catch (e) {}
+    },
+
+    // 2. Snappy Descending Micro-Tuck for COLLAPSE (Chapters, Problems, Theory)
+    collapse() {
+      if (!this.canPlay() || this.throttle(18)) return;
+      try {
+        const ctx = this.getContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(780, now);
+        osc.frequency.exponentialRampToValueAtTime(420, now + 0.038);
+        gain.gain.setValueAtTime(0.04, now);
+        gain.gain.exponentialRampToValueAtTime(0.0005, now + 0.038);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.04);
+      } catch (e) {}
+    },
+
+    // 3. Sliding Panel Open Chime (Sidebar / Drawer)
+    sidebarOpen() {
+      if (!this.canPlay()) return;
+      try {
+        const ctx = this.getContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(760, now + 0.055);
+        gain.gain.setValueAtTime(0.05, now);
+        gain.gain.exponentialRampToValueAtTime(0.0005, now + 0.055);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.06);
+      } catch (e) {}
+    },
+
+    // 4. Solid Mechanical Latch Click (Sidebar / Drawer Dismiss)
+    sidebarClose() {
+      if (!this.canPlay()) return;
+      try {
+        const ctx = this.getContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(680, now);
+        osc.frequency.exponentialRampToValueAtTime(320, now + 0.045);
+        gain.gain.setValueAtTime(0.045, now);
+        gain.gain.exponentialRampToValueAtTime(0.0005, now + 0.045);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.05);
+      } catch (e) {}
+    },
+
+    // 5. Tactile Mobile OS Segmented / Chip Tap
+    tap() {
+      if (!this.canPlay() || this.throttle(18)) return;
+      try {
+        const ctx = this.getContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(920, now);
+        osc.frequency.exponentialRampToValueAtTime(560, now + 0.022);
+        gain.gain.setValueAtTime(0.038, now);
+        gain.gain.exponentialRampToValueAtTime(0.0005, now + 0.022);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.025);
+      } catch (e) {}
+    },
+
+    // 6. Dual-Tone Celebration Chime (Code Copied)
+    copySuccess() {
+      if (!this.canPlay()) return;
+      try {
+        const ctx = this.getContext();
+        const now = ctx.currentTime;
+        const osc1 = ctx.createOscillator();
+        const gain1 = ctx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(1046, now);
+        gain1.gain.setValueAtTime(0.04, now);
+        gain1.gain.exponentialRampToValueAtTime(0.0005, now + 0.05);
+        osc1.connect(gain1);
+        gain1.connect(ctx.destination);
+        osc1.start(now);
+        osc1.stop(now + 0.05);
+
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(1318, now + 0.035);
+        gain2.gain.setValueAtTime(0.045, now + 0.035);
+        gain2.gain.exponentialRampToValueAtTime(0.0005, now + 0.09);
+        osc2.connect(gain2);
+        gain2.connect(ctx.destination);
+        osc2.start(now + 0.035);
+        osc2.stop(now + 0.09);
+      } catch (e) {}
+    },
+
+    // 7. Holographic Search Trigger
+    searchOpen() {
+      if (!this.canPlay()) return;
+      try {
+        const ctx = this.getContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(1180, now);
+        osc.frequency.exponentialRampToValueAtTime(1480, now + 0.04);
+        gain.gain.setValueAtTime(0.04, now);
+        gain.gain.exponentialRampToValueAtTime(0.0005, now + 0.045);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.05);
+      } catch (e) {}
+    },
+
+    // 8. Cosmic Theme Cycle
+    themeChange() {
+      if (!this.canPlay()) return;
+      try {
+        const ctx = this.getContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(600, now);
+        osc.frequency.exponentialRampToValueAtTime(1200, now + 0.06);
+        gain.gain.setValueAtTime(0.045, now);
+        gain.gain.exponentialRampToValueAtTime(0.0005, now + 0.06);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.065);
+      } catch (e) {}
+    },
+
+    // 9. Theater Workbench Launch
+    theaterOpen() {
+      if (!this.canPlay()) return;
+      try {
+        const ctx = this.getContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.07);
+        gain.gain.setValueAtTime(0.05, now);
+        gain.gain.exponentialRampToValueAtTime(0.0005, now + 0.07);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.075);
+      } catch (e) {}
+    }
+  };
+
+  // Backward-compatible wrapper
+  function playCyberBeep(frequency = 880, type = 'sine', duration = 0.05) {
+    if (frequency >= 800) {
+      HapticAudio.expand();
+    } else {
+      HapticAudio.collapse();
     }
   }
 
@@ -62,7 +262,7 @@
     document.querySelectorAll('.theme-pill-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         applyTheme(btn.dataset.themeSet);
-        playCyberBeep(960, 'triangle', 0.06);
+        HapticAudio.themeChange();
       });
     });
 
@@ -73,7 +273,7 @@
         const themes = ['liquid', 'mica', 'holo', 'matrix'];
         const nextIdx = (themes.indexOf(STATE.theme) + 1) % themes.length;
         applyTheme(themes[nextIdx]);
-        playCyberBeep(1100, 'sine', 0.05);
+        HapticAudio.themeChange();
       }
     });
 
@@ -84,14 +284,15 @@
         STATE.audioEnabled = !STATE.audioEnabled;
         localStorage.setItem('dsa_audio_enabled', STATE.audioEnabled);
         updateAudioBtn(audioBtn);
-        if (STATE.audioEnabled) playCyberBeep(1200, 'square', 0.08);
+        if (STATE.audioEnabled) HapticAudio.tap();
       });
     }
   }
 
   function updateAudioBtn(btn) {
     btn.innerText = STATE.audioEnabled ? '🔊' : '🔇';
-    btn.title = STATE.audioEnabled ? 'Audio Feedback: ON' : 'Audio Feedback: OFF';
+    btn.title = STATE.audioEnabled ? 'Audio Feedback: ON (Click to Mute)' : 'Audio Feedback: MUTED (Click to Enable)';
+    btn.classList.toggle('audio-muted', !STATE.audioEnabled);
   }
 
   function applyTheme(themeName) {
@@ -164,7 +365,7 @@
       document.documentElement.style.setProperty('--sidebar-width', `${DEFAULT_WIDTH}px`);
       STATE.sidebarWidth = DEFAULT_WIDTH;
       localStorage.setItem('dsa_sidebar_width', DEFAULT_WIDTH);
-      playCyberBeep(750, 'sine', 0.06);
+      HapticAudio.tap();
     });
   }
 
@@ -181,13 +382,14 @@
       sidebar.classList.add('mobile-open');
       backdrop.classList.add('show');
       document.body.style.overflow = 'hidden';
-      playCyberBeep(820, 'triangle', 0.05);
+      HapticAudio.sidebarOpen();
     }
 
     function closeDrawer() {
       sidebar.classList.remove('mobile-open');
       backdrop.classList.remove('show');
       document.body.style.overflow = '';
+      HapticAudio.sidebarClose();
     }
 
     toggleBtn.addEventListener('click', openDrawer);
@@ -202,6 +404,83 @@
     sidebar.addEventListener('click', e => {
       if (e.target.closest('.nav-tree-link') && window.innerWidth <= 1024) {
         closeDrawer();
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // 5b. DESKTOP COLLAPSIBLE SIDEBAR ENGINE (Toggle, Hotkeys & State Persistence)
+  // ---------------------------------------------------------------------------
+  function initDesktopSidebarToggle() {
+    const dockBtn = document.getElementById('sidebar-dock-toggle');
+    const closeBtn = document.getElementById('sidebar-close-btn');
+    const floatingBtn = document.getElementById('floating-sidebar-toggle');
+
+    // Restore persisted state
+    if (STATE.isSidebarCollapsed && window.innerWidth > 1024) {
+      document.body.classList.add('sidebar-collapsed');
+      updateSidebarToggleButtons(true);
+    }
+
+    function toggleSidebar(forceState) {
+      const willCollapse = (typeof forceState === 'boolean') ? forceState : !document.body.classList.contains('sidebar-collapsed');
+      
+      document.body.classList.toggle('sidebar-collapsed', willCollapse);
+      STATE.isSidebarCollapsed = willCollapse;
+      localStorage.setItem('dsa_sidebar_collapsed', willCollapse);
+      updateSidebarToggleButtons(willCollapse);
+
+      if (willCollapse) {
+        HapticAudio.sidebarClose();
+      } else {
+        HapticAudio.sidebarOpen();
+        setTimeout(renderVisibleDiagrams, 300);
+      }
+    }
+
+    function updateSidebarToggleButtons(collapsed) {
+      if (dockBtn) {
+        dockBtn.classList.toggle('active', !collapsed);
+        dockBtn.title = collapsed ? 'Open Sidebar (⌘B / [)' : 'Collapse Sidebar (⌘B / [)';
+        dockBtn.setAttribute('aria-expanded', String(!collapsed));
+      }
+      if (floatingBtn) {
+        floatingBtn.setAttribute('aria-expanded', String(!collapsed));
+      }
+    }
+
+    if (dockBtn) {
+      dockBtn.addEventListener('click', () => toggleSidebar());
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+          const sidebar = document.getElementById('main-sidebar');
+          const backdrop = document.getElementById('mobile-drawer-backdrop');
+          if (sidebar) sidebar.classList.remove('mobile-open');
+          if (backdrop) backdrop.classList.remove('show');
+          document.body.style.overflow = '';
+          HapticAudio.sidebarClose();
+        } else {
+          toggleSidebar(true);
+        }
+      });
+    }
+
+    if (floatingBtn) {
+      floatingBtn.addEventListener('click', () => toggleSidebar(false));
+    }
+
+    // Global keyboard shortcut: Cmd+B, Ctrl+B, or '[' (when not in an input)
+    document.addEventListener('keydown', e => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if ((e.key === 'b' || e.key === 'B') && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        toggleSidebar();
+      } else if (e.key === '[' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        e.preventDefault();
+        toggleSidebar();
       }
     });
   }
@@ -376,13 +655,13 @@
           }
 
           triggerDiagramRenders(chapter);
-          playCyberBeep(700, 'sine', 0.04);
+          HapticAudio.expand();
         } else {
           // Collapsing
           chapter.classList.add('is-collapsed');
           const toggleBtn = chapter.querySelector('.chapter-toggle-btn');
           if (toggleBtn) toggleBtn.innerText = 'Expand';
-          playCyberBeep(550, 'sine', 0.04);
+          HapticAudio.collapse();
         }
       });
     });
@@ -405,7 +684,7 @@
           STATE.isBatchExpanding = false;
           renderVisibleDiagrams();
         }, 50);
-        playCyberBeep(900, 'triangle', 0.06);
+        HapticAudio.expand();
       });
     }
 
@@ -425,7 +704,7 @@
         document.querySelectorAll('.nav-tree-group').forEach(g => g.classList.remove('expanded'));
         document.querySelectorAll('.nav-tree-header').forEach(h => h.classList.remove('active-branch'));
         document.querySelectorAll('.nav-tree-link').forEach(l => l.classList.remove('active'));
-        playCyberBeep(500, 'sine', 0.05);
+        HapticAudio.collapse();
       });
     }
 
@@ -452,7 +731,7 @@
           if (btn) btn.innerText = 'Collapse';
           triggerDiagramRenders(chapters[0]);
         }
-        playCyberBeep(850, 'sine', 0.05);
+        HapticAudio.tap();
       });
     }
 
@@ -460,16 +739,48 @@
     if (sidebarExpandBtn) {
       sidebarExpandBtn.addEventListener('click', () => {
         document.querySelectorAll('.nav-tree-group').forEach(g => g.classList.add('expanded'));
-        playCyberBeep(800, 'sine', 0.04);
+        HapticAudio.expand();
       });
     }
 
     if (sidebarCollapseBtn) {
       sidebarCollapseBtn.addEventListener('click', () => {
         document.querySelectorAll('.nav-tree-group').forEach(g => g.classList.remove('expanded'));
-        playCyberBeep(600, 'sine', 0.04);
+        HapticAudio.collapse();
       });
     }
+
+    // Main content: Problem & Theory card summary clicks for 100% audio consistency
+    document.addEventListener('click', e => {
+      const summary = e.target.closest('.problem-summary, .theory-summary');
+      if (!summary) return;
+      const details = summary.closest('details');
+      if (!details || STATE.isBatchExpanding) return;
+
+      // Note: At click time, details.open is the current state before native toggle.
+      // If currently open, user is collapsing it. If closed, user is expanding it.
+      if (details.open) {
+        HapticAudio.collapse();
+      } else {
+        HapticAudio.expand();
+      }
+    });
+
+    // Code copy buttons celebration chime
+    document.addEventListener('click', e => {
+      const copyBtn = e.target.closest('.copy-btn');
+      if (copyBtn) {
+        HapticAudio.copySuccess();
+      }
+    });
+
+    // Interactive step tabs, language tabs, reading mode buttons
+    document.addEventListener('click', e => {
+      const tab = e.target.closest('.tab-btn, .step-tab-btn, .code-tab-btn, .view-mode-btn');
+      if (tab) {
+        HapticAudio.tap();
+      }
+    });
 
     // Handle deep links or initial open
     handleInitialDeepLink();
@@ -534,7 +845,7 @@
           chip.classList.add('active');
         }
         applyFilters();
-        playCyberBeep(780, 'sine', 0.04);
+        HapticAudio.tap();
       });
     });
 
@@ -544,7 +855,7 @@
         activeFamily = null;
         if (filterInput) filterInput.value = '';
         applyFilters();
-        playCyberBeep(650, 'sine', 0.04);
+        HapticAudio.collapse();
       });
     }
 
@@ -570,7 +881,11 @@
             ensureChapterExpanded(targetSection, true);
           }
         }
-        playCyberBeep(600, 'sine', 0.03);
+        if (willExpand) {
+          HapticAudio.expand();
+        } else {
+          HapticAudio.collapse();
+        }
       });
     });
 
@@ -587,7 +902,7 @@
           if (history.pushState) {
             history.pushState(null, null, href);
           }
-          playCyberBeep(900, 'sine', 0.04);
+          HapticAudio.tap();
         }
       }
     });
@@ -624,11 +939,14 @@
       resultsContainer.innerHTML = '<div style="padding:16px;color:var(--text-dim);font-size:0.85rem;text-align:center;">Type to search 44 patterns, 14 engines, and 305 problems...</div>';
       input.focus();
       STATE.searchActiveIndex = -1;
-      playCyberBeep(1050, 'sine', 0.05);
+      HapticAudio.searchOpen();
     }
 
     function closeSearch() {
-      backdrop.classList.remove('show');
+      if (backdrop.classList.contains('show')) {
+        backdrop.classList.remove('show');
+        HapticAudio.collapse();
+      }
     }
 
     triggerBtn.addEventListener('click', openSearch);
@@ -730,7 +1048,7 @@
         const targetEl = document.querySelector(href);
         if (targetEl) {
           navigateToTarget(targetEl);
-          playCyberBeep(1200, 'sine', 0.08);
+          HapticAudio.tap();
         }
       }
     });
@@ -837,7 +1155,7 @@
       patternName.innerText = name;
       familyPill.innerText = fam;
       mantraText.innerText = mantra;
-      playCyberBeep(700, 'sine', 0.04);
+      HapticAudio.tap();
     }
 
     inputType.addEventListener('change', evaluateSift);
@@ -978,7 +1296,7 @@
       activeTheaterPanY = 0;
       applyTheaterTransform();
 
-      playCyberBeep(1100, 'triangle', 0.06);
+      HapticAudio.theaterOpen();
     }
 
     function closeTheater() {
@@ -999,7 +1317,7 @@
         });
       }
 
-      playCyberBeep(650, 'sine', 0.04);
+      HapticAudio.collapse();
     }
 
     // Explicit dismiss ONLY: clicking close button (✕) or pressing Esc key
@@ -1017,7 +1335,7 @@
       theaterZoomIn.addEventListener('click', () => {
         activeTheaterZoom = Math.min(5.0, Number((activeTheaterZoom + 0.25).toFixed(2)));
         applyTheaterTransform();
-        playCyberBeep(920, 'sine', 0.03);
+        HapticAudio.tap();
       });
     }
 
@@ -1025,7 +1343,7 @@
       theaterZoomOut.addEventListener('click', () => {
         activeTheaterZoom = Math.max(0.15, Number((activeTheaterZoom - 0.25).toFixed(2)));
         applyTheaterTransform();
-        playCyberBeep(760, 'sine', 0.03);
+        HapticAudio.tap();
       });
     }
 
@@ -1035,7 +1353,7 @@
         activeTheaterPanX = 0;
         activeTheaterPanY = 0;
         applyTheaterTransform();
-        playCyberBeep(840, 'sine', 0.03);
+        HapticAudio.tap();
       });
     }
 
@@ -1047,7 +1365,7 @@
           activeTheaterPanX = 0;
           activeTheaterPanY = 0;
           applyTheaterTransform();
-          playCyberBeep(880, 'sine', 0.04);
+          HapticAudio.tap();
         }
       });
     }
@@ -1116,7 +1434,7 @@
         zoomInBtn.addEventListener('click', () => {
           zoom = Math.min(3.0, zoom + 0.15);
           updateCardTransform();
-          playCyberBeep(900, 'sine', 0.03);
+          HapticAudio.tap();
         });
       }
 
@@ -1124,7 +1442,7 @@
         zoomOutBtn.addEventListener('click', () => {
           zoom = Math.max(0.5, zoom - 0.15);
           updateCardTransform();
-          playCyberBeep(750, 'sine', 0.03);
+          HapticAudio.tap();
         });
       }
 
@@ -1134,7 +1452,7 @@
           panX = 0;
           panY = 0;
           updateCardTransform();
-          playCyberBeep(820, 'sine', 0.04);
+          HapticAudio.tap();
         });
       }
 
@@ -1427,6 +1745,7 @@
     initHaloEngine();
     initSidebarResizer();
     initMobileDrawer();
+    initDesktopSidebarToggle();
     initCollapsibleChapters();
     initSearchModal();
     initSidebarFilters();

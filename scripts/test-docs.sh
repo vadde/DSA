@@ -100,26 +100,54 @@ fi
 echo -e "   ${GREEN}✅ KaTeX mathematical typesetting engine verified.${NC}"
 
 # ------------------------------------------------------------------------------
-# Gate 6: Draggable Sidebar Resizer Invariants
+# Gate 6: Draggable Sidebar Resizer & Collapsible Rail Invariants
 # ------------------------------------------------------------------------------
-echo -e "${CYAN}→ 6. Auditing Draggable Sidebar Resizer invariants...${NC}"
+echo -e "${CYAN}→ 6. Auditing Draggable Sidebar Resizer & Collapsible Rail invariants...${NC}"
 if ! grep -q 'id="sidebar-resizer"' "${SITE_DIR}/index.html"; then
   echo -e "${RED}❌ Gate 6 Failed: Missing #sidebar-resizer element in index.html${NC}"
+  exit 1
+fi
+if ! grep -q 'id="sidebar-dock-toggle"' "${SITE_DIR}/index.html"; then
+  echo -e "${RED}❌ Gate 6 Failed: Missing #sidebar-dock-toggle element in index.html${NC}"
+  exit 1
+fi
+if ! grep -q 'id="sidebar-close-btn"' "${SITE_DIR}/index.html"; then
+  echo -e "${RED}❌ Gate 6 Failed: Missing #sidebar-close-btn element in index.html${NC}"
+  exit 1
+fi
+if ! grep -q 'id="floating-sidebar-toggle"' "${SITE_DIR}/index.html"; then
+  echo -e "${RED}❌ Gate 6 Failed: Missing #floating-sidebar-toggle element in index.html${NC}"
   exit 1
 fi
 if ! grep -q 'col-resize' "${SITE_DIR}/style.css"; then
   echo -e "${RED}❌ Gate 6 Failed: Missing col-resize cursor rule in style.css${NC}"
   exit 1
 fi
+if ! grep -q 'body.sidebar-collapsed' "${SITE_DIR}/style.css"; then
+  echo -e "${RED}❌ Gate 6 Failed: Missing body.sidebar-collapsed rule in style.css${NC}"
+  exit 1
+fi
 if ! grep -q 'initSidebarResizer' "${SITE_DIR}/app.js"; then
   echo -e "${RED}❌ Gate 6 Failed: Missing initSidebarResizer in app.js${NC}"
+  exit 1
+fi
+if ! grep -q 'initDesktopSidebarToggle' "${SITE_DIR}/app.js"; then
+  echo -e "${RED}❌ Gate 6 Failed: Missing initDesktopSidebarToggle in app.js${NC}"
+  exit 1
+fi
+if ! grep -q 'dsa_sidebar_collapsed' "${SITE_DIR}/app.js"; then
+  echo -e "${RED}❌ Gate 6 Failed: Missing dsa_sidebar_collapsed persistence key in app.js${NC}"
+  exit 1
+fi
+if ! grep -q 'HapticAudio' "${SITE_DIR}/app.js"; then
+  echo -e "${RED}❌ Gate 6 Failed: Missing HapticAudio engine in app.js${NC}"
   exit 1
 fi
 if ! grep -q 'dsa_sidebar_width' "${SITE_DIR}/app.js"; then
   echo -e "${RED}❌ Gate 6 Failed: Missing localStorage persistence key in app.js${NC}"
   exit 1
 fi
-echo -e "   ${GREEN}✅ Draggable sidebar resizer & persistence verified.${NC}"
+echo -e "   ${GREEN}✅ Draggable sidebar resizer, collapsible toggle & audio engine verified.${NC}"
 
 # ------------------------------------------------------------------------------
 # Gate 7: Year 2500 Mobile Drawer & Anti-Clobbering Invariants

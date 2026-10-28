@@ -70,22 +70,38 @@ The portal uses a **deep cosmic liquid-glass design system with Aero Mica ambien
 
 ---
 
-## ↔️ Interactive Draggable Sidebar Resizer Standard
+## ↔️ Interactive Draggable Sidebar Resizer & Collapsible Rail Standard
 
-The draggable splitter `.sidebar-resizer` sits directly between `<aside class="sidebar">` and `<main class="content-area">`:
+The navigation sidebar supports both continuous draggable resizing and full collapsible rail distraction-free mode:
 
 ```html
-<aside class="sidebar" id="main-sidebar">...</aside>
-<div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="Resize navigation sidebar" title="Drag to adjust sidebar width (Double-click to reset)"></div>
-<main class="content-area">...</main>
+<header class="header-glass">
+  <button class="sidebar-dock-toggle" id="sidebar-dock-toggle" aria-label="Toggle Navigation Sidebar" title="Toggle Sidebar (⌘B / [)">...</button>
+</header>
+<div class="layout-container">
+  <button class="floating-sidebar-toggle" id="floating-sidebar-toggle" aria-label="Open Navigation Sidebar" title="Open Sidebar (⌘B / [)">...</button>
+  <aside class="sidebar" id="main-sidebar">
+    <div class="sidebar-top-bar">
+      <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close navigation sidebar" title="Collapse sidebar (⌘B / [)">...</button>
+    </div>
+  </aside>
+  <div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="Resize navigation sidebar" title="Drag to adjust sidebar width (Double-click to reset)"></div>
+  <main class="content-area">...</main>
+</div>
 ```
 
 ### Operational Invariants:
-1. **Bounds Clamping**: Resizing strictly clamped between `MIN_WIDTH = 240px` and `MAX_WIDTH = 560px`.
-2. **Dragging Performance**: During drag, `body.resizing-sidebar` sets `cursor: col-resize !important; user-select: none !important;`.
-3. **Persistence**: Choice is saved to `localStorage.setItem('dsa_sidebar_width', width)`.
-4. **Double-Click Reset**: Double-clicking resets `--sidebar-width` to default `330px`.
-5. **Zero-Truncation Invariant**: Never clip navigation titles with single-line ellipses (`white-space: normal; word-break: break-word`).
+1. **Collapsible Distraction-Free Reading**:
+   - Closed via `#sidebar-close-btn` inside sidebar or `#sidebar-dock-toggle` in header.
+   - When collapsed, `body.sidebar-collapsed` shifts `.sidebar` by `margin-left: calc(-1 * var(--sidebar-width)); opacity: 0; visibility: hidden;` and hides `.sidebar-resizer`.
+   - Floating reopen tab `#floating-sidebar-toggle` appears on the left edge (`top: calc(var(--topbar-height) + 14px); left: 14px;`).
+   - Global keyboard shortcuts: `⌘B`, `Ctrl+B`, or `[` (when not focused in inputs) toggle the rail instantly.
+   - State persisted in `localStorage.setItem('dsa_sidebar_collapsed', 'true' / 'false')`.
+2. **Bounds Clamping**: Resizing strictly clamped between `MIN_WIDTH = 240px` and `MAX_WIDTH = 560px`.
+3. **Dragging Performance**: During drag, `body.resizing-sidebar` sets `cursor: col-resize !important; user-select: none !important;`.
+4. **Persistence**: Width choice is saved to `localStorage.setItem('dsa_sidebar_width', width)`.
+5. **Double-Click Reset**: Double-clicking resets `--sidebar-width` to default `330px`.
+6. **Zero-Truncation Invariant**: Never clip navigation titles with single-line ellipses (`white-space: normal; word-break: break-word`).
 
 ---
 
@@ -210,6 +226,29 @@ ASCII and Unicode box-drawing tables and callout cards must align with 100% math
   - `python3 scripts/audit_ascii_boxes.py --check`: Validates all boxes across repository markdown files.
   - `python3 scripts/audit_ascii_boxes.py --fix`: Realigns all tables, cards, and pills in place.
 - Run via Makefile: `make test-boxes` or `make format-boxes`.
+
+---
+
+## 🔊 Curated Web Audio Haptic System (`HapticAudio`)
+
+A tactile acoustic feedback engine built directly on the Web Audio API without external audio file dependencies. Synthesizes directional micro-transients for every user action:
+
+| Action / Interaction | Synthesis Curve | Frequency / Duration | Aesthetic Sensation |
+|---|---|---|---|
+| **Expand (`expand`)** | Ascending exponential sine ramp | `540Hz → 880Hz` (`38ms`) | Mechanical switch unfolding / opening |
+| **Collapse (`collapse`)** | Descending exponential sine ramp | `780Hz → 420Hz` (`38ms`) | Snappy mechanical tuck / folding shut |
+| **Sidebar Open (`sidebarOpen`)** | Resonant ascending triangle glide | `440Hz → 760Hz` (`55ms`) | Smooth sliding panel reveal |
+| **Sidebar Close (`sidebarClose`)** | Solid mechanical sine latch | `680Hz → 320Hz` (`45ms`) | Secure latch click |
+| **Tactile Tap (`tap`)** | High-transient triangle pop | `920Hz → 560Hz` (`22ms`) | iOS-style segmented chip toggle |
+| **Copy Code (`copySuccess`)** | Dual-tone arpeggiated chime | `C6 (1046Hz) + E6 (1318Hz)` (`90ms`) | Celebratory clipboard success chime |
+| **Search Trigger (`searchOpen`)** | Holographic digital ping | `1180Hz → 1480Hz` (`40ms`) | Futuristic HUD activation |
+| **Theme Change (`themeChange`)** | Cosmic frequency sweep | `600Hz → 1200Hz` (`60ms`) | Dimension / palette shift |
+| **Theater Launch (`theaterOpen`)** | Low-frequency harmonic sine | `440Hz → 880Hz` (`70ms`) | Cinematic workbench focus |
+
+### Acoustic Invariants:
+1. **Directional Consistency**: Main content chapters, problem cards (`<details class="problem-card">`), and sidebar tree headers share the exact same `HapticAudio.expand()` and `HapticAudio.collapse()` curves.
+2. **Batch Expansion Guard**: During "Expand All" and "Collapse All", `STATE.isBatchExpanding` strictly mutes individual accordion blips to eliminate audio distortion and DOM thread starvation.
+3. **Audio Persistence**: State saved to `localStorage.getItem('dsa_audio_enabled')`, defaulting to ON for tactile mobile-like delight. Toggled via HUD `🔊 / 🔇`.
 
 ---
 

@@ -380,3 +380,29 @@ jobs:
   - [x] Instant Expand All execution: dropped latency from 10,000ms to 5ms by decoupling offscreen diagram rendering to lazy `IntersectionObserver`.
   - [x] Sequential Mermaid execution queue (`mermaidQueue`): eliminated multi-diagram race conditions and DOM clobbering.
   - [x] Gate 11 Audit: automated validation of 460 unique diagram IDs and container isolation in `make docs-test`.
+- [x] **Phase 11: Safari WebKit SVG Isolation & Theater Invariants**
+  - [x] Fixed Safari WebKit flexbox SVG collapse by setting explicit width/max-width and intrinsic viewBox attributes.
+  - [x] Separated 100% (natural optimal scale) from Fit (viewport containment ratio).
+  - [x] Removed viewport dismissal on click/drag in theater mode; enabled node text selection.
+  - [x] Enforced clean footer navigation across all sections.
+- [x] **Phase 12: Universal Monospace Box-Drawing Alignment Engine (`scripts/audit_ascii_boxes.py`)**
+  - [x] Unicode UAX #11 monospace display width calculation (emojis=2, variation selectors=0, Greek/math=1).
+  - [x] Automated CLI formatter and linter (`make test-boxes`, `make format-boxes`).
+  - [x] Gate 12 headless integration into `scripts/test-docs.sh`.
+  - [x] 100% alignment across all 43 boxes in the repository.
+- [x] **Phase 13: Authoritative AI Coding Assistant Custom Skill & CI/CD Pipelines**
+  - [x] Created `.agents/skills/dsa-docs-portal/SKILL.md` capturing all portal architecture rules, CSS tokens, and invariant equations.
+  - [x] Upgraded `.github/workflows/ci.yml` to run Python AST matrix, Ruff lint, box alignment, 12-gate audit suite, and Gitleaks in parallel.
+  - [x] Created `.github/workflows/docs-publish.yml` for automated GitHub Pages deployments on merge.
+  - [x] Added `make ci` target in `Makefile`.
+- [x] **Phase 14: Repository Settings, Verification & PR Publication**
+  - [x] Configured repository homepage (`https://vadde.github.io/DSA/`).
+  - [x] Configured GitHub Pages build type (`workflow`).
+  - [x] Enabled repository pull requests (`has_pull_requests: true`).
+  - [x] Merged Pull Request [#1](https://github.com/vadde/DSA/pull/1) into `main`.
+- [x] **Phase 15: Collapsible Navigation Sidebar Rail & Curated Web Audio Haptics**
+  - [x] Implemented desktop collapsible sidebar rail with `#sidebar-dock-toggle`, `#sidebar-close-btn`, and floating `#floating-sidebar-toggle`.
+  - [x] Global keyboard shortcuts `⌘B`, `Ctrl+B`, `[` for instant distraction-free reading mode.
+  - [x] Added `HapticAudio` engine providing tactile acoustic feedback (ascending expand chirp, descending collapse tuck, sliding panel glide, latch clicks, dual-tone copy chimes, holographic search pings, and tap pops).
+  - [x] 100% audio consistency between left navigation and main content problem/theory accordions (`<details class="problem-card">`).
+  - [x] Enhanced Gate 6 headless audit in `scripts/test-docs.sh` to permanently verify collapsible rail and audio invariants.
