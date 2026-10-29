@@ -249,20 +249,20 @@ A tactile acoustic feedback engine built directly on the Web Audio API without e
 | **Theater Launch (`theaterOpen`)** | Low-frequency harmonic sine | `440Hz → 880Hz` (`70ms`) | Cinematic workbench focus |
 
 ### Acoustic Invariants:
-1. **Directional Consistency**: Main content chapters, problem cards (`<details class="problem-card">`), and sidebar tree headers share the exact same `HapticAudio.expand()` and `HapticAudio.collapse()` curves.
+1. **Directional Consistency**: Main content chapters, problem cards (`<details class="problem-card">`), theory cards (`<details class="theory-details">`), nested researcher accordions (`<details class="md-details">`), and sidebar tree headers share the exact same `HapticAudio.expand()` and `HapticAudio.collapse()` curves.
 2. **Batch Expansion Guard**: During "Expand All" and "Collapse All", `STATE.isBatchExpanding` strictly mutes individual accordion blips to eliminate audio distortion and DOM thread starvation.
 3. **Audio Persistence**: State saved to `localStorage.getItem('dsa_audio_enabled')`, defaulting to ON for tactile mobile-like delight. Toggled via HUD `🔊 / 🔇`.
 
 ---
 
-## 🧪 12-Gate Headless Automated Verification Suite
+## 🧪 13-Gate Headless Automated Verification Suite
 
 Run before every commit or push:
 ```bash
 make docs-test
 ```
 
-All 12 quality gates must pass deterministically:
+All 13 quality gates must pass deterministically:
 1. **Core Assets Presence**: `index.html`, `style.css`, `app.js`, `catalog/manifest.json`.
 2. **Catalog Completeness & Search Index**: 44 patterns, 288+ indexed problems.
 3. **Mermaid Label Escaping**: No unescaped `<` or `>` inside node labels.
@@ -275,6 +275,7 @@ All 12 quality gates must pass deterministically:
 10. **Static Bundle Footprint**: Bundle size strictly $<25\text{MB}$.
 11. **Mermaid ID Uniqueness & Clean Navigation**: 460 unique IDs, isolated rendering, zero legacy footer links.
 12. **Unicode Monospace Box-Drawing Alignment**: 100% of ASCII and Unicode box tables and cards aligned.
+13. **Collapsible Details & Zero Raw HTML Block Escaping**: Zero raw unrendered or escaped `&lt;details&gt;` / `&lt;summary&gt;` text; 100% semantic `<details class="md-details">` with `.md-summary` and `.md-details-body`.
 
 ---
 
@@ -285,7 +286,8 @@ All 12 quality gates must pass deterministically:
 | `make help` | Interactive targets menu |
 | `make docs-build` | Compiles 44 patterns and generates hydrated static site in `_site/` |
 | `make docs-serve` | Serves documentation locally on `http://localhost:4000/` |
-| `make docs-test` | Runs the full 12-gate headless verification suite |
+| `make docs-test` | Runs the full 13-gate headless verification suite |
+| `make test-details` | Audits collapsible elements and raw HTML block invariants |
 | `make test-boxes` | Audits Unicode monospace box-drawing alignment |
 | `make format-boxes` | Realigns and formats all ASCII/Unicode boxes across the repository in place |
 | `make test` | Runs AST syntax compilation across all Python implementations + box checks |

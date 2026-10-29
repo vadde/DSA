@@ -13,7 +13,7 @@ YELLOW := \033[1;33m
 RED    := \033[0;31m
 NC     := \033[0m
 
-.PHONY: help docs-build docs-serve docs-test test-boxes format-boxes test lint ci clean
+.PHONY: help docs-build docs-serve docs-test test-boxes test-details format-boxes test lint ci clean
 
 help: ## Show this interactive help menu
 	@printf "\n$(CYAN)DSA Pattern Bible — Autonomous Command Deck$(NC)\n\n"
@@ -36,8 +36,12 @@ docs-serve: docs-build ## Serve living documentation portal on http://localhost:
 		exit 1; \
 	fi
 
-docs-test: ## Run 12-gate automated headless verification suite
+docs-test: ## Run 13-gate automated headless verification suite
 	@bash scripts/test-docs.sh
+
+test-details: ## Audit collapsible details and raw HTML block invariants
+	@printf "$(CYAN)📂 Auditing collapsible details and raw HTML block invariants...$(NC)\n"
+	@python3 scripts/audit_collapsible_elements.py
 
 test-boxes: ## Audit ASCII and Unicode box-drawing tables and cards alignment
 	@printf "$(CYAN)📐 Auditing ASCII/Unicode box-drawing alignment...$(NC)\n"

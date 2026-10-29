@@ -56,8 +56,12 @@ jobs:
         run: |
           python scripts/audit_ascii_boxes.py --check
 
+      - name: Run Collapsible Elements & Raw HTML Invariant Audit
+        run: |
+          python scripts/audit_collapsible_elements.py
+
   docs-portal-audit:
-    name: 12-Gate Living Docs Verification Suite
+    name: 13-Gate Living Docs Verification Suite
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -68,9 +72,9 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Build & Run 12-Gate Headless Audit Suite
+      - name: Build & Run 13-Gate Headless Audit Suite
         run: |
-          chmod +x scripts/build-docs.sh scripts/test-docs.sh scripts/audit_ascii_boxes.py
+          chmod +x scripts/build-docs.sh scripts/test-docs.sh scripts/audit_ascii_boxes.py scripts/audit_collapsible_elements.py
           make docs-test
 
   security-scan:

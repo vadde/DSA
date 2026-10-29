@@ -136,6 +136,12 @@ def sanitize_mermaid(content: str) -> str:
 
 _MERMAID_DIAGRAM_COUNTER = 0
 
+HTML_TAG_PATTERN = re.compile(
+    r'</?(?:details|summary|b|strong|i|em|u|code|pre|kbd|span|sub|sup|br|hr|div|table|thead|tbody|tr|th|td|a|img|ul|ol|li|blockquote|mark|p|small|del|ins)'
+    r'(?:\s+[^<>]*)?/?>',
+    re.IGNORECASE
+)
+
 def render_markdown(text: str) -> str:
     """
     Robust zero-dependency Markdown-to-HTML converter.
@@ -257,13 +263,14 @@ def render_markdown(text: str) -> str:
         table_processed_lines.append(line)
         i += 1
 
-    # 4. Process line by line for headers, blockquotes, lists, hr
+    # 4. Process line by line for headers, blockquotes, lists, hr, details/summaries
     lines = table_processed_lines
     out_lines = []
     in_list = False
     list_type = None
     in_blockquote = False
     blockquote_lines = []
+    details_stack = []
 
     def flush_blockquote():
         nonlocal in_blockquote, blockquote_lines
@@ -298,13 +305,98 @@ def render_markdown(text: str) -> str:
 
         # Placeholders pass through
         if stripped.startswith('__BLOCK_PLACEHOLDER_') or stripped.startswith('__MATH_PLACEHOLDER_'):
+            if details_stack and not details_stack[-1]['body_open']:
+                out_lines.append('<div class="md-details-body">')
+                details_stack[-1]['body_open'] = True
             out_lines.append(stripped)
             continue
 
         # Horizontal rule
         if re.match(r'^(-{3,}|\*{3,}|_{3,})$', stripped):
+            if details_stack and not details_stack[-1]['body_open']:
+                out_lines.append('<div class="md-details-body">')
+                details_stack[-1]['body_open'] = True
             out_lines.append('<hr class="md-divider">')
             continue
+
+        # 4a. Single-line <details><summary>...</summary>
+        m_both = re.match(r'^<details(?:\s+([^>]*))?>\s*<summary(?:\s+[^>]*)?>(.*?)</summary>(.*)', stripped, re.IGNORECASE)
+        if m_both:
+            if in_list:
+                out_lines.append(f'</{list_type}>')
+                in_list = False
+                list_type = None
+            attrs = m_both.group(1) or ""
+            is_open = 'open' in attrs.lower()
+            open_attr = ' open' if is_open else ''
+            raw_title = m_both.group(2).strip()
+            rest = m_both.group(3).strip()
+            formatted_title = inline_formatting(raw_title)
+            out_lines.append(f'<details class="md-details"{open_attr}>')
+            out_lines.append(f'<summary class="md-summary"><span class="md-summary-title">{formatted_title}</span><span class="md-summary-chevron">▶</span></summary>')
+            out_lines.append('<div class="md-details-body">')
+            details_stack.append({'body_open': True})
+            if rest:
+                if rest.lower() == '</details>':
+                    out_lines.append('</div>')
+                    out_lines.append('</details>')
+                    details_stack.pop()
+                else:
+                    out_lines.append(f'<p class="md-p">{inline_formatting(rest)}</p>')
+            continue
+
+        # 4b. Opening <details> container
+        m_details = re.match(r'^<details(?:\s+([^>]*))?>', stripped, re.IGNORECASE)
+        if m_details:
+            if in_list:
+                out_lines.append(f'</{list_type}>')
+                in_list = False
+                list_type = None
+            attrs = m_details.group(1) or ""
+            is_open = 'open' in attrs.lower()
+            open_attr = ' open' if is_open else ''
+            out_lines.append(f'<details class="md-details"{open_attr}>')
+            details_stack.append({'body_open': False})
+            continue
+
+        # 4c. <summary>...</summary> tag
+        m_summary = re.match(r'^<summary(?:\s+[^>]*)?>(.*?)</summary>', stripped, re.IGNORECASE)
+        if m_summary:
+            if in_list:
+                out_lines.append(f'</{list_type}>')
+                in_list = False
+                list_type = None
+            raw_title = m_summary.group(1).strip()
+            formatted_title = inline_formatting(raw_title)
+            out_lines.append(f'<summary class="md-summary"><span class="md-summary-title">{formatted_title}</span><span class="md-summary-chevron">▶</span></summary>')
+            out_lines.append('<div class="md-details-body">')
+            if details_stack:
+                details_stack[-1]['body_open'] = True
+            continue
+
+        # 4d. Closing </details> tag
+        if stripped.lower() == '</details>' or stripped.lower().endswith('</details>'):
+            if in_list:
+                out_lines.append(f'</{list_type}>')
+                in_list = False
+                list_type = None
+            if stripped.lower() != '</details>':
+                before = stripped[:-10].strip()
+                if before:
+                    out_lines.append(f'<p class="md-p">{inline_formatting(before)}</p>')
+            if details_stack:
+                info = details_stack.pop()
+                if info['body_open']:
+                    out_lines.append('</div>')
+            else:
+                out_lines.append('</div>')
+            out_lines.append('</details>')
+            continue
+
+        # Ensure body is open if content is encountered inside a details block without summary
+        if details_stack and not details_stack[-1]['body_open']:
+            out_lines.append('<div class="md-details-body">')
+            details_stack[-1]['body_open'] = True
 
         # Headings
         if stripped.startswith('#### '):
@@ -352,6 +444,12 @@ def render_markdown(text: str) -> str:
     if in_list:
         out_lines.append(f'</{list_type}>')
 
+    while details_stack:
+        info = details_stack.pop()
+        if info['body_open']:
+            out_lines.append('</div>')
+        out_lines.append('</details>')
+
     result = '\n'.join(out_lines)
 
     # 5. Restore placeholders
@@ -363,7 +461,7 @@ def render_markdown(text: str) -> str:
     return result
 
 def inline_formatting(text: str) -> str:
-    """Parses inline bold, italic, code, links, and escapes raw < and >."""
+    """Parses inline bold, italic, code, links, and escapes raw < and > while preserving valid HTML."""
     if not text:
         return ""
     # Protect inline code: `code`
@@ -375,10 +473,18 @@ def inline_formatting(text: str) -> str:
     
     text = re.sub(r'`([^`]+)`', save_inline_code, text)
     
-    # Math symbols & raw brackets
+    # Protect valid HTML tags from angle bracket escaping
+    saved_html_tags = []
+    def save_html_tag(m):
+        idx = len(saved_html_tags)
+        saved_html_tags.append(m.group(0))
+        return f"__HTML_TAG_{idx}__"
+        
+    text = HTML_TAG_PATTERN.sub(save_html_tag, text)
+
+    # Math symbols & raw comparison angle brackets
     text = text.replace('<=', '≤').replace('>=', '≥')
-    text = re.sub(r'<(?=[0-9a-zA-Z\s\-])', '&lt;', text)
-    text = re.sub(r'(?<=[0-9a-zA-Z\s\-])>', '&gt;', text)
+    text = text.replace('<', '&lt;').replace('>', '&gt;')
     
     # Bold italic: ***bold italic***
     text = re.sub(r'\*\*\*([^*]+)\*\*\*', r'<strong><em>\1</em></strong>', text)
@@ -390,6 +496,10 @@ def inline_formatting(text: str) -> str:
     # Links: [text](url)
     text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2" target="_blank" rel="noopener">\1</a>', text)
     
+    # Restore valid HTML tags
+    for idx, tag in enumerate(saved_html_tags):
+        text = text.replace(f"__HTML_TAG_{idx}__", tag)
+
     # Restore inline code
     for idx, c_html in enumerate(code_inlines):
         text = text.replace(f"__INLINE_CODE_{idx}__", c_html)

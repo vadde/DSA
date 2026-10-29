@@ -1465,6 +1465,35 @@ body.theater-open {
   box-shadow: 0 0 10px rgba(14, 165, 233, 0.25);
 }
 
+[data-theme="mica"] .md-details {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(30, 41, 59, 0.12);
+}
+
+[data-theme="mica"] .md-details:hover {
+  border-color: rgba(14, 165, 233, 0.4);
+}
+
+[data-theme="mica"] .md-details[open] {
+  background: #ffffff;
+  border-color: var(--accent-blue);
+  box-shadow: 0 4px 16px rgba(14, 165, 233, 0.15);
+}
+
+[data-theme="mica"] .md-summary {
+  background: rgba(241, 245, 249, 0.6);
+  color: #0284c7;
+}
+
+[data-theme="mica"] .md-summary:hover {
+  background: rgba(14, 165, 233, 0.1);
+  color: #0369a1;
+}
+
+[data-theme="mica"] .md-details-body {
+  border-top-color: rgba(30, 41, 59, 0.08);
+}
+
 .theater-tool-btn:hover {
   background: rgba(0, 242, 254, 0.28);
   border-color: #00f2fe;
@@ -1975,6 +2004,90 @@ tr:hover td {
   border: none;
   border-top: 1px solid var(--bg-card-border);
   margin: 20px 0;
+}
+
+/* COLLAPSIBLE DETAILS & RESEARCHER ACCORDIONS (.md-details) */
+.md-details {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--bg-card-border);
+  border-radius: var(--radius-sm);
+  margin: 16px 0;
+  overflow: hidden;
+  transition: border-color var(--t-fast) ease, box-shadow var(--t-fast) ease, background var(--t-fast) ease;
+}
+
+.md-details:hover {
+  border-color: rgba(0, 242, 254, 0.3);
+}
+
+.md-details[open] {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(0, 242, 254, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.md-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--accent-cyan);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  list-style: none;
+  transition: background var(--t-fast) ease, color var(--t-fast) ease;
+}
+
+.md-summary::-webkit-details-marker,
+.md-summary::marker {
+  display: none;
+}
+
+.md-summary:hover {
+  background: rgba(0, 242, 254, 0.08);
+  color: #ffffff;
+}
+
+.md-summary-title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.md-summary-chevron {
+  display: inline-block;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  transition: transform 0.2s var(--ease-spring), color var(--t-fast) ease;
+  flex-shrink: 0;
+}
+
+.md-details[open] > .md-summary .md-summary-chevron {
+  transform: rotate(90deg);
+  color: var(--accent-cyan);
+}
+
+.md-details-body {
+  padding: 16px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.md-details-body > *:first-child {
+  margin-top: 0;
+}
+
+.md-details-body > *:last-child {
+  margin-bottom: 0;
 }
 
 .eli5-frosted-card {
