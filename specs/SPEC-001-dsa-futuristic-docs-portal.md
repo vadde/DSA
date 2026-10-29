@@ -417,3 +417,9 @@ jobs:
   - [x] Built semantic `.md-details`, `.md-summary`, `.md-summary-title`, `.md-summary-chevron`, and `.md-details-body` accordion components with Year 2500 cosmic glass aesthetic and Mica theme support.
   - [x] Integrated `.md-summary` into `HapticAudio` tactile acoustics and reading mode Expand All / Collapse All controls.
   - [x] Created `scripts/audit_collapsible_elements.py` and elevated test suite to a **13-Gate Automated Audit Suite** enforcing zero unrendered HTML block leaks across all CI/CD pipelines.
+- [x] **Phase 18: Monospace Semantic Badging & ASCII Tree Geometric Alignment Engine**
+  - [x] Completely abolished the meaningless `⚡ TEXT Implementation` and `⚡ NONE Implementation` badges across all 190+ preformatted text blocks.
+  - [x] Implemented content-aware semantic classifier (`classify_code_block()`) mapping monospace blocks to `.dna-label-code`, `.dna-label-matrix`, `.dna-label-memory`, `.dna-label-trace`, `.dna-label-tree`, `.dna-label-blueprint`, and `.dna-label-spec`.
+  - [x] Fixed root cause of ASCII tree root node snapping: replaced destructive `code.strip()` with `clean_code_content()`, preserving leading indentation of first lines (e.g. `[ Root: X ]`, `[ 50 ]`, `12`).
+  - [x] Created `scripts/audit_monospace_badging_and_trees.py` with rigorous geometric centering assertion ($\le 1.0$ character cell diff between root and branch slashes `/ \`).
+  - [x] Elevated headless verification to a **14-Gate Automated Audit Suite** integrated across `scripts/test-docs.sh`, `Makefile`, and `.github/workflows/ci.yml`.
