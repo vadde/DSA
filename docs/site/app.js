@@ -677,7 +677,7 @@
           const btn = c.querySelector('.chapter-toggle-btn');
           if (btn) btn.innerText = 'Collapse';
         });
-        document.querySelectorAll('.problem-card, .theory-details').forEach(d => {
+        document.querySelectorAll('.problem-card, .theory-details, .md-details').forEach(d => {
           d.open = true;
         });
         setTimeout(() => {
@@ -698,7 +698,7 @@
           const btn = c.querySelector('.chapter-toggle-btn');
           if (btn) btn.innerText = 'Expand';
         });
-        document.querySelectorAll('.problem-card').forEach(d => {
+        document.querySelectorAll('.problem-card, .md-details').forEach(d => {
           d.open = false;
         });
         document.querySelectorAll('.nav-tree-group').forEach(g => g.classList.remove('expanded'));
@@ -752,7 +752,7 @@
 
     // Main content: Problem & Theory card summary clicks for 100% audio consistency
     document.addEventListener('click', e => {
-      const summary = e.target.closest('.problem-summary, .theory-summary');
+      const summary = e.target.closest('.problem-summary, .theory-summary, .md-summary');
       if (!summary) return;
       const details = summary.closest('details');
       if (!details || STATE.isBatchExpanding) return;

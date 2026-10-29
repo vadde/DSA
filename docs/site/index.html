@@ -4225,8 +4225,9 @@ class DynamicArray:
 
 <h3 class="md-h3">🎓 Level 500 — Researcher's Corner (Collapsible)</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;b&gt;📜 Cache-Oblivious Layouts & Advanced String Structures (Click to expand)</b&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><b>📜 Cache-Oblivious Layouts & Advanced String Structures (Click to expand)</b></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <h4 class="md-h4">1. Cache-Oblivious Memory Models (Frigo et al., 1999)</h4>
 <p class="md-p">In classical algorithmic analysis, we assume a flat RAM model with uniform access cost. In reality, modern architectures have a hierarchical memory hierarchy with unknown cache line size $B$ and cache size $M$.</p>
@@ -4238,7 +4239,8 @@ class DynamicArray:
 <li><strong>Suffix Array</strong>: An integer array containing the starting indices of all sorted suffixes of a text $T$. Searchable in $O(M \log N)$ or $O(M + \log N)$ with LCP (Longest Common Prefix) arrays.</li>
 <li><strong>FM-Index (Ferragina & Manzini)</strong>: Combines the Burrows-Wheeler Transform (BWT) with compact rank vectors to search arbitrary patterns in $O(M)$ time within compressed space smaller than the original text!</li>
 </ul>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
 
                     <div class="dna-skeleton-box"><div class="dna-skeleton-header"><span class="dna-label">⚙️ dynamic_array.py</span><button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.dna-skeleton-box').querySelector('pre code').innerText);this.innerText='Copied!';setTimeout(()=>this.innerText='Copy',1600);">Copy</button></div><div class="code-container"><pre><code class="language-python">from typing import Any, Iterator, Optional
@@ -4479,7 +4481,7 @@ Key (&quot;Bob&quot;)    ──[ Hash Function ]──&gt; Index 87 ──&gt; B
 <h4 class="md-h4">The Decision Matrix: Collision Resolution Strategies</h4>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Strategy</th><th>How It Works</th><th>Cache Locality</th><th>Deletion Complexity</th><th>Behavior Under High Load</th></tr></thead><tbody><tr><td><strong>Separate Chaining</strong></td><td>Each bucket holds a linked list of collided entries</td><td>🟡 Poor (pointer chasing)</td><td>Clean ($O(1)$ list delete)</td><td>Gracefully degrades as chains grow</td></tr><tr><td><strong>Linear Probing</strong> (Open Addressing)</td><td>If slot is occupied, check <code>(slot + 1) % M</code></td><td>🟢 Excellent (contiguous RAM)</td><td>Complex (requires tombstone markers)</td><td>Clustering cascades; dies if load factor $> 0.8$</td></tr><tr><td><strong>Quadratic Probing</strong></td><td>Probe <code>(slot + i^2) % M</code></td><td>🟢 Good</td><td>Complex (requires tombstones)</td><td>Eliminates primary clustering</td></tr><tr><td><strong>Double Hashing</strong></td><td>Probe <code>(slot + i * hash2(k)) % M</code></td><td>🟡 Moderate</td><td>Complex</td><td>Optimal distribution among open-address schemes</td></tr><tr><td><strong>Python Compact Dict</strong> (Python 3.6+)</td><td>Dense entries array + sparse index hash map</td><td>🟢 Superior</td><td>Tombstone compaction on resize</td><td>Preserves insertion order with 30-50% less RAM</td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Strategy</th><th>How It Works</th><th>Cache Locality</th><th>Deletion Complexity</th><th>Behavior Under High Load</th></tr></thead><tbody><tr><td><strong>Separate Chaining</strong></td><td>Each bucket holds a linked list of collided entries</td><td>🟡 Poor (pointer chasing)</td><td>Clean ($O(1)$ list delete)</td><td>Gracefully degrades as chains grow</td></tr><tr><td><strong>Linear Probing</strong> (Open Addressing)</td><td>If slot is occupied, check <code>(slot + 1) % M</code></td><td>🟢 Excellent (contiguous RAM)</td><td>Complex (requires tombstone markers)</td><td>Clustering cascades; dies if load factor $&gt; 0.8$</td></tr><tr><td><strong>Quadratic Probing</strong></td><td>Probe <code>(slot + i^2) % M</code></td><td>🟢 Good</td><td>Complex (requires tombstones)</td><td>Eliminates primary clustering</td></tr><tr><td><strong>Double Hashing</strong></td><td>Probe <code>(slot + i * hash2(k)) % M</code></td><td>🟡 Moderate</td><td>Complex</td><td>Optimal distribution among open-address schemes</td></tr><tr><td><strong>Python Compact Dict</strong> (Python 3.6+)</td><td>Dense entries array + sparse index hash map</td><td>🟢 Superior</td><td>Tombstone compaction on resize</td><td>Preserves insertion order with 30-50% less RAM</td></tr></tbody></table></div>
 
 
 <h4 class="md-h4">Collision Resolution Visualized</h4>
@@ -4814,8 +4816,9 @@ class HashTable:
 
 <h3 class="md-h3">🎓 Level 500 — Researcher's Corner (Collapsible)</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;b&gt;📜 Perfect Hashing & FKS Two-Level Scheme (Click to expand)</b&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><b>📜 Perfect Hashing & FKS Two-Level Scheme (Click to expand)</b></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <h4 class="md-h4">The FKS Two-Level Hashing Scheme (Fredman, Komlós, Szemerédi, 1984)</h4>
 <p class="md-p">Can we achieve <strong>$O(1)$ WORST-CASE lookup</strong> with <strong>zero collisions</strong> in $O(N)$ space?</p>
@@ -4833,7 +4836,8 @@ class HashTable:
 
 
 <p class="md-p">Worst-case lookup takes exactly <strong>2 hash computations and 2 memory reads</strong> with 100% certainty!</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
 
                     <div class="dna-skeleton-box"><div class="dna-skeleton-header"><span class="dna-label">⚙️ hash_table.py</span><button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.dna-skeleton-box').querySelector('pre code').innerText);this.innerText='Copied!';setTimeout(()=>this.innerText='Copy',1600);">Copy</button></div><div class="code-container"><pre><code class="language-python">from typing import Any, Iterator, Optional, Tuple
@@ -5369,8 +5373,9 @@ JMP _tail_factorial     ; Reuse identical stack frame!</code></pre>
 
 <h3 class="md-h3">🎓 Level 500 — Researcher's Corner (Collapsible)</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;b&gt;📜 The Y Combinator & Anonymous Recursion (Click to expand)</b&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><b>📜 The Y Combinator & Anonymous Recursion (Click to expand)</b></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <h4 class="md-h4">How Does a Function Recurse Without a Name?</h4>
 <p class="md-p">In Alonzo Church's Lambda Calculus, functions have no names. How can a function invoke itself without a name identifier?</p>
@@ -5404,7 +5409,8 @@ assert anonymous_factorial(5) == 120  # Works purely through lambda calculus!</c
             </div>
 
 
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
 
                     <div class="dna-skeleton-box"><div class="dna-skeleton-header"><span class="dna-label">⚙️ recursion_patterns.py</span><button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.dna-skeleton-box').querySelector('pre code').innerText);this.innerText='Copied!';setTimeout(()=>this.innerText='Copy',1600);">Copy</button></div><div class="code-container"><pre><code class="language-python">from typing import Any, List, Optional
@@ -5823,8 +5829,9 @@ def heapsort(arr: list[int]) -&gt; None:
 
 <h3 class="md-h3">🎓 Level 500 — Researcher's Corner (Collapsible)</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;b&gt;📜 Sub-O(N log N) Integer Sorting on the Word RAM Model (Click to expand)</b&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><b>📜 Sub-O(N log N) Integer Sorting on the Word RAM Model (Click to expand)</b></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <h4 class="md-h4">Beating $O(N \log N)$ for General Integers</h4>
 <p class="md-p">In 2002, Yijie Han and Mikkel Thorup proved that $W$-bit integers can be sorted in:</p>
@@ -5849,8 +5856,9 @@ def heapsort(arr: list[int]) -&gt; None:
 <div class="katex-display">$$\text{Depth } = O(\log N) \quad \text{and} \quad \text{Total Comparators } = O(N \log N)$$</div>
 
 
-<p class="md-p">While the theoretical depth is asymptotically optimal, the hidden constant factor is so astronomical ($> 10^{10}$) that it remains an academic milestone rather than practical hardware circuit.</p>
-<p class="md-p"></details&gt;</p>
+<p class="md-p">While the theoretical depth is asymptotically optimal, the hidden constant factor is so astronomical ($&gt; 10^{10}$) that it remains an academic milestone rather than practical hardware circuit.</p>
+</div>
+</details>
 
 
                     <div class="dna-skeleton-box"><div class="dna-skeleton-header"><span class="dna-label">⚙️ sorting_algorithms.py</span><button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.dna-skeleton-box').querySelector('pre code').innerText);this.innerText='Copied!';setTimeout(()=>this.innerText='Copy',1600);">Copy</button></div><div class="code-container"><pre><code class="language-python">import random
@@ -6285,8 +6293,9 @@ Chunked (Python deque): [ 64 Contiguous Elements ] ──&gt; [ 64 Contiguous El
 
 <h3 class="md-h3">🎓 Level 500 — Researcher's Corner (Collapsible)</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;b&gt;📜 Lock-Free Concurrent Queues (Michael & Scott, 1996) (Click to expand)</b&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><b>📜 Lock-Free Concurrent Queues (Michael & Scott, 1996) (Click to expand)</b></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <h4 class="md-h4">The Michael-Scott Lock-Free Queue</h4>
 <p class="md-p">In multi-core operating systems, using a mutex lock on a queue forces all worker threads to serialize, creating a major CPU bottleneck.</p>
@@ -6298,7 +6307,8 @@ Chunked (Python deque): [ 64 Contiguous Elements ] ──&gt; [ 64 Contiguous El
 <li>If CAS succeeds, it swings <code>tail</code> to <code>new_node</code>.</li>
 <li>Even if a thread is preempted halfway through, other threads assist in swinging the <code>tail</code> pointer forward, guaranteeing system-wide <strong>Wait-Free Progress</strong>!</li>
 </ol>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
 
                     <div class="dna-skeleton-box"><div class="dna-skeleton-header"><span class="dna-label">⚙️ queue_and_stack.py</span><button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.dna-skeleton-box').querySelector('pre code').innerText);this.innerText='Copied!';setTimeout(()=>this.innerText='Copy',1600);">Copy</button></div><div class="code-container"><pre><code class="language-python">from typing import Optional, Any
@@ -6749,8 +6759,9 @@ class LinkedList:
 
 <h3 class="md-h3">🎓 Level 500 — Researcher's Corner (Collapsible)</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;b&gt;📜 Skip Lists & Probabilistic Multi-Level Search (Click to expand)</b&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><b>📜 Skip Lists & Probabilistic Multi-Level Search (Click to expand)</b></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <h4 class="md-h4">Skip Lists (William Pugh, 1990)</h4>
 <p class="md-p">Can a linked list achieve $O(\log N)$ search, insertion, and deletion without self-balancing tree rotations?</p>
@@ -6778,7 +6789,8 @@ Level 1: Head ──&gt; Node(3) ──&gt; Node(7) ──&gt; Node(17) ──&g
 <li>Expected search, insert, and delete take <strong>strict $O(\log N)$ time</strong> in $O(N)$ space.</li>
 <li>Used in production inside <strong>Redis Sorted Sets (ZSET)</strong> and <strong>LevelDB / RocksDB MemTables</strong>!</li>
 </ul>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
 
                     <div class="dna-skeleton-box"><div class="dna-skeleton-header"><span class="dna-label">⚙️ linked_list.py</span><button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.dna-skeleton-box').querySelector('pre code').innerText);this.innerText='Copied!';setTimeout(()=>this.innerText='Copy',1600);">Copy</button></div><div class="code-container"><pre><code class="language-python">from typing import Optional, Any
@@ -7569,8 +7581,9 @@ flowchart TD
 
 <h3 class="md-h3">🔬 Level 500: Researcher's Corner</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;strong&gt;1. Memory Compression: The XOR Linked List (Theoretical Doubly Linked List in 1 Pointer)</strong&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><strong>1. Memory Compression: The XOR Linked List (Theoretical Doubly Linked List in 1 Pointer)</strong></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <p class="md-p">Can we build a bidirectional list using only <strong>one pointer per node</strong>? Yes, using the Bitwise XOR involution property:</p>
 
@@ -7608,10 +7621,12 @@ flowchart TD
 <li><strong>Pros</strong>: Halves the pointer memory footprint (1 pointer field instead of 2).</li>
 <li><strong>Cons</strong>: Cannot traverse starting from an arbitrary interior node without knowing its neighbor! Highly incompatible with generational garbage collectors (which trace real object references, not XOR-masqueraded integers).</li>
 </ul>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;strong&gt;2. Invariant Proof: Sentinel Guarantees</strong&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><strong>2. Invariant Proof: Sentinel Guarantees</strong></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <p class="md-p">Let $L$ be a Doubly Linked List with Sentinels $H$ (head) and $T$ (tail).</p>
 <p class="md-p">The structural invariants are:</p>
@@ -7629,7 +7644,8 @@ flowchart TD
 <li>$T$ always has a non-null <code>.prev</code> (at minimum $H$).</li>
 </ul>
 <p class="md-p">Therefore, boundary edge cases are mathematically eliminated.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
 <hr class="md-divider">
 
@@ -8343,14 +8359,15 @@ Slot:      slot = 1042 &amp; (8 - 1) = 2</code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Dimension</th><th>Circular Linked List</th><th>Contiguous Ring Buffer (Disruptor)</th></tr></thead><tbody><tr><td><strong>Memory Allocation</strong></td><td>Dynamic <code>malloc</code> per node</td><td>Pre-allocated fixed buffer (zero runtime GC)</td></tr><tr><td><strong>Cache Miss Rate</strong></td><td>High ($\approx 90\%$ miss on pointer chase)</td><td>Near $0\%$ (sequential memory prefetching)</td></tr><tr><td><strong>False Sharing</strong></td><td>Nodes scattered across cache lines</td><td>Cache line padding (<code>@Contended</code> / 64-byte align)</td></tr><tr><td><strong>Concurrency</strong></td><td>Requires node pointer locks (CAS on 2 pointers)</td><td>Single sequence number CAS (Wait-Free / Lock-Free)</td></tr></tbody></table></div>
 
 
-<blockquote class="callout-glass"><strong>Staff Architect Recommendation</strong>: For enterprise event queues processing $>1,000,000\text{ ops/sec}$, use a <strong>Contiguous Ring Buffer</strong>. Reserve <strong>Circular Linked Lists</strong> for scenarios where capacity must expand dynamically without pre-allocation and where individual items are arbitrary structures.</blockquote>
+<blockquote class="callout-glass"><strong>Staff Architect Recommendation</strong>: For enterprise event queues processing $&gt;1,000,000\text{ ops/sec}$, use a <strong>Contiguous Ring Buffer</strong>. Reserve <strong>Circular Linked Lists</strong> for scenarios where capacity must expand dynamically without pre-allocation and where individual items are arbitrary structures.</blockquote>
 
 <hr class="md-divider">
 
 <h3 class="md-h3">🔬 Level 500: Researcher's Corner</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;strong&gt;1. Mathematical Deep Dive: The Josephus Problem $J(n, k)$</strong&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><strong>1. Mathematical Deep Dive: The Josephus Problem $J(n, k)$</strong></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <p class="md-p">The Josephus Problem models $n$ people numbered $0, 1, \dots, n-1$ standing in a circle. Starting at person $0$, counting proceeds clockwise; every $k$-th person is eliminated. The process repeats until only 1 person remains.</p>
 
@@ -8405,10 +8422,12 @@ Slot:      slot = 1042 &amp; (8 - 1) = 2</code></pre>
 
 
 <p class="md-p">Bitwise: <strong>Rotate $n$'s binary representation one bit to the left!</strong></p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;strong&gt;2. Structural Invariant Proof: Cycle Connectedness</strong&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><strong>2. Structural Invariant Proof: Cycle Connectedness</strong></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <p class="md-p">Let $G = (V, E)$ be a directed graph formed by a Circular Linked List of size $n \ge 1$.</p>
 <ol class="md-list-ol">
@@ -8423,7 +8442,8 @@ Slot:      slot = 1042 &amp; (8 - 1) = 2</code></pre>
 <div class="katex-display">$$\text{next}^{(n)}(u) = u$$</div>
 
 
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
 <hr class="md-divider">
 
@@ -8724,7 +8744,7 @@ Level 500: Researcher&#x27;s Corner ────► Inorder Monotonicity proof, 
 <ul class="md-list">
 <li>Every node holds a value $X$.</li>
 <li>Every node in the <strong>Left Subtree</strong> has a value strictly $&lt; X$.</li>
-<li>Every node in the <strong>Right Subtree</strong> has a value strictly $> X$.</li>
+<li>Every node in the <strong>Right Subtree</strong> has a value strictly $&gt; X$.</li>
 </ul>
 
 
@@ -8887,7 +8907,7 @@ Case 3: Deleting a Node with 2 Children
 <ol class="md-list-ol">
 <li><strong>Lowest Common Ancestor (LCA) in BST (LeetCode 235)</strong>:</li>
 <li>If both $p$ and $q$ are $&lt; root$, LCA is in left subtree.</li>
-<li>If both $p$ and $q$ are $> root$, LCA is in right subtree.</li>
+<li>If both $p$ and $q$ are $&gt; root$, LCA is in right subtree.</li>
 <li>Otherwise, <strong>$root$ is the split point</strong>, and hence the LCA! Takes $O(H)$ time without extra space.</li>
 <li><strong>K-th Smallest Element in BST (LeetCode 230)</strong>:</li>
 <li>Perform iterative In-Order traversal with a stack; decrement $k$ on each node visit; return when $k = 0$.</li>
@@ -9090,7 +9110,7 @@ Height = log2(N)                               Height = N</code></pre>
 <p class="md-p">In production databases (MySQL InnoDB, PostgreSQL, SQLite), index data lives on SSD/NVMe or spinning disks.</p>
 <ul class="md-list">
 <li>In a BST, each node stores 1 key and has 2 pointers. To find a record in $10^7$ rows, a BST requires traversing $\log_2(10^7) \approx 24$ levels.</li>
-<li>If every node fetch triggers a random disk read ($\approx 10\,\text{ms}$ on HDD, $\approx 50\,\mu\text{s}$ on NVMe), 24 hops would require $> 1\,\text{ms}$ per lookup!</li>
+<li>If every node fetch triggers a random disk read ($\approx 10\,\text{ms}$ on HDD, $\approx 50\,\mu\text{s}$ on NVMe), 24 hops would require $&gt; 1\,\text{ms}$ per lookup!</li>
 <li><strong>B+ Tree Solution</strong>: Increase the branching factor (<strong>fan-out</strong>) to match the filesystem page size ($4\,\text{KB}$ or $16\,\text{KB}$). A B+ Tree node holds $1,000$ keys.</li>
 </ul>
 
@@ -9133,8 +9153,9 @@ flowchart TD
 
 <h3 class="md-h3">🔬 Level 500: Researcher's Corner</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;strong&gt;1. Mathematical Invariant Proof: Monotonicity of In-Order Traversal</strong&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><strong>1. Mathematical Invariant Proof: Monotonicity of In-Order Traversal</strong></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <p class="md-p"><strong>Theorem</strong>: Let $T$ be a binary tree satisfying the BST property. The sequence of keys visited during an in-order traversal of $T$ is monotonically non-decreasing.</p>
 
@@ -9166,10 +9187,12 @@ flowchart TD
 <ol class="md-list-ol">
 <li>Since $S_L$ is sorted, $\max(S_L) &lt; \text{key}(r) &lt; \min(S_R)$, and $S_R$ is sorted, the entire concatenated sequence $S$ is strictly monotonic. $\blacksquare$</li>
 </ol>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;strong&gt;2. Treaps: Randomized Binary Search Trees</strong&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><strong>2. Treaps: Randomized Binary Search Trees</strong></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <p class="md-p">A <strong>Treap</strong> (Tree + Heap) marries a BST with a Binary Heap to achieve self-balancing with zero complex rotation invariants:</p>
 <ul class="md-list">
@@ -9185,7 +9208,8 @@ flowchart TD
 
 
 <p class="md-p">Insertion and deletion simply perform normal BST operations followed by standard heap rotations to restore the priority heap invariant.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
 <hr class="md-divider">
 
@@ -9888,8 +9912,9 @@ flowchart LR
 
 <h3 class="md-h3">🔬 Level 500: Researcher's Corner</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;strong&gt;1. Mathematical Proof: Floyd's Algorithm Runs in Linear $O(N)$ Time</strong&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><strong>1. Mathematical Proof: Floyd's Algorithm Runs in Linear $O(N)$ Time</strong></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <p class="md-p">Why does <code>_build_heap()</code> take $O(N)$ time instead of $O(N \log N)$?</p>
 
@@ -9933,17 +9958,20 @@ flowchart LR
 
 
 <p class="md-p"><strong>Conclusion</strong>: Because the vast majority of nodes reside near the bottom of the tree where height $h$ is tiny, bottom-up heapification is <strong>strictly linear $O(N)$</strong>.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;strong&gt;2. Advanced Priority Queues: Fibonacci Heaps & Brodal Queues</strong&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><strong>2. Advanced Priority Queues: Fibonacci Heaps & Brodal Queues</strong></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 
 <div class="table-wrapper"><table><thead><tr><th>Heap Type</th><th><code>insert</code></th><th><code>find_min</code></th><th><code>delete_min</code></th><th><code>decrease_key</code></th><th><code>merge</code></th></tr></thead><tbody><tr><td><strong>Binary Heap</strong></td><td>$O(\log N)$</td><td>$O(1)$</td><td>$O(\log N)$</td><td>$O(\log N)$</td><td>$O(N)$</td></tr><tr><td><strong>Binomial Heap</strong></td><td>$O(\log N)$</td><td>$O(\log N)$</td><td>$O(\log N)$</td><td>$O(\log N)$</td><td>$O(\log N)$</td></tr><tr><td><strong>Fibonacci Heap</strong></td><td><strong>$O(1)$</strong> (amort.)</td><td>$O(1)$</td><td>$O(\log N)$ (amort.)</td><td><strong>$O(1)$</strong> (amort.)</td><td><strong>$O(1)$</strong></td></tr><tr><td><strong>Brodal Queue</strong></td><td><strong>$O(1)$</strong> (worst)</td><td>$O(1)$</td><td>$O(\log N)$ (worst)</td><td><strong>$O(1)$</strong> (worst)</td><td><strong>$O(1)$</strong></td></tr></tbody></table></div>
 
 
 <p class="md-p">Fibonacci heaps achieve <strong>$O(1)$ amortized <code>decrease_key</code></strong> by lazily postponing tree consolidations until <code>delete_min</code>. This reduces Dijkstra's algorithm time complexity from $O(E \log V)$ to $O(E + V \log V)$, which is theoretically optimal for dense graphs.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
 <hr class="md-divider">
 
@@ -10509,8 +10537,9 @@ flowchart TD
 
 <h3 class="md-h3">🔬 Level 500: Researcher's Corner</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;strong&gt;1. Suffix Trees & Ukkonen's Linear-Time Algorithm</strong&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><strong>1. Suffix Trees & Ukkonen's Linear-Time Algorithm</strong></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <p class="md-p">A <strong>Suffix Tree</strong> is a compressed Trie containing all suffixes of a string $S$ of length $N$.</p>
 <ul class="md-list">
@@ -10523,10 +10552,12 @@ flowchart TD
 </ul>
 
 <p class="md-p">Suffix Trees and their space-efficient cousin, the <strong>Burrows-Wheeler Transform (FM-Index)</strong>, form the computational bedrock of modern bioinformatics and human genome alignment (e.g., Bowtie, BWA).</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;strong&gt;2. Formal Trie Structural Invariant</strong&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><strong>2. Formal Trie Structural Invariant</strong></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <p class="md-p">Let $T = (V, E)$ be a Trie over alphabet $\Sigma$ with root $r \in V$.</p>
 <ol class="md-list-ol">
@@ -10542,7 +10573,8 @@ flowchart TD
 <li>Every vertex $v \in V$ corresponds to a unique string $S(v)$ formed by concatenating edge labels along the unique simple path from $r$ to $v$.</li>
 <li>A string $W$ is present in the dictionary iff there exists $v \in V$ such that $S(v) = W$ and $\text{is\_end}(v) = \text{True}$.</li>
 </ol>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
 <hr class="md-divider">
 
@@ -11090,8 +11122,9 @@ row_ptr:  [ 0,     2,  3,     5, 5 ] &lt;--- Offsets into col_idx for each verte
 
 <h3 class="md-h3">🔬 Level 500: Researcher's Corner</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;strong&gt;1. The Handshaking Lemma & Degree Sum Formula</strong&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><strong>1. The Handshaking Lemma & Degree Sum Formula</strong></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <p class="md-p"><strong>Theorem (Euler, 1736)</strong>: In any finite undirected graph $G = (V, E)$, the sum of the degrees of all vertices equals twice the number of edges:</p>
 
@@ -11105,10 +11138,12 @@ row_ptr:  [ 0,     2,  3,     5, 5 ] &lt;--- Offsets into col_idx for each verte
 
 <p class="md-p"><strong>Corollary (Odd-Degree Parity)</strong>:</p>
 <p class="md-p">In every undirected graph, the number of vertices with odd degree is <strong>always even</strong>.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;strong&gt;2. Spectral Graph Theory & The Graph Laplacian</strong&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><strong>2. Spectral Graph Theory & The Graph Laplacian</strong></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <p class="md-p">Let $A$ be the $V \times V$ adjacency matrix and $D$ be the diagonal degree matrix ($D_{ii} = \deg(i)$).</p>
 <p class="md-p">The <strong>Graph Laplacian Matrix</strong> is defined as:</p>
@@ -11132,7 +11167,8 @@ row_ptr:  [ 0,     2,  3,     5, 5 ] &lt;--- Offsets into col_idx for each verte
 
 
 <p class="md-p">This forms the mathematical foundation of Spectral Clustering in Machine Learning and Image Segmentation.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
 <hr class="md-divider">
 
@@ -11603,8 +11639,9 @@ class UnionFind:
 
 <h3 class="md-h3">🎓 Level 500 — Researcher's Corner (Collapsible)</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;b&gt;📜 Fredman & Saks Cell-Probe Lower Bound (Click to expand)</b&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><b>📜 Fredman & Saks Cell-Probe Lower Bound (Click to expand)</b></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <h4 class="md-h4">The Impossibility of Strict $O(1)$ Dynamic Connectivity</h4>
 <p class="md-p">Could a brilliant engineer invent an alternative disjoint-set data structure that runs in strict $O(1)$ worst-case time without Ackermann's function?</p>
@@ -11618,7 +11655,8 @@ class UnionFind:
 
 
 <p class="md-p">Tarjan's Union-Find algorithm with path compression and union-by-rank achieves this lower bound with zero waste. <strong>It is universally optimal.</strong></p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
 
                     <div class="dna-skeleton-box"><div class="dna-skeleton-header"><span class="dna-label">⚙️ union_find.py</span><button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.dna-skeleton-box').querySelector('pre code').innerText);this.innerText='Copied!';setTimeout(()=>this.innerText='Copy',1600);">Copy</button></div><div class="code-container"><pre><code class="language-python">from typing import List
@@ -12083,8 +12121,9 @@ while sub:
 
 <h3 class="md-h3">🎓 Level 500 — Researcher's Corner (Collapsible)</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;&lt;b&gt;📜 De Bruijn Sequences & Branchless Log2 (Click to expand)</b&gt;</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title"><b>📜 De Bruijn Sequences & Branchless Log2 (Click to expand)</b></span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <h4 class="md-h4">Branchless $\lfloor \log_2 x \rfloor$ via De Bruijn Sequences</h4>
 <p class="md-p">How do you find the most significant bit (MSB) of an integer in 3 assembly instructions without hardware <code>BSR</code> (Bit Scan Reverse)?</p>
@@ -12120,7 +12159,8 @@ def floor_log2(v: int) -&gt; int:
             </div>
 
 
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
 
                     <div class="dna-skeleton-box"><div class="dna-skeleton-header"><span class="dna-label">⚙️ bit_manipulation.py</span><button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.dna-skeleton-box').querySelector('pre code').innerText);this.innerText='Copied!';setTimeout(()=>this.innerText='Copy',1600);">Copy</button></div><div class="code-container"><pre><code class="language-python">from typing import Iterator, List, Tuple
@@ -19727,15 +19767,19 @@ flowchart LR
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;1. When should you use 'left &lt; right' vs 'left ≤ right'?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">1. When should you use 'left &lt; right' vs 'left ≤ right'?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Use <code>left &lt; right</code> when you are looking for pairs (two distinct elements). Use <code>left &lt;= right</code> in Binary Search or when a single element interacting with itself is a valid state (e.g. reversing a string in-place with an odd number of characters).</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;2. How do you avoid duplicate triplets in a 3Sum problem?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">2. How do you avoid duplicate triplets in a 3Sum problem?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">After sorting, skip identical adjacent elements in the outer <code>for</code> loop (<code>if i &gt; 0 and arr[i] == arr[i-1]: continue</code>). Then, after finding a valid pair in the inner <code>while</code> loop, aggressively increment <code>left</code> and decrement <code>right</code> while they point to identical adjacent elements.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 
 <hr class="md-divider">
 
@@ -23471,7 +23515,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p">Let's test starting at index <code>0</code> (value <code>1</code>). Direction is Forward (<code>is_forward = True</code>).</p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>slow</code> Index</th><th><code>fast</code> Index</th><th>Actions & Math</th></tr></thead><tbody><tr><td>1</td><td><code>0</code> (val <code>1</code>)</td><td><code>0</code> (val <code>1</code>)</td><td>Initialization</td></tr><tr><td>2</td><td><code>1</code> (val <code>2</code>)</td><td><code>3</code> (val <code>2</code>)</td><td><code>slow</code> moves 1: <code>(0 + 1) % 5 = 1</code>. &lt;br&gt; <code>fast</code> moves 2: <code>(0 + 1) % 5 = 1</code>, then <code>(1 + 2) % 5 = 3</code>.</td></tr><tr><td>3</td><td><code>3</code> (val <code>2</code>)</td><td><code>3</code> (val <code>2</code>)</td><td><code>slow</code> moves 1: <code>(1 + 2) % 5 = 3</code>. &lt;br&gt; <code>fast</code> moves 2: <code>(3 + 2) % 5 = 0</code>, then <code>(0 + 1) % 5 = 1</code>. Wait, looking closely: <code>fast</code> was at <code>3</code>. Moves 1: <code>(3+2)%5 = 0</code>. Moves 2: <code>(0+1)%5 = 1</code>. Ah, <code>fast</code> is actually <code>1</code>! Let me recount carefully.</td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>slow</code> Index</th><th><code>fast</code> Index</th><th>Actions & Math</th></tr></thead><tbody><tr><td>1</td><td><code>0</code> (val <code>1</code>)</td><td><code>0</code> (val <code>1</code>)</td><td>Initialization</td></tr><tr><td>2</td><td><code>1</code> (val <code>2</code>)</td><td><code>3</code> (val <code>2</code>)</td><td><code>slow</code> moves 1: <code>(0 + 1) % 5 = 1</code>. <br> <code>fast</code> moves 2: <code>(0 + 1) % 5 = 1</code>, then <code>(1 + 2) % 5 = 3</code>.</td></tr><tr><td>3</td><td><code>3</code> (val <code>2</code>)</td><td><code>3</code> (val <code>2</code>)</td><td><code>slow</code> moves 1: <code>(1 + 2) % 5 = 3</code>. <br> <code>fast</code> moves 2: <code>(3 + 2) % 5 = 0</code>, then <code>(0 + 1) % 5 = 1</code>. Wait, looking closely: <code>fast</code> was at <code>3</code>. Moves 1: <code>(3+2)%5 = 0</code>. Moves 2: <code>(0+1)%5 = 1</code>. Ah, <code>fast</code> is actually <code>1</code>! Let me recount carefully.</td></tr></tbody></table></div>
 
 
 <p class="md-p"><em>Wait, let's recount exactly what the code does starting from index 0:</em></p>
@@ -24883,8 +24927,9 @@ graph TD
 <li><strong>You're solving "smallest subarray with sum ≥ S". Should you record the result INSIDE or OUTSIDE the while loop? What about "longest substring with at most K distinct chars"?</strong></li>
 </ol>
 
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;Answers</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">Answers</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 
 <ol class="md-list-ol">
 <li><strong>Adjacent windows overlap.</strong> Instead of recalculating everything from scratch, you only process the one element that entered and the one that left — O(1) work per slide instead of O(K).</li>
@@ -24914,7 +24959,8 @@ graph TD
 <li><strong>"Smallest subarray"</strong> → record <strong>INSIDE</strong> the while loop (before shrinking), because you want to capture the current valid window before making it smaller. <strong>"Longest substring"</strong> → record <strong>OUTSIDE</strong> the while loop (after shrinking to validity), because you want the biggest window that passes the condition check.</li>
 </ol>
 
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -25172,7 +25218,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p"><code>start = 0</code>, <code>matched = 0</code>, <code>words_seen = {}</code></p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code> index</th><th>Extract Word</th><th>In <code>word_freq</code>?</th><th>Action (Update seen, matched, shrink)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code></td><td><code>&quot;cat&quot;</code></td><td><strong>Yes</strong></td><td><code>seen[&#x27;cat&#x27;] = 1</code>. <code>matched = 1</code>. &lt;br&gt; Not too many. &lt;br&gt; <code>matched != 2</code>.</td></tr><tr><td>2</td><td><code>3</code> (step+3)</td><td><code>&quot;fox&quot;</code></td><td><strong>Yes</strong></td><td><code>seen[&#x27;fox&#x27;] = 1</code>. <code>matched = 2</code>. &lt;br&gt; Not too many. &lt;br&gt; <code>matched == 2</code> -&gt; <strong>YES!</strong> Record <code>start=0</code>.</td></tr><tr><td>3</td><td><code>6</code> (step+3)</td><td><code>&quot;cat&quot;</code></td><td><strong>Yes</strong></td><td><code>seen[&#x27;cat&#x27;] = 2</code>. <code>matched = 2</code>. &lt;br&gt; <em>TOO MANY!</em> (2 &gt; 1). &lt;br&gt; <em>SHRINK</em>: Drop left word ("cat"). <code>seen[&#x27;cat&#x27;] = 1</code>. <code>matched = 2</code>. <code>start = 3</code>. &lt;br&gt; <code>matched == 2</code> -&gt; <strong>YES!</strong> Record <code>start=3</code>.</td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code> index</th><th>Extract Word</th><th>In <code>word_freq</code>?</th><th>Action (Update seen, matched, shrink)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code></td><td><code>&quot;cat&quot;</code></td><td><strong>Yes</strong></td><td><code>seen[&#x27;cat&#x27;] = 1</code>. <code>matched = 1</code>. <br> Not too many. <br> <code>matched != 2</code>.</td></tr><tr><td>2</td><td><code>3</code> (step+3)</td><td><code>&quot;fox&quot;</code></td><td><strong>Yes</strong></td><td><code>seen[&#x27;fox&#x27;] = 1</code>. <code>matched = 2</code>. <br> Not too many. <br> <code>matched == 2</code> -&gt; <strong>YES!</strong> Record <code>start=0</code>.</td></tr><tr><td>3</td><td><code>6</code> (step+3)</td><td><code>&quot;cat&quot;</code></td><td><strong>Yes</strong></td><td><code>seen[&#x27;cat&#x27;] = 2</code>. <code>matched = 2</code>. <br> <em>TOO MANY!</em> (2 &gt; 1). <br> <em>SHRINK</em>: Drop left word ("cat"). <code>seen[&#x27;cat&#x27;] = 1</code>. <code>matched = 2</code>. <code>start = 3</code>. <br> <code>matched == 2</code> -&gt; <strong>YES!</strong> Record <code>start=3</code>.</td></tr></tbody></table></div>
 
 
 <p class="md-p">Result: <code>[0, 3]</code>. (Offsets 1 and 2 will hit bad words and reset immediately).</p>
@@ -25376,7 +25422,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p">Initialization: <code>start = 0</code>, <code>result = []</code>, <code>dq = []</code></p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code></th><th><code>nums[end]</code></th><th>Deque Action (Pop small, Add index)</th><th>Deque State (Indices)</th><th>Deque State (Values)</th><th><code>start</code> / Record (if size=3)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code></td><td><code>1</code></td><td>Add <code>0</code>.</td><td><code>[0]</code></td><td><code>[1]</code></td><td>Size &lt; 3.</td></tr><tr><td>2</td><td><code>1</code></td><td><code>3</code></td><td><code>3 &gt; 1</code>. Pop <code>0</code>. Add <code>1</code>.</td><td><code>[1]</code></td><td><code>[3]</code></td><td>Size &lt; 3.</td></tr><tr><td>3</td><td><code>2</code></td><td><code>-1</code></td><td><code>-1 &lt; 3</code>. Add <code>2</code>.</td><td><code>[1, 2]</code></td><td><code>[3, -1]</code></td><td>Max is <code>nums[1]</code> (<strong>3</strong>). &lt;br&gt; <code>start</code> stays 0 (1 != 0). <code>start</code>-&gt;1.</td></tr><tr><td>4</td><td><code>3</code></td><td><code>-3</code></td><td><code>-3 &lt; -1</code>. Add <code>3</code>.</td><td><code>[1, 2, 3]</code></td><td><code>[3, -1, -3]</code></td><td>Max is <code>nums[1]</code> (<strong>3</strong>). &lt;br&gt; <code>dq[0]</code> is <code>1</code> (<code>start</code>). Popleft! <code>start</code>-&gt;2.</td></tr><tr><td>5</td><td><code>4</code></td><td><code>5</code></td><td><code>5 &gt; -3</code>, pop. <code>5 &gt; -1</code>, pop. Add <code>4</code>.</td><td><code>[4]</code></td><td><code>[5]</code></td><td>Max is <code>nums[4]</code> (<strong>5</strong>). &lt;br&gt; <code>start</code> stays 2. <code>start</code>-&gt;3.</td></tr><tr><td>6</td><td><code>5</code></td><td><code>3</code></td><td><code>3 &lt; 5</code>. Add <code>5</code>.</td><td><code>[4, 5]</code></td><td><code>[5, 3]</code></td><td>Max is <code>nums[4]</code> (<strong>5</strong>). &lt;br&gt; <code>start</code> stays 3. <code>start</code>-&gt;4.</td></tr><tr><td>7</td><td><code>6</code></td><td><code>6</code></td><td><code>6 &gt; 3</code>, pop. <code>6 &gt; 5</code>, pop. Add <code>6</code>.</td><td><code>[6]</code></td><td><code>[6]</code></td><td>Max is <code>nums[6]</code> (<strong>6</strong>). &lt;br&gt; <code>start</code> stays 4. <code>start</code>-&gt;5.</td></tr><tr><td>8</td><td><code>7</code></td><td><code>7</code></td><td><code>7 &gt; 6</code>, pop. Add <code>7</code>.</td><td><code>[7]</code></td><td><code>[7]</code></td><td>Max is <code>nums[7]</code> (<strong>7</strong>).</td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code></th><th><code>nums[end]</code></th><th>Deque Action (Pop small, Add index)</th><th>Deque State (Indices)</th><th>Deque State (Values)</th><th><code>start</code> / Record (if size=3)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code></td><td><code>1</code></td><td>Add <code>0</code>.</td><td><code>[0]</code></td><td><code>[1]</code></td><td>Size &lt; 3.</td></tr><tr><td>2</td><td><code>1</code></td><td><code>3</code></td><td><code>3 &gt; 1</code>. Pop <code>0</code>. Add <code>1</code>.</td><td><code>[1]</code></td><td><code>[3]</code></td><td>Size &lt; 3.</td></tr><tr><td>3</td><td><code>2</code></td><td><code>-1</code></td><td><code>-1 &lt; 3</code>. Add <code>2</code>.</td><td><code>[1, 2]</code></td><td><code>[3, -1]</code></td><td>Max is <code>nums[1]</code> (<strong>3</strong>). <br> <code>start</code> stays 0 (1 != 0). <code>start</code>-&gt;1.</td></tr><tr><td>4</td><td><code>3</code></td><td><code>-3</code></td><td><code>-3 &lt; -1</code>. Add <code>3</code>.</td><td><code>[1, 2, 3]</code></td><td><code>[3, -1, -3]</code></td><td>Max is <code>nums[1]</code> (<strong>3</strong>). <br> <code>dq[0]</code> is <code>1</code> (<code>start</code>). Popleft! <code>start</code>-&gt;2.</td></tr><tr><td>5</td><td><code>4</code></td><td><code>5</code></td><td><code>5 &gt; -3</code>, pop. <code>5 &gt; -1</code>, pop. Add <code>4</code>.</td><td><code>[4]</code></td><td><code>[5]</code></td><td>Max is <code>nums[4]</code> (<strong>5</strong>). <br> <code>start</code> stays 2. <code>start</code>-&gt;3.</td></tr><tr><td>6</td><td><code>5</code></td><td><code>3</code></td><td><code>3 &lt; 5</code>. Add <code>5</code>.</td><td><code>[4, 5]</code></td><td><code>[5, 3]</code></td><td>Max is <code>nums[4]</code> (<strong>5</strong>). <br> <code>start</code> stays 3. <code>start</code>-&gt;4.</td></tr><tr><td>7</td><td><code>6</code></td><td><code>6</code></td><td><code>6 &gt; 3</code>, pop. <code>6 &gt; 5</code>, pop. Add <code>6</code>.</td><td><code>[6]</code></td><td><code>[6]</code></td><td>Max is <code>nums[6]</code> (<strong>6</strong>). <br> <code>start</code> stays 4. <code>start</code>-&gt;5.</td></tr><tr><td>8</td><td><code>7</code></td><td><code>7</code></td><td><code>7 &gt; 6</code>, pop. Add <code>7</code>.</td><td><code>[7]</code></td><td><code>[7]</code></td><td>Max is <code>nums[7]</code> (<strong>7</strong>).</td></tr></tbody></table></div>
 
 
 <p class="md-p">Result: <code>[3, 3, 5, 5, 6, 7]</code></p>
@@ -25566,7 +25612,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p"><code>start = 0</code>, <code>total = 0</code>.</p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code></th><th><code>nums[end]</code></th><th><code>freq</code> map</th><th>Distinct &gt; 2?</th><th>Window Size</th><th><code>total</code> so far</th><th>Valid Subarrays Added</th></tr></thead><tbody><tr><td>1</td><td><code>0</code></td><td><code>1</code></td><td><code>{1:1}</code></td><td>No (1)</td><td><code>0-0+1=1</code></td><td><code>0+1 = 1</code></td><td><code>[1]</code></td></tr><tr><td>2</td><td><code>1</code></td><td><code>2</code></td><td><code>{1:1, 2:1}</code></td><td>No (2)</td><td><code>1-0+1=2</code></td><td><code>1+2 = 3</code></td><td><code>[2]</code>, <code>[1,2]</code></td></tr><tr><td>3</td><td><code>2</code></td><td><code>1</code></td><td><code>{1:2, 2:1}</code></td><td>No (2)</td><td><code>2-0+1=3</code></td><td><code>3+3 = 6</code></td><td><code>[1]</code>, <code>[2,1]</code>, <code>[1,2,1]</code></td></tr><tr><td>4</td><td><code>3</code></td><td><code>2</code></td><td><code>{1:2, 2:2}</code></td><td>No (2)</td><td><code>3-0+1=4</code></td><td><code>6+4 = 10</code></td><td><code>[2]</code>, <code>[1,2]</code>, <code>[2,1,2]</code>, <code>[1,2,1,2]</code></td></tr><tr><td>5</td><td><code>4</code></td><td><code>3</code></td><td><code>{1:2, 2:2, 3:1}</code></td><td><strong>Yes (3)</strong></td><td>Shrink! Drop 1s & 2s until <code>start=3</code>. &lt;br&gt; Window:<code>[2, 3]</code>. Size=<code>2</code></td><td><code>10+2=12</code></td><td><code>[3]</code>, <code>[2,3]</code></td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code></th><th><code>nums[end]</code></th><th><code>freq</code> map</th><th>Distinct &gt; 2?</th><th>Window Size</th><th><code>total</code> so far</th><th>Valid Subarrays Added</th></tr></thead><tbody><tr><td>1</td><td><code>0</code></td><td><code>1</code></td><td><code>{1:1}</code></td><td>No (1)</td><td><code>0-0+1=1</code></td><td><code>0+1 = 1</code></td><td><code>[1]</code></td></tr><tr><td>2</td><td><code>1</code></td><td><code>2</code></td><td><code>{1:1, 2:1}</code></td><td>No (2)</td><td><code>1-0+1=2</code></td><td><code>1+2 = 3</code></td><td><code>[2]</code>, <code>[1,2]</code></td></tr><tr><td>3</td><td><code>2</code></td><td><code>1</code></td><td><code>{1:2, 2:1}</code></td><td>No (2)</td><td><code>2-0+1=3</code></td><td><code>3+3 = 6</code></td><td><code>[1]</code>, <code>[2,1]</code>, <code>[1,2,1]</code></td></tr><tr><td>4</td><td><code>3</code></td><td><code>2</code></td><td><code>{1:2, 2:2}</code></td><td>No (2)</td><td><code>3-0+1=4</code></td><td><code>6+4 = 10</code></td><td><code>[2]</code>, <code>[1,2]</code>, <code>[2,1,2]</code>, <code>[1,2,1,2]</code></td></tr><tr><td>5</td><td><code>4</code></td><td><code>3</code></td><td><code>{1:2, 2:2, 3:1}</code></td><td><strong>Yes (3)</strong></td><td>Shrink! Drop 1s & 2s until <code>start=3</code>. <br> Window:<code>[2, 3]</code>. Size=<code>2</code></td><td><code>10+2=12</code></td><td><code>[3]</code>, <code>[2,3]</code></td></tr></tbody></table></div>
 
 
 <p class="md-p">Result for AtMost 2: <strong>12</strong>.</p>
@@ -25750,7 +25796,7 @@ if __name__ == &quot;__main__&quot;:
 </ol>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step <code>i</code></th><th><code>prefix[i]</code></th><th>Deque Action: Pop Left (Valid?)</th><th>Deque Action: Pop Right (Optimize)</th><th>Deque State</th><th><code>min_len</code></th></tr></thead><tbody><tr><td><code>0</code></td><td><code>0</code></td><td>No. (Deque empty)</td><td>No.</td><td><code>[0]</code></td><td><code>inf</code></td></tr><tr><td><code>1</code></td><td><code>2</code></td><td>No. <code>2 - prefix[0] (0) = 2 &lt; 3</code></td><td>No. <code>2 &gt; prefix[0] (0)</code></td><td><code>[0, 1]</code></td><td><code>inf</code></td></tr><tr><td><code>2</code></td><td><code>1</code></td><td>No. <code>1 - prefix[0] (0) = 1 &lt; 3</code></td><td>Yes! <code>1 &lt;= prefix[1] (2)</code>. Pop <code>1</code>!</td><td><code>[0, 2]</code></td><td><code>inf</code></td></tr><tr><td><code>3</code></td><td><code>3</code></td><td><strong>Yes!</strong> <code>3 - prefix[0] (0) = 3 &gt;= 3</code>.&lt;br&gt;Record <code>3 - 0 = 3</code>. Popleft!</td><td>No. <code>3 &gt; prefix[2] (1)</code></td><td><code>[2, 3]</code></td><td><code>3</code></td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step <code>i</code></th><th><code>prefix[i]</code></th><th>Deque Action: Pop Left (Valid?)</th><th>Deque Action: Pop Right (Optimize)</th><th>Deque State</th><th><code>min_len</code></th></tr></thead><tbody><tr><td><code>0</code></td><td><code>0</code></td><td>No. (Deque empty)</td><td>No.</td><td><code>[0]</code></td><td><code>inf</code></td></tr><tr><td><code>1</code></td><td><code>2</code></td><td>No. <code>2 - prefix[0] (0) = 2 &lt; 3</code></td><td>No. <code>2 &gt; prefix[0] (0)</code></td><td><code>[0, 1]</code></td><td><code>inf</code></td></tr><tr><td><code>2</code></td><td><code>1</code></td><td>No. <code>1 - prefix[0] (0) = 1 &lt; 3</code></td><td>Yes! <code>1 &lt;= prefix[1] (2)</code>. Pop <code>1</code>!</td><td><code>[0, 2]</code></td><td><code>inf</code></td></tr><tr><td><code>3</code></td><td><code>3</code></td><td><strong>Yes!</strong> <code>3 - prefix[0] (0) = 3 &gt;= 3</code>.<br>Record <code>3 - 0 = 3</code>. Popleft!</td><td>No. <code>3 &gt; prefix[2] (1)</code></td><td><code>[2, 3]</code></td><td><code>3</code></td></tr></tbody></table></div>
 
 
 <p class="md-p">Result: <code>min_len = 3</code>.</p>
@@ -26101,7 +26147,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p">Initialization: <code>window_start = 0</code>, <code>window_sum = 0</code>, <code>max_sum = -inf</code></p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>window_end</code></th><th><code>arr[window_end]</code></th><th><code>window_sum</code></th><th><code>end &gt;= k-1</code> (2)?</th><th>Actions (Update max, subtract start, move start)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code></td><td><code>2</code></td><td><code>2</code></td><td>No</td><td>Window is growing. <code>[2]</code></td></tr><tr><td>2</td><td><code>1</code></td><td><code>1</code></td><td><code>3</code></td><td>No</td><td>Window is growing. <code>[2, 1]</code></td></tr><tr><td>3</td><td><code>2</code></td><td><code>5</code></td><td><code>8</code></td><td><strong>Yes!</strong></td><td><code>max_sum</code> = max(-inf, 8) = <strong>8</strong>. &lt;br&gt; Subtract <code>arr[0]</code> (2). Sum = 6. <code>start = 1</code>.</td></tr><tr><td>4</td><td><code>3</code></td><td><code>1</code></td><td><code>7</code></td><td><strong>Yes!</strong></td><td><code>max_sum</code> = max(8, 7) = <strong>8</strong>. &lt;br&gt; Subtract <code>arr[1]</code> (1). Sum = 6. <code>start = 2</code>.</td></tr><tr><td>5</td><td><code>4</code></td><td><code>3</code></td><td><code>9</code></td><td><strong>Yes!</strong></td><td><code>max_sum</code> = max(8, 9) = <strong>9</strong>. &lt;br&gt; Subtract <code>arr[2]</code> (5). Sum = 4. <code>start = 3</code>.</td></tr><tr><td>6</td><td><code>5</code></td><td><code>2</code></td><td><code>6</code></td><td><strong>Yes!</strong></td><td><code>max_sum</code> = max(9, 6) = <strong>9</strong>. &lt;br&gt; Subtract <code>arr[3]</code> (1). Sum = 5. <code>start = 4</code>.</td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>window_end</code></th><th><code>arr[window_end]</code></th><th><code>window_sum</code></th><th><code>end &gt;= k-1</code> (2)?</th><th>Actions (Update max, subtract start, move start)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code></td><td><code>2</code></td><td><code>2</code></td><td>No</td><td>Window is growing. <code>[2]</code></td></tr><tr><td>2</td><td><code>1</code></td><td><code>1</code></td><td><code>3</code></td><td>No</td><td>Window is growing. <code>[2, 1]</code></td></tr><tr><td>3</td><td><code>2</code></td><td><code>5</code></td><td><code>8</code></td><td><strong>Yes!</strong></td><td><code>max_sum</code> = max(-inf, 8) = <strong>8</strong>. <br> Subtract <code>arr[0]</code> (2). Sum = 6. <code>start = 1</code>.</td></tr><tr><td>4</td><td><code>3</code></td><td><code>1</code></td><td><code>7</code></td><td><strong>Yes!</strong></td><td><code>max_sum</code> = max(8, 7) = <strong>8</strong>. <br> Subtract <code>arr[1]</code> (1). Sum = 6. <code>start = 2</code>.</td></tr><tr><td>5</td><td><code>4</code></td><td><code>3</code></td><td><code>9</code></td><td><strong>Yes!</strong></td><td><code>max_sum</code> = max(8, 9) = <strong>9</strong>. <br> Subtract <code>arr[2]</code> (5). Sum = 4. <code>start = 3</code>.</td></tr><tr><td>6</td><td><code>5</code></td><td><code>2</code></td><td><code>6</code></td><td><strong>Yes!</strong></td><td><code>max_sum</code> = max(9, 6) = <strong>9</strong>. <br> Subtract <code>arr[3]</code> (1). Sum = 5. <code>start = 4</code>.</td></tr></tbody></table></div>
 
 
 <p class="md-p">Result: The maximum sum is <code>9</code> (from the subarray <code>[5, 1, 3]</code>).</p>
@@ -26271,7 +26317,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p">Initialization: <code>window_start = 0</code>, <code>window_sum = 0</code>, <code>min_length = inf</code></p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>window_end</code></th><th><code>arr[window_end]</code></th><th><code>window_sum</code></th><th><code>sum &gt;= 7</code>?</th><th>Actions (Update min_length, Shrink)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code></td><td><code>2</code></td><td><code>2</code></td><td>No</td><td>Expand.</td></tr><tr><td>2</td><td><code>1</code></td><td><code>1</code></td><td><code>3</code></td><td>No</td><td>Expand.</td></tr><tr><td>3</td><td><code>2</code></td><td><code>5</code></td><td><code>8</code></td><td><strong>Yes!</strong></td><td><code>min_len</code> = min(inf, 3) = <strong>3</strong>. &lt;br&gt; Subtract 2 (start 0). Sum=6. <code>start = 1</code>.</td></tr><tr><td>4</td><td>-</td><td>-</td><td><code>6</code></td><td>No</td><td>Break shrink loop. Expand again.</td></tr><tr><td>5</td><td><code>3</code></td><td><code>2</code></td><td><code>8</code></td><td><strong>Yes!</strong></td><td><code>min_len</code> = min(3, 3) = <strong>3</strong>. &lt;br&gt; Subtract 1 (start 1). Sum=7. <code>start = 2</code>.</td></tr><tr><td>6</td><td>-</td><td>-</td><td><code>7</code></td><td><strong>Yes!</strong></td><td><code>min_len</code> = min(3, 2) = <strong>2</strong> <code>[5, 2]</code>. &lt;br&gt; Subtract 5 (start 2). Sum=2. <code>start = 3</code>.</td></tr><tr><td>7</td><td>-</td><td>-</td><td><code>2</code></td><td>No</td><td>Break shrink loop. Expand again.</td></tr><tr><td>8</td><td><code>4</code></td><td><code>8</code></td><td><code>10</code></td><td><strong>Yes!</strong></td><td><code>min_len</code> = min(2, 2) = <strong>2</strong>. &lt;br&gt; Subtract 2 (start 3). Sum=8. <code>start = 4</code>.</td></tr><tr><td>9</td><td>-</td><td>-</td><td><code>8</code></td><td><strong>Yes!</strong></td><td><code>min_len</code> = min(2, 1) = <strong>1</strong> <code>[8]</code>. &lt;br&gt; Subtract 8 (start 4). Sum=0. <code>start = 5</code>.</td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>window_end</code></th><th><code>arr[window_end]</code></th><th><code>window_sum</code></th><th><code>sum &gt;= 7</code>?</th><th>Actions (Update min_length, Shrink)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code></td><td><code>2</code></td><td><code>2</code></td><td>No</td><td>Expand.</td></tr><tr><td>2</td><td><code>1</code></td><td><code>1</code></td><td><code>3</code></td><td>No</td><td>Expand.</td></tr><tr><td>3</td><td><code>2</code></td><td><code>5</code></td><td><code>8</code></td><td><strong>Yes!</strong></td><td><code>min_len</code> = min(inf, 3) = <strong>3</strong>. <br> Subtract 2 (start 0). Sum=6. <code>start = 1</code>.</td></tr><tr><td>4</td><td>-</td><td>-</td><td><code>6</code></td><td>No</td><td>Break shrink loop. Expand again.</td></tr><tr><td>5</td><td><code>3</code></td><td><code>2</code></td><td><code>8</code></td><td><strong>Yes!</strong></td><td><code>min_len</code> = min(3, 3) = <strong>3</strong>. <br> Subtract 1 (start 1). Sum=7. <code>start = 2</code>.</td></tr><tr><td>6</td><td>-</td><td>-</td><td><code>7</code></td><td><strong>Yes!</strong></td><td><code>min_len</code> = min(3, 2) = <strong>2</strong> <code>[5, 2]</code>. <br> Subtract 5 (start 2). Sum=2. <code>start = 3</code>.</td></tr><tr><td>7</td><td>-</td><td>-</td><td><code>2</code></td><td>No</td><td>Break shrink loop. Expand again.</td></tr><tr><td>8</td><td><code>4</code></td><td><code>8</code></td><td><code>10</code></td><td><strong>Yes!</strong></td><td><code>min_len</code> = min(2, 2) = <strong>2</strong>. <br> Subtract 2 (start 3). Sum=8. <code>start = 4</code>.</td></tr><tr><td>9</td><td>-</td><td>-</td><td><code>8</code></td><td><strong>Yes!</strong></td><td><code>min_len</code> = min(2, 1) = <strong>1</strong> <code>[8]</code>. <br> Subtract 8 (start 4). Sum=0. <code>start = 5</code>.</td></tr></tbody></table></div>
 
 
 <p class="md-p">Result: The minimum length is <code>1</code> (from the subarray <code>[8]</code>).</p>
@@ -26438,7 +26484,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p">Initialization: <code>start = 0</code>, <code>max_len = 0</code>, <code>freq = {}</code></p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code> char</th><th><code>freq</code> map</th><th>Distinct &gt; 2?</th><th>Action (Update max_len, Shrink)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code> ('a')</td><td><code>{&#x27;a&#x27;: 1}</code></td><td>No (1 ≤ 2)</td><td><code>max_len</code> = max(0, 1) = <strong>1</strong>. (<code>[a]</code>)</td></tr><tr><td>2</td><td><code>1</code> ('r')</td><td><code>{&#x27;a&#x27;: 1, &#x27;r&#x27;: 1}</code></td><td>No (2 ≤ 2)</td><td><code>max_len</code> = max(1, 2) = <strong>2</strong>. (<code>[ar]</code>)</td></tr><tr><td>3</td><td><code>2</code> ('a')</td><td><code>{&#x27;a&#x27;: 2, &#x27;r&#x27;: 1}</code></td><td>No (2 ≤ 2)</td><td><code>max_len</code> = max(2, 3) = <strong>3</strong>. (<code>[ara]</code>)</td></tr><tr><td>4</td><td><code>3</code> ('a')</td><td><code>{&#x27;a&#x27;: 3, &#x27;r&#x27;: 1}</code></td><td>No (2 ≤ 2)</td><td><code>max_len</code> = max(3, 4) = <strong>4</strong>. (<code>[araa]</code>)</td></tr><tr><td>5</td><td><code>4</code> ('c')</td><td><code>{&#x27;a&#x27;: 3, &#x27;r&#x27;: 1, &#x27;c&#x27;: 1}</code></td><td><strong>Yes (3 &gt; 2)</strong></td><td><em>SHRINK LOOP</em>: &lt;br&gt; - Drop <code>s[0]</code> ('a'). <code>freq</code> = <code>{&#x27;a&#x27;: 2, &#x27;r&#x27;: 1, &#x27;c&#x27;: 1}</code>. <code>start = 1</code>. Still &gt; 2! &lt;br&gt; - Drop <code>s[1]</code> ('r'). <code>freq</code> = <code>{&#x27;a&#x27;: 2, &#x27;c&#x27;: 1}</code>. <code>start = 2</code>. Valid!</td></tr><tr><td>6</td><td>-</td><td>-</td><td>-</td><td>After shrink: <code>max_len</code> = max(4, 3) = <strong>4</strong>. (<code>[aac]</code>)</td></tr><tr><td>7</td><td><code>5</code> ('i')</td><td><code>{&#x27;a&#x27;: 2, &#x27;c&#x27;: 1, &#x27;i&#x27;: 1}</code></td><td><strong>Yes (3 &gt; 2)</strong></td><td><em>SHRINK LOOP</em>: &lt;br&gt; - Drop <code>s[2]</code> ('a'). <code>freq</code> = <code>{&#x27;a&#x27;: 1, &#x27;c&#x27;: 1, &#x27;i&#x27;: 1}</code>. <code>start = 3</code>. Still &gt; 2! &lt;br&gt; - Drop <code>s[3]</code> ('a'). <code>freq</code> = <code>{&#x27;c&#x27;: 1, &#x27;i&#x27;: 1}</code>. <code>start = 4</code>. Valid!</td></tr><tr><td>8</td><td>-</td><td>-</td><td>-</td><td>After shrink: <code>max_len</code> = max(4, 2) = <strong>4</strong>. (<code>[ci]</code>)</td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code> char</th><th><code>freq</code> map</th><th>Distinct &gt; 2?</th><th>Action (Update max_len, Shrink)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code> ('a')</td><td><code>{&#x27;a&#x27;: 1}</code></td><td>No (1 ≤ 2)</td><td><code>max_len</code> = max(0, 1) = <strong>1</strong>. (<code>[a]</code>)</td></tr><tr><td>2</td><td><code>1</code> ('r')</td><td><code>{&#x27;a&#x27;: 1, &#x27;r&#x27;: 1}</code></td><td>No (2 ≤ 2)</td><td><code>max_len</code> = max(1, 2) = <strong>2</strong>. (<code>[ar]</code>)</td></tr><tr><td>3</td><td><code>2</code> ('a')</td><td><code>{&#x27;a&#x27;: 2, &#x27;r&#x27;: 1}</code></td><td>No (2 ≤ 2)</td><td><code>max_len</code> = max(2, 3) = <strong>3</strong>. (<code>[ara]</code>)</td></tr><tr><td>4</td><td><code>3</code> ('a')</td><td><code>{&#x27;a&#x27;: 3, &#x27;r&#x27;: 1}</code></td><td>No (2 ≤ 2)</td><td><code>max_len</code> = max(3, 4) = <strong>4</strong>. (<code>[araa]</code>)</td></tr><tr><td>5</td><td><code>4</code> ('c')</td><td><code>{&#x27;a&#x27;: 3, &#x27;r&#x27;: 1, &#x27;c&#x27;: 1}</code></td><td><strong>Yes (3 &gt; 2)</strong></td><td><em>SHRINK LOOP</em>: <br> - Drop <code>s[0]</code> ('a'). <code>freq</code> = <code>{&#x27;a&#x27;: 2, &#x27;r&#x27;: 1, &#x27;c&#x27;: 1}</code>. <code>start = 1</code>. Still &gt; 2! <br> - Drop <code>s[1]</code> ('r'). <code>freq</code> = <code>{&#x27;a&#x27;: 2, &#x27;c&#x27;: 1}</code>. <code>start = 2</code>. Valid!</td></tr><tr><td>6</td><td>-</td><td>-</td><td>-</td><td>After shrink: <code>max_len</code> = max(4, 3) = <strong>4</strong>. (<code>[aac]</code>)</td></tr><tr><td>7</td><td><code>5</code> ('i')</td><td><code>{&#x27;a&#x27;: 2, &#x27;c&#x27;: 1, &#x27;i&#x27;: 1}</code></td><td><strong>Yes (3 &gt; 2)</strong></td><td><em>SHRINK LOOP</em>: <br> - Drop <code>s[2]</code> ('a'). <code>freq</code> = <code>{&#x27;a&#x27;: 1, &#x27;c&#x27;: 1, &#x27;i&#x27;: 1}</code>. <code>start = 3</code>. Still &gt; 2! <br> - Drop <code>s[3]</code> ('a'). <code>freq</code> = <code>{&#x27;c&#x27;: 1, &#x27;i&#x27;: 1}</code>. <code>start = 4</code>. Valid!</td></tr><tr><td>8</td><td>-</td><td>-</td><td>-</td><td>After shrink: <code>max_len</code> = max(4, 2) = <strong>4</strong>. (<code>[ci]</code>)</td></tr></tbody></table></div>
 
 
 <p class="md-p">Result: The max length is <code>4</code> (from the substring <code>&quot;araa&quot;</code>).</p>
@@ -26625,7 +26671,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p">At <code>end = 3</code>, our window is <code>[3, 3, 3, 1]</code>. <code>freq</code> is <code>{3: 3, 1: 1}</code>. Valid (2 types)! <code>max_f = 4</code>.</p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code> fruit</th><th><code>freq</code> map</th><th>> 2 types?</th><th>Action (Update max_f, Shrink)</th></tr></thead><tbody><tr><td>5</td><td><code>4</code> (val 2)</td><td><code>{3:3, 1:1, 2:1}</code></td><td><strong>Yes (3)</strong></td><td><em>SHRINK LOOP</em>: Drop 3s from the left until they are gone. &lt;br&gt; - Drop <code>S0, S1, S2</code> (all 3s). <code>freq</code> = <code>{1:1, 2:1}</code>. <code>start = 3</code>. Valid!</td></tr><tr><td>6</td><td>-</td><td>-</td><td>-</td><td>After shrink: <code>max_f</code> = max(4, 2) = <strong>4</strong>. Window: <code>[1, 2]</code></td></tr><tr><td>7</td><td><code>5</code> (val 1)</td><td><code>{1:2, 2:1}</code></td><td>No (2)</td><td><code>max_f</code> = max(4, 3) = <strong>4</strong>. Window: <code>[1, 2, 1]</code></td></tr><tr><td>8</td><td><code>6</code> (val 1)</td><td><code>{1:3, 2:1}</code></td><td>No (2)</td><td><code>max_f</code> = max(4, 4) = <strong>4</strong>. Window: <code>[1, 2, 1, 1]</code></td></tr><tr><td>9</td><td><code>7</code> (val 2)</td><td><code>{1:3, 2:2}</code></td><td>No (2)</td><td><code>max_f</code> = max(4, 5) = <strong>5</strong>. Window: <code>[1, 2, 1, 1, 2]</code></td></tr><tr><td>10</td><td><code>8</code> (val 3)</td><td><code>{1:3, 2:2, 3:1}</code></td><td><strong>Yes (3)</strong></td><td><em>SHRINK LOOP</em>: Drop from left. &lt;br&gt; - Drop <code>S3</code>(1), <code>S4</code>(2), <code>S5</code>(1), <code>S6</code>(1). <code>freq</code> = <code>{2:1, 3:1}</code>. <code>start = 7</code>. Valid!</td></tr><tr><td>11</td><td>-</td><td>-</td><td>-</td><td>After shrink: <code>max_f</code> = max(5, 2) = <strong>5</strong>. Window: <code>[2, 3]</code></td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code> fruit</th><th><code>freq</code> map</th><th>&gt; 2 types?</th><th>Action (Update max_f, Shrink)</th></tr></thead><tbody><tr><td>5</td><td><code>4</code> (val 2)</td><td><code>{3:3, 1:1, 2:1}</code></td><td><strong>Yes (3)</strong></td><td><em>SHRINK LOOP</em>: Drop 3s from the left until they are gone. <br> - Drop <code>S0, S1, S2</code> (all 3s). <code>freq</code> = <code>{1:1, 2:1}</code>. <code>start = 3</code>. Valid!</td></tr><tr><td>6</td><td>-</td><td>-</td><td>-</td><td>After shrink: <code>max_f</code> = max(4, 2) = <strong>4</strong>. Window: <code>[1, 2]</code></td></tr><tr><td>7</td><td><code>5</code> (val 1)</td><td><code>{1:2, 2:1}</code></td><td>No (2)</td><td><code>max_f</code> = max(4, 3) = <strong>4</strong>. Window: <code>[1, 2, 1]</code></td></tr><tr><td>8</td><td><code>6</code> (val 1)</td><td><code>{1:3, 2:1}</code></td><td>No (2)</td><td><code>max_f</code> = max(4, 4) = <strong>4</strong>. Window: <code>[1, 2, 1, 1]</code></td></tr><tr><td>9</td><td><code>7</code> (val 2)</td><td><code>{1:3, 2:2}</code></td><td>No (2)</td><td><code>max_f</code> = max(4, 5) = <strong>5</strong>. Window: <code>[1, 2, 1, 1, 2]</code></td></tr><tr><td>10</td><td><code>8</code> (val 3)</td><td><code>{1:3, 2:2, 3:1}</code></td><td><strong>Yes (3)</strong></td><td><em>SHRINK LOOP</em>: Drop from left. <br> - Drop <code>S3</code>(1), <code>S4</code>(2), <code>S5</code>(1), <code>S6</code>(1). <code>freq</code> = <code>{2:1, 3:1}</code>. <code>start = 7</code>. Valid!</td></tr><tr><td>11</td><td>-</td><td>-</td><td>-</td><td>After shrink: <code>max_f</code> = max(5, 2) = <strong>5</strong>. Window: <code>[2, 3]</code></td></tr></tbody></table></div>
 
 
 <p class="md-p">Result: The max fruits collected is <code>5</code> (from the subarray <code>[1, 2, 1, 1, 2]</code>).</p>
@@ -26789,7 +26835,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p">Initialization: <code>start = 0</code>, <code>max_len = 0</code>, <code>char_idx = {}</code></p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code> char</th><th><code>char_idx</code> before</th><th>In map & $\ge$ start?</th><th>Action (Update start, Update map, Calc max)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code> ('a')</td><td><code>{}</code></td><td>No</td><td><code>char_idx[&#x27;a&#x27;] = 0</code>. &lt;br&gt; <code>max_len</code> = max(0, 1) = <strong>1</strong>. (<code>[a]</code>)</td></tr><tr><td>2</td><td><code>1</code> ('a')</td><td><code>{&#x27;a&#x27;: 0}</code></td><td><strong>Yes (0 $\ge$ 0)</strong></td><td>Jump <code>start</code> to <code>0 + 1 = 1</code>. &lt;br&gt; <code>char_idx[&#x27;a&#x27;] = 1</code>. &lt;br&gt; <code>max_len</code> = max(1, 1) = <strong>1</strong>. (<code>[a]</code>)</td></tr><tr><td>3</td><td><code>2</code> ('b')</td><td><code>{&#x27;a&#x27;: 1}</code></td><td>No</td><td><code>char_idx[&#x27;b&#x27;] = 2</code>. &lt;br&gt; <code>max_len</code> = max(1, 2) = <strong>2</strong>. (<code>[ab]</code>)</td></tr><tr><td>4</td><td><code>3</code> ('c')</td><td><code>{&#x27;a&#x27;: 1, &#x27;b&#x27;: 2}</code></td><td>No</td><td><code>char_idx[&#x27;c&#x27;] = 3</code>. &lt;br&gt; <code>max_len</code> = max(2, 3) = <strong>3</strong>. (<code>[abc]</code>)</td></tr><tr><td>5</td><td><code>4</code> ('c')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:2, &#x27;c&#x27;:3}</code></td><td><strong>Yes (3 $\ge$ 1)</strong></td><td>Jump <code>start</code> to <code>3 + 1 = 4</code>. &lt;br&gt; <code>char_idx[&#x27;c&#x27;] = 4</code>. &lt;br&gt; <code>max_len</code> = max(3, 1) = <strong>3</strong>. (<code>[c]</code>)</td></tr><tr><td>6</td><td><code>5</code> ('b')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:2, &#x27;c&#x27;:4}</code></td><td>No (2 is not $\ge$ 4)*</td><td><code>char_idx[&#x27;b&#x27;] = 5</code>. &lt;br&gt; <code>max_len</code> = max(3, 2) = <strong>3</strong>. (<code>[cb]</code>)</td></tr><tr><td>7</td><td><code>6</code> ('b')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:5, &#x27;c&#x27;:4}</code></td><td><strong>Yes (5 $\ge$ 4)</strong></td><td>Jump <code>start</code> to <code>5 + 1 = 6</code>. &lt;br&gt; <code>char_idx[&#x27;b&#x27;] = 6</code>. &lt;br&gt; <code>max_len</code> = max(3, 1) = <strong>3</strong>. (<code>[b]</code>)</td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code> char</th><th><code>char_idx</code> before</th><th>In map & $\ge$ start?</th><th>Action (Update start, Update map, Calc max)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code> ('a')</td><td><code>{}</code></td><td>No</td><td><code>char_idx[&#x27;a&#x27;] = 0</code>. <br> <code>max_len</code> = max(0, 1) = <strong>1</strong>. (<code>[a]</code>)</td></tr><tr><td>2</td><td><code>1</code> ('a')</td><td><code>{&#x27;a&#x27;: 0}</code></td><td><strong>Yes (0 $\ge$ 0)</strong></td><td>Jump <code>start</code> to <code>0 + 1 = 1</code>. <br> <code>char_idx[&#x27;a&#x27;] = 1</code>. <br> <code>max_len</code> = max(1, 1) = <strong>1</strong>. (<code>[a]</code>)</td></tr><tr><td>3</td><td><code>2</code> ('b')</td><td><code>{&#x27;a&#x27;: 1}</code></td><td>No</td><td><code>char_idx[&#x27;b&#x27;] = 2</code>. <br> <code>max_len</code> = max(1, 2) = <strong>2</strong>. (<code>[ab]</code>)</td></tr><tr><td>4</td><td><code>3</code> ('c')</td><td><code>{&#x27;a&#x27;: 1, &#x27;b&#x27;: 2}</code></td><td>No</td><td><code>char_idx[&#x27;c&#x27;] = 3</code>. <br> <code>max_len</code> = max(2, 3) = <strong>3</strong>. (<code>[abc]</code>)</td></tr><tr><td>5</td><td><code>4</code> ('c')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:2, &#x27;c&#x27;:3}</code></td><td><strong>Yes (3 $\ge$ 1)</strong></td><td>Jump <code>start</code> to <code>3 + 1 = 4</code>. <br> <code>char_idx[&#x27;c&#x27;] = 4</code>. <br> <code>max_len</code> = max(3, 1) = <strong>3</strong>. (<code>[c]</code>)</td></tr><tr><td>6</td><td><code>5</code> ('b')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:2, &#x27;c&#x27;:4}</code></td><td>No (2 is not $\ge$ 4)*</td><td><code>char_idx[&#x27;b&#x27;] = 5</code>. <br> <code>max_len</code> = max(3, 2) = <strong>3</strong>. (<code>[cb]</code>)</td></tr><tr><td>7</td><td><code>6</code> ('b')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:5, &#x27;c&#x27;:4}</code></td><td><strong>Yes (5 $\ge$ 4)</strong></td><td>Jump <code>start</code> to <code>5 + 1 = 6</code>. <br> <code>char_idx[&#x27;b&#x27;] = 6</code>. <br> <code>max_len</code> = max(3, 1) = <strong>3</strong>. (<code>[b]</code>)</td></tr></tbody></table></div>
 
 
 <p class="md-p"><em>\</em>Notice at step 6: 'b' was in the map at index 2, but our window started at index 4. The old 'b' was already thrown away, so it doesn't count as a conflict!*</p>
@@ -27127,7 +27173,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p">Initialization: <code>start = 0</code>, <code>max_len = 0</code>, <code>zeros = 0</code></p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code> val</th><th><code>zeros</code> count</th><th>> 2?</th><th>Action (Update max_len, Shrink)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code> (val 0)</td><td><code>1</code></td><td>No</td><td><code>max_len</code> = max(0, 1) = <strong>1</strong>. (<code>[0]</code>)</td></tr><tr><td>2</td><td><code>1</code> (val 1)</td><td><code>1</code></td><td>No</td><td><code>max_len</code> = max(1, 2) = <strong>2</strong>. (<code>[0, 1]</code>)</td></tr><tr><td>3</td><td><code>2</code> (val 1)</td><td><code>1</code></td><td>No</td><td><code>max_len</code> = max(2, 3) = <strong>3</strong>. (<code>[0, 1, 1]</code>)</td></tr><tr><td>4</td><td><code>3</code> (val 0)</td><td><code>2</code></td><td>No</td><td><code>max_len</code> = max(3, 4) = <strong>4</strong>. (<code>[0, 1, 1, 0]</code>)</td></tr><tr><td>5</td><td><code>4</code> (val 0)</td><td><code>3</code></td><td><strong>Yes</strong></td><td><em>SHRINK</em>: Drop <code>arr[0]</code> (which is <code>0</code>). <code>zeros</code> drops to <code>2</code>. <code>start = 1</code>. Valid! &lt;br&gt; <code>max_len</code> = max(4, 4) = <strong>4</strong>. (<code>[1, 1, 0, 0]</code>)</td></tr><tr><td>6</td><td><code>5</code> (val 0)</td><td><code>3</code></td><td><strong>Yes</strong></td><td><em>SHRINK</em>: Drop <code>arr[1]</code> (1), <code>arr[2]</code> (1), <code>arr[3]</code> (0). <code>zeros</code> drops to <code>2</code>. <code>start = 4</code>. Valid! &lt;br&gt; <code>max_len</code> = max(4, 2) = <strong>4</strong>. (<code>[0, 0]</code>)</td></tr><tr><td>7</td><td><code>6</code> (val 1)</td><td><code>2</code></td><td>No</td><td><code>max_len</code> = max(4, 3) = <strong>4</strong>. (<code>[0, 0, 1]</code>)</td></tr><tr><td>8</td><td><code>7</code> (val 1)</td><td><code>2</code></td><td>No</td><td><code>max_len</code> = max(4, 4) = <strong>4</strong>. (<code>[0, 0, 1, 1]</code>)</td></tr><tr><td>9</td><td><code>8</code> (val 0)</td><td><code>3</code></td><td><strong>Yes</strong></td><td><em>SHRINK</em>: Drop <code>arr[4]</code> (0). <code>zeros</code> drops to <code>2</code>. <code>start = 5</code>. Valid! &lt;br&gt; <code>max_len</code> = max(4, 4) = <strong>4</strong>. (<code>[0, 1, 1, 0]</code>)</td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code> val</th><th><code>zeros</code> count</th><th>&gt; 2?</th><th>Action (Update max_len, Shrink)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code> (val 0)</td><td><code>1</code></td><td>No</td><td><code>max_len</code> = max(0, 1) = <strong>1</strong>. (<code>[0]</code>)</td></tr><tr><td>2</td><td><code>1</code> (val 1)</td><td><code>1</code></td><td>No</td><td><code>max_len</code> = max(1, 2) = <strong>2</strong>. (<code>[0, 1]</code>)</td></tr><tr><td>3</td><td><code>2</code> (val 1)</td><td><code>1</code></td><td>No</td><td><code>max_len</code> = max(2, 3) = <strong>3</strong>. (<code>[0, 1, 1]</code>)</td></tr><tr><td>4</td><td><code>3</code> (val 0)</td><td><code>2</code></td><td>No</td><td><code>max_len</code> = max(3, 4) = <strong>4</strong>. (<code>[0, 1, 1, 0]</code>)</td></tr><tr><td>5</td><td><code>4</code> (val 0)</td><td><code>3</code></td><td><strong>Yes</strong></td><td><em>SHRINK</em>: Drop <code>arr[0]</code> (which is <code>0</code>). <code>zeros</code> drops to <code>2</code>. <code>start = 1</code>. Valid! <br> <code>max_len</code> = max(4, 4) = <strong>4</strong>. (<code>[1, 1, 0, 0]</code>)</td></tr><tr><td>6</td><td><code>5</code> (val 0)</td><td><code>3</code></td><td><strong>Yes</strong></td><td><em>SHRINK</em>: Drop <code>arr[1]</code> (1), <code>arr[2]</code> (1), <code>arr[3]</code> (0). <code>zeros</code> drops to <code>2</code>. <code>start = 4</code>. Valid! <br> <code>max_len</code> = max(4, 2) = <strong>4</strong>. (<code>[0, 0]</code>)</td></tr><tr><td>7</td><td><code>6</code> (val 1)</td><td><code>2</code></td><td>No</td><td><code>max_len</code> = max(4, 3) = <strong>4</strong>. (<code>[0, 0, 1]</code>)</td></tr><tr><td>8</td><td><code>7</code> (val 1)</td><td><code>2</code></td><td>No</td><td><code>max_len</code> = max(4, 4) = <strong>4</strong>. (<code>[0, 0, 1, 1]</code>)</td></tr><tr><td>9</td><td><code>8</code> (val 0)</td><td><code>3</code></td><td><strong>Yes</strong></td><td><em>SHRINK</em>: Drop <code>arr[4]</code> (0). <code>zeros</code> drops to <code>2</code>. <code>start = 5</code>. Valid! <br> <code>max_len</code> = max(4, 4) = <strong>4</strong>. (<code>[0, 1, 1, 0]</code>)</td></tr></tbody></table></div>
 
 
 <p class="md-p">Result: The max length is <code>4</code>.</p>
@@ -27299,7 +27345,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p"><code>start = 0</code>, <code>matched = 0</code>.</p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code> char</th><th><code>freq</code> map (Needed)</th><th><code>matched</code></th><th>Valid? (matched==3)</th><th>Action (Shrink Window)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code> ('o')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:1, &#x27;c&#x27;:1}</code> (not in pattern)</td><td><code>0</code></td><td>No</td><td>Window is <code>[o]</code>. Size &lt; 3, no shrink.</td></tr><tr><td>2</td><td><code>1</code> ('i')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:1, &#x27;c&#x27;:1}</code> (not in pattern)</td><td><code>0</code></td><td>No</td><td>Window is <code>[o, i]</code>. Size &lt; 3, no shrink.</td></tr><tr><td>3</td><td><code>2</code> ('d')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:1, &#x27;c&#x27;:1}</code> (not in pattern)</td><td><code>0</code></td><td>No</td><td>Window <code>[o, i, d]</code>. Size = 3. Shrink! &lt;br&gt; Drop <code>s[0]</code> ('o'). Start=1.</td></tr><tr><td>4</td><td><code>3</code> ('b')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:0, &#x27;c&#x27;:1}</code></td><td><code>1</code> ('b' hits 0)</td><td>No</td><td>Window <code>[i, d, b]</code>. Size = 3. Shrink! &lt;br&gt; Drop <code>s[1]</code> ('i'). Start=2.</td></tr><tr><td>5</td><td><code>4</code> ('c')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:0, &#x27;c&#x27;:0}</code></td><td><code>2</code> ('c' hits 0)</td><td>No</td><td>Window <code>[d, b, c]</code>. Size = 3. Shrink! &lt;br&gt; Drop <code>s[2]</code> ('d'). Start=3.</td></tr><tr><td>6</td><td><code>5</code> ('a')</td><td><code>{&#x27;a&#x27;:0, &#x27;b&#x27;:0, &#x27;c&#x27;:0}</code></td><td><code>3</code> ('a' hits 0)</td><td><strong>YES!</strong></td><td>Return <code>True</code> immediately!</td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code> char</th><th><code>freq</code> map (Needed)</th><th><code>matched</code></th><th>Valid? (matched==3)</th><th>Action (Shrink Window)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code> ('o')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:1, &#x27;c&#x27;:1}</code> (not in pattern)</td><td><code>0</code></td><td>No</td><td>Window is <code>[o]</code>. Size &lt; 3, no shrink.</td></tr><tr><td>2</td><td><code>1</code> ('i')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:1, &#x27;c&#x27;:1}</code> (not in pattern)</td><td><code>0</code></td><td>No</td><td>Window is <code>[o, i]</code>. Size &lt; 3, no shrink.</td></tr><tr><td>3</td><td><code>2</code> ('d')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:1, &#x27;c&#x27;:1}</code> (not in pattern)</td><td><code>0</code></td><td>No</td><td>Window <code>[o, i, d]</code>. Size = 3. Shrink! <br> Drop <code>s[0]</code> ('o'). Start=1.</td></tr><tr><td>4</td><td><code>3</code> ('b')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:0, &#x27;c&#x27;:1}</code></td><td><code>1</code> ('b' hits 0)</td><td>No</td><td>Window <code>[i, d, b]</code>. Size = 3. Shrink! <br> Drop <code>s[1]</code> ('i'). Start=2.</td></tr><tr><td>5</td><td><code>4</code> ('c')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:0, &#x27;c&#x27;:0}</code></td><td><code>2</code> ('c' hits 0)</td><td>No</td><td>Window <code>[d, b, c]</code>. Size = 3. Shrink! <br> Drop <code>s[2]</code> ('d'). Start=3.</td></tr><tr><td>6</td><td><code>5</code> ('a')</td><td><code>{&#x27;a&#x27;:0, &#x27;b&#x27;:0, &#x27;c&#x27;:0}</code></td><td><code>3</code> ('a' hits 0)</td><td><strong>YES!</strong></td><td>Return <code>True</code> immediately!</td></tr></tbody></table></div>
 
 
 <p class="md-p">Result: <code>True</code> (The permutation is <code>&quot;bca&quot;</code>).</p>
@@ -27485,7 +27531,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p"><code>start = 0</code>, <code>matched = 0</code>, <code>result = []</code>.</p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code> char</th><th><code>freq</code> map (Needed)</th><th><code>matched</code></th><th>Valid? (matched==3)</th><th>Action (Record, Shrink)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code> ('c')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:1, &#x27;c&#x27;:0}</code></td><td><code>1</code></td><td>No</td><td>Size &lt; 3, no shrink.</td></tr><tr><td>2</td><td><code>1</code> ('b')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:0, &#x27;c&#x27;:0}</code></td><td><code>2</code></td><td>No</td><td>Size &lt; 3, no shrink.</td></tr><tr><td>3</td><td><code>2</code> ('a')</td><td><code>{&#x27;a&#x27;:0, &#x27;b&#x27;:0, &#x27;c&#x27;:0}</code></td><td><code>3</code></td><td><strong>YES!</strong></td><td>Record <code>start=0</code> -&gt; <code>result=[0]</code>. &lt;br&gt; Shrink: Drop <code>s[0]</code> ('c'). <code>freq[&#x27;c&#x27;]=1</code>. <code>matched=2</code>. <code>start=1</code>.</td></tr><tr><td>4</td><td><code>3</code> ('e')</td><td><code>{&#x27;a&#x27;:0, &#x27;b&#x27;:0, &#x27;c&#x27;:1}</code></td><td><code>2</code> ('e' ignored)</td><td>No</td><td>Shrink: Drop <code>s[1]</code> ('b'). <code>freq[&#x27;b&#x27;]=1</code>. <code>matched=1</code>. <code>start=2</code>.</td></tr><tr><td>5</td><td><code>4</code> ('b')</td><td><code>{&#x27;a&#x27;:0, &#x27;b&#x27;:0, &#x27;c&#x27;:1}</code></td><td><code>2</code></td><td>No</td><td>Shrink: Drop <code>s[2]</code> ('a'). <code>freq[&#x27;a&#x27;]=1</code>. <code>matched=1</code>. <code>start=3</code>.</td></tr><tr><td>6</td><td><code>5</code> ('a')</td><td><code>{&#x27;a&#x27;:0, &#x27;b&#x27;:0, &#x27;c&#x27;:1}</code></td><td><code>2</code></td><td>No</td><td>Shrink: Drop <code>s[3]</code> ('e'). (Ignored). <code>start=4</code>.</td></tr><tr><td>7</td><td><code>6</code> ('b')</td><td><code>{&#x27;a&#x27;:0, &#x27;b&#x27;:-1, &#x27;c&#x27;:1}</code></td><td><code>2</code></td><td>No</td><td>Shrink: Drop <code>s[4]</code> ('b'). <code>freq[&#x27;b&#x27;]=0</code>. <code>start=5</code>.</td></tr><tr><td>8</td><td><code>7</code> ('a')</td><td><code>{&#x27;a&#x27;:-1, &#x27;b&#x27;:0, &#x27;c&#x27;:1}</code></td><td><code>2</code></td><td>No</td><td>Shrink: Drop <code>s[5]</code> ('a'). <code>freq[&#x27;a&#x27;]=0</code>. <code>start=6</code>.</td></tr><tr><td>9</td><td><code>8</code> ('c')</td><td><code>{&#x27;a&#x27;:-1, &#x27;b&#x27;:0, &#x27;c&#x27;:0}</code></td><td><code>3</code></td><td><strong>YES!</strong></td><td>Record <code>start=6</code> -&gt; <code>result=[0, 6]</code>. &lt;br&gt; Shrink: Drop <code>s[6]</code> ('b'). <code>freq[&#x27;b&#x27;]=1</code>. <code>matched=2</code>. <code>start=7</code>.</td></tr><tr><td>10</td><td><code>9</code> ('d')</td><td><code>{&#x27;a&#x27;:-1, &#x27;b&#x27;:1, &#x27;c&#x27;:0}</code></td><td><code>2</code> ('d' ignored)</td><td>No</td><td>Shrink: Drop <code>s[7]</code> ('a'). <code>freq[&#x27;a&#x27;]=0</code> (wait, it was -1, so it becomes 0, matched stays 2). <code>start=8</code>.</td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>end</code> char</th><th><code>freq</code> map (Needed)</th><th><code>matched</code></th><th>Valid? (matched==3)</th><th>Action (Record, Shrink)</th></tr></thead><tbody><tr><td>1</td><td><code>0</code> ('c')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:1, &#x27;c&#x27;:0}</code></td><td><code>1</code></td><td>No</td><td>Size &lt; 3, no shrink.</td></tr><tr><td>2</td><td><code>1</code> ('b')</td><td><code>{&#x27;a&#x27;:1, &#x27;b&#x27;:0, &#x27;c&#x27;:0}</code></td><td><code>2</code></td><td>No</td><td>Size &lt; 3, no shrink.</td></tr><tr><td>3</td><td><code>2</code> ('a')</td><td><code>{&#x27;a&#x27;:0, &#x27;b&#x27;:0, &#x27;c&#x27;:0}</code></td><td><code>3</code></td><td><strong>YES!</strong></td><td>Record <code>start=0</code> -&gt; <code>result=[0]</code>. <br> Shrink: Drop <code>s[0]</code> ('c'). <code>freq[&#x27;c&#x27;]=1</code>. <code>matched=2</code>. <code>start=1</code>.</td></tr><tr><td>4</td><td><code>3</code> ('e')</td><td><code>{&#x27;a&#x27;:0, &#x27;b&#x27;:0, &#x27;c&#x27;:1}</code></td><td><code>2</code> ('e' ignored)</td><td>No</td><td>Shrink: Drop <code>s[1]</code> ('b'). <code>freq[&#x27;b&#x27;]=1</code>. <code>matched=1</code>. <code>start=2</code>.</td></tr><tr><td>5</td><td><code>4</code> ('b')</td><td><code>{&#x27;a&#x27;:0, &#x27;b&#x27;:0, &#x27;c&#x27;:1}</code></td><td><code>2</code></td><td>No</td><td>Shrink: Drop <code>s[2]</code> ('a'). <code>freq[&#x27;a&#x27;]=1</code>. <code>matched=1</code>. <code>start=3</code>.</td></tr><tr><td>6</td><td><code>5</code> ('a')</td><td><code>{&#x27;a&#x27;:0, &#x27;b&#x27;:0, &#x27;c&#x27;:1}</code></td><td><code>2</code></td><td>No</td><td>Shrink: Drop <code>s[3]</code> ('e'). (Ignored). <code>start=4</code>.</td></tr><tr><td>7</td><td><code>6</code> ('b')</td><td><code>{&#x27;a&#x27;:0, &#x27;b&#x27;:-1, &#x27;c&#x27;:1}</code></td><td><code>2</code></td><td>No</td><td>Shrink: Drop <code>s[4]</code> ('b'). <code>freq[&#x27;b&#x27;]=0</code>. <code>start=5</code>.</td></tr><tr><td>8</td><td><code>7</code> ('a')</td><td><code>{&#x27;a&#x27;:-1, &#x27;b&#x27;:0, &#x27;c&#x27;:1}</code></td><td><code>2</code></td><td>No</td><td>Shrink: Drop <code>s[5]</code> ('a'). <code>freq[&#x27;a&#x27;]=0</code>. <code>start=6</code>.</td></tr><tr><td>9</td><td><code>8</code> ('c')</td><td><code>{&#x27;a&#x27;:-1, &#x27;b&#x27;:0, &#x27;c&#x27;:0}</code></td><td><code>3</code></td><td><strong>YES!</strong></td><td>Record <code>start=6</code> -&gt; <code>result=[0, 6]</code>. <br> Shrink: Drop <code>s[6]</code> ('b'). <code>freq[&#x27;b&#x27;]=1</code>. <code>matched=2</code>. <code>start=7</code>.</td></tr><tr><td>10</td><td><code>9</code> ('d')</td><td><code>{&#x27;a&#x27;:-1, &#x27;b&#x27;:1, &#x27;c&#x27;:0}</code></td><td><code>2</code> ('d' ignored)</td><td>No</td><td>Shrink: Drop <code>s[7]</code> ('a'). <code>freq[&#x27;a&#x27;]=0</code> (wait, it was -1, so it becomes 0, matched stays 2). <code>start=8</code>.</td></tr></tbody></table></div>
 
 
 <p class="md-p">Result: <code>[0, 6]</code> (The anagrams are "cba" and "bac").</p>
@@ -28237,7 +28283,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p">Initialization: <code>i = 0</code>, <code>j = 0</code>, <code>result = []</code></p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>arr1[i]</code></th><th><code>arr2[j]</code></th><th>Overlap bounds?</th><th>Overlap?</th><th>Advance Pointer</th><th><code>result</code> State</th></tr></thead><tbody><tr><td>1</td><td><code>[1, 3]</code> (<code>i=0</code>)</td><td><code>[2, 3]</code> (<code>j=0</code>)</td><td><code>start</code>=max(1,2)=2 &lt;br&gt; <code>end</code>=min(3,3)=3</td><td><code>2 &lt;= 3</code> (Yes)</td><td><code>arr1</code> ends at 3. <code>arr2</code> ends at 3. <code>j+=1</code> (else block).</td><td><code>[[2, 3]]</code></td></tr><tr><td>2</td><td><code>[1, 3]</code> (<code>i=0</code>)</td><td><code>[5, 7]</code> (<code>j=1</code>)</td><td><code>start</code>=max(1,5)=5 &lt;br&gt; <code>end</code>=min(3,7)=3</td><td><code>5 &lt;= 3</code> (No)</td><td><code>arr1</code> ends at 3. <code>arr2</code> ends at 7. <code>i+=1</code>.</td><td><code>[[2, 3]]</code></td></tr><tr><td>3</td><td><code>[5, 6]</code> (<code>i=1</code>)</td><td><code>[5, 7]</code> (<code>j=1</code>)</td><td><code>start</code>=max(5,5)=5 &lt;br&gt; <code>end</code>=min(6,7)=6</td><td><code>5 &lt;= 6</code> (Yes)</td><td><code>arr1</code> ends at 6. <code>arr2</code> ends at 7. <code>i+=1</code>.</td><td><code>[[2, 3], [5, 6]]</code></td></tr><tr><td>4</td><td><code>[7, 9]</code> (<code>i=2</code>)</td><td><code>[5, 7]</code> (<code>j=1</code>)</td><td><code>start</code>=max(7,5)=7 &lt;br&gt; <code>end</code>=min(9,7)=7</td><td><code>7 &lt;= 7</code> (Yes)</td><td><code>arr1</code> ends at 9. <code>arr2</code> ends at 7. <code>j+=1</code>.</td><td><code>[[2, 3], [5, 6], [7, 7]]</code></td></tr><tr><td>5</td><td><code>[7, 9]</code> (<code>i=2</code>)</td><td>Out of bounds</td><td>-</td><td>-</td><td>Loop ends.</td><td><code>[[2, 3], [5, 6], [7, 7]]</code></td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th><code>arr1[i]</code></th><th><code>arr2[j]</code></th><th>Overlap bounds?</th><th>Overlap?</th><th>Advance Pointer</th><th><code>result</code> State</th></tr></thead><tbody><tr><td>1</td><td><code>[1, 3]</code> (<code>i=0</code>)</td><td><code>[2, 3]</code> (<code>j=0</code>)</td><td><code>start</code>=max(1,2)=2 <br> <code>end</code>=min(3,3)=3</td><td><code>2 &lt;= 3</code> (Yes)</td><td><code>arr1</code> ends at 3. <code>arr2</code> ends at 3. <code>j+=1</code> (else block).</td><td><code>[[2, 3]]</code></td></tr><tr><td>2</td><td><code>[1, 3]</code> (<code>i=0</code>)</td><td><code>[5, 7]</code> (<code>j=1</code>)</td><td><code>start</code>=max(1,5)=5 <br> <code>end</code>=min(3,7)=3</td><td><code>5 &lt;= 3</code> (No)</td><td><code>arr1</code> ends at 3. <code>arr2</code> ends at 7. <code>i+=1</code>.</td><td><code>[[2, 3]]</code></td></tr><tr><td>3</td><td><code>[5, 6]</code> (<code>i=1</code>)</td><td><code>[5, 7]</code> (<code>j=1</code>)</td><td><code>start</code>=max(5,5)=5 <br> <code>end</code>=min(6,7)=6</td><td><code>5 &lt;= 6</code> (Yes)</td><td><code>arr1</code> ends at 6. <code>arr2</code> ends at 7. <code>i+=1</code>.</td><td><code>[[2, 3], [5, 6]]</code></td></tr><tr><td>4</td><td><code>[7, 9]</code> (<code>i=2</code>)</td><td><code>[5, 7]</code> (<code>j=1</code>)</td><td><code>start</code>=max(7,5)=7 <br> <code>end</code>=min(9,7)=7</td><td><code>7 &lt;= 7</code> (Yes)</td><td><code>arr1</code> ends at 9. <code>arr2</code> ends at 7. <code>j+=1</code>.</td><td><code>[[2, 3], [5, 6], [7, 7]]</code></td></tr><tr><td>5</td><td><code>[7, 9]</code> (<code>i=2</code>)</td><td>Out of bounds</td><td>-</td><td>-</td><td>Loop ends.</td><td><code>[[2, 3], [5, 6], [7, 7]]</code></td></tr></tbody></table></div>
 
 
 <p class="md-p">Result: <code>[[2, 3], [5, 6], [7, 7]]</code></p>
@@ -28610,7 +28656,7 @@ if __name__ == &quot;__main__&quot;:
 </ol>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th>Current Meeting</th><th>Top of Heap (Earliest End)</th><th>Free Room? (Start $\ge$ Top)</th><th>Action</th><th>Heap State</th><th>Peak Rooms</th></tr></thead><tbody><tr><td>1</td><td><code>[1, 4]</code></td><td><code>None</code> (Empty)</td><td>No</td><td>Push <code>4</code>.</td><td><code>[4]</code></td><td><code>max(0, 1) = 1</code></td></tr><tr><td>2</td><td><code>[2, 3]</code></td><td><code>4</code></td><td><code>2 &gt;= 4</code>? No.</td><td>Push <code>3</code>.</td><td><code>[3, 4]</code></td><td><code>max(1, 2) = 2</code></td></tr><tr><td>3</td><td><code>[3, 6]</code></td><td><code>3</code></td><td><code>3 &gt;= 3</code>? <strong>YES!</strong></td><td>Pop <code>3</code>! Room is free! &lt;br&gt; Push <code>6</code>.</td><td><code>[4, 6]</code></td><td><code>max(2, 2) = 2</code></td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th>Current Meeting</th><th>Top of Heap (Earliest End)</th><th>Free Room? (Start $\ge$ Top)</th><th>Action</th><th>Heap State</th><th>Peak Rooms</th></tr></thead><tbody><tr><td>1</td><td><code>[1, 4]</code></td><td><code>None</code> (Empty)</td><td>No</td><td>Push <code>4</code>.</td><td><code>[4]</code></td><td><code>max(0, 1) = 1</code></td></tr><tr><td>2</td><td><code>[2, 3]</code></td><td><code>4</code></td><td><code>2 &gt;= 4</code>? No.</td><td>Push <code>3</code>.</td><td><code>[3, 4]</code></td><td><code>max(1, 2) = 2</code></td></tr><tr><td>3</td><td><code>[3, 6]</code></td><td><code>3</code></td><td><code>3 &gt;= 3</code>? <strong>YES!</strong></td><td>Pop <code>3</code>! Room is free! <br> Push <code>6</code>.</td><td><code>[4, 6]</code></td><td><code>max(2, 2) = 2</code></td></tr></tbody></table></div>
 
 
 <p class="md-p">Result: <code>2</code> rooms required.</p>
@@ -28798,7 +28844,7 @@ if __name__ == &quot;__main__&quot;:
 </ol>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Step</th><th>Current Job</th><th>Top of Heap (Earliest End)</th><th>Job Ended? (Start $\ge$ Top End)</th><th>Action</th><th><code>current_load</code></th><th><code>max_load</code></th><th>Heap State (End, Load)</th></tr></thead><tbody><tr><td>1</td><td><code>[1, 4, 3]</code></td><td><code>None</code> (Empty)</td><td>No</td><td>Push <code>(4, 3)</code>.</td><td><code>0 + 3 = 3</code></td><td><code>max(0, 3) = 3</code></td><td><code>[(4, 3)]</code></td></tr><tr><td>2</td><td><code>[2, 5, 4]</code></td><td><code>(4, 3)</code></td><td><code>2 &gt;= 4</code>? No.</td><td>Push <code>(5, 4)</code>.</td><td><code>3 + 4 = 7</code></td><td><code>max(3, 7) = 7</code></td><td><code>[(4, 3), (5, 4)]</code></td></tr><tr><td>3</td><td><code>[7, 9, 6]</code></td><td><code>(4, 3)</code></td><td><code>7 &gt;= 4</code>? <strong>YES!</strong></td><td>Pop <code>(4, 3)</code>. Subtract <code>3</code>. &lt;br&gt; <em>Check again</em>: <code>7 &gt;= 5</code>? <strong>YES!</strong> &lt;br&gt; Pop <code>(5, 4)</code>. Subtract <code>4</code>. &lt;br&gt; Push <code>(9, 6)</code>.</td><td><code>7 - 3 - 4 + 6 = 6</code></td><td><code>max(7, 6) = 7</code></td><td><code>[(9, 6)]</code></td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Step</th><th>Current Job</th><th>Top of Heap (Earliest End)</th><th>Job Ended? (Start $\ge$ Top End)</th><th>Action</th><th><code>current_load</code></th><th><code>max_load</code></th><th>Heap State (End, Load)</th></tr></thead><tbody><tr><td>1</td><td><code>[1, 4, 3]</code></td><td><code>None</code> (Empty)</td><td>No</td><td>Push <code>(4, 3)</code>.</td><td><code>0 + 3 = 3</code></td><td><code>max(0, 3) = 3</code></td><td><code>[(4, 3)]</code></td></tr><tr><td>2</td><td><code>[2, 5, 4]</code></td><td><code>(4, 3)</code></td><td><code>2 &gt;= 4</code>? No.</td><td>Push <code>(5, 4)</code>.</td><td><code>3 + 4 = 7</code></td><td><code>max(3, 7) = 7</code></td><td><code>[(4, 3), (5, 4)]</code></td></tr><tr><td>3</td><td><code>[7, 9, 6]</code></td><td><code>(4, 3)</code></td><td><code>7 &gt;= 4</code>? <strong>YES!</strong></td><td>Pop <code>(4, 3)</code>. Subtract <code>3</code>. <br> <em>Check again</em>: <code>7 &gt;= 5</code>? <strong>YES!</strong> <br> Pop <code>(5, 4)</code>. Subtract <code>4</code>. <br> Push <code>(9, 6)</code>.</td><td><code>7 - 3 - 4 + 6 = 6</code></td><td><code>max(7, 6) = 7</code></td><td><code>[(9, 6)]</code></td></tr></tbody></table></div>
 
 
 <p class="md-p">Result: <code>max_load = 7</code>.</p>
@@ -29519,7 +29565,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p"><strong>Stream</strong>: <code>add(1), add(3), add(7), add(2)</code></p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Action</th><th>Stream</th><th>Binary Search Index</th><th>Insertion & Merge Logic</th><th>Resulting <code>intervals</code></th></tr></thead><tbody><tr><td><code>add(1)</code></td><td><code>1</code></td><td><code>0</code></td><td>Insert <code>[1, 1]</code>. No neighbors to merge.</td><td><code>[[1, 1]]</code></td></tr><tr><td><code>add(3)</code></td><td><code>3</code></td><td><code>1</code></td><td>Insert <code>[3, 3]</code>. Left <code>1+1 != 3</code>. No merge.</td><td><code>[[1, 1], [3, 3]]</code></td></tr><tr><td><code>add(7)</code></td><td><code>7</code></td><td><code>2</code></td><td>Insert <code>[7, 7]</code>. Left <code>3+1 != 7</code>. No merge.</td><td><code>[[1, 1], [3, 3], [7, 7]]</code></td></tr><tr><td><code>add(2)</code></td><td><code>2</code></td><td><code>1</code></td><td>Insert <code>[2, 2]</code> at idx 1. &lt;br&gt; <strong>Merge Left</strong>: <code>1+1 == 2</code>. Merge into <code>[1, 2]</code>. &lt;br&gt; <strong>Merge Right</strong>: <code>2+1 == 3</code>. Merge into <code>[1, 3]</code>.</td><td><code>[[1, 3], [7, 7]]</code></td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Action</th><th>Stream</th><th>Binary Search Index</th><th>Insertion & Merge Logic</th><th>Resulting <code>intervals</code></th></tr></thead><tbody><tr><td><code>add(1)</code></td><td><code>1</code></td><td><code>0</code></td><td>Insert <code>[1, 1]</code>. No neighbors to merge.</td><td><code>[[1, 1]]</code></td></tr><tr><td><code>add(3)</code></td><td><code>3</code></td><td><code>1</code></td><td>Insert <code>[3, 3]</code>. Left <code>1+1 != 3</code>. No merge.</td><td><code>[[1, 1], [3, 3]]</code></td></tr><tr><td><code>add(7)</code></td><td><code>7</code></td><td><code>2</code></td><td>Insert <code>[7, 7]</code>. Left <code>3+1 != 7</code>. No merge.</td><td><code>[[1, 1], [3, 3], [7, 7]]</code></td></tr><tr><td><code>add(2)</code></td><td><code>2</code></td><td><code>1</code></td><td>Insert <code>[2, 2]</code> at idx 1. <br> <strong>Merge Left</strong>: <code>1+1 == 2</code>. Merge into <code>[1, 2]</code>. <br> <strong>Merge Right</strong>: <code>2+1 == 3</code>. Merge into <code>[1, 3]</code>.</td><td><code>[[1, 3], [7, 7]]</code></td></tr></tbody></table></div>
 
 
 <p class="md-p">Result after all additions: <code>[[1, 3], [7, 7]]</code></p>
@@ -34335,7 +34381,7 @@ sequenceDiagram
 <p class="md-p">Initialization: <code>result = [-1, -1, -1, -1, -1, -1]</code>, <code>stack = []</code>.</p>
 
 
-<div class="table-wrapper"><table><thead><tr><th><code>i</code></th><th><code>num</code></th><th>Action</th><th><code>stack</code> (Indices)</th><th><code>result</code></th></tr></thead><tbody><tr><td>0</td><td><code>4</code></td><td>Stack empty. Push 0.</td><td><code>[0]</code></td><td><code>[-1, -1, -1, -1, -1, -1]</code></td></tr><tr><td>1</td><td><code>6</code></td><td><code>6 &gt; arr[0]</code> (4). Pop 0. <code>result[0] = 6</code>. Push 1.</td><td><code>[1]</code></td><td><code>[6, -1, -1, -1, -1, -1]</code></td></tr><tr><td>2</td><td><code>3</code></td><td><code>3 &lt; arr[1]</code> (6). Push 2.</td><td><code>[1, 2]</code></td><td><code>[6, -1, -1, -1, -1, -1]</code></td></tr><tr><td>3</td><td><code>2</code></td><td><code>2 &lt; arr[2]</code> (3). Push 3.</td><td><code>[1, 2, 3]</code></td><td><code>[6, -1, -1, -1, -1, -1]</code></td></tr><tr><td>4</td><td><code>8</code></td><td><code>8 &gt; arr[3]</code> (2). Pop 3. <code>result[3] = 8</code>. &lt;br&gt; <code>8 &gt; arr[2]</code> (3). Pop 2. <code>result[2] = 8</code>. &lt;br&gt; <code>8 &gt; arr[1]</code> (6). Pop 1. <code>result[1] = 8</code>. &lt;br&gt; Push 4.</td><td><code>[4]</code></td><td><code>[6, 8, 8, 8, -1, -1]</code></td></tr><tr><td>5</td><td><code>1</code></td><td><code>1 &lt; arr[4]</code> (8). Push 5.</td><td><code>[4, 5]</code></td><td><code>[6, 8, 8, 8, -1, -1]</code></td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th><code>i</code></th><th><code>num</code></th><th>Action</th><th><code>stack</code> (Indices)</th><th><code>result</code></th></tr></thead><tbody><tr><td>0</td><td><code>4</code></td><td>Stack empty. Push 0.</td><td><code>[0]</code></td><td><code>[-1, -1, -1, -1, -1, -1]</code></td></tr><tr><td>1</td><td><code>6</code></td><td><code>6 &gt; arr[0]</code> (4). Pop 0. <code>result[0] = 6</code>. Push 1.</td><td><code>[1]</code></td><td><code>[6, -1, -1, -1, -1, -1]</code></td></tr><tr><td>2</td><td><code>3</code></td><td><code>3 &lt; arr[1]</code> (6). Push 2.</td><td><code>[1, 2]</code></td><td><code>[6, -1, -1, -1, -1, -1]</code></td></tr><tr><td>3</td><td><code>2</code></td><td><code>2 &lt; arr[2]</code> (3). Push 3.</td><td><code>[1, 2, 3]</code></td><td><code>[6, -1, -1, -1, -1, -1]</code></td></tr><tr><td>4</td><td><code>8</code></td><td><code>8 &gt; arr[3]</code> (2). Pop 3. <code>result[3] = 8</code>. <br> <code>8 &gt; arr[2]</code> (3). Pop 2. <code>result[2] = 8</code>. <br> <code>8 &gt; arr[1]</code> (6). Pop 1. <code>result[1] = 8</code>. <br> Push 4.</td><td><code>[4]</code></td><td><code>[6, 8, 8, 8, -1, -1]</code></td></tr><tr><td>5</td><td><code>1</code></td><td><code>1 &lt; arr[4]</code> (8). Push 5.</td><td><code>[4, 5]</code></td><td><code>[6, 8, 8, 8, -1, -1]</code></td></tr></tbody></table></div>
 
 
 <p class="md-p">Loop ends.</p>
@@ -34504,7 +34550,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p">Initialization: <code>result = [-1, -1, -1, -1, -1]</code>, <code>stack = []</code>.</p>
 
 
-<div class="table-wrapper"><table><thead><tr><th><code>i</code></th><th><code>num</code></th><th>Action</th><th><code>stack</code> (Indices)</th><th><code>result</code></th></tr></thead><tbody><tr><td>0</td><td><code>4</code></td><td>Stack empty. Push 0.</td><td><code>[0]</code></td><td><code>[-1, -1, -1, -1, -1]</code></td></tr><tr><td>1</td><td><code>8</code></td><td><code>8 &gt; 4</code>. The increasing rule is perfectly fine! Push 1.</td><td><code>[0, 1]</code></td><td><code>[-1, -1, -1, -1, -1]</code></td></tr><tr><td>2</td><td><code>5</code></td><td><code>5 &lt; arr[1]</code> (8). Pop 1. <code>result[1] = 5</code>.&lt;br&gt;<code>5 &gt; arr[0]</code> (4). Push 2.</td><td><code>[0, 2]</code></td><td><code>[-1, 5, -1, -1, -1]</code></td></tr><tr><td>3</td><td><code>2</code></td><td><code>2 &lt; arr[2]</code> (5). Pop 2. <code>result[2] = 2</code>.&lt;br&gt;<code>2 &lt; arr[0]</code> (4). Pop 0. <code>result[0] = 2</code>.&lt;br&gt;Push 3.</td><td><code>[3]</code></td><td><code>[2, 5, 2, -1, -1]</code></td></tr><tr><td>4</td><td><code>25</code></td><td><code>25 &gt; arr[3]</code> (2). The rule is fine! Push 4.</td><td><code>[3, 4]</code></td><td><code>[2, 5, 2, -1, -1]</code></td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th><code>i</code></th><th><code>num</code></th><th>Action</th><th><code>stack</code> (Indices)</th><th><code>result</code></th></tr></thead><tbody><tr><td>0</td><td><code>4</code></td><td>Stack empty. Push 0.</td><td><code>[0]</code></td><td><code>[-1, -1, -1, -1, -1]</code></td></tr><tr><td>1</td><td><code>8</code></td><td><code>8 &gt; 4</code>. The increasing rule is perfectly fine! Push 1.</td><td><code>[0, 1]</code></td><td><code>[-1, -1, -1, -1, -1]</code></td></tr><tr><td>2</td><td><code>5</code></td><td><code>5 &lt; arr[1]</code> (8). Pop 1. <code>result[1] = 5</code>.<br><code>5 &gt; arr[0]</code> (4). Push 2.</td><td><code>[0, 2]</code></td><td><code>[-1, 5, -1, -1, -1]</code></td></tr><tr><td>3</td><td><code>2</code></td><td><code>2 &lt; arr[2]</code> (5). Pop 2. <code>result[2] = 2</code>.<br><code>2 &lt; arr[0]</code> (4). Pop 0. <code>result[0] = 2</code>.<br>Push 3.</td><td><code>[3]</code></td><td><code>[2, 5, 2, -1, -1]</code></td></tr><tr><td>4</td><td><code>25</code></td><td><code>25 &gt; arr[3]</code> (2). The rule is fine! Push 4.</td><td><code>[3, 4]</code></td><td><code>[2, 5, 2, -1, -1]</code></td></tr></tbody></table></div>
 
 
 <p class="md-p">Loop ends.</p>
@@ -34675,7 +34721,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p">Initialization: <code>result = [0, 0, 0, 0, 0, 0, 0, 0]</code>, <code>stack = []</code>.</p>
 
 
-<div class="table-wrapper"><table><thead><tr><th><code>i</code></th><th><code>temp</code></th><th>Action</th><th><code>stack</code> (Indices)</th><th><code>result</code></th></tr></thead><tbody><tr><td>0</td><td>73</td><td>Push 0.</td><td><code>[0]</code></td><td><code>[0,0,0,0,0,0,0,0]</code></td></tr><tr><td>1</td><td>74</td><td>74 &gt; temps[0] (73). Pop 0. result[0] = 1-0 = 1. Push 1.</td><td><code>[1]</code></td><td><code>[1,0,0,0,0,0,0,0]</code></td></tr><tr><td>2</td><td>75</td><td>75 &gt; temps[1] (74). Pop 1. result[1] = 2-1 = 1. Push 2.</td><td><code>[2]</code></td><td><code>[1,1,0,0,0,0,0,0]</code></td></tr><tr><td>3</td><td>71</td><td>71 &lt; temps[2] (75). Push 3.</td><td><code>[2, 3]</code></td><td><code>[1,1,0,0,0,0,0,0]</code></td></tr><tr><td>4</td><td>69</td><td>69 &lt; temps[3] (71). Push 4.</td><td><code>[2, 3, 4]</code></td><td><code>[1,1,0,0,0,0,0,0]</code></td></tr><tr><td>5</td><td>72</td><td>72 &gt; temps[4] (69). Pop 4. result[4] = 5-4 = 1.&lt;br&gt;72 &gt; temps[3] (71). Pop 3. result[3] = 5-3 = 2.&lt;br&gt;Push 5.</td><td><code>[2, 5]</code></td><td><code>[1,1,0,2,1,0,0,0]</code></td></tr><tr><td>6</td><td>76</td><td>76 &gt; temps[5] (72). Pop 5. result[5] = 6-5 = 1.&lt;br&gt;76 &gt; temps[2] (75). Pop 2. result[2] = 6-2 = 4.&lt;br&gt;Push 6.</td><td><code>[6]</code></td><td><code>[1,1,4,2,1,1,0,0]</code></td></tr><tr><td>7</td><td>73</td><td>73 &lt; temps[6] (76). Push 7.</td><td><code>[6, 7]</code></td><td><code>[1,1,4,2,1,1,0,0]</code></td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th><code>i</code></th><th><code>temp</code></th><th>Action</th><th><code>stack</code> (Indices)</th><th><code>result</code></th></tr></thead><tbody><tr><td>0</td><td>73</td><td>Push 0.</td><td><code>[0]</code></td><td><code>[0,0,0,0,0,0,0,0]</code></td></tr><tr><td>1</td><td>74</td><td>74 &gt; temps[0] (73). Pop 0. result[0] = 1-0 = 1. Push 1.</td><td><code>[1]</code></td><td><code>[1,0,0,0,0,0,0,0]</code></td></tr><tr><td>2</td><td>75</td><td>75 &gt; temps[1] (74). Pop 1. result[1] = 2-1 = 1. Push 2.</td><td><code>[2]</code></td><td><code>[1,1,0,0,0,0,0,0]</code></td></tr><tr><td>3</td><td>71</td><td>71 &lt; temps[2] (75). Push 3.</td><td><code>[2, 3]</code></td><td><code>[1,1,0,0,0,0,0,0]</code></td></tr><tr><td>4</td><td>69</td><td>69 &lt; temps[3] (71). Push 4.</td><td><code>[2, 3, 4]</code></td><td><code>[1,1,0,0,0,0,0,0]</code></td></tr><tr><td>5</td><td>72</td><td>72 &gt; temps[4] (69). Pop 4. result[4] = 5-4 = 1.<br>72 &gt; temps[3] (71). Pop 3. result[3] = 5-3 = 2.<br>Push 5.</td><td><code>[2, 5]</code></td><td><code>[1,1,0,2,1,0,0,0]</code></td></tr><tr><td>6</td><td>76</td><td>76 &gt; temps[5] (72). Pop 5. result[5] = 6-5 = 1.<br>76 &gt; temps[2] (75). Pop 2. result[2] = 6-2 = 4.<br>Push 6.</td><td><code>[6]</code></td><td><code>[1,1,4,2,1,1,0,0]</code></td></tr><tr><td>7</td><td>73</td><td>73 &lt; temps[6] (76). Push 7.</td><td><code>[6, 7]</code></td><td><code>[1,1,4,2,1,1,0,0]</code></td></tr></tbody></table></div>
 
 
 <p class="md-p">Loop ends.</p>
@@ -34850,7 +34896,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p"><strong>Example Input Prices</strong>: <code>[100, 80, 60, 70, 60, 75, 85]</code></p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>Method Call</th><th><code>price</code></th><th>Action (Pop & Absorb)</th><th>Stack State After</th><th>Return <code>span</code></th></tr></thead><tbody><tr><td><code>next(100)</code></td><td>100</td><td>Stack empty. Push (100, 1).</td><td><code>[(100, 1)]</code></td><td>1</td></tr><tr><td><code>next(80)</code></td><td>80</td><td>80 &lt; 100. Push (80, 1).</td><td><code>[(100, 1), (80, 1)]</code></td><td>1</td></tr><tr><td><code>next(60)</code></td><td>60</td><td>60 &lt; 80. Push (60, 1).</td><td><code>[(100, 1), (80, 1), (60, 1)]</code></td><td>1</td></tr><tr><td><code>next(70)</code></td><td>70</td><td>70 &gt; 60. Absorb (60, 1). Span = 1+1=2.&lt;br&gt;70 &lt; 80. Push (70, 2).</td><td><code>[(100, 1), (80, 1), (70, 2)]</code></td><td>2</td></tr><tr><td><code>next(60)</code></td><td>60</td><td>60 &lt; 70. Push (60, 1).</td><td><code>[(100, 1), (80, 1), (70, 2), (60, 1)]</code></td><td>1</td></tr><tr><td><code>next(75)</code></td><td>75</td><td>75 &gt; 60. Absorb (60, 1). Span = 1+1=2.&lt;br&gt;75 &gt; 70. Absorb (70, 2). Span = 2+2=4.&lt;br&gt;75 &lt; 80. Push (75, 4).</td><td><code>[(100, 1), (80, 1), (75, 4)]</code></td><td>4</td></tr><tr><td><code>next(85)</code></td><td>85</td><td>85 &gt; 75. Absorb (75, 4). Span = 1+4=5.&lt;br&gt;85 &gt; 80. Absorb (80, 1). Span = 5+1=6.&lt;br&gt;85 &lt; 100. Push (85, 6).</td><td><code>[(100, 1), (85, 6)]</code></td><td>6</td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>Method Call</th><th><code>price</code></th><th>Action (Pop & Absorb)</th><th>Stack State After</th><th>Return <code>span</code></th></tr></thead><tbody><tr><td><code>next(100)</code></td><td>100</td><td>Stack empty. Push (100, 1).</td><td><code>[(100, 1)]</code></td><td>1</td></tr><tr><td><code>next(80)</code></td><td>80</td><td>80 &lt; 100. Push (80, 1).</td><td><code>[(100, 1), (80, 1)]</code></td><td>1</td></tr><tr><td><code>next(60)</code></td><td>60</td><td>60 &lt; 80. Push (60, 1).</td><td><code>[(100, 1), (80, 1), (60, 1)]</code></td><td>1</td></tr><tr><td><code>next(70)</code></td><td>70</td><td>70 &gt; 60. Absorb (60, 1). Span = 1+1=2.<br>70 &lt; 80. Push (70, 2).</td><td><code>[(100, 1), (80, 1), (70, 2)]</code></td><td>2</td></tr><tr><td><code>next(60)</code></td><td>60</td><td>60 &lt; 70. Push (60, 1).</td><td><code>[(100, 1), (80, 1), (70, 2), (60, 1)]</code></td><td>1</td></tr><tr><td><code>next(75)</code></td><td>75</td><td>75 &gt; 60. Absorb (60, 1). Span = 1+1=2.<br>75 &gt; 70. Absorb (70, 2). Span = 2+2=4.<br>75 &lt; 80. Push (75, 4).</td><td><code>[(100, 1), (80, 1), (75, 4)]</code></td><td>4</td></tr><tr><td><code>next(85)</code></td><td>85</td><td>85 &gt; 75. Absorb (75, 4). Span = 1+4=5.<br>85 &gt; 80. Absorb (80, 1). Span = 5+1=6.<br>85 &lt; 100. Push (85, 6).</td><td><code>[(100, 1), (85, 6)]</code></td><td>6</td></tr></tbody></table></div>
 
 
 <h3 class="md-h3">📊 Visual Diagram</h3>
@@ -35024,7 +35070,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p"><strong>Example Input</strong>: <code>num = &quot;1432219&quot;</code>, <code>k = 3</code></p>
 
 
-<div class="table-wrapper"><table><thead><tr><th><code>digit</code></th><th><code>k</code></th><th>Action</th><th>Stack State</th></tr></thead><tbody><tr><td><code>&quot;1&quot;</code></td><td>3</td><td>Push 1</td><td><code>[&quot;1&quot;]</code></td></tr><tr><td><code>&quot;4&quot;</code></td><td>3</td><td><code>4 &gt; 1</code>. Push 4</td><td><code>[&quot;1&quot;, &quot;4&quot;]</code></td></tr><tr><td><code>&quot;3&quot;</code></td><td>3</td><td><code>3 &lt; 4</code>. Pop 4! <code>k = 2</code>.&lt;br&gt;Push 3.</td><td><code>[&quot;1&quot;, &quot;3&quot;]</code></td></tr><tr><td><code>&quot;2&quot;</code></td><td>2</td><td><code>2 &lt; 3</code>. Pop 3! <code>k = 1</code>.&lt;br&gt;Push 2.</td><td><code>[&quot;1&quot;, &quot;2&quot;]</code></td></tr><tr><td><code>&quot;2&quot;</code></td><td>1</td><td><code>2 == 2</code>. Push 2.</td><td><code>[&quot;1&quot;, &quot;2&quot;, &quot;2&quot;]</code></td></tr><tr><td><code>&quot;1&quot;</code></td><td>1</td><td><code>1 &lt; 2</code>. Pop 2! <code>k = 0</code>. (Erasers gone!).&lt;br&gt;Push 1.</td><td><code>[&quot;1&quot;, &quot;2&quot;, &quot;1&quot;]</code></td></tr><tr><td><code>&quot;9&quot;</code></td><td>0</td><td><code>k=0</code>, just push 9.</td><td><code>[&quot;1&quot;, &quot;2&quot;, &quot;1&quot;, &quot;9&quot;]</code></td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th><code>digit</code></th><th><code>k</code></th><th>Action</th><th>Stack State</th></tr></thead><tbody><tr><td><code>&quot;1&quot;</code></td><td>3</td><td>Push 1</td><td><code>[&quot;1&quot;]</code></td></tr><tr><td><code>&quot;4&quot;</code></td><td>3</td><td><code>4 &gt; 1</code>. Push 4</td><td><code>[&quot;1&quot;, &quot;4&quot;]</code></td></tr><tr><td><code>&quot;3&quot;</code></td><td>3</td><td><code>3 &lt; 4</code>. Pop 4! <code>k = 2</code>.<br>Push 3.</td><td><code>[&quot;1&quot;, &quot;3&quot;]</code></td></tr><tr><td><code>&quot;2&quot;</code></td><td>2</td><td><code>2 &lt; 3</code>. Pop 3! <code>k = 1</code>.<br>Push 2.</td><td><code>[&quot;1&quot;, &quot;2&quot;]</code></td></tr><tr><td><code>&quot;2&quot;</code></td><td>1</td><td><code>2 == 2</code>. Push 2.</td><td><code>[&quot;1&quot;, &quot;2&quot;, &quot;2&quot;]</code></td></tr><tr><td><code>&quot;1&quot;</code></td><td>1</td><td><code>1 &lt; 2</code>. Pop 2! <code>k = 0</code>. (Erasers gone!).<br>Push 1.</td><td><code>[&quot;1&quot;, &quot;2&quot;, &quot;1&quot;]</code></td></tr><tr><td><code>&quot;9&quot;</code></td><td>0</td><td><code>k=0</code>, just push 9.</td><td><code>[&quot;1&quot;, &quot;2&quot;, &quot;1&quot;, &quot;9&quot;]</code></td></tr></tbody></table></div>
 
 
 <p class="md-p">Loop finishes. <code>k = 0</code>.</p>
@@ -35209,7 +35255,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p">Append <code>0</code>: <code>[2, 1, 5, 6, 2, 3, 0]</code></p>
 
 
-<div class="table-wrapper"><table><thead><tr><th><code>i</code></th><th><code>h</code></th><th>Action</th><th><code>stack</code> (Indices)</th><th><code>max_area</code></th></tr></thead><tbody><tr><td>0</td><td>2</td><td>Stack empty. Push 0.</td><td><code>[0]</code></td><td>0</td></tr><tr><td>1</td><td>1</td><td>1 &lt; 2. <strong>Pop 0</strong>. <code>height</code>=2. Stack empty, <code>width</code>=1. Area=2. &lt;br&gt;Push 1.</td><td><code>[1]</code></td><td>2</td></tr><tr><td>2</td><td>5</td><td>5 &gt; 1. Push 2.</td><td><code>[1, 2]</code></td><td>2</td></tr><tr><td>3</td><td>6</td><td>6 &gt; 5. Push 3.</td><td><code>[1, 2, 3]</code></td><td>2</td></tr><tr><td>4</td><td>2</td><td>2 &lt; 6. <strong>Pop 3</strong>. <code>height</code>=6. <code>width</code>=4-2-1=1. Area=6.&lt;br&gt;2 &lt; 5. <strong>Pop 2</strong>. <code>height</code>=5. <code>width</code>=4-1-1=2. Area=10.&lt;br&gt;2 &gt; 1. Push 4.</td><td><code>[1, 4]</code></td><td><strong>10</strong></td></tr><tr><td>5</td><td>3</td><td>3 &gt; 2. Push 5.</td><td><code>[1, 4, 5]</code></td><td>10</td></tr><tr><td>6</td><td>0</td><td>0 &lt; 3. <strong>Pop 5</strong>. <code>height</code>=3. <code>width</code>=6-4-1=1. Area=3.&lt;br&gt;0 &lt; 2. <strong>Pop 4</strong>. <code>height</code>=2. <code>width</code>=6-1-1=4. Area=8.&lt;br&gt;0 &lt; 1. <strong>Pop 1</strong>. <code>height</code>=1. Stack empty, <code>width</code>=6. Area=6.</td><td><code>[]</code></td><td>10</td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th><code>i</code></th><th><code>h</code></th><th>Action</th><th><code>stack</code> (Indices)</th><th><code>max_area</code></th></tr></thead><tbody><tr><td>0</td><td>2</td><td>Stack empty. Push 0.</td><td><code>[0]</code></td><td>0</td></tr><tr><td>1</td><td>1</td><td>1 &lt; 2. <strong>Pop 0</strong>. <code>height</code>=2. Stack empty, <code>width</code>=1. Area=2. <br>Push 1.</td><td><code>[1]</code></td><td>2</td></tr><tr><td>2</td><td>5</td><td>5 &gt; 1. Push 2.</td><td><code>[1, 2]</code></td><td>2</td></tr><tr><td>3</td><td>6</td><td>6 &gt; 5. Push 3.</td><td><code>[1, 2, 3]</code></td><td>2</td></tr><tr><td>4</td><td>2</td><td>2 &lt; 6. <strong>Pop 3</strong>. <code>height</code>=6. <code>width</code>=4-2-1=1. Area=6.<br>2 &lt; 5. <strong>Pop 2</strong>. <code>height</code>=5. <code>width</code>=4-1-1=2. Area=10.<br>2 &gt; 1. Push 4.</td><td><code>[1, 4]</code></td><td><strong>10</strong></td></tr><tr><td>5</td><td>3</td><td>3 &gt; 2. Push 5.</td><td><code>[1, 4, 5]</code></td><td>10</td></tr><tr><td>6</td><td>0</td><td>0 &lt; 3. <strong>Pop 5</strong>. <code>height</code>=3. <code>width</code>=6-4-1=1. Area=3.<br>0 &lt; 2. <strong>Pop 4</strong>. <code>height</code>=2. <code>width</code>=6-1-1=4. Area=8.<br>0 &lt; 1. <strong>Pop 1</strong>. <code>height</code>=1. Stack empty, <code>width</code>=6. Area=6.</td><td><code>[]</code></td><td>10</td></tr></tbody></table></div>
 
 
 <p class="md-p">Final <code>max_area</code>: <strong>10</strong> (created by the 5 and 6 height blocks).</p>
@@ -35898,7 +35944,7 @@ if __name__ == &quot;__main__&quot;:
 <li><strong>Build Inventory</strong>: Loop through every character in the <code>magazine</code>.</li>
 <li>Add 1 to its count in <code>magazine_freq</code>.</li>
 <li><strong>Fulfill Demand</strong>: Loop through every character in the <code>ransom_note</code>.</li>
-<li>Check if the character exists in <code>magazine_freq</code> AND its count is $> 0$.</li>
+<li>Check if the character exists in <code>magazine_freq</code> AND its count is $&gt; 0$.</li>
 <li>If yes: We have the letter! Subtract 1 from its count in the dictionary (we "used" it).</li>
 <li>If no: We don't have the letter, or we ran out of it. Return <code>False</code>.</li>
 <li>If we made it through the whole ransom note loop without returning <code>False</code>, it means we successfully found all the letters we needed. Return <code>True</code>.</li>
@@ -36476,7 +36522,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p"><code>nums_set</code> = <code>{1, 2, 3, 4, 100, 200}</code></p>
 
 
-<div class="table-wrapper"><table><thead><tr><th><code>num</code></th><th>Is <code>num - 1</code> in set?</th><th>Action</th><th><code>longest_streak</code></th></tr></thead><tbody><tr><td><code>100</code></td><td><code>99</code> not in set. YES!</td><td>Start sequence. <code>101</code> in set? No. Streak is 1.</td><td>1</td></tr><tr><td><code>4</code></td><td><code>3</code> is in set. NO.</td><td>Skip! <code>4</code> is not a start.</td><td>1</td></tr><tr><td><code>200</code></td><td><code>199</code> not in set. YES!</td><td>Start sequence. <code>201</code> in set? No. Streak is 1.</td><td>1</td></tr><tr><td><code>1</code></td><td><code>0</code> not in set. YES!</td><td>Start sequence. &lt;br&gt;<code>2</code> in set? Yes. &lt;br&gt;<code>3</code> in set? Yes. &lt;br&gt;<code>4</code> in set? Yes. &lt;br&gt;<code>5</code> in set? No. Streak is 4.</td><td><strong>4</strong></td></tr><tr><td><code>3</code></td><td><code>2</code> is in set. NO.</td><td>Skip!</td><td>4</td></tr><tr><td><code>2</code></td><td><code>1</code> is in set. NO.</td><td>Skip!</td><td>4</td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th><code>num</code></th><th>Is <code>num - 1</code> in set?</th><th>Action</th><th><code>longest_streak</code></th></tr></thead><tbody><tr><td><code>100</code></td><td><code>99</code> not in set. YES!</td><td>Start sequence. <code>101</code> in set? No. Streak is 1.</td><td>1</td></tr><tr><td><code>4</code></td><td><code>3</code> is in set. NO.</td><td>Skip! <code>4</code> is not a start.</td><td>1</td></tr><tr><td><code>200</code></td><td><code>199</code> not in set. YES!</td><td>Start sequence. <code>201</code> in set? No. Streak is 1.</td><td>1</td></tr><tr><td><code>1</code></td><td><code>0</code> not in set. YES!</td><td>Start sequence. <br><code>2</code> in set? Yes. <br><code>3</code> in set? Yes. <br><code>4</code> in set? Yes. <br><code>5</code> in set? No. Streak is 4.</td><td><strong>4</strong></td></tr><tr><td><code>3</code></td><td><code>2</code> is in set. NO.</td><td>Skip!</td><td>4</td></tr><tr><td><code>2</code></td><td><code>1</code> is in set. NO.</td><td>Skip!</td><td>4</td></tr></tbody></table></div>
 
 
 <p class="md-p">Loop finishes. Return 4.</p>
@@ -55345,7 +55391,7 @@ if __name__ == &quot;__main__&quot;:
 <li>If the heap has tasks, pop the most frequent task. Increment <code>total_intervals</code>. Decrease its frequency. If it still needs to be run again (freq is negative), append it to the <code>wait_list</code>.</li>
 <li>Decrement <code>n</code>.</li>
 <li><strong>Re-queue</strong>: Once the inner loop ends (either we processed <code>n</code> tasks or the heap ran empty), push all tasks from the <code>wait_list</code> back into the <code>max_heap</code>.</li>
-<li><strong>Idle Time Calculation</strong>: If the <code>max_heap</code> is NOT empty, it means we have more blocks to process. However, if our inner loop finished early (because we ran out of unique tasks for this block), <code>n</code> will be $> 0$. These remaining <code>n</code> slots <em>must</em> be filled with idle time to satisfy the cooldown for the next block. We add <code>n</code> to <code>total_intervals</code>. (If the heap IS empty, we don't add trailing idle time because all tasks are finished!)</li>
+<li><strong>Idle Time Calculation</strong>: If the <code>max_heap</code> is NOT empty, it means we have more blocks to process. However, if our inner loop finished early (because we ran out of unique tasks for this block), <code>n</code> will be $&gt; 0$. These remaining <code>n</code> slots <em>must</em> be filled with idle time to satisfy the cooldown for the next block. We add <code>n</code> to <code>total_intervals</code>. (If the heap IS empty, we don't add trailing idle time because all tasks are finished!)</li>
 <li><strong>Return</strong>: The accumulated <code>total_intervals</code>.</li>
 </ol>
 
@@ -56321,7 +56367,7 @@ styleHfill:#bbdefb,color:#000
 
 <h4 class="md-h4">Complexity</h4>
 <ul class="md-list">
-<li><strong>Time Complexity:</strong> $O(K \log M)$ where $M$ is the number of input lists. We initialize the heap with $M$ elements ($O(M \log M)$). Then we perform at most $K$ pops and pushes, each $O(\log M)$. Total is $O((M + K) \log M)$ which simplifies to $O(K \log M)$ when $K &gt;> M$.</li>
+<li><strong>Time Complexity:</strong> $O(K \log M)$ where $M$ is the number of input lists. We initialize the heap with $M$ elements ($O(M \log M)$). Then we perform at most $K$ pops and pushes, each $O(\log M)$. Total is $O((M + K) \log M)$ which simplifies to $O(K \log M)$ when $K &gt;&gt; M$.</li>
 <li><strong>Space Complexity:</strong> $O(M)$ for the Min-Heap, which holds at most one pointer per list.</li>
 </ul>
 
@@ -57244,14 +57290,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -58440,14 +58490,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -59614,14 +59668,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -60567,14 +60625,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -61515,14 +61577,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -62547,14 +62613,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -63586,14 +63656,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -64845,14 +64919,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -65658,14 +65736,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -66856,14 +66938,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -68477,14 +68563,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -69329,14 +69419,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -70592,14 +70686,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -71286,7 +71384,7 @@ if __name__ == &quot;__main__&quot;:
 <p class="md-p">We go backwards from 3 to 1.</p>
 
 
-<div class="table-wrapper"><table><thead><tr><th>i</th><th>price</th><th>window <code>[i+1, 2i+1]</code></th><th>Remove out of window</th><th>min dp from dq</th><th>dp[i]</th><th>Update dq (Increasing)</th></tr></thead><tbody><tr><td>3</td><td>2</td><td><code>[4, 7]</code> -&gt; <code>[4, 4]</code></td><td>None</td><td><code>dq[0]=4</code>, <code>dp[4]=0</code></td><td>2 + 0 = <strong>2</strong></td><td><code>dq = [4, 3]</code></td></tr><tr><td>2</td><td>1</td><td><code>[3, 5]</code> -&gt; <code>[3, 4]</code></td><td>None</td><td><code>dq[0]=4</code>, <code>dp[4]=0</code></td><td>1 + 0 = <strong>1</strong></td><td>pop 3 (<code>dp[3]=2 &gt;= 1</code>). <code>dq = [4, 2]</code></td></tr><tr><td>1</td><td>3</td><td><code>[2, 3]</code></td><td>Pop 4 (>3). <code>dq = [2]</code></td><td><code>dq[0]=2</code>, <code>dp[2]=1</code></td><td>3 + 1 = <strong>4</strong></td><td><code>dq = [2, 1]</code></td></tr></tbody></table></div>
+<div class="table-wrapper"><table><thead><tr><th>i</th><th>price</th><th>window <code>[i+1, 2i+1]</code></th><th>Remove out of window</th><th>min dp from dq</th><th>dp[i]</th><th>Update dq (Increasing)</th></tr></thead><tbody><tr><td>3</td><td>2</td><td><code>[4, 7]</code> -&gt; <code>[4, 4]</code></td><td>None</td><td><code>dq[0]=4</code>, <code>dp[4]=0</code></td><td>2 + 0 = <strong>2</strong></td><td><code>dq = [4, 3]</code></td></tr><tr><td>2</td><td>1</td><td><code>[3, 5]</code> -&gt; <code>[3, 4]</code></td><td>None</td><td><code>dq[0]=4</code>, <code>dp[4]=0</code></td><td>1 + 0 = <strong>1</strong></td><td>pop 3 (<code>dp[3]=2 &gt;= 1</code>). <code>dq = [4, 2]</code></td></tr><tr><td>1</td><td>3</td><td><code>[2, 3]</code></td><td>Pop 4 (&gt;3). <code>dq = [2]</code></td><td><code>dq[0]=2</code>, <code>dp[2]=1</code></td><td>3 + 1 = <strong>4</strong></td><td><code>dq = [2, 1]</code></td></tr></tbody></table></div>
 
 
 <p class="md-p">Result is <code>dp[1] = 4</code>. ✅</p>
@@ -71747,14 +71845,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -73104,14 +73206,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -73444,7 +73550,7 @@ if __name__ == &quot;__main__&quot;:
 <ul class="md-list">
 <li>3 -&gt; <code>counts[3] += 1</code></li>
 <li>0 -&gt; <code>counts[0] += 1</code></li>
-<li>6 (>5) -&gt; <code>counts[5] += 1</code></li>
+<li>6 (&gt;5) -&gt; <code>counts[5] += 1</code></li>
 <li>1 -&gt; <code>counts[1] += 1</code></li>
 <li>5 -&gt; <code>counts[5] += 1</code></li>
 </ul>
@@ -74351,14 +74457,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -75430,14 +75540,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -76205,14 +76319,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -77264,14 +77382,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -78072,14 +78194,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -78846,14 +78972,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -79827,14 +79957,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               
@@ -80765,14 +80899,18 @@ graph TD
 
 
 <h3 class="md-h3">🧪 Self-Test Questions</h3>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;When should you use this pattern?</summary&gt;</p>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">When should you use this pattern?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">When the problem asks for optimal subarrays, combinations, or specific mathematical properties.</p>
-<p class="md-p"></details&gt;</p>
-<p class="md-p">&lt;details&gt;</p>
-<p class="md-p">&lt;summary&gt;What is the typical time complexity?</summary&gt;</p>
+</div>
+</details>
+<details class="md-details">
+<summary class="md-summary"><span class="md-summary-title">What is the typical time complexity?</span><span class="md-summary-chevron">▶</span></summary>
+<div class="md-details-body">
 <p class="md-p">Usually O(N) or O(N log N), depending on sorting or data structure overhead.</p>
-<p class="md-p"></details&gt;</p>
+</div>
+</details>
 </div></details>
             <div class="problems-catalog">
               

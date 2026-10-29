@@ -411,3 +411,9 @@ jobs:
   - [x] Unified the top rail into a streamlined `.sidebar-search-row` integrating `.sidebar-search-box` (`flex: 1`) and `.sidebar-collapse-pill` (`id="sidebar-close-btn"`).
   - [x] Pixel-calibrated 36px squircle heights with cyber-cyan hover glow and latch haptics matching `#floating-sidebar-toggle`.
   - [x] Maintained 100% backwards compatibility with Gate 6 automated audit and desktop/mobile toggle bindings.
+- [x] **Phase 17: Collapsible Details Engine & Universal Raw HTML Protection**
+  - [x] Fixed root-cause escaping anomaly where `<details>` and `<summary>` blocks in Markdown were converted into raw text strings (`&lt;details&gt;`, `&lt;summary&gt;`).
+  - [x] Upgraded `inline_formatting()` with `HTML_TAG_PATTERN` to preserve all standard HTML tags while safely escaping math inequalities (`<`, `>`, `<=`, `>=`).
+  - [x] Built semantic `.md-details`, `.md-summary`, `.md-summary-title`, `.md-summary-chevron`, and `.md-details-body` accordion components with Year 2500 cosmic glass aesthetic and Mica theme support.
+  - [x] Integrated `.md-summary` into `HapticAudio` tactile acoustics and reading mode Expand All / Collapse All controls.
+  - [x] Created `scripts/audit_collapsible_elements.py` and elevated test suite to a **13-Gate Automated Audit Suite** enforcing zero unrendered HTML block leaks across all CI/CD pipelines.

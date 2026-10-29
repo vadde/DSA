@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# test-docs.sh — 12-Gate Headless Verification Suite for DSA Documentation
+# test-docs.sh — 13-Gate Headless Verification Suite for DSA Documentation
 # Validates HTML markup, KaTeX math delimiters, Mermaid syntax & sizing,
 # draggable sidebar resizer, Year 2500 mobile navigation drawer,
 # table overflow containment, relative subpath invariants, bundle integrity,
-# and Unicode monospace box-drawing alignment.
+# Unicode monospace box-drawing alignment, and collapsible details invariants.
 # ==============================================================================
 set -euo pipefail
 
@@ -20,7 +20,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 echo "╔══════════════════════════════════════════════════════════════════╗"
-echo "║  🧪 Running DSA Living Documentation 12-Gate Audit Suite         ║"
+echo "║  🧪 Running DSA Living Documentation 13-Gate Audit Suite         ║"
 echo "╚══════════════════════════════════════════════════════════════════╝"
 
 # Ensure _site is built
@@ -240,7 +240,14 @@ echo -e "${CYAN}→ 12. Auditing Unicode Box-Drawing Alignment Invariants...${NC
 python3 "${SCRIPT_DIR}/audit_ascii_boxes.py" --check
 echo -e "   ${GREEN}✅ 100% of ASCII and Unicode box-drawing tables and cards are aligned.${NC}"
 
+# ------------------------------------------------------------------------------
+# Gate 13: Collapsible Details, Nested Accordions & Zero Raw HTML Block Escaping
+# ------------------------------------------------------------------------------
+echo -e "${CYAN}→ 13. Auditing Collapsible Details & Zero Raw HTML Block Escaping...${NC}"
+python3 "${SCRIPT_DIR}/audit_collapsible_elements.py"
+echo -e "   ${GREEN}✅ 100% of collapsible details and nested accordions verified.${NC}"
+
 echo ""
 echo "╔══════════════════════════════════════════════════════════════════╗"
-echo -e "║  ${GREEN}🎉 ALL 12 QUALITY GATES PASSED DETERMINISTICALLY!              ${NC}║"
+echo -e "║  ${GREEN}🎉 ALL 13 QUALITY GATES PASSED DETERMINISTICALLY!              ${NC}║"
 echo "╚══════════════════════════════════════════════════════════════════╝"
