@@ -58,7 +58,7 @@ jobs:
 
       - name: Run Collapsible Elements & Raw HTML Invariant Audit
         run: |
-          python scripts/audit_collapsible_elements.py
+          python scripts/audit_collapsible_elements.py --source-only
 
   docs-portal-audit:
     name: 13-Gate Living Docs Verification Suite

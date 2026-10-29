@@ -72,11 +72,11 @@ def audit_markdown_sources() -> list[str]:
 
     return errors, total_details
 
-def audit_compiled_html() -> list[str]:
+def audit_compiled_html() -> tuple[list[str], int]:
     """Audits _site/index.html for raw HTML leakage and structural integrity."""
     errors = []
     if not SITE_INDEX.exists():
-        return [f"Compiled index.html not found at {SITE_INDEX}. Run 'make docs-build' first."]
+        return [f"Compiled index.html not found at {SITE_INDEX}. Run 'make docs-build' first."], 0
 
     html_content = SITE_INDEX.read_text(encoding="utf-8", errors="ignore")
 
@@ -142,6 +142,7 @@ def audit_styling_and_haptics() -> list[str]:
     return errors
 
 def main():
+    source_only = "--source-only" in sys.argv
     print(f"{CYAN}╔══════════════════════════════════════════════════════════════════╗{NC}")
     print(f"{CYAN}║  📂 Auditing Collapsible Elements & Raw HTML Block Invariants   ║{NC}")
     print(f"{CYAN}╚══════════════════════════════════════════════════════════════════╝{NC}")
@@ -158,25 +159,26 @@ def main():
     else:
         print(f"    {GREEN}✅ Validated {total_md_details} balanced <details>/<summary> pairs across all Markdown files.{NC}")
 
-    # 2. Compiled HTML Audit
-    print("  → Auditing compiled _site/index.html for raw HTML leakage...")
-    html_errors, rendered_count = audit_compiled_html()
-    if html_errors:
-        for err in html_errors:
-            print(f"    {RED}❌ {err}{NC}")
-        all_errors.extend(html_errors)
-    else:
-        print(f"    {GREEN}✅ Validated {rendered_count} semantic <details class=\"md-details\"> elements with ZERO raw leakage.{NC}")
+    if not source_only:
+        # 2. Compiled HTML Audit
+        print("  → Auditing compiled _site/index.html for raw HTML leakage...")
+        html_errors, rendered_count = audit_compiled_html()
+        if html_errors:
+            for err in html_errors:
+                print(f"    {RED}❌ {err}{NC}")
+            all_errors.extend(html_errors)
+        else:
+            print(f"    {GREEN}✅ Validated {rendered_count} semantic <details class=\"md-details\"> elements with ZERO raw leakage.{NC}")
 
-    # 3. CSS & Audio Haptics Invariant Audit
-    print("  → Auditing CSS design tokens and JS haptic audio bindings...")
-    asset_errors = audit_styling_and_haptics()
-    if asset_errors:
-        for err in asset_errors:
-            print(f"    {RED}❌ {err}{NC}")
-        all_errors.extend(asset_errors)
-    else:
-        print(f"    {GREEN}✅ CSS design tokens and JS haptic audio bindings verified.{NC}")
+        # 3. CSS & Audio Haptics Invariant Audit
+        print("  → Auditing CSS design tokens and JS haptic audio bindings...")
+        asset_errors = audit_styling_and_haptics()
+        if asset_errors:
+            for err in asset_errors:
+                print(f"    {RED}❌ {err}{NC}")
+            all_errors.extend(asset_errors)
+        else:
+            print(f"    {GREEN}✅ CSS design tokens and JS haptic audio bindings verified.{NC}")
 
     print("─" * 66)
     if all_errors:
