@@ -255,14 +255,14 @@ A tactile acoustic feedback engine built directly on the Web Audio API without e
 
 ---
 
-## 🧪 13-Gate Headless Automated Verification Suite
+## 🧪 14-Gate Headless Automated Verification Suite
 
 Run before every commit or push:
 ```bash
 make docs-test
 ```
 
-All 13 quality gates must pass deterministically:
+All 14 quality gates must pass deterministically:
 1. **Core Assets Presence**: `index.html`, `style.css`, `app.js`, `catalog/manifest.json`.
 2. **Catalog Completeness & Search Index**: 44 patterns, 288+ indexed problems.
 3. **Mermaid Label Escaping**: No unescaped `<` or `>` inside node labels.
@@ -276,6 +276,7 @@ All 13 quality gates must pass deterministically:
 11. **Mermaid ID Uniqueness & Clean Navigation**: 460 unique IDs, isolated rendering, zero legacy footer links.
 12. **Unicode Monospace Box-Drawing Alignment**: 100% of ASCII and Unicode box tables and cards aligned.
 13. **Collapsible Details & Zero Raw HTML Block Escaping**: Zero raw unrendered or escaped `&lt;details&gt;` / `&lt;summary&gt;` text; 100% semantic `<details class="md-details">` with `.md-summary` and `.md-details-body`.
+14. **Monospace Semantic Badging & ASCII Tree Geometric Alignment**: Zero occurrences of `⚡ TEXT Implementation`; 100% content-aware semantic badges (`dna-label-code`, `dna-label-matrix`, `dna-label-memory`, `dna-label-trace`, `dna-label-tree`, `dna-label-blueprint`, `dna-label-spec`); mathematical geometric centering of ASCII tree root nodes over `/ \` branches with zero snapped roots.
 
 ---
 
@@ -286,7 +287,8 @@ All 13 quality gates must pass deterministically:
 | `make help` | Interactive targets menu |
 | `make docs-build` | Compiles 44 patterns and generates hydrated static site in `_site/` |
 | `make docs-serve` | Serves documentation locally on `http://localhost:4000/` |
-| `make docs-test` | Runs the full 13-gate headless verification suite |
+| `make docs-test` | Runs the full 14-gate headless verification suite |
+| `make test-trees` | Audits monospace semantic badges and ASCII tree alignments |
 | `make test-details` | Audits collapsible elements and raw HTML block invariants |
 | `make test-boxes` | Audits Unicode monospace box-drawing alignment |
 | `make format-boxes` | Realigns and formats all ASCII/Unicode boxes across the repository in place |

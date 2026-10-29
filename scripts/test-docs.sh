@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# test-docs.sh — 13-Gate Headless Verification Suite for DSA Documentation
+# test-docs.sh — 14-Gate Headless Verification Suite for DSA Documentation
 # Validates HTML markup, KaTeX math delimiters, Mermaid syntax & sizing,
 # draggable sidebar resizer, Year 2500 mobile navigation drawer,
 # table overflow containment, relative subpath invariants, bundle integrity,
-# Unicode monospace box-drawing alignment, and collapsible details invariants.
+# Unicode monospace box-drawing alignment, collapsible details invariants,
+# and monospace semantic badging & ASCII tree geometric alignment.
 # ==============================================================================
 set -euo pipefail
 
@@ -20,7 +21,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 echo "╔══════════════════════════════════════════════════════════════════╗"
-echo "║  🧪 Running DSA Living Documentation 13-Gate Audit Suite         ║"
+echo "║  🧪 Running DSA Living Documentation 14-Gate Audit Suite         ║"
 echo "╚══════════════════════════════════════════════════════════════════╝"
 
 # Ensure _site is built
@@ -247,7 +248,14 @@ echo -e "${CYAN}→ 13. Auditing Collapsible Details & Zero Raw HTML Block Escap
 python3 "${SCRIPT_DIR}/audit_collapsible_elements.py"
 echo -e "   ${GREEN}✅ 100% of collapsible details and nested accordions verified.${NC}"
 
+# ------------------------------------------------------------------------------
+# Gate 14: Monospace Semantic Badging & ASCII Tree Geometric Alignment
+# ------------------------------------------------------------------------------
+echo -e "${CYAN}→ 14. Auditing Monospace Semantic Badging & ASCII Tree Alignment...${NC}"
+python3 "${SCRIPT_DIR}/audit_monospace_badging_and_trees.py"
+echo -e "   ${GREEN}✅ 100% semantic badges valid & all tree roots geometrically centered.${NC}"
+
 echo ""
 echo "╔══════════════════════════════════════════════════════════════════╗"
-echo -e "║  ${GREEN}🎉 ALL 13 QUALITY GATES PASSED DETERMINISTICALLY!              ${NC}║"
+echo -e "║  ${GREEN}🎉 ALL 14 QUALITY GATES PASSED DETERMINISTICALLY!              ${NC}║"
 echo "╚══════════════════════════════════════════════════════════════════╝"

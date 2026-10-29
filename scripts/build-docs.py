@@ -142,6 +142,106 @@ HTML_TAG_PATTERN = re.compile(
     re.IGNORECASE
 )
 
+def clean_code_content(code: str) -> str:
+    """
+    Strips leading and trailing blank lines while strictly preserving
+    the horizontal column indentation of all content lines (especially line 1,
+    preventing root nodes of ASCII trees and box tables from snapping to column 0).
+    """
+    if not code:
+        return ""
+    lines = code.splitlines()
+    while lines and not lines[0].strip():
+        lines.pop(0)
+    while lines and not lines[-1].strip():
+        lines.pop()
+    return "\n".join(lines)
+
+def classify_code_block(lang: str, code: str) -> tuple[str, str, str]:
+    """
+    Classify a code block into a semantic label, CSS badge class, and language identifier.
+    Abolishes the meaningless '⚡ TEXT Implementation' and stamps accurate semantic badges:
+      - Executable source code (Python, C, Assembly, etc.)
+      - Structural hierarchies & ASCII tree topologies
+      - Box-drawing reference matrices & comparison tables
+      - Memory architecture & pointer topologies
+      - Step-by-step execution traces & state simulations
+      - Algorithmic blueprints & pseudocode
+      - Technical specifications & mathematical proofs
+    """
+    raw_lang = (lang or "").strip().lower()
+    code_stripped = code.strip()
+
+    # 1. First-class Programming Languages
+    if raw_lang in ("python", "py", "python3"):
+        return "⚡ Python 3.12+ Implementation", "dna-label-code", "python"
+    elif raw_lang in ("c", "c99", "c11"):
+        return "⚡ C99 Implementation", "dna-label-code", "c"
+    elif raw_lang in ("assembly", "asm", "x86", "x86_64", "nasm"):
+        return "⚡ x86-64 Assembly Implementation", "dna-label-code", "assembly"
+    elif raw_lang in ("cpp", "c++", "cxx"):
+        return "⚡ C++20 Implementation", "dna-label-code", "cpp"
+    elif raw_lang in ("rust", "rs"):
+        return "⚡ Rust Implementation", "dna-label-code", "rust"
+    elif raw_lang in ("go", "golang"):
+        return "⚡ Go Implementation", "dna-label-code", "go"
+    elif raw_lang in ("sql", "postgresql", "mysql", "sqlite"):
+        return "⚡ SQL Schema & Query", "dna-label-code", "sql"
+    elif raw_lang in ("bash", "sh", "zsh", "shell"):
+        return "⚡ Shell Command / Script", "dna-label-code", "bash"
+    elif raw_lang in ("json",):
+        return "⚡ JSON Data Contract", "dna-label-code", "json"
+    elif raw_lang in ("javascript", "js", "typescript", "ts"):
+        return f"⚡ {raw_lang.upper()} Implementation", "dna-label-code", raw_lang
+
+    # 2. Explicit Non-Code Semantic Fence Aliases (Author-specified)
+    if raw_lang in ("tree", "hierarchy", "calltree", "bst"):
+        return "🌳 Structural Hierarchy & Tree Topology", "dna-label-tree", "plaintext"
+    elif raw_lang in ("matrix", "table", "ascii-table", "box"):
+        return "📐 Monospace Reference Matrix", "dna-label-matrix", "plaintext"
+    elif raw_lang in ("memory", "ram", "layout", "pointer"):
+        return "🧬 Memory Architecture & Layout", "dna-label-memory", "plaintext"
+    elif raw_lang in ("trace", "sim", "simulation", "walkthrough"):
+        return "⏱️ Execution Trace & State Simulation", "dna-label-trace", "plaintext"
+    elif raw_lang in ("blueprint", "pseudo", "pseudocode", "algorithm"):
+        return "📜 Algorithmic Blueprint", "dna-label-blueprint", "plaintext"
+    elif raw_lang in ("spec", "specification", "proof", "math"):
+        return "📋 Technical Specification & Proof", "dna-label-spec", "plaintext"
+
+    # 3. Content-Aware Heuristic Detection for untagged / "text" / "txt" / "none"
+    c_lower = code_stripped.lower()
+
+    # Check for Tree Diagrams (ASCII branches / \ or box branches)
+    if any(c in code_stripped for c in ["/  \\", "/ \\", "/   \\", "/    \\", "/     \\", "/      \\"]) or any(tree_char in code_stripped for tree_char in ["├──", "└──", "│  ", "│   ├──"]):
+        return "🌳 Structural Hierarchy & Tree Topology", "dna-label-tree", "plaintext"
+
+    # Check for Box-Drawing Tables & Matrices
+    # Unicode box characters: ┌, ┬, ┐, ├, ┼, ┤, └, ┴, ┘, ╔, ═, ║, or ASCII +---+---+
+    if any(box in code_stripped for box in ["┌", "╔", "╒", "╓", "+---", "+===", "|---"]) or (code_stripped.count("|") >= 6 and "-+-" in code_stripped):
+        return "📐 Monospace Reference Matrix", "dna-label-matrix", "plaintext"
+
+    # Check for Memory Layouts & Pointer Topologies
+    memory_signals = [
+        "0x100", "0x104", "0x200", "0x7fff", "0x", "cache line", "ram:", "ram (contiguous)",
+        "stack frame", "[sentinel", "<=====>", "⇄", "──►", "◄──", "--->", "<---", "==>", "<=="
+    ]
+    if any(sig in c_lower for sig in memory_signals) and any(b in code_stripped for b in ["[", "]", "->", "=>", "─", "►", "◄", "⇄"]):
+        # Disambiguate execution traces that also have arrows
+        if re.search(r'^(step \d+|round \d+|time \d+|iteration \d+)', c_lower, re.MULTILINE):
+            return "⏱️ Execution Trace & State Simulation", "dna-label-trace", "plaintext"
+        return "🧬 Memory Architecture & Layout", "dna-label-memory", "plaintext"
+
+    # Check for Step-by-Step Execution Traces & State Transitions
+    if re.search(r'^(step \d+|round \d+|time \d+|iteration \d+|phase \d+|initial state:)', c_lower, re.MULTILINE):
+        return "⏱️ Execution Trace & State Simulation", "dna-label-trace", "plaintext"
+
+    # Check for Algorithmic Blueprints & Pseudocode
+    if re.search(r'^\s*(1\.\s*INITIALIZE|ALGORITHM|FUNCTION|PROCEDURE|PSEUDOCODE|WHILE\s+|FOR\s+EACH)', code_stripped):
+        return "📜 Algorithmic Blueprint", "dna-label-blueprint", "plaintext"
+
+    # Default fallback for technical notes, proofs, math reductions, Big-O comparisons
+    return "📋 Technical Specification & Proof", "dna-label-spec", "plaintext"
+
 def render_markdown(text: str) -> str:
     """
     Robust zero-dependency Markdown-to-HTML converter.
@@ -197,13 +297,15 @@ def render_markdown(text: str) -> str:
               <div class="canvas-caption">State convergence & algorithmic execution graph</div>
             </div>'''
         else:
+            cleaned_code = clean_code_content(code)
+            badge_label, badge_class, code_lang = classify_code_block(lang, cleaned_code)
             block_html = f'''<div class="dna-skeleton-box">
               <div class="dna-skeleton-header">
-                <span class="dna-label">⚡ {lang.upper()} Implementation</span>
+                <span class="dna-label {badge_class}">{badge_label}</span>
                 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.dna-skeleton-box').querySelector('pre code').innerText);this.innerText='Copied!';setTimeout(()=>this.innerText='Copy',1600);">Copy</button>
               </div>
               <div class="code-container">
-                <pre><code class="language-{lang}">{html.escape(code.strip())}</code></pre>
+                <pre><code class="language-{code_lang}">{html.escape(cleaned_code)}</code></pre>
               </div>
             </div>'''
         blocks.append(block_html)
@@ -896,7 +998,7 @@ def generate_html(fundamentals_modules, catalog, all_problems_index):
                   </summary>
                   <div class="problem-details-body">
                     {eng["walkthrough_html"]}
-                    {f'<div class="dna-skeleton-box"><div class="dna-skeleton-header"><span class="dna-label">⚙️ {html.escape(eng["file"])}</span><button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest(\x27.dna-skeleton-box\x27).querySelector(\x27pre code\x27).innerText);this.innerText=\x27Copied!\x27;setTimeout(()=>this.innerText=\x27Copy\x27,1600);">Copy</button></div><div class="code-container"><pre><code class="language-python">{html.escape(eng["code"])}</code></pre></div></div>' if eng["code"] else ''}
+                    {f'<div class="dna-skeleton-box"><div class="dna-skeleton-header"><span class="dna-label dna-label-spec">⚙️ {html.escape(eng["file"])}</span><button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest(\x27.dna-skeleton-box\x27).querySelector(\x27pre code\x27).innerText);this.innerText=\x27Copied!\x27;setTimeout(()=>this.innerText=\x27Copy\x27,1600);">Copy</button></div><div class="code-container"><pre><code class="language-python">{html.escape(clean_code_content(eng["code"]))}</code></pre></div></div>' if eng["code"] else ''}
                   </div>
                 </details>
                 ''')
@@ -948,11 +1050,11 @@ def generate_html(fundamentals_modules, catalog, all_problems_index):
             body_content.append(f'''
             <div class="dna-skeleton-box">
               <div class="dna-skeleton-header">
-                <span class="dna-label">⚡ Python 3.12+ Implementation</span>
+                <span class="dna-label dna-label-code">⚡ Python 3.12+ Implementation</span>
                 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.dna-skeleton-box').querySelector('pre code').innerText);this.innerText='Copied!';setTimeout(()=>this.innerText='Copy',1600);">Copy</button>
               </div>
               <div class="code-container">
-                <pre><code class="language-python">{html.escape(p["code"])}</code></pre>
+                <pre><code class="language-python">{html.escape(clean_code_content(p["code"]))}</code></pre>
               </div>
             </div>
             <div style="display:flex;gap:12px;font-family:var(--font-mono);font-size:0.78rem;color:var(--text-muted);flex-wrap:wrap;margin-top:12px;">
