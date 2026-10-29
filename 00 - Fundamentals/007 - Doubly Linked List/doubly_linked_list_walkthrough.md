@@ -1,8 +1,8 @@
 # 🚶‍♂️ Walkthrough: Doubly Linked List Implementation
 
 > **Level**: Fundamentals 101 to Staff Architect & Research  
-> **Prerequisites**: [001 - Array and String](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/001%20-%20Array%20and%20String/array_and_string_walkthrough.md), [006 - Linked List](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/006%20-%20Linked%20List/linked_list_walkthrough.md)  
-> **Source Code**: [doubly_linked_list.py](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/007%20-%20Doubly%20Linked%20List/doubly_linked_list.py)
+> **Prerequisites**: [001 - Array and String](../001%20-%20Array%20and%20String/array_and_string_walkthrough.md), [006 - Linked List](../006%20-%20Linked%20List/linked_list_walkthrough.md)  
+> **Source Code**: [doubly_linked_list.py](../007%20-%20Doubly%20Linked%20List/doubly_linked_list.py)
 
 ---
 
@@ -434,10 +434,3 @@ Under these invariants, any operation inserting between nodes $A$ and $B$ (where
 Therefore, boundary edge cases are mathematically eliminated.
 </details>
 
----
-
-## 🔗 Cross-Pillar Linkage & Navigation
-- **Previous**: [006 - Linked List (Singly Linked List)](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/006%20-%20Linked%20List/linked_list_walkthrough.md)
-- **Next**: [008 - Circular Linked List](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/008%20-%20Circular%20Linked%20List/circular_linked_list_walkthrough.md)
-- **Theory Grounding**: [000 - Theoretical Foundations/001 - Algorithmic Complexity Foundations](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/000%20-%20Theoretical%20Foundations/001%20-%20Algorithmic%20Complexity%20Foundations/algorithmic_complexity_walkthrough.md)
-- **Pattern Application**: [017 - The Pattern Cracker/005 - In-Place Reversal of a LinkedList](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/017%20-%20The%20Pattern%20Cracker/005%20-%20In-Place%20Reversal%20of%20a%20LinkedList/005_in_place_reversal_of_a_linkedlist.md)

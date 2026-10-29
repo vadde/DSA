@@ -1,8 +1,8 @@
 # 🚶‍♂️ Walkthrough: Min and Max Heap Implementation
 
 > **Level**: Fundamentals 101 to Staff Architect & Research  
-> **Prerequisites**: [001 - Array and String](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/001%20-%20Array%20and%20String/array_and_string_walkthrough.md), [004 - Sorting Algorithms](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/004%20-%20Sorting%20Algorithms/sorting_walkthrough.md)  
-> **Source Code**: [heap.py](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/010%20-%20Min%20and%20Max%20Heap/heap.py)
+> **Prerequisites**: [001 - Array and String](../001%20-%20Array%20and%20String/array_and_string_walkthrough.md), [004 - Sorting Algorithms](../004%20-%20Sorting%20Algorithms/sorting_walkthrough.md)  
+> **Source Code**: [heap.py](../010%20-%20Min%20and%20Max%20Heap/heap.py)
 
 ---
 
@@ -160,7 +160,7 @@ This is one of the most common pitfalls in FAANG interviews:
 ## 🛠️ Level 300: Working Professional (Clean Architecture & Code)
 
 ### Production-Grade Min/Max Heap Implementation
-From [heap.py](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/010%20-%20Min%20and%20Max%20Heap/heap.py):
+From [heap.py](../010%20-%20Min%20and%20Max%20Heap/heap.py):
 
 ```python
 """
@@ -376,10 +376,3 @@ $$T(N) \le \frac{N}{2} \cdot 2 = O(N)$$
 Fibonacci heaps achieve **$O(1)$ amortized `decrease_key`** by lazily postponing tree consolidations until `delete_min`. This reduces Dijkstra's algorithm time complexity from $O(E \log V)$ to $O(E + V \log V)$, which is theoretically optimal for dense graphs.
 </details>
 
----
-
-## 🔗 Cross-Pillar Linkage & Navigation
-- **Previous**: [009 - Binary Search Tree](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/009%20-%20Binary%20Search%20Tree/bst_walkthrough.md)
-- **Next**: [011 - Trie](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/011%20-%20Trie/trie_walkthrough.md)
-- **Theory Grounding**: [000 - Theoretical Foundations/002 - Amortized Analysis and Potential Method](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/000%20-%20Theoretical%20Foundations/002%20-%20Amortized%20Analysis%20and%20Potential%20Method/amortized_analysis_walkthrough.md)
-- **Pattern Application**: [017 - The Pattern Cracker/014 - Top 'K' Elements](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/017%20-%20The%20Pattern%20Cracker/014%20-%20Top%20%27K%27%20Elements/014_top_k_elements.md), [017 - The Pattern Cracker/013 - Two Heaps](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/017%20-%20The%20Pattern%20Cracker/013%20-%20Two%20Heaps/013_two_heaps.md)

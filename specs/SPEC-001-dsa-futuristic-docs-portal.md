@@ -423,3 +423,9 @@ jobs:
   - [x] Fixed root cause of ASCII tree root node snapping: replaced destructive `code.strip()` with `clean_code_content()`, preserving leading indentation of first lines (e.g. `[ Root: X ]`, `[ 50 ]`, `12`).
   - [x] Created `scripts/audit_monospace_badging_and_trees.py` with rigorous geometric centering assertion ($\le 1.0$ character cell diff between root and branch slashes `/ \`).
   - [x] Elevated headless verification to a **14-Gate Automated Audit Suite** integrated across `scripts/test-docs.sh`, `Makefile`, and `.github/workflows/ci.yml`.
+- [x] **Phase 19: Hyperlink Integrity, Single-Page Containment & Local Path Eradication**
+  - [x] Completely eradicated all local filesystem paths (`file://`, `/Users/`) across both Markdown source files and compiled artifacts.
+  - [x] Built deterministic anchor resolver `resolve_markdown_link()` mapping internal markdown files, engine modules, and pattern chapters to exact on-page DOM fragment anchors (`#fund-theo-*`, `#fund-trees-*`, `#fund-graphs-*`, `#fund-engine-*`, `#pattern-*`).
+  - [x] Purged all notebook-style previous/next/chapter footer navigation links and tables from compiled documentation.
+  - [x] Prevented SPA breakages: eliminated raw `.md`, `.py`, relative path links, and external GitHub jumps for files embedded on the page.
+  - [x] Created `scripts/audit_links_and_anchors.py` and elevated test suite to a **15-Gate Automated Audit Suite** verifying 100% internal anchor resolution and zero link leakage.

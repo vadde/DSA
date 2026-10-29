@@ -255,14 +255,14 @@ A tactile acoustic feedback engine built directly on the Web Audio API without e
 
 ---
 
-## 🧪 14-Gate Headless Automated Verification Suite
+## 🧪 15-Gate Headless Automated Verification Suite
 
 Run before every commit or push:
 ```bash
 make docs-test
 ```
 
-All 14 quality gates must pass deterministically:
+All 15 quality gates must pass deterministically:
 1. **Core Assets Presence**: `index.html`, `style.css`, `app.js`, `catalog/manifest.json`.
 2. **Catalog Completeness & Search Index**: 44 patterns, 288+ indexed problems.
 3. **Mermaid Label Escaping**: No unescaped `<` or `>` inside node labels.
@@ -277,6 +277,7 @@ All 14 quality gates must pass deterministically:
 12. **Unicode Monospace Box-Drawing Alignment**: 100% of ASCII and Unicode box tables and cards aligned.
 13. **Collapsible Details & Zero Raw HTML Block Escaping**: Zero raw unrendered or escaped `&lt;details&gt;` / `&lt;summary&gt;` text; 100% semantic `<details class="md-details">` with `.md-summary` and `.md-details-body`.
 14. **Monospace Semantic Badging & ASCII Tree Geometric Alignment**: Zero occurrences of `⚡ TEXT Implementation`; 100% content-aware semantic badges (`dna-label-code`, `dna-label-matrix`, `dna-label-memory`, `dna-label-trace`, `dna-label-tree`, `dna-label-blueprint`, `dna-label-spec`); mathematical geometric centering of ASCII tree root nodes over `/ \` branches with zero snapped roots.
+15. **Hyperlink Integrity & Local Path Prevention**: Zero `file://` or `/Users/` paths; zero raw `.md` or `.py` file links; zero external GitHub jumps for internal files; zero notebook-style previous/next/chapter footer navigation artifacts; 100% internal fragment anchor (`href="#..."`) resolution to on-page elements.
 
 ---
 
@@ -287,7 +288,8 @@ All 14 quality gates must pass deterministically:
 | `make help` | Interactive targets menu |
 | `make docs-build` | Compiles 44 patterns and generates hydrated static site in `_site/` |
 | `make docs-serve` | Serves documentation locally on `http://localhost:4000/` |
-| `make docs-test` | Runs the full 14-gate headless verification suite |
+| `make docs-test` | Runs the full 15-gate headless verification suite |
+| `make test-links` | Audits universal hyperlink integrity, SPA containment, and zero local path leaks |
 | `make test-trees` | Audits monospace semantic badges and ASCII tree alignments |
 | `make test-details` | Audits collapsible elements and raw HTML block invariants |
 | `make test-boxes` | Audits Unicode monospace box-drawing alignment |
