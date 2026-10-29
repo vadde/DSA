@@ -1,8 +1,8 @@
 # 🚶‍♂️ Walkthrough: Graph Data Structure Implementation
 
 > **Level**: Fundamentals 101 to Staff Architect & Research  
-> **Prerequisites**: [001 - Array and String](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/001%20-%20Array%20and%20String/array_and_string_walkthrough.md), [002 - Hash Table](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/002%20-%20Hash%20Table/hash_table_walkthrough.md), [005 - Queue and Stack](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/005%20-%20Queue%20and%20Stack/queue_and_stack_walkthrough.md)  
-> **Source Code**: [graph.py](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/012%20-%20Graph/graph.py)
+> **Prerequisites**: [001 - Array and String](../001%20-%20Array%20and%20String/array_and_string_walkthrough.md), [002 - Hash Table](../002%20-%20Hash%20Table/hash_table_walkthrough.md), [005 - Queue and Stack](../005%20-%20Queue%20and%20Stack/queue_and_stack_walkthrough.md)  
+> **Source Code**: [graph.py](../012%20-%20Graph/graph.py)
 
 ---
 
@@ -145,7 +145,7 @@ Unweighted:  Weighted:
 ## 🛠️ Level 300: Working Professional (Clean Architecture & Code)
 
 ### Production-Grade Graph Implementation
-From [graph.py](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/012%20-%20Graph/graph.py), enhanced with BFS, DFS, and cycle detection:
+From [graph.py](../012%20-%20Graph/graph.py), enhanced with BFS, DFS, and cycle detection:
 
 ```python
 """
@@ -333,11 +333,3 @@ $$L = D - A$$
    This forms the mathematical foundation of Spectral Clustering in Machine Learning and Image Segmentation.
 </details>
 
----
-
-## 🔗 Cross-Pillar Linkage & Navigation
-- **Previous**: [011 - Trie](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/011%20-%20Trie/trie_walkthrough.md)
-- **Next**: [013 - Union-Find (Disjoint Set)](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/013%20-%20Union-Find%20%28Disjoint%20Set%29/union_find_walkthrough.md)
-- **Comprehensive Pillar**: [016 - Graphs (The Complete Guide)](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/016%20-%20Graphs%20%28The%20Complete%20Guide%29/README.md)
-- **Theory Grounding**: [000 - Theoretical Foundations/006 - Graph Theory and Network Flows](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/000%20-%20Theoretical%20Foundations/006%20-%20Graph%20Theory%20and%20Network%20Flows/graph_theory_walkthrough.md)
-- **Pattern Application**: [017 - The Pattern Cracker/019 - Topological Sort](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/017%20-%20The%20Pattern%20Cracker/019%20-%20Topological%20Sort/019_topological_sort.md)

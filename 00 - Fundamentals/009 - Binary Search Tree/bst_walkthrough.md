@@ -1,8 +1,8 @@
 # 🚶‍♂️ Walkthrough: Binary Search Tree (BST)
 
 > **Level**: Fundamentals 101 to Staff Architect & Research  
-> **Prerequisites**: [001 - Array and String](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/001%20-%20Array%20and%20String/array_and_string_walkthrough.md), [003 - Recursion and the Call Stack](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/003%20-%20Recursion%20and%20the%20Call%20Stack/recursion_walkthrough.md), [006 - Linked List](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/006%20-%20Linked%20List/linked_list_walkthrough.md)  
-> **Source Code**: [bst.py](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/009%20-%20Binary%20Search%20Tree/bst.py)
+> **Prerequisites**: [001 - Array and String](../001%20-%20Array%20and%20String/array_and_string_walkthrough.md), [003 - Recursion and the Call Stack](../003%20-%20Recursion%20and%20the%20Call%20Stack/recursion_walkthrough.md), [006 - Linked List](../006%20-%20Linked%20List/linked_list_walkthrough.md)  
+> **Source Code**: [bst.py](../009%20-%20Binary%20Search%20Tree/bst.py)
 
 ---
 
@@ -160,7 +160,7 @@ Case 3: Deleting a Node with 2 Children
 ## 🛠️ Level 300: Working Professional (Clean Architecture & Code)
 
 ### Production-Grade BST Implementation
-Below is the clean, type-hinted, generator-powered implementation from [bst.py](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/009%20-%20Binary%20Search%20Tree/bst.py).
+Below is the clean, type-hinted, generator-powered implementation from [bst.py](../009%20-%20Binary%20Search%20Tree/bst.py).
 
 ```python
 """
@@ -371,11 +371,3 @@ $$\mathbb{E}[\text{Height}] = O(\log N)$$
 Insertion and deletion simply perform normal BST operations followed by standard heap rotations to restore the priority heap invariant.
 </details>
 
----
-
-## 🔗 Cross-Pillar Linkage & Navigation
-- **Previous**: [008 - Circular Linked List](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/008%20-%20Circular%20Linked%20List/circular_linked_list_walkthrough.md)
-- **Next**: [010 - Min and Max Heap](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/010%20-%20Min%20and%20Max%20Heap/heap_walkthrough.md)
-- **Comprehensive Pillar**: [015 - Trees (The Complete Guide)](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/015%20-%20Trees%20%28The%20Complete%20Guide%29/README.md)
-- **Theory Grounding**: [000 - Theoretical Foundations/003 - Recurrence Relations and Master Theorem](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/000%20-%20Theoretical%20Foundations/003%20-%20Recurrence%20Relations%20and%20Master%20Theorem/recurrence_relations_walkthrough.md)
-- **Pattern Application**: [017 - The Pattern Cracker/009 - Tree Depth First Search](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/017%20-%20The%20Pattern%20Cracker/009%20-%20Tree%20Depth%20First%20Search/009_tree_depth_first_search.md)

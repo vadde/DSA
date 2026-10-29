@@ -14,6 +14,7 @@ import re
 import json
 import html
 import shutil
+import urllib.parse
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -242,6 +243,112 @@ def classify_code_block(lang: str, code: str) -> tuple[str, str, str]:
     # Default fallback for technical notes, proofs, math reductions, Big-O comparisons
     return "📋 Technical Specification & Proof", "dna-label-spec", "plaintext"
 
+THEO_STEMS = {
+    '00_computation_and_computability', '01_complexity_classes_zoo', '02_asymptotic_analysis_deep',
+    '03_recurrences_and_master_theorem', '04_amortized_analysis', '05_lower_bounds_and_impossibility',
+    '06_np_completeness_and_reductions', '07_approximation_algorithms', '08_randomized_algorithms',
+    '09_heuristics_and_metaheuristics', '10_information_theory_and_entropy', '11_metatheorems_and_folklore',
+    '12_kill_mode_vs_pull_plug'
+}
+
+TREES_STEMS = {
+    '01_what_is_a_tree', '02_binary_trees', '03_tree_traversals', '04_binary_search_trees',
+    '05_balanced_trees', '06_special_trees', '07_trees_cheat_sheet'
+}
+
+GRAPHS_STEMS = {
+    '01_what_is_a_graph', '02_graph_types', '03_graph_representations', '04_graph_traversals',
+    '05_shortest_paths', '06_minimum_spanning_trees', '07_advanced_graph_concepts', '08_graphs_cheat_sheet'
+}
+
+def resolve_markdown_link(link_text: str, url: str) -> str:
+    """
+    Deterministically resolves markdown links to single-page anchors (#...).
+    Eliminates local file paths (file://, /Users/), external GitHub repo jumps for internal files,
+    dead .md relative links, and numeric syntax accidents (e.g. counts[5](2)).
+    """
+    clean_url = urllib.parse.unquote(url.strip())
+
+    # 0. Numeric collision e.g. counts[5](2)
+    if clean_url.isdigit():
+        return f"{link_text} ({clean_url})"
+
+    # 1. Strip local filesystem paths completely
+    if clean_url.startswith("file://") or "/Users/" in clean_url:
+        m_eng = re.search(r'(\d{3})\s*-\s*[^/)]+', clean_url)
+        if m_eng:
+            return f'<a href="#fund-engine-{m_eng.group(1)}" class="internal-link">{link_text}</a>'
+        return f'<code>{link_text}</code>'
+
+    # 2. GitHub repo URLs pointing to internal repository source files
+    if "github.com/vadde/DSA" in clean_url:
+        if any(kw in clean_url for kw in ["/blob/", "/tree/"]):
+            m_eng = re.search(r'(\d{3})\s*-\s*[^/)]+', clean_url)
+            if m_eng:
+                return f'<a href="#fund-engine-{m_eng.group(1)}" class="internal-link">{link_text}</a>'
+            m_pat = re.search(r'/(\d{2})\s*-\s*[^/)]+', clean_url)
+            if m_pat:
+                return f'<a href="#pattern-{m_pat.group(1)}" class="internal-link">{link_text}</a>'
+            return f'<code>{link_text}</code>'
+        # Top-level repo brand link is allowed
+        return f'<a href="{url}" target="_blank" rel="noopener">{link_text}</a>'
+
+    # 3. Direct fragment anchors: stay in-page without target="_blank"
+    if clean_url.startswith("#"):
+        return f'<a href="{clean_url}" class="internal-link">{link_text}</a>'
+
+    # 4. External HTTP/HTTPS documentation / problems (LeetCode, etc.)
+    if clean_url.startswith("http://") or clean_url.startswith("https://"):
+        return f'<a href="{url}" target="_blank" rel="noopener">{link_text}</a>'
+
+    # 5. Extract file stem if link targets a markdown file
+    m_stem = re.search(r'([a-zA-Z0-9_-]+)\.md(?:#[^\s)]*)?$', clean_url)
+    stem = m_stem.group(1) if m_stem else ""
+
+    if stem in TREES_STEMS:
+        return f'<a href="#fund-trees-{stem}" class="internal-link">{link_text}</a>'
+    if stem in GRAPHS_STEMS:
+        return f'<a href="#fund-graphs-{stem}" class="internal-link">{link_text}</a>'
+    if stem in THEO_STEMS:
+        return f'<a href="#fund-theo-{stem}" class="internal-link">{link_text}</a>'
+
+    # 6. Trees Guide general links
+    if "015" in clean_url and "Trees" in clean_url:
+        return f'<a href="#sec-fundamentals-trees" class="internal-link">{link_text}</a>'
+
+    # 7. Graphs Guide general links
+    if "016" in clean_url and "Graphs" in clean_url:
+        return f'<a href="#sec-fundamentals-graphs" class="internal-link">{link_text}</a>'
+
+    # 8. Theoretical Foundations general links
+    if "000" in clean_url and "Theoretical" in clean_url:
+        return f'<a href="#sec-fundamentals-theory" class="internal-link">{link_text}</a>'
+
+    # 9. Pattern Cracker general links
+    if "017" in clean_url and "Pattern Cracker" in clean_url:
+        return f'<a href="#sec-fundamentals-cracker" class="internal-link">{link_text}</a>'
+
+    # 10. Data Structure Engine rooms (001 - 014)
+    m_eng = re.search(r'(\d{3})\s*-\s*[^/)]+', clean_url)
+    if m_eng:
+        return f'<a href="#fund-engine-{m_eng.group(1)}" class="internal-link">{link_text}</a>'
+
+    # 11. 43 Algorithmic Patterns
+    m_pat = re.search(r'(?:^|[/\\])(\d{2})\s*-\s*[^/)]+', clean_url)
+    if m_pat:
+        return f'<a href="#pattern-{m_pat.group(1)}" class="internal-link">{link_text}</a>'
+
+    # 12. Local Python files (code is already visible in Engine Room or walkthrough)
+    if clean_url.endswith(".py"):
+        return f'<code>{link_text}</code>'
+
+    # 13. Any remaining README.md links
+    if "README.md" in clean_url:
+        return f'<a href="#sec-fundamentals-theory" class="internal-link">{link_text}</a>'
+
+    # Fallback: clean text span (never leave a broken relative link that 404s)
+    return f'<span>{link_text}</span>'
+
 def render_markdown(text: str) -> str:
     """
     Robust zero-dependency Markdown-to-HTML converter.
@@ -252,18 +359,26 @@ def render_markdown(text: str) -> str:
     if not text:
         return ""
 
-    # Strip legacy repository folder navigation footers (e.g. ## 🧭 Navigation)
-    text = re.sub(r'(?m)^---\s*\n+#+\s*🧭\s*Navigation.*?(?=\Z|\n#)', '', text, flags=re.DOTALL)
-    text = re.sub(r'(?m)^#+\s*🧭\s*Navigation.*?(?=\Z|\n#)', '', text, flags=re.DOTALL)
-    text = re.sub(r'(?m)^\s*-\s*\*\*(?:Hub|Next|Previous|Next Chapter|Engine Rooms)\*\*:\s*\[.*?\].*$', '', text)
+    # 1. Strip legacy repository navigation footers (e.g. ## 🧭 Navigation, ## 🔗 Cross-Pillar Linkage & Navigation)
+    text = re.sub(r'(?m)^---\s*\n+#+\s*(?:🧭|🔗).*?(?=\Z|\n#)', '', text, flags=re.DOTALL)
+    text = re.sub(r'(?m)^#+\s*(?:🧭|🔗).*?(?=\Z|\n#)', '', text, flags=re.DOTALL)
 
-    # Map relative repository markdown links to single-page anchors
-    text = re.sub(r'\((\./)?015%20-%20Trees%20\(The%20Complete%20Guide\)/README\.md\)', '(#sec-fundamentals-trees)', text)
-    text = re.sub(r'\((\./)?016%20-%20Graphs%20\(The%20Complete%20Guide\)/README\.md\)', '(#sec-fundamentals-graphs)', text)
-    text = re.sub(r'\((\./)?015\s*-\s*Trees[^)]*?README\.md\)', '(#sec-fundamentals-trees)', text)
-    text = re.sub(r'\((\./)?016\s*-\s*Graphs[^)]*?README\.md\)', '(#sec-fundamentals-graphs)', text)
-    text = re.sub(r'\((\./)?000\s*-\s*Theoretical[^)]*?README\.md\)', '(#sec-fundamentals-theory)', text)
-    text = re.sub(r'\((\./)?(\d{2}_[^)]+)\.md\)', r'(#fund-theo-\2)', text)
+    # 2. Strip bulleted cross-navigation items
+    text = re.sub(r'(?m)^\s*-\s*\*\*(?:Previous|Next|Theory Grounding|Pattern Application|Comprehensive Pillar|Hub|Engine Rooms|Next Chapter)\*\*:\s*\[.*?\].*$', '', text)
+
+    # 3. Strip ASCII / Markdown navigation tables
+    text = re.sub(r'(?m)^\|?\s*←\s*Previous.*?\|\s*$\n(?:^\|?[-:\s|]+\|$\n)?(?:^\|?.*?$\n)?', '', text)
+
+    # 4. Strip notebook-style chapter previous/next links
+    text = re.sub(r'(?m)^\s*\*?\s*(?:←|Next:|Start Graphs:)?\s*\[(?:Chapter|Ch\s*)\s*\d+[^\]]*\]\([^)]+\)\s*(?:\||\s*→\s*|\s*←\s*)\s*.*$', '', text)
+    text = re.sub(r'(?m)^\s*\*?\s*(?:←|Next:|Start Graphs:)?\s*\[(?:Chapter|Ch\s*)\s*\d+[^\]]*\]\([^)]+\)\s*→?\*?\s*$', '', text)
+    text = re.sub(r'(?m)^\s*\*?←\s*\[[^\]]+\]\([^)]+\)\s*\|\s*\[[^\]]+\]\([^)]+\)\s*→\*?\s*$', '', text)
+    text = re.sub(r'(?m)^\s*\*?\[Chapter\s*\d+[^\]]*\]\([^)]+\)\s*←\s*You are here\*?\s*$', '', text)
+    text = re.sub(r'(?m)^\s*\d+\.\s*\*\*\[[^\]]+\]\([^)]+\)\*\*\s*←\s*You are here\s*$', '', text)
+    text = re.sub(r'(?m)^\s*\*?\[🏛️\s*Back to[^\]]*\]\([^)]+\)\s*\*?\s*$', '', text)
+
+    # 5. Clean up any orphaned trailing horizontal rules
+    text = re.sub(r'(?m)^---\s*$\s*\Z', '', text)
 
     # 1. Protect code blocks & Mermaid blocks
     blocks = []
@@ -595,8 +710,10 @@ def inline_formatting(text: str) -> str:
     # Italic: *italic* or _italic_
     text = re.sub(r'\*([^*]+)\*', r'<em>\1</em>', text)
     text = re.sub(r'(?<!\w)_([^_]+)_(?!\w)', r'<em>\1</em>', text)
-    # Links: [text](url)
-    text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2" target="_blank" rel="noopener">\1</a>', text)
+    # Links: [text](url) -> Resolve intelligently
+    def repl_link(m):
+        return resolve_markdown_link(m.group(1), m.group(2))
+    text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', repl_link, text)
     
     # Restore valid HTML tags
     for idx, tag in enumerate(saved_html_tags):

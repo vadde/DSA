@@ -28,9 +28,9 @@ So we make boxes labeled 0 to 5. We put each paper in the box matching its citat
 `counts = [1, 1, 0, 1, 0, 2]`
 
 **Iterate Backwards (Running Sum)**:
-- `h = 5`: sum = 0 + counts[5](2) = **2**. Is 2 >= 5? NO.
-- `h = 4`: sum = 2 + counts[4](0) = **2**. Is 2 >= 4? NO.
-- `h = 3`: sum = 2 + counts[3](1) = **3**. Is 3 >= 3? **YES!**
+- `h = 5`: sum = 0 + counts[5] (2) = **2**. Is 2 >= 5? NO.
+- `h = 4`: sum = 2 + counts[4] (0) = **2**. Is 2 >= 4? NO.
+- `h = 3`: sum = 2 + counts[3] (1) = **3**. Is 3 >= 3? **YES!**
 
 Result = 3 ✅
 

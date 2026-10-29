@@ -1,8 +1,8 @@
 # 🚶‍♂️ Walkthrough: Trie (Prefix Tree) Implementation
 
 > **Level**: Fundamentals 101 to Staff Architect & Research  
-> **Prerequisites**: [001 - Array and String](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/001%20-%20Array%20and%20String/array_and_string_walkthrough.md), [002 - Hash Table](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/002%20-%20Hash%20Table/hash_table_walkthrough.md), [003 - Recursion and the Call Stack](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/003%20-%20Recursion%20and%20the%20Call%20Stack/recursion_walkthrough.md)  
-> **Source Code**: [trie.py](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/011%20-%20Trie/trie.py)
+> **Prerequisites**: [001 - Array and String](../001%20-%20Array%20and%20String/array_and_string_walkthrough.md), [002 - Hash Table](../002%20-%20Hash%20Table/hash_table_walkthrough.md), [003 - Recursion and the Call Stack](../003%20-%20Recursion%20and%20the%20Call%20Stack/recursion_walkthrough.md)  
+> **Source Code**: [trie.py](../011%20-%20Trie/trie.py)
 
 ---
 
@@ -130,7 +130,7 @@ TrieNode:
 ## 🛠️ Level 300: Working Professional (Clean Architecture & Code)
 
 ### Production-Grade Trie Implementation
-From [trie.py](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/011%20-%20Trie/trie.py), extended with wildcard search and prefix autocompletion:
+From [trie.py](../011%20-%20Trie/trie.py), extended with wildcard search and prefix autocompletion:
 
 ```python
 """
@@ -304,10 +304,3 @@ Let $T = (V, E)$ be a Trie over alphabet $\Sigma$ with root $r \in V$.
 4. A string $W$ is present in the dictionary iff there exists $v \in V$ such that $S(v) = W$ and $\text{is\_end}(v) = \text{True}$.
 </details>
 
----
-
-## 🔗 Cross-Pillar Linkage & Navigation
-- **Previous**: [010 - Min and Max Heap](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/010%20-%20Min%20and%20Max%20Heap/heap_walkthrough.md)
-- **Next**: [012 - Graph](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/012%20-%20Graph/graph_walkthrough.md)
-- **Theory Grounding**: [000 - Theoretical Foundations/010 - Information Theory and Entropy](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/000%20-%20Theoretical%20Foundations/010%20-%20Information%20Theory%20and%20Entropy/information_theory_walkthrough.md)
-- **Pattern Application**: [017 - The Pattern Cracker/017 - Trie](file:///Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/00%20-%20Fundamentals/017%20-%20The%20Pattern%20Cracker/017%20-%20Trie/017_trie.md)
