@@ -69,8 +69,8 @@ def test_css_invariants(css_path: Path):
             return False
 
     # Check anti-occlusion gutter for floating sidebar toggle
-    if "clamp(72px, 8vw, 156px)" not in content:
-        print(f"   {RED}❌ Missing anti-occlusion clearance gutter 'clamp(72px, 8vw, 156px)' in {css_path.name}{NC}")
+    if "clamp(54px, 4vw, 72px)" not in content:
+        print(f"   {RED}❌ Missing anti-occlusion clearance gutter 'clamp(54px, 4vw, 72px)' in {css_path.name}{NC}")
         return False
 
     print(f"   {GREEN}✅ Liquid-glass zoom tokens & anti-occlusion gutters verified in {css_path.name}{NC}")
@@ -110,7 +110,7 @@ def simulate_viewport_step_engine():
             return 100, [100], True
 
         sidebar_width = 0 if collapsed else 330
-        gutters = 224 if collapsed else 96
+        gutters = 120 if collapsed else 96
         avail_width = max(base_stage_width, w - sidebar_width - gutters)
         raw_zoom = min(2.0, max(1.0, avail_width / base_stage_width))
         fit_pct = round(raw_zoom * 100)
@@ -130,9 +130,9 @@ def simulate_viewport_step_engine():
 
     test_matrix = [
         ("4K / Ultrawide (2560px)", 2560, True, 200, 5),
-        ("1080p Desktop (1920px)", 1920, True, 163, 4),
-        ("MacBook Pro 16\" (1728px)", 1728, True, 145, 3),
-        ("MacBook 14\" (1440px)", 1440, True, 117, 2),
+        ("1080p Desktop (1920px)", 1920, True, 173, 4),
+        ("MacBook Pro 16\" (1728px)", 1728, True, 155, 3),
+        ("MacBook 14\" (1440px)", 1440, True, 127, 2),
         ("Mobile Phone (390px)", 390, True, 100, 1),
     ]
 

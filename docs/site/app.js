@@ -1784,8 +1784,8 @@
         sidebarWidth = sidebar ? sidebar.offsetWidth : 330;
       }
 
-      // Safe reading gutters (anti-occlusion clearance for floating navigation toggle)
-      const gutters = isCollapsed ? 224 : 96;
+      // Safe reading gutters (icon-only 38px floating toggle clearance)
+      const gutters = isCollapsed ? 120 : 96;
       const availWidth = Math.max(BASE_STAGE_WIDTH, windowWidth - sidebarWidth - gutters);
 
       // Raw dynamic zoom needed to fit available width

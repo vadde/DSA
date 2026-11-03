@@ -439,7 +439,8 @@ jobs:
   - [x] Implemented dynamic screen-width bounded zoom calculation: dynamically derives $Z_{\text{fit}} = W_{\text{avail}} / W_{\text{base}}$ ($100\%$ on mobile, up to $175\%$ on MacBook Pro, up to $200\%$ on external 4K monitors).
   - [x] Designed adaptive step ladder synthesizing 2 to 4 punchy steps (e.g. 25% increments: $100\% \to 125\% \to 150\% \to 175\%$ on MacBook Pro; $100\% \to 125\% \to 150\% \to 175\% \to 200\%$ on 4K display; 2 steps on compact laptops).
   - [x] Built top HUD segmented glass stepper pill (`#hud-zoom-stepper`) with `−`, current `%` badge, `+`, and one-click `⤢ Fit` button.
-  - [x] Enforced anti-occlusion clearance gutter on `.content-area` (`padding-left: clamp(72px, 8vw, 156px)`) when sidebar is collapsed to permanently prevent `#floating-sidebar-toggle` from overlapping reading content.
+  - [x] Streamlined `#floating-sidebar-toggle` into an icon-only 38px cosmic squircle (purged text label), recovering 98px of horizontal width for reading content.
+  - [x] Enforced anti-occlusion clearance gutter on `.content-area` (`padding-left: clamp(54px, 4vw, 72px)`) when sidebar is collapsed, preserving seamless reading flow.
   - [x] Added mobile/tablet safeguards locking zoom to 100% on viewports $\le 768\text{px}$ to eliminate accidental horizontal scroll.
   - [x] Integrated tactile audio feedback with `HapticAudio.tap()` and keyboard shortcuts (`Alt+=`, `Alt+-`, `Alt+0`, `Alt+F`).
   - [x] Built `scripts/audit_dynamic_zoom_engine.py` (Gate 16) and integrated into `scripts/test-docs.sh`, `Makefile`, and `.github/workflows/ci.yml`.

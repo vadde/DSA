@@ -718,36 +718,33 @@ body {
   color: var(--accent-cyan);
 }
 
-/* FLOATING RE-OPEN TAB WHEN SIDEBAR IS COLLAPSED */
+/* FLOATING RE-OPEN SQUIRCLE WHEN SIDEBAR IS COLLAPSED */
 .floating-sidebar-toggle {
   display: none;
   position: fixed;
   top: calc(var(--topbar-height) + 14px);
   left: 14px;
   z-index: 45;
+  width: 38px;
+  height: 38px;
+  padding: 0;
   align-items: center;
-  gap: 8px;
-  padding: 7px 14px;
+  justify-content: center;
   background: rgba(13, 20, 39, 0.88);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--accent-cyan);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-sm);
   box-shadow: 0 4px 20px rgba(0, 242, 254, 0.25), 0 0 30px rgba(0, 0, 0, 0.6);
-  color: var(--text-main);
-  font-family: var(--font-display);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  color: var(--accent-cyan);
   cursor: pointer;
   transition: all var(--t-normal) var(--ease-spring);
   animation: floatIn 0.22s var(--ease-spring);
 }
 
 .floating-sidebar-toggle:hover {
-  transform: translateX(3px) scale(1.02);
-  background: rgba(0, 242, 254, 0.15);
+  transform: translateX(2px) scale(1.06);
+  background: rgba(0, 242, 254, 0.18);
   border-color: #ffffff;
   color: #ffffff;
   box-shadow: 0 6px 25px rgba(0, 242, 254, 0.45);
@@ -778,8 +775,8 @@ body {
   }
 
   body.sidebar-collapsed .content-area {
-    padding-left: clamp(72px, 8vw, 156px);
-    padding-right: clamp(24px, 4vw, 68px);
+    padding-left: clamp(54px, 4vw, 72px);
+    padding-right: clamp(24px, 4vw, 48px);
   }
 
   body.sidebar-collapsed .floating-sidebar-toggle {
