@@ -86,6 +86,7 @@ def test_js_invariants(js_path: Path):
         "initDynamicZoomEngine",
         "calculateDynamicFit",
         "captureViewportLandmark",
+        "focalAnchor",
         "dsaDynamicZoom",
         "dsa_content_zoom",
         "dsa_content_fit",

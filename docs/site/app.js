@@ -24,8 +24,10 @@
     searchActiveIndex: -1,
     searchResults: [],
     isProgrammaticScroll: false,
-    programmaticScrollTimer: null
+    programmaticScrollTimer: null,
+    focalAnchor: null // Persistent focal reading anchor across zoom/fit sessions
   };
+  window.STATE = STATE;
 
   // ---------------------------------------------------------------------------
   // 1. HAPTIC AUDIO ENGINE (Curated Web Audio Synthesis, Zero Dependencies)
@@ -563,6 +565,7 @@
     });
 
     // 3. Force synchronous layout reflow so the browser finalizes all coordinates
+    STATE.focalAnchor = null;
     void document.body.offsetHeight;
 
     // 4. Calculate exact absolute pixel position
@@ -1732,9 +1735,25 @@
     }
 
     window.addEventListener('scroll', () => {
+      if (!STATE.isProgrammaticScroll) {
+        STATE.focalAnchor = null;
+      }
       if (!ticking) {
         requestAnimationFrame(onScrollUpdate);
         ticking = true;
+      }
+    }, { passive: true });
+
+    // Invalidate locked focal anchor only upon deliberate human navigation gestures
+    ['wheel', 'touchmove'].forEach(evt => {
+      window.addEventListener(evt, () => {
+        STATE.focalAnchor = null;
+      }, { passive: true });
+    });
+
+    window.addEventListener('keydown', e => {
+      if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(e.key)) {
+        STATE.focalAnchor = null;
       }
     }, { passive: true });
 
@@ -1825,16 +1844,24 @@
      * to preserve the focal reading position across zoom reflows with sub-pixel stability.
      */
     function captureViewportLandmark() {
+      // Re-use currently locked focal anchor if valid within active viewport bounds
+      if (STATE.focalAnchor && STATE.focalAnchor.el && STATE.focalAnchor.el.isConnected) {
+        const r = STATE.focalAnchor.el.getBoundingClientRect();
+        if (r.bottom > 64 && r.top < window.innerHeight) {
+          return STATE.focalAnchor;
+        }
+      }
+
       const midY = window.innerHeight * 0.50;
 
       // Primary Strategy: Proximity sweep of bounded reading elements within active viewport
       const candidates = Array.from(document.querySelectorAll(
-        '.mermaid, pre, table, tr, h2, h3, h4, p, li, summary, .dna-card'
+        '.mermaid, pre, table, tr, h1, h2, h3, h4, p, li, summary, .dna-card, .problem-card, .canvas-card, .callout-glass, blockquote'
       )).filter(el => {
         if (!el.closest('.stage-wrapper')) return false;
         if (el.offsetParent === null) return false;
         const rect = el.getBoundingClientRect();
-        if (rect.height < 5 || rect.width < 5 || rect.height > window.innerHeight * 1.5) return false;
+        if (rect.height < 4 || rect.width < 4) return false;
         return rect.bottom > 64 && rect.top < window.innerHeight;
       });
 
@@ -1843,7 +1870,9 @@
 
       for (const el of candidates) {
         const rect = el.getBoundingClientRect();
-        const center = (rect.top + rect.bottom) / 2;
+        const visibleTop = Math.max(64, rect.top);
+        const visibleBottom = Math.min(window.innerHeight, rect.bottom);
+        const center = (visibleTop + visibleBottom) / 2;
         const dist = Math.abs(center - midY);
         if (dist < minDistance) {
           minDistance = dist;
@@ -1852,7 +1881,9 @@
       }
 
       if (best) {
-        return { el: best, top: best.getBoundingClientRect().top };
+        const locked = { el: best, viewportTop: best.getBoundingClientRect().top };
+        STATE.focalAnchor = locked;
+        return locked;
       }
 
       // Fallback Strategy: Proportional scroll ratio preservation
@@ -1874,7 +1905,13 @@
         zoomScale = Math.min(fitData.fitZoom, Math.max(1.0, zoomScale));
       }
 
-      // 1. Capture focal reading anchor before applying layout changes
+      // Halts any active smooth scroll animation to ensure stationary landmark capture
+      const htmlEl = document.documentElement;
+      const prevScrollBehavior = htmlEl.style.scrollBehavior;
+      htmlEl.style.scrollBehavior = 'auto';
+      window.scrollTo({ top: window.scrollY, behavior: 'instant' });
+
+      // 1. Capture or retrieve locked focal reading anchor before applying layout changes
       const anchor = captureViewportLandmark();
       STATE.isProgrammaticScroll = true;
 
@@ -1883,7 +1920,8 @@
 
       const currentPct = Math.round(zoomScale * 100);
 
-      // 2. Apply zoom to reading stage
+      // 2. Apply zoom to reading stage synchronously with zero transition delay
+      stageWrapper.style.transition = 'none';
       stageWrapper.style.zoom = String(zoomScale);
 
       // In Fit mode or when zoomed > 100%, allow stage to expand to fill available space
@@ -1893,25 +1931,34 @@
         stageWrapper.style.maxWidth = `${BASE_STAGE_WIDTH}px`;
       }
 
-      // Force synchronous layout recalculation
+      // Force synchronous layout recalculation across root layout tree
       void stageWrapper.offsetHeight;
+      void document.body.offsetHeight;
 
       // 3. Immediately restore focal anchor position to eliminate scroll drift
       if (anchor && anchor.el) {
         const currentTop = anchor.el.getBoundingClientRect().top;
-        const drift = currentTop - anchor.top;
-        if (Math.abs(drift) > 0.5) {
+        const drift = currentTop - anchor.viewportTop;
+        if (Math.abs(drift) > 0.05) {
           window.scrollBy({ top: drift, behavior: 'instant' });
+          anchor.viewportTop = anchor.el.getBoundingClientRect().top;
         }
       } else if (anchor && typeof anchor.scrollRatio === 'number') {
         const newMaxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
         window.scrollTo({ top: anchor.scrollRatio * newMaxScroll, behavior: 'instant' });
       }
 
+      // Flush and restore root scroll behavior
+      void htmlEl.offsetHeight;
+      htmlEl.style.scrollBehavior = prevScrollBehavior;
+
       // Release programmatic scroll flag after layout stabilizes
-      setTimeout(() => {
+      if (STATE.programmaticScrollTimer) {
+        clearTimeout(STATE.programmaticScrollTimer);
+      }
+      STATE.programmaticScrollTimer = setTimeout(() => {
         STATE.isProgrammaticScroll = false;
-      }, 50);
+      }, 70);
 
       // Update badge & buttons
       if (zoomBadge) {

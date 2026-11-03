@@ -1109,7 +1109,7 @@ body.resizing-sidebar .sidebar {
   flex-direction: column;
   gap: 48px;
   transform-origin: top center;
-  transition: max-width var(--t-normal) var(--ease-spring);
+  transition: none; /* Instant synchronous reflow to preserve focal reading coordinates */
 }
 }
 
