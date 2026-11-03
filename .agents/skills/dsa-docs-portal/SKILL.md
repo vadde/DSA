@@ -80,10 +80,10 @@ The portal uses a **deep cosmic liquid-glass design system with Aero Mica ambien
 The reading stage features a dynamic zoom and fitting engine that dynamically extends the main reading content to fit the available screen width across all form factors:
 
 ```
-┌────────────────────────────────────────────────────────────────────────┐
-│ TOP HUD NAVIGATION BAR                                                 │
-│ [☰] [⎕] DSA PATTERN BIBLE        [ − | 155% | + | ⤢ Fit ]   [🔍] [🔊] │
-└────────────────────────────────────────────────────────────────────────┘
++------------------------------------------------------------------------+
+| TOP HUD NAVIGATION BAR                                                 |
+| [Menu] [Sidebar] DSA PATTERN BIBLE     [ - | 155% | + | Fit ]  [Search] |
++------------------------------------------------------------------------+
 ```
 
 ### 1. Mathematical Formulation & Available Width Calculation:
