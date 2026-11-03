@@ -761,6 +761,52 @@ body {
   }
 }
 
+/* FLOATING BACK-TO-TOP SQUIRCLE */
+.floating-back-to-top {
+  position: fixed;
+  bottom: max(28px, env(safe-area-inset-bottom, 28px));
+  right: max(28px, env(safe-area-inset-right, 28px));
+  z-index: 85;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 20, 39, 0.88);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--accent-cyan);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 20px rgba(0, 242, 254, 0.25), 0 0 30px rgba(0, 0, 0, 0.6);
+  color: var(--accent-cyan);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px) scale(0.92);
+  transition: opacity var(--t-normal) ease, transform var(--t-normal) var(--ease-spring), visibility var(--t-normal) ease, background var(--t-fast) ease, border-color var(--t-fast) ease, box-shadow var(--t-fast) ease;
+}
+
+.floating-back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.floating-back-to-top:hover {
+  transform: translateY(-3px) scale(1.08);
+  background: rgba(0, 242, 254, 0.18);
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0 6px 25px rgba(0, 242, 254, 0.45), 0 0 15px rgba(0, 242, 254, 0.3);
+}
+
+.floating-back-to-top:active {
+  transform: translateY(0) scale(0.96);
+}
+
 /* COLLAPSED SIDEBAR BEHAVIOR (DESKTOP) */
 @media (min-width: 1025px) {
   body.sidebar-collapsed .sidebar {
@@ -1573,6 +1619,20 @@ body.theater-open {
 }
 
 [data-theme="mica"] .floating-sidebar-toggle:hover {
+  background: #ffffff;
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  box-shadow: 0 6px 25px rgba(14, 165, 233, 0.3);
+}
+
+[data-theme="mica"] .floating-back-to-top {
+  background: rgba(255, 255, 255, 0.94);
+  color: #0f172a;
+  border-color: rgba(30, 41, 59, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12), 0 0 10px rgba(14, 165, 233, 0.2);
+}
+
+[data-theme="mica"] .floating-back-to-top:hover {
   background: #ffffff;
   border-color: var(--accent-blue);
   color: var(--accent-blue);

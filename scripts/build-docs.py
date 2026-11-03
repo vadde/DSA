@@ -1337,6 +1337,11 @@ def generate_html(fundamentals_modules, catalog, all_problems_index):
         <path d="m13 15 3-3-3-3"></path>
       </svg>
     </button>
+    <button class="floating-back-to-top" id="floating-back-to-top" aria-label="Back to top" title="Back to Top (Home)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m18 15-6-6-6 6"></path>
+      </svg>
+    </button>
 
     <!-- Navigation Sidebar -->
     <aside class="sidebar" id="main-sidebar">

@@ -1636,16 +1636,37 @@
     const navLinks = Array.from(document.querySelectorAll('.nav-tree-link'));
     const navGroups = Array.from(document.querySelectorAll('.nav-tree-group'));
     const navHeaders = Array.from(document.querySelectorAll('.nav-tree-header'));
+    const backToTopBtn = document.getElementById('floating-back-to-top');
     if (!chapters.length) return;
+
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener('click', () => {
+        STATE.focalAnchor = null;
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+        if (HapticAudio) HapticAudio.click();
+      });
+    }
 
     let currentActiveChapterId = null;
     let ticking = false;
 
     function onScrollUpdate() {
       ticking = false;
+      const scrollY = window.scrollY || window.pageYOffset;
+
+      if (backToTopBtn) {
+        if (scrollY > 350) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      }
+
       if (STATE.isProgrammaticScroll) return;
 
-      const scrollY = window.scrollY || window.pageYOffset;
       const headerHeight = 72; // 64px header + 8px cushion
 
       // If at the very top of the page (Hero HUD / SIFT area), keep all sidebar groups collapsed
