@@ -61,6 +61,7 @@ def test_css_invariants(css_path: Path):
         ".zoom-btn",
         ".zoom-level-badge",
         ".zoom-fit-btn",
+        "#all-pattern-chapters",
     ]
 
     for req_class in required_classes:

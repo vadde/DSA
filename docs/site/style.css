@@ -1945,6 +1945,12 @@ tr:hover td {
 /* -----------------------------------------------------------------------------
    13. PATTERN CHAPTERS & ACCORDION COLLAPSE
    ----------------------------------------------------------------------------- */
+#all-pattern-chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .pattern-chapter {
   display: flex;
   flex-direction: column;

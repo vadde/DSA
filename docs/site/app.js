@@ -1856,10 +1856,12 @@
 
       // Primary Strategy: Proximity sweep of bounded reading elements within active viewport
       const candidates = Array.from(document.querySelectorAll(
-        '.mermaid, pre, table, tr, h1, h2, h3, h4, p, li, summary, .dna-card, .problem-card, .canvas-card, .callout-glass, blockquote'
+        '.mermaid, pre, table, tr, h1, h2, h3, h4, p, li, summary, .dna-card, .callout-glass, blockquote, td, th, code'
       )).filter(el => {
         if (!el.closest('.stage-wrapper')) return false;
         if (el.offsetParent === null) return false;
+        // Never anchor to container wrappers whose boundaries exceed focal reading range
+        if (el.tagName === 'DETAILS' || el.classList.contains('problem-card') || el.classList.contains('pattern-chapter')) return false;
         const rect = el.getBoundingClientRect();
         if (rect.height < 4 || rect.width < 4) return false;
         return rect.bottom > 64 && rect.top < window.innerHeight;
