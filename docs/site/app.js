@@ -16,14 +16,18 @@
     sidebarWidth: parseInt(localStorage.getItem('dsa_sidebar_width'), 10) || 330,
     isSidebarCollapsed: localStorage.getItem('dsa_sidebar_collapsed') === 'true',
     audioEnabled: localStorage.getItem('dsa_audio_enabled') !== 'false', // Default ON for tactile haptic feedback
+    zoomLevel: parseFloat(localStorage.getItem('dsa_content_zoom')) || 1.0,
+    isFitMode: localStorage.getItem('dsa_content_fit') === 'true',
     isFocusMode: true, // Default to Focus Mode (one expanded chapter at a time)
     isBatchExpanding: false, // Prevents synchronous batch render freeze
     manifest: null,
     searchActiveIndex: -1,
     searchResults: [],
     isProgrammaticScroll: false,
-    programmaticScrollTimer: null
+    programmaticScrollTimer: null,
+    focalAnchor: null // Persistent focal reading anchor across zoom/fit sessions
   };
+  window.STATE = STATE;
 
   // ---------------------------------------------------------------------------
   // 1. HAPTIC AUDIO ENGINE (Curated Web Audio Synthesis, Zero Dependencies)
@@ -356,6 +360,7 @@
       resizer.classList.remove('is-resizing');
       document.body.classList.remove('resizing-sidebar');
       localStorage.setItem('dsa_sidebar_width', STATE.sidebarWidth);
+      window.dispatchEvent(new CustomEvent('dsa:sidebartoggle'));
     }
 
     resizer.addEventListener('pointerup', stopResizing);
@@ -366,6 +371,7 @@
       STATE.sidebarWidth = DEFAULT_WIDTH;
       localStorage.setItem('dsa_sidebar_width', DEFAULT_WIDTH);
       HapticAudio.tap();
+      window.dispatchEvent(new CustomEvent('dsa:sidebartoggle'));
     });
   }
 
@@ -436,6 +442,7 @@
         HapticAudio.sidebarOpen();
         setTimeout(renderVisibleDiagrams, 300);
       }
+      window.dispatchEvent(new CustomEvent('dsa:sidebartoggle', { detail: { isCollapsed: willCollapse } }));
     }
 
     function updateSidebarToggleButtons(collapsed) {
@@ -558,6 +565,7 @@
     });
 
     // 3. Force synchronous layout reflow so the browser finalizes all coordinates
+    STATE.focalAnchor = null;
     void document.body.offsetHeight;
 
     // 4. Calculate exact absolute pixel position
@@ -1628,16 +1636,54 @@
     const navLinks = Array.from(document.querySelectorAll('.nav-tree-link'));
     const navGroups = Array.from(document.querySelectorAll('.nav-tree-group'));
     const navHeaders = Array.from(document.querySelectorAll('.nav-tree-header'));
+    const backToTopBtn = document.getElementById('floating-back-to-top');
     if (!chapters.length) return;
+
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener('click', () => {
+        STATE.focalAnchor = null;
+        STATE.isProgrammaticScroll = true;
+
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+
+        if (HapticAudio && HapticAudio.tap) {
+          HapticAudio.tap();
+        }
+
+        const checkArrival = () => {
+          if (window.scrollY <= 5) {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+            STATE.isProgrammaticScroll = false;
+            if (backToTopBtn) backToTopBtn.classList.remove('visible');
+          } else {
+            STATE.programmaticScrollTimer = setTimeout(checkArrival, 50);
+          }
+        };
+        clearTimeout(STATE.programmaticScrollTimer);
+        STATE.programmaticScrollTimer = setTimeout(checkArrival, 80);
+      });
+    }
 
     let currentActiveChapterId = null;
     let ticking = false;
 
     function onScrollUpdate() {
       ticking = false;
+      const scrollY = window.scrollY || window.pageYOffset;
+
+      if (backToTopBtn) {
+        if (scrollY > 350) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      }
+
       if (STATE.isProgrammaticScroll) return;
 
-      const scrollY = window.scrollY || window.pageYOffset;
       const headerHeight = 72; // 64px header + 8px cushion
 
       // If at the very top of the page (Hero HUD / SIFT area), keep all sidebar groups collapsed
@@ -1691,9 +1737,17 @@
           }
         });
 
-        // Gently keep the active group visible in sidebar
+        // Gently keep the active group visible in sidebar without hijacking window smooth scroll
         if (targetGroup) {
-          targetGroup.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          const sidebar = document.getElementById('main-sidebar');
+          if (sidebar) {
+            const groupRect = targetGroup.getBoundingClientRect();
+            const sidebarRect = sidebar.getBoundingClientRect();
+            if (groupRect.top < sidebarRect.top || groupRect.bottom > sidebarRect.bottom) {
+              const diff = (groupRect.top - sidebarRect.top) - (sidebar.clientHeight / 2 - groupRect.height / 2);
+              sidebar.scrollTop += diff;
+            }
+          }
         }
       }
 
@@ -1727,9 +1781,25 @@
     }
 
     window.addEventListener('scroll', () => {
+      if (!STATE.isProgrammaticScroll) {
+        STATE.focalAnchor = null;
+      }
       if (!ticking) {
         requestAnimationFrame(onScrollUpdate);
         ticking = true;
+      }
+    }, { passive: true });
+
+    // Invalidate locked focal anchor only upon deliberate human navigation gestures
+    ['wheel', 'touchmove'].forEach(evt => {
+      window.addEventListener(evt, () => {
+        STATE.focalAnchor = null;
+      }, { passive: true });
+    });
+
+    window.addEventListener('keydown', e => {
+      if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(e.key)) {
+        STATE.focalAnchor = null;
       }
     }, { passive: true });
 
@@ -1738,9 +1808,354 @@
   }
 
   // ---------------------------------------------------------------------------
-  // INITIALIZATION ON DOMContentLoaded
+  // 12. DYNAMIC ADAPTIVE CONTENT ZOOM & STAGE WIDTH ENGINE
   // ---------------------------------------------------------------------------
-  document.addEventListener('DOMContentLoaded', () => {
+  function initDynamicZoomEngine() {
+    const zoomStepper = document.getElementById('hud-zoom-stepper');
+    const zoomInBtn = document.getElementById('zoom-in-btn');
+    const zoomOutBtn = document.getElementById('zoom-out-btn');
+    const zoomBadge = document.getElementById('zoom-level-badge');
+    const zoomFitBtn = document.getElementById('zoom-fit-btn');
+    const stageWrapper = document.querySelector('.stage-wrapper');
+
+    if (!stageWrapper) return;
+
+    const BASE_STAGE_WIDTH = 1040;
+
+    /**
+     * Dynamically calculates available content width, max fit zoom factor,
+     * and an adaptive step ladder tailored specifically to the screen width.
+     */
+    function calculateDynamicFit() {
+      const windowWidth = window.innerWidth;
+      const isMobile = windowWidth <= 768;
+      const isCollapsed = document.body.classList.contains('sidebar-collapsed');
+
+      if (isMobile) {
+        return {
+          windowWidth,
+          availWidth: windowWidth,
+          fitZoom: 1.0,
+          fitPct: 100,
+          steps: [100],
+          isMobile: true
+        };
+      }
+
+      // Sidebar width
+      let sidebarWidth = 0;
+      if (!isCollapsed && windowWidth > 1024) {
+        const sidebar = document.getElementById('main-sidebar');
+        sidebarWidth = sidebar ? sidebar.offsetWidth : 330;
+      }
+
+      // Safe reading gutters (icon-only 38px floating toggle clearance)
+      const gutters = isCollapsed ? 120 : 96;
+      const availWidth = Math.max(BASE_STAGE_WIDTH, windowWidth - sidebarWidth - gutters);
+
+      // Raw dynamic zoom needed to fit available width
+      const rawFitZoom = Math.min(2.0, Math.max(1.0, availWidth / BASE_STAGE_WIDTH));
+      const fitPct = Math.round(rawFitZoom * 100);
+
+      // Dynamic adaptive step ladder (2 to 4 punchy steps with ~25% increments)
+      let steps;
+      if (fitPct <= 105) {
+        steps = [100];
+      } else if (fitPct <= 130) {
+        // e.g. 14" laptop or tablet landscape (2 steps)
+        steps = [100, fitPct];
+      } else if (fitPct <= 160) {
+        // e.g. 15"/16" laptop standard scaling (3 steps)
+        steps = [100, 125, fitPct];
+      } else if (fitPct <= 185) {
+        // e.g. 16" MacBook Pro Retina scaling (4 steps: 100% -> 125% -> 150% -> 175%)
+        steps = [100, 125, 150, fitPct];
+      } else {
+        // e.g. 2K/4K External Monitor (up to 200%)
+        steps = [100, 125, 150, 175, fitPct];
+      }
+
+      return {
+        windowWidth,
+        availWidth,
+        fitZoom: rawFitZoom,
+        fitPct,
+        steps,
+        isMobile: false
+      };
+    }
+
+    /**
+     * Finds the primary visible landmark element in the user's viewport
+     * to preserve the focal reading position across zoom reflows with sub-pixel stability.
+     */
+    function captureViewportLandmark() {
+      // Top of page preservation: if at or near document top, pin directly to top: 0
+      if (window.scrollY <= 10) {
+        return { el: null, isTop: true, scrollRatio: 0 };
+      }
+
+      // Re-use currently locked focal anchor if valid within active viewport bounds
+      if (STATE.focalAnchor && STATE.focalAnchor.el && STATE.focalAnchor.el.isConnected) {
+        const r = STATE.focalAnchor.el.getBoundingClientRect();
+        if (r.bottom > 64 && r.top < window.innerHeight) {
+          return STATE.focalAnchor;
+        }
+      }
+
+      const midY = window.innerHeight * 0.50;
+
+      // Primary Strategy: Proximity sweep of bounded reading elements within active viewport
+      const candidates = Array.from(document.querySelectorAll(
+        '.mermaid, pre, table, tr, h1, h2, h3, h4, p, li, summary, .dna-card, .callout-glass, blockquote, td, th, code'
+      )).filter(el => {
+        if (!el.closest('.stage-wrapper')) return false;
+        if (el.offsetParent === null) return false;
+        // Never anchor to container wrappers whose boundaries exceed focal reading range
+        if (el.tagName === 'DETAILS' || el.classList.contains('problem-card') || el.classList.contains('pattern-chapter')) return false;
+        const rect = el.getBoundingClientRect();
+        if (rect.height < 4 || rect.width < 4) return false;
+        return rect.bottom > 64 && rect.top < window.innerHeight;
+      });
+
+      let best = null;
+      let minDistance = Infinity;
+
+      for (const el of candidates) {
+        const rect = el.getBoundingClientRect();
+        const visibleTop = Math.max(64, rect.top);
+        const visibleBottom = Math.min(window.innerHeight, rect.bottom);
+        const center = (visibleTop + visibleBottom) / 2;
+        const dist = Math.abs(center - midY);
+        if (dist < minDistance) {
+          minDistance = dist;
+          best = el;
+        }
+      }
+
+      if (best) {
+        const locked = { el: best, viewportTop: best.getBoundingClientRect().top };
+        STATE.focalAnchor = locked;
+        return locked;
+      }
+
+      // Fallback Strategy: Proportional scroll ratio preservation
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      return { el: null, scrollRatio: window.scrollY / maxScroll };
+    }
+
+    /**
+     * Applies the specified zoom factor and updates UI controls, aria labels,
+     * and storage, preserving the user's exact focal reading position.
+     */
+    function applyZoom(zoomScale, isFit = false, emitSound = false) {
+      const fitData = calculateDynamicFit();
+
+      if (fitData.isMobile) {
+        zoomScale = 1.0;
+        isFit = false;
+      } else {
+        zoomScale = Math.min(fitData.fitZoom, Math.max(1.0, zoomScale));
+      }
+
+      // Halts any active smooth scroll animation to ensure stationary landmark capture
+      const htmlEl = document.documentElement;
+      const prevScrollBehavior = htmlEl.style.scrollBehavior;
+      htmlEl.style.scrollBehavior = 'auto';
+      window.scrollTo({ top: window.scrollY, behavior: 'instant' });
+
+      // 1. Capture or retrieve locked focal reading anchor before applying layout changes
+      const anchor = captureViewportLandmark();
+      STATE.isProgrammaticScroll = true;
+
+      STATE.zoomLevel = zoomScale;
+      STATE.isFitMode = isFit;
+
+      const currentPct = Math.round(zoomScale * 100);
+
+      // 2. Apply zoom to reading stage synchronously with zero transition delay
+      stageWrapper.style.transition = 'none';
+      stageWrapper.style.zoom = String(zoomScale);
+
+      // In Fit mode or when zoomed > 100%, allow stage to expand to fill available space
+      if (isFit || zoomScale > 1.0) {
+        stageWrapper.style.maxWidth = '100%';
+      } else {
+        stageWrapper.style.maxWidth = `${BASE_STAGE_WIDTH}px`;
+      }
+
+      // Force synchronous layout recalculation across root layout tree
+      void stageWrapper.offsetHeight;
+      void document.body.offsetHeight;
+
+      // 3. Immediately restore focal anchor position to eliminate scroll drift
+      if (anchor && anchor.isTop) {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      } else if (anchor && anchor.el) {
+        const currentTop = anchor.el.getBoundingClientRect().top;
+        const drift = currentTop - anchor.viewportTop;
+        if (Math.abs(drift) > 0.05) {
+          window.scrollBy({ top: drift, behavior: 'instant' });
+          anchor.viewportTop = anchor.el.getBoundingClientRect().top;
+        }
+      } else if (anchor && typeof anchor.scrollRatio === 'number') {
+        const newMaxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        window.scrollTo({ top: anchor.scrollRatio * newMaxScroll, behavior: 'instant' });
+      }
+
+      // Flush and restore root scroll behavior
+      void htmlEl.offsetHeight;
+      htmlEl.style.scrollBehavior = prevScrollBehavior;
+
+      // Release programmatic scroll flag after layout stabilizes
+      if (STATE.programmaticScrollTimer) {
+        clearTimeout(STATE.programmaticScrollTimer);
+      }
+      STATE.programmaticScrollTimer = setTimeout(() => {
+        STATE.isProgrammaticScroll = false;
+      }, 70);
+
+      // Update badge & buttons
+      if (zoomBadge) {
+        zoomBadge.textContent = `${currentPct}%`;
+        zoomBadge.title = currentPct === 100 ? 'Standard Reading Width (100%)' : `Current Zoom: ${currentPct}% (Click to Reset)`;
+        zoomBadge.setAttribute('aria-valuenow', String(currentPct));
+      }
+
+      if (zoomFitBtn) {
+        zoomFitBtn.classList.toggle('active', isFit);
+        zoomFitBtn.title = isFit ? `Dynamic Fit Active (${currentPct}%) — Click to Reset` : `Fit to Screen Width (${fitData.fitPct}%) (Alt+F)`;
+      }
+
+      if (zoomOutBtn) {
+        zoomOutBtn.disabled = currentPct <= 100;
+      }
+
+      if (zoomInBtn) {
+        zoomInBtn.disabled = currentPct >= fitData.fitPct;
+      }
+
+      // Persist preferences
+      localStorage.setItem('dsa_content_zoom', String(zoomScale));
+      localStorage.setItem('dsa_content_fit', String(isFit));
+
+      if (emitSound && HapticAudio) {
+        if (isFit || zoomScale > 1.0) {
+          HapticAudio.expand();
+        } else {
+          HapticAudio.collapse();
+        }
+      }
+    }
+
+    // Handlers
+    if (zoomInBtn) {
+      zoomInBtn.addEventListener('click', () => {
+        const fitData = calculateDynamicFit();
+        const currentPct = Math.round(STATE.zoomLevel * 100);
+        const nextStep = fitData.steps.find(s => s > currentPct + 2) || fitData.fitPct;
+        const willBeFit = (nextStep >= fitData.fitPct);
+        applyZoom(nextStep / 100, willBeFit, true);
+      });
+    }
+
+    if (zoomOutBtn) {
+      zoomOutBtn.addEventListener('click', () => {
+        const fitData = calculateDynamicFit();
+        const currentPct = Math.round(STATE.zoomLevel * 100);
+        const prevSteps = fitData.steps.filter(s => s < currentPct - 2);
+        const prevStep = prevSteps.length > 0 ? prevSteps[prevSteps.length - 1] : 100;
+        applyZoom(prevStep / 100, false, true);
+      });
+    }
+
+    if (zoomFitBtn) {
+      zoomFitBtn.addEventListener('click', () => {
+        if (STATE.isFitMode) {
+          applyZoom(1.0, false, true);
+        } else {
+          const fitData = calculateDynamicFit();
+          applyZoom(fitData.fitZoom, true, true);
+        }
+      });
+    }
+
+    if (zoomBadge) {
+      zoomBadge.addEventListener('click', () => {
+        applyZoom(1.0, false, true);
+      });
+    }
+
+    // Keyboard Shortcuts (Alt+=, Alt+-, Alt+0, Alt+F)
+    document.addEventListener('keydown', (e) => {
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+
+      if (e.altKey && !e.ctrlKey && !e.metaKey) {
+        if (e.key === '=' || e.key === '+') {
+          e.preventDefault();
+          zoomInBtn?.click();
+        } else if (e.key === '-' || e.key === '_') {
+          e.preventDefault();
+          zoomOutBtn?.click();
+        } else if (e.key === '0') {
+          e.preventDefault();
+          zoomBadge?.click();
+        } else if (e.key.toLowerCase() === 'f') {
+          e.preventDefault();
+          zoomFitBtn?.click();
+        }
+      }
+    });
+
+    // Window resize observer (re-adapts if in Fit mode or recalculates bounds)
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      if (resizeTimer) cancelAnimationFrame(resizeTimer);
+      resizeTimer = requestAnimationFrame(() => {
+        if (STATE.isFitMode) {
+          const fitData = calculateDynamicFit();
+          applyZoom(fitData.fitZoom, true, false);
+        } else {
+          applyZoom(STATE.zoomLevel, false, false);
+        }
+      });
+    }, { passive: true });
+
+    // Custom event for sidebar toggle
+    window.addEventListener('dsa:sidebartoggle', () => {
+      if (STATE.isFitMode) {
+        const fitData = calculateDynamicFit();
+        applyZoom(fitData.fitZoom, true, false);
+      } else {
+        applyZoom(STATE.zoomLevel, false, false);
+      }
+    });
+
+    // Expose on window for programmatic verification and testing
+    window.dsaDynamicZoom = {
+      calculateDynamicFit,
+      applyZoom,
+      getSteps: () => calculateDynamicFit().steps,
+      getFitPct: () => calculateDynamicFit().fitPct,
+      getCurrentPct: () => Math.round(STATE.zoomLevel * 100),
+      isFitMode: () => STATE.isFitMode
+    };
+
+    // Restore saved state on boot
+    if (STATE.isFitMode) {
+      const fitData = calculateDynamicFit();
+      applyZoom(fitData.fitZoom, true, false);
+    } else if (STATE.zoomLevel > 1.0) {
+      applyZoom(STATE.zoomLevel, false, false);
+    } else {
+      applyZoom(1.0, false, false);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // INITIALIZATION
+  // ---------------------------------------------------------------------------
+  function initAll() {
     initThemeEngine();
     initHaloEngine();
     initSidebarResizer();
@@ -1753,7 +2168,14 @@
     initZoomableCanvases();
     initLazyRenderers();
     initScrollSpy();
+    initDynamicZoomEngine();
 
     console.log('%c Ω DSA PATTERN BIBLE — Activated ', 'background:#00f2fe;color:#03020a;font-weight:bold;padding:4px 8px;border-radius:4px;');
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
 })();

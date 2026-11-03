@@ -68,8 +68,12 @@ jobs:
         run: |
           python scripts/audit_links_and_anchors.py
 
+      - name: Run Dynamic Adaptive Zoom & Stage Width Linter
+        run: |
+          python scripts/audit_dynamic_zoom_engine.py
+
   docs-portal-audit:
-    name: 15-Gate Living Docs Verification Suite
+    name: 16-Gate Living Docs Verification Suite
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -80,9 +84,9 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Build & Run 15-Gate Headless Audit Suite
+      - name: Build & Run 16-Gate Headless Audit Suite
         run: |
-          chmod +x scripts/build-docs.sh scripts/test-docs.sh scripts/audit_ascii_boxes.py scripts/audit_collapsible_elements.py scripts/audit_monospace_badging_and_trees.py scripts/audit_links_and_anchors.py
+          chmod +x scripts/build-docs.sh scripts/test-docs.sh scripts/audit_ascii_boxes.py scripts/audit_collapsible_elements.py scripts/audit_monospace_badging_and_trees.py scripts/audit_links_and_anchors.py scripts/audit_dynamic_zoom_engine.py
           make docs-test
 
   security-scan:

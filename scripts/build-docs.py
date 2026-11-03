@@ -1310,6 +1310,16 @@ def generate_html(fundamentals_modules, catalog, all_problems_index):
         <button class="theme-pill-btn" data-theme-set="matrix" title="Matrix Obsidian">Matrix</button>
       </div>
 
+      <div class="hud-zoom-stepper" id="hud-zoom-stepper" role="group" aria-label="Reading Canvas Zoom & Fit Controls">
+        <button class="zoom-btn zoom-out" id="zoom-out-btn" aria-label="Zoom Out" title="Zoom Out (Alt+−)">−</button>
+        <button class="zoom-level-badge" id="zoom-level-badge" aria-label="Current Zoom Level (Click to Reset)" title="Click to Reset (100%)">100%</button>
+        <button class="zoom-btn zoom-in" id="zoom-in-btn" aria-label="Zoom In" title="Zoom In (Alt++)">+</button>
+        <button class="zoom-fit-btn" id="zoom-fit-btn" aria-label="Fit to Screen Width" title="Dynamic Fit to Screen Width (Alt+F)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          <span>Fit</span>
+        </button>
+      </div>
+
       <button class="hud-tool-btn" id="audio-toggle-btn" title="Toggle Audio Feedback">🔊</button>
       <a href="https://github.com/vadde/DSA" target="_blank" rel="noopener" class="hud-tool-btn" title="View Source on GitHub">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -1321,12 +1331,16 @@ def generate_html(fundamentals_modules, catalog, all_problems_index):
   <div class="layout-container">
     <div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop" aria-hidden="true"></div>
     <button class="floating-sidebar-toggle" id="floating-sidebar-toggle" aria-label="Open Navigation Sidebar" title="Open Sidebar (⌘B / [)">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
         <line x1="9" y1="3" x2="9" y2="21"></line>
         <path d="m13 15 3-3-3-3"></path>
       </svg>
-      <span>Navigation</span>
+    </button>
+    <button class="floating-back-to-top" id="floating-back-to-top" aria-label="Back to top" title="Back to Top (Home)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m18 15-6-6-6 6"></path>
+      </svg>
     </button>
 
     <!-- Navigation Sidebar -->
