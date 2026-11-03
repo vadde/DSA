@@ -1,7 +1,7 @@
 ---
 name: dsa-docs-portal
 description: >-
-  Authoritative engineering guide and automated testing protocol for the DSA Living Documentation Portal (https://vadde.github.io/DSA/). Covers Year 2500 cosmic liquid-glass design system, Aero Mica ambient halos, draggable sidebar resizer invariants, commute gadget mobile drawer, zero-truncation titles, touch-overflow containment, 1:1 ScrollSpy sync, Mermaid SVG layout rules, Safari WebKit flex sizing, sub-millisecond Theater mode workbench, KaTeX math typesetting, interactive SIFT simulator, Cmd+K fuzzy search, Unicode monospace box-drawing alignment engine, and the 12-gate automated headless audit suite.
+  Authoritative engineering guide and automated testing protocol for the DSA Living Documentation Portal (https://vadde.github.io/DSA/). Covers Year 2500 cosmic liquid-glass design system, Aero Mica ambient halos, draggable sidebar resizer invariants, icon-only squircle navigation toggles, inter-pattern 24px spacing, floating back-to-top guider engine, commute gadget mobile drawer, zero-truncation titles, touch-overflow containment, 1:1 ScrollSpy sync with decoupled sidebar scrolling, Mermaid SVG layout rules, Safari WebKit flex sizing, sub-millisecond Theater mode workbench, KaTeX math typesetting, interactive SIFT simulator, Cmd+K fuzzy search, Unicode monospace box-drawing alignment engine, and the 16-gate automated headless audit suite.
 ---
 
 # 📚 DSA Living Documentation Portal Engineering Skill
@@ -18,22 +18,26 @@ The documentation portal is built with **zero build toolchain dependencies** (pu
 
 ```
 DSA/
-├── Makefile                               # Canonical DevEx commands (docs-build, docs-serve, docs-test, test-boxes, format-boxes)
+├── Makefile                               # Canonical DevEx commands (docs-build, docs-serve, docs-test, test-zoom, test-links, etc.)
 ├── specs/
 │   └── SPEC-001-dsa-futuristic-docs-portal.md # Ratified PRD & System Architecture Spec
 ├── docs/site/
 │   ├── index.html                         # Hydrated Year 2500 Command Deck Shell
-│   ├── style.css                          # Liquid glass tokens, Aero Mica halos, resizer, responsive layout
-│   └── app.js                             # ScrollSpy, resizer, mobile drawer, search modal, lazy renderers
+│   ├── style.css                          # Liquid glass tokens, Aero Mica halos, resizer, zoom engine, responsive layout
+│   └── app.js                             # ScrollSpy, dynamic zoom, resizer, mobile drawer, search modal, lazy renderers
 ├── scripts/
 │   ├── build-docs.py                      # Production catalog compiler (extracts metadata, problems, walkthroughs)
 │   ├── build-docs.sh                      # Static bundle packaging script (outputs to _site/)
-│   ├── test-docs.sh                       # 12-Gate automated headless verification suite
-│   └── audit_ascii_boxes.py               # Unicode UAX #11 monospace box-drawing linter and formatter
+│   ├── test-docs.sh                       # 16-Gate automated headless verification suite
+│   ├── audit_dynamic_zoom_engine.py       # Gate 16: Dynamic adaptive zoom & stage width fitting linter
+│   ├── audit_links_and_anchors.py         # Gate 15: Universal hyperlink integrity & local path prevention linter
+│   ├── audit_monospace_badging_and_trees.py # Gate 14: Monospace semantic badging & ASCII tree alignment linter
+│   ├── audit_collapsible_elements.py      # Gate 13: Collapsible details & raw HTML block escaping linter
+│   └── audit_ascii_boxes.py               # Gate 12: Unicode UAX #11 monospace box-drawing linter and formatter
 ├── .agents/skills/dsa-docs-portal/
 │   └── SKILL.md                           # YOU ARE HERE — Authoritative design & engineering protocol
 └── .github/workflows/
-    ├── ci.yml                             # Parallel CI verification (Python AST, Ruff, Box Linter, 12-Gate Audit)
+    ├── ci.yml                             # Parallel CI verification (Python AST, Ruff, Box Linter, 16-Gate Audit)
     └── docs-publish.yml                   # CD workflow deploying verified main pushes to GitHub Pages
 ```
 
@@ -45,28 +49,108 @@ The portal uses a **deep cosmic liquid-glass design system with Aero Mica ambien
 
 ### Color Palette Tokens
 
-| Token | CSS Variable | Hex / RGBA Value | Purpose |
-|---|---|---|---|
-| **Canvas Deep Base** | `--bg-deep` | `#050813` | Deep space background canvas |
-| **Card Surface** | `--bg-card` | `rgba(13, 20, 39, 0.65)` | Glassmorphism card background |
-| **Card Border** | `--bg-card-border` | `rgba(255, 255, 255, 0.08)` | Subtle translucent glass card edge |
-| **Hover Border** | `--bg-card-border-glow` | `rgba(0, 242, 254, 0.35)` | Interactive element border focus |
-| **Cyan Accent** | `--accent-cyan` | `#00f2fe` | Primary interactive focus, active items, SIFT highlights |
-| **Violet Accent** | `--accent-violet` | `#a855f7` | Diagram relational links, DNA skeleton badges |
-| **Emerald Accent** | `--accent-emerald` | `#10b981` | Passing status, Easy difficulty badge |
-| **Amber Accent** | `--accent-amber` | `#f59e0b` | Medium difficulty badge, caution callouts |
-| **Rose Accent** | `--accent-rose` | `#f43f5e` | Hard difficulty badge, Kill Mode alerts |
-| **Primary Text** | `--text-main` | `#f1f5f9` | High-contrast body text and titles |
-| **Muted Text** | `--text-muted` | `#94a3b8` | Subtitles, parameter descriptions |
-| **Dim Text** | `--text-dim` | `#64748b` | Captions, footnotes, table metadata |
+| Token | CSS Variable | Dark Hex / RGBA Value | Mica Light Equivalent | Purpose |
+|---|---|---|---|---|
+| **Canvas Deep Base** | `--bg-deep` | `#050813` | `#f8fafc` | Deep space background canvas |
+| **Card Surface** | `--bg-card` | `rgba(13, 20, 39, 0.65)` | `rgba(255, 255, 255, 0.88)` | Glassmorphism card background |
+| **Card Border** | `--bg-card-border` | `rgba(255, 255, 255, 0.08)` | `rgba(30, 41, 59, 0.15)` | Subtle translucent glass card edge |
+| **Hover Border** | `--bg-card-border-glow` | `rgba(0, 242, 254, 0.35)` | `rgba(14, 165, 233, 0.35)` | Interactive element border focus |
+| **Cyan Accent** | `--accent-cyan` | `#00f2fe` | `#0284c7` | Primary interactive focus, active items, SIFT highlights |
+| **Violet Accent** | `--accent-violet` | `#a855f7` | `#7c3aed` | Diagram relational links, DNA skeleton badges |
+| **Emerald Accent** | `--accent-emerald` | `#10b981` | `#059669` | Passing status, Easy difficulty badge |
+| **Amber Accent** | `--accent-amber` | `#f59e0b` | `#d97706` | Medium difficulty badge, caution callouts |
+| **Rose Accent** | `--accent-rose` | `#f43f5e` | `#e11d48` | Hard difficulty badge, Kill Mode alerts |
+| **Primary Text** | `--text-main` | `#f1f5f9` | `#0f172a` | High-contrast body text and titles |
+| **Muted Text** | `--text-muted` | `#94a3b8` | `#475569` | Subtitles, parameter descriptions |
+| **Dim Text** | `--text-dim` | `#64748b` | `#64748b` | Captions, footnotes, table metadata |
 
 ### Theme Invariants:
-1. **Liquid Glass (`[data-theme="liquid"]`)**: Default deep cosmic glass with vibrant cyan/violet edge glows.
+1. **Liquid Glass (`[data-theme="liquid"]`)**: Default deep cosmic glass with vibrant cyan/violet edge glows and dark halo gradients.
 2. **Aero Mica (`[data-theme="mica"]`)**:
    - **High-Contrast Code Blocks**: Code blocks MUST use dark text on bright frosted surface (`background: rgba(255, 255, 255, 0.95); color: #0f172a !important;`). Never leave white-on-white text!
    - **Frosted Theater Tool Buttons**: Must use high-contrast frosted pills (`background: rgba(255, 255, 255, 0.22); border: 1px solid rgba(255, 255, 255, 0.55); color: #ffffff !important;`) so that `+`, `−`, `100%`, and `Fit` buttons pop over the dark modal header.
+   - **Floating Squircles**: `#floating-sidebar-toggle` and `#floating-back-to-top` use bright white glass (`background: rgba(255, 255, 255, 0.94); color: #0f172a; border-color: rgba(30, 41, 59, 0.25);`).
 3. **Obsidian Dark (`[data-theme="obsidian"]`)**: Matte pure-black stealth palette with emerald accents.
 4. **Cyberpunk Neon (`[data-theme="cyberpunk"]`)**: High-saturation hot-pink (`#ff007f`) and electric cyan (`#00f0ff`) contrast grid.
+
+---
+
+## 🔍 Dynamic Adaptive Content Zoom & Stage Width Engine (Gate 16)
+
+The reading stage features a dynamic zoom and fitting engine that dynamically extends the main reading content to fit the available screen width across all form factors:
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│ TOP HUD NAVIGATION BAR                                                 │
+│ [☰] [⎕] DSA PATTERN BIBLE        [ − | 155% | + | ⤢ Fit ]   [🔍] [🔊] │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### 1. Mathematical Formulation & Available Width Calculation:
+```javascript
+const windowWidth = window.innerWidth;
+const isCollapsed = document.body.classList.contains('sidebar-collapsed');
+const sidebarEffectiveWidth = isCollapsed ? 0 : sidebarWidth;
+const reservedGutter = isCollapsed ? 72 : 48; // Safe margin & floating icon clearance
+const availWidth = Math.max(768, windowWidth - sidebarEffectiveWidth - reservedGutter);
+const rawFitZoom = availWidth / BASE_STAGE_WIDTH; // BASE_STAGE_WIDTH = 1040px
+```
+
+### 2. Multi-Viewport Dynamic Step Synthesis:
+The ladder dynamically synthesizes 1 to 4 punchy steps with $\sim 25\%$ increments tailored to the device screen:
+- **Mobile Phone ($\le 768\text{px}$)**: Locked at $100\%$ safeguard (stepper hidden/disabled; prevents horizontal overflow).
+- **14" Laptop ($1440\text{px}$)**: Fit = $127\%$, Steps: `[100, 127]` (1 click to fit).
+- **16" MacBook Pro ($1728\text{px}$)**: Fit = $155\%$, Steps: `[100, 125, 155]` (2 clicks to fit).
+- **1080p Desktop ($1920\text{px}$)**: Fit = $173\%$, Steps: `[100, 125, 150, 173]` (3 clicks to fit).
+- **4K / Ultrawide ($2560\text{px}$)**: Fit = $200\%$, Steps: `[100, 125, 150, 175, 200]` (4 clicks to fit).
+
+### 3. Sub-Pixel Focal Landmark Preservation (`captureViewportLandmark()`):
+When zooming or resizing, the user must **never lose their reading place**:
+- **Top-of-Page Zero-Drift Rule**: If $scrollY \le 10\text{px}$, anchor is locked to `{ el: null, isTop: true, scrollRatio: 0 }`. Toggling Fit or zooming while at the top pins scroll strictly to `top: 0` ($0.0\text{px}$ drift).
+- **Atomic Leaf Proximity Sweep**: Evaluates leaf reading elements (`h1-h4, p, li, pre, table, tr, summary, .mermaid, .dna-card, .callout-glass, blockquote, td, th, code`) within active viewport bounds (`rect.bottom > 64 && rect.top < window.innerHeight`).
+- **Container Wrapper Exclusion Invariant**: Never anchor to container wrappers whose boundaries exceed focal reading range (`DETAILS`, `.problem-card`, `.pattern-chapter`). Anchoring to $4{,}000\text{px}$-tall containers causes catastrophic downward drag when scaling!
+- **Instant Scroll Halt**: Executes `window.scrollTo({ top: window.scrollY, behavior: 'instant' })` prior to reading coordinates, arresting in-flight smooth scroll animations from corrupting anchor positions.
+- **Zero-Transition Stage Wrapper**: `.stage-wrapper` must specify `transition: none !important;`. Any CSS transition interpolation on `max-width` or `zoom` creates asynchronous layout drift during synchronous reflow computation.
+
+### 4. Stepper HUD Controls & Shortcuts:
+- Stepper elements: `#zoom-out-btn` (`−`), `#zoom-level-badge` (click to reset to 100%), `#zoom-in-btn` (`+`), and `#zoom-fit-btn` (`⤢ Fit` toggle).
+- Global keyboard shortcuts:
+  - `Alt+=` or `Alt++`: Zoom In to next adaptive step
+  - `Alt+-` or `Alt+_`: Zoom Out to previous adaptive step
+  - `Alt+0`: Reset to 100%
+  - `Alt+F`: Toggle Dynamic Fit mode
+- State persistence: `localStorage.getItem('dsa_content_zoom')`, `localStorage.getItem('dsa_content_fit')`.
+
+---
+
+## 🚀 Liquid-Glass Floating "Back-to-Top" Guider Engine
+
+A fixed liquid-glass squircle button in the bottom-right corner of the viewport:
+
+```html
+<button class="floating-back-to-top" id="floating-back-to-top" aria-label="Back to top" title="Back to Top (Home)">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="m18 15-6-6-6 6"></path>
+  </svg>
+</button>
+```
+
+### Critical Operational Invariants:
+1. **Geometry & Position**:
+   - `width: 38px; height: 38px;` squircle matching `#floating-sidebar-toggle`.
+   - `position: fixed; bottom: max(28px, env(safe-area-inset-bottom, 28px)); right: max(28px, env(safe-area-inset-right, 28px)); z-index: 85;`
+2. **Scroll-Position Awareness**:
+   - Monitored inside the unified `requestAnimationFrame` scroll loop in `app.js`.
+   - Hidden at document top (`opacity: 0; visibility: hidden; pointer-events: none`).
+   - Smoothly reveals when $scrollY > 350\text{px}$ (`opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0) scale(1);`).
+3. **Decoupled Sidebar Scrolling & Smooth Scroll Immunity**:
+   - **The Bug**: Native `targetGroup.scrollIntoView({ behavior: 'smooth' })` inside the sidebar scrollSpy hijacked and terminated the window's ongoing smooth scroll to top midway through execution (e.g. freezing scroll at 7,793px or 5,571px).
+   - **The Fix**: Sidebar auto-scrolling must strictly operate on `#main-sidebar` via direct `scrollTop` adjustment (`sidebar.scrollTop += diff;`). It must **never** call `scrollIntoView()` on DOM elements, completely isolating sidebar scrolling from the global window viewport scroll engine.
+4. **Anchor Telemetry & Programmatic Scroll Shield**:
+   - Clicking sets `STATE.focalAnchor = null` and flags `STATE.isProgrammaticScroll = true`, silencing scrollSpy accordion events during transit.
+   - Smoothly scrolls to `top: 0` (`window.scrollTo({ top: 0, behavior: 'smooth' })`).
+   - Triggers synthetic tactile audio feedback via `HapticAudio.tap()`.
+   - Releases programmatic scroll flag once $scrollY \le 5\text{px}$.
 
 ---
 
@@ -94,17 +178,34 @@ The navigation sidebar supports both continuous draggable resizing and full coll
 ```
 
 ### Operational Invariants:
-1. **Collapsible Distraction-Free Reading**:
-   - Closed via `#sidebar-close-btn` inside sidebar or `#sidebar-dock-toggle` in header.
-   - When collapsed, `body.sidebar-collapsed` shifts `.sidebar` by `margin-left: calc(-1 * var(--sidebar-width)); opacity: 0; visibility: hidden;` and hides `.sidebar-resizer`.
-   - Floating reopen tab `#floating-sidebar-toggle` appears on the left edge (`top: calc(var(--topbar-height) + 14px); left: 14px;`).
-   - Global keyboard shortcuts: `⌘B`, `Ctrl+B`, or `[` (when not focused in inputs) toggle the rail instantly.
-   - State persisted in `localStorage.setItem('dsa_sidebar_collapsed', 'true' / 'false')`.
-2. **Bounds Clamping**: Resizing strictly clamped between `MIN_WIDTH = 240px` and `MAX_WIDTH = 560px`.
-3. **Dragging Performance**: During drag, `body.resizing-sidebar` sets `cursor: col-resize !important; user-select: none !important;`.
-4. **Persistence**: Width choice is saved to `localStorage.setItem('dsa_sidebar_width', width)`.
-5. **Double-Click Reset**: Double-clicking resets `--sidebar-width` to default `330px`.
-6. **Zero-Truncation Invariant**: Never clip navigation titles with single-line ellipses (`white-space: normal; word-break: break-word`).
+1. **Icon-Only Floating Squircle**:
+   - `#floating-sidebar-toggle` is styled as an **icon-only 38px squircle** (`width: 38px; height: 38px;`).
+   - Omission of text label ("Navigation") recovers **98px of horizontal reading space**, allowing content to expand further toward the left edge.
+2. **Safe Clearance Gutters**:
+   - When sidebar is collapsed, `.content-area` enforces `padding-left: clamp(54px, 4vw, 72px)` to prevent main reading content from being occluded by the floating toggle tab.
+3. **Bounds Clamping**: Resizing strictly clamped between `MIN_WIDTH = 240px` and `MAX_WIDTH = 560px`.
+4. **Dragging Performance**: During drag, `body.resizing-sidebar` sets `cursor: col-resize !important; user-select: none !important;`.
+5. **Persistence**: Width choice is saved to `localStorage.setItem('dsa_sidebar_width', width)`.
+6. **Double-Click Reset**: Double-clicking resets `--sidebar-width` to default `330px`.
+7. **Zero-Truncation Invariant**: Never clip navigation titles with single-line ellipses (`white-space: normal; word-break: break-word`).
+
+---
+
+## 📐 Inter-Pattern Tile Spacing ($24\text{px}$)
+
+All 48 algorithmic pattern and theoretical foundation chapters are enclosed within `#all-pattern-chapters`:
+
+```css
+#all-pattern-chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+```
+
+### Spacing Invariants:
+1. **Consistent Card Separation**: Guarantees an exact $24\text{px}$ visual breathing margin between all chapter squircle cards without collapsing margins.
+2. **Zoom Immunity**: Spacing is contained within flex layout flow, scaling naturally and proportionally under CSS zoom factors ($100\%$ to $200\%$) without overlapping or text collisions.
 
 ---
 
@@ -201,7 +302,7 @@ The fullscreen theater view is implemented using native HTML5 `<dialog id="theat
    - Zoom In (`+`), Zoom Out (`−`), 100% Reset, and Fit execute in **0.00ms to 0.20ms**.
 2. **Clear UX Distinction: `100%` vs `Fit`**:
    - `100%` (`theaterZoomReset`): Resets scale to **`1.0`** (true 1:1 native pixel design scale).
-   - `Fit` (`theaterZoomFit`): Dynamically calculates exact scale based on live viewport boundaries and SVG `viewBox` (`scale = Math.min(availW / vbW, availH / vbH)`), reporting calculated value (e.g. `62%` or `170%`) in the badge.
+   - `Fit` (`theaterZoomFit`): Dynamically calculates exact scale based on live viewport boundaries and SVG `viewBox` (`scale = Math.min(availW / vbW, availH / vbH)`), reporting calculated value in the badge.
 3. **Anti-Dismissal Rule (No Accidental Close)**:
    - Clicks or drag-releases on `.theater-viewport` or SVG canvas MUST NEVER close the modal!
    - **Only** the explicit Close button (`✕`) or the `Escape` key closes the theater.
@@ -211,7 +312,7 @@ The fullscreen theater view is implemented using native HTML5 `<dialog id="theat
 5. **Exact Scroll Position Restoration**:
    - Save `scrollY` before modal open.
    - Restore with `window.scrollTo({ top: savedScrollY, behavior: 'instant' })` on close.
-   - Highlight source diagram with `flash-focus` inside `requestAnimationFrame` (zero synchronous reflows).
+   - Highlight source diagram with `flash-focus` inside `requestAnimationFrame`.
 
 ---
 
@@ -242,7 +343,7 @@ A tactile acoustic feedback engine built directly on the Web Audio API without e
 | **Collapse (`collapse`)** | Descending exponential sine ramp | `780Hz → 420Hz` (`38ms`) | Snappy mechanical tuck / folding shut |
 | **Sidebar Open (`sidebarOpen`)** | Resonant ascending triangle glide | `440Hz → 760Hz` (`55ms`) | Smooth sliding panel reveal |
 | **Sidebar Close (`sidebarClose`)** | Solid mechanical sine latch | `680Hz → 320Hz` (`45ms`) | Secure latch click |
-| **Tactile Tap (`tap`)** | High-transient triangle pop | `920Hz → 560Hz` (`22ms`) | iOS-style segmented chip toggle |
+| **Tactile Tap (`tap`)** | High-transient triangle pop | `920Hz → 560Hz` (`22ms`) | iOS-style segmented chip toggle & back-to-top |
 | **Copy Code (`copySuccess`)** | Dual-tone arpeggiated chime | `C6 (1046Hz) + E6 (1318Hz)` (`90ms`) | Celebratory clipboard success chime |
 | **Search Trigger (`searchOpen`)** | Holographic digital ping | `1180Hz → 1480Hz` (`40ms`) | Futuristic HUD activation |
 | **Theme Change (`themeChange`)** | Cosmic frequency sweep | `600Hz → 1200Hz` (`60ms`) | Dimension / palette shift |
@@ -250,12 +351,13 @@ A tactile acoustic feedback engine built directly on the Web Audio API without e
 
 ### Acoustic Invariants:
 1. **Directional Consistency**: Main content chapters, problem cards (`<details class="problem-card">`), theory cards (`<details class="theory-details">`), nested researcher accordions (`<details class="md-details">`), and sidebar tree headers share the exact same `HapticAudio.expand()` and `HapticAudio.collapse()` curves.
-2. **Batch Expansion Guard**: During "Expand All" and "Collapse All", `STATE.isBatchExpanding` strictly mutes individual accordion blips to eliminate audio distortion and DOM thread starvation.
-3. **Audio Persistence**: State saved to `localStorage.getItem('dsa_audio_enabled')`, defaulting to ON for tactile mobile-like delight. Toggled via HUD `🔊 / 🔇`.
+2. **Back-to-Top Audio**: Back-to-top button activation uses `HapticAudio.tap()`. Never invoke non-existent `HapticAudio.click()`!
+3. **Batch Expansion Guard**: During "Expand All" and "Collapse All", `STATE.isBatchExpanding` strictly mutes individual accordion blips to eliminate audio distortion and DOM thread starvation.
+4. **Audio Persistence**: State saved to `localStorage.getItem('dsa_audio_enabled')`, defaulting to ON for tactile mobile-like delight. Toggled via HUD `🔊 / 🔇`.
 
 ---
 
-## 🧪 15-Gate Headless Automated Verification Suite
+## 🧪 16-Gate Headless Automated Verification Suite
 
 Run before every commit or push:
 ```bash
@@ -277,8 +379,8 @@ All 16 quality gates must pass deterministically:
 12. **Unicode Monospace Box-Drawing Alignment**: 100% of ASCII and Unicode box tables and cards aligned.
 13. **Collapsible Details & Zero Raw HTML Block Escaping**: Zero raw unrendered or escaped `&lt;details&gt;` / `&lt;summary&gt;` text; 100% semantic `<details class="md-details">` with `.md-summary` and `.md-details-body`.
 14. **Monospace Semantic Badging & ASCII Tree Geometric Alignment**: Zero occurrences of `⚡ TEXT Implementation`; 100% content-aware semantic badges (`dna-label-code`, `dna-label-matrix`, `dna-label-memory`, `dna-label-trace`, `dna-label-tree`, `dna-label-blueprint`, `dna-label-spec`); mathematical geometric centering of ASCII tree root nodes over `/ \` branches with zero snapped roots.
-15. **Hyperlink Integrity & Local Path Prevention**: Zero `file://` or `/Users/` paths; zero raw `.md` or `.py` file links; zero external GitHub jumps for internal files; zero notebook-style previous/next/chapter footer navigation artifacts; 100% internal fragment anchor (`href="#..."`) resolution to on-page elements.
-16. **Dynamic Adaptive Content Zoom & Stage Width Engine**: Dynamic screen-width bounded zoom calculation ($Z_{\text{fit}} = W_{\text{avail}} / W_{\text{base}}$: $100\%$ on mobile, up to $175\%$ on MacBook Pro, up to $200\%$ on external 4K displays); adaptive step ladder synthesizing 2 to 4 punchy steps (e.g. 25% increments); segmented glass stepper pill (`#hud-zoom-stepper`) with `−`, current `%` badge, `+`, and one-click `⤢ Fit`; icon-only 38px squircle `#floating-sidebar-toggle` recovering 98px of horizontal reading space; safe clearance gutter on `.content-area` (`padding-left: clamp(54px, 4vw, 72px)`) when sidebar is collapsed; mobile scroll containment (locked to 100% on $\le 768\text{px}$).
+15. **Universal Hyperlink Integrity & Local Path Prevention**: Zero `file://` or `/Users/` paths; zero raw `.md` or `.py` file links; zero external GitHub jumps for internal files; zero notebook-style previous/next/chapter footer navigation artifacts; 100% internal fragment anchor (`href="#..."`) resolution to on-page elements.
+16. **Dynamic Adaptive Content Zoom, Stage Width Engine & Floating Controls**: Dynamic screen-width bounded zoom calculation ($Z_{\text{fit}} = W_{\text{avail}} / W_{\text{base}}$: $100\%$ on mobile, up to $175\%$ on MacBook Pro, up to $200\%$ on external 4K displays); adaptive step ladder synthesizing 2 to 4 punchy steps (e.g. 25% increments); segmented glass stepper pill (`#hud-zoom-stepper`) with `−`, current `%` badge, `+`, and one-click `⤢ Fit`; icon-only 38px squircle `#floating-sidebar-toggle` recovering 98px of horizontal reading space; `#floating-back-to-top` 38px squircle with scroll awareness ($scrollY > 350\text{px}$), anchor clearing, and decoupled sidebar scrolling immunity; safe clearance gutter on `.content-area` (`padding-left: clamp(54px, 4vw, 72px)`) when sidebar is collapsed; mobile scroll containment (locked to 100% on $\le 768\text{px}$).
 
 ---
 
@@ -290,11 +392,11 @@ All 16 quality gates must pass deterministically:
 | `make docs-build` | Compiles 44 patterns and generates hydrated static site in `_site/` |
 | `make docs-serve` | Serves documentation locally on `http://localhost:4000/` |
 | `make docs-test` | Runs the full 16-gate headless verification suite |
-| `make test-zoom` | Audits dynamic adaptive content zoom and stage width fitting |
-| `make test-links` | Audits universal hyperlink integrity, SPA containment, and zero local path leaks |
-| `make test-trees` | Audits monospace semantic badges and ASCII tree alignments |
-| `make test-details` | Audits collapsible elements and raw HTML block invariants |
-| `make test-boxes` | Audits Unicode monospace box-drawing alignment |
+| `make test-zoom` | Audits dynamic adaptive content zoom and stage width fitting (Gate 16) |
+| `make test-links` | Audits universal hyperlink integrity, SPA containment, and zero local path leaks (Gate 15) |
+| `make test-trees` | Audits monospace semantic badges and ASCII tree alignments (Gate 14) |
+| `make test-details` | Audits collapsible elements and raw HTML block invariants (Gate 13) |
+| `make test-boxes` | Audits Unicode monospace box-drawing alignment (Gate 12) |
 | `make format-boxes` | Realigns and formats all ASCII/Unicode boxes across the repository in place |
 | `make test` | Runs AST syntax compilation across all Python implementations + box checks |
 | `make lint` | Runs Ruff linter + box alignment check |

@@ -1642,11 +1642,28 @@
     if (backToTopBtn) {
       backToTopBtn.addEventListener('click', () => {
         STATE.focalAnchor = null;
+        STATE.isProgrammaticScroll = true;
+
         window.scrollTo({
           top: 0,
           behavior: 'smooth'
         });
-        if (HapticAudio) HapticAudio.click();
+
+        if (HapticAudio && HapticAudio.tap) {
+          HapticAudio.tap();
+        }
+
+        const checkArrival = () => {
+          if (window.scrollY <= 5) {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+            STATE.isProgrammaticScroll = false;
+            if (backToTopBtn) backToTopBtn.classList.remove('visible');
+          } else {
+            STATE.programmaticScrollTimer = setTimeout(checkArrival, 50);
+          }
+        };
+        clearTimeout(STATE.programmaticScrollTimer);
+        STATE.programmaticScrollTimer = setTimeout(checkArrival, 80);
       });
     }
 
@@ -1720,9 +1737,17 @@
           }
         });
 
-        // Gently keep the active group visible in sidebar
+        // Gently keep the active group visible in sidebar without hijacking window smooth scroll
         if (targetGroup) {
-          targetGroup.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          const sidebar = document.getElementById('main-sidebar');
+          if (sidebar) {
+            const groupRect = targetGroup.getBoundingClientRect();
+            const sidebarRect = sidebar.getBoundingClientRect();
+            if (groupRect.top < sidebarRect.top || groupRect.bottom > sidebarRect.bottom) {
+              const diff = (groupRect.top - sidebarRect.top) - (sidebar.clientHeight / 2 - groupRect.height / 2);
+              sidebar.scrollTop += diff;
+            }
+          }
         }
       }
 
@@ -1865,6 +1890,11 @@
      * to preserve the focal reading position across zoom reflows with sub-pixel stability.
      */
     function captureViewportLandmark() {
+      // Top of page preservation: if at or near document top, pin directly to top: 0
+      if (window.scrollY <= 10) {
+        return { el: null, isTop: true, scrollRatio: 0 };
+      }
+
       // Re-use currently locked focal anchor if valid within active viewport bounds
       if (STATE.focalAnchor && STATE.focalAnchor.el && STATE.focalAnchor.el.isConnected) {
         const r = STATE.focalAnchor.el.getBoundingClientRect();
@@ -1959,7 +1989,9 @@
       void document.body.offsetHeight;
 
       // 3. Immediately restore focal anchor position to eliminate scroll drift
-      if (anchor && anchor.el) {
+      if (anchor && anchor.isTop) {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      } else if (anchor && anchor.el) {
         const currentTop = anchor.el.getBoundingClientRect().top;
         const drift = currentTop - anchor.viewportTop;
         if (Math.abs(drift) > 0.05) {
