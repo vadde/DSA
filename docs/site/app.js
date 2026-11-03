@@ -16,6 +16,8 @@
     sidebarWidth: parseInt(localStorage.getItem('dsa_sidebar_width'), 10) || 330,
     isSidebarCollapsed: localStorage.getItem('dsa_sidebar_collapsed') === 'true',
     audioEnabled: localStorage.getItem('dsa_audio_enabled') !== 'false', // Default ON for tactile haptic feedback
+    zoomLevel: parseFloat(localStorage.getItem('dsa_content_zoom')) || 1.0,
+    isFitMode: localStorage.getItem('dsa_content_fit') === 'true',
     isFocusMode: true, // Default to Focus Mode (one expanded chapter at a time)
     isBatchExpanding: false, // Prevents synchronous batch render freeze
     manifest: null,
@@ -356,6 +358,7 @@
       resizer.classList.remove('is-resizing');
       document.body.classList.remove('resizing-sidebar');
       localStorage.setItem('dsa_sidebar_width', STATE.sidebarWidth);
+      window.dispatchEvent(new CustomEvent('dsa:sidebartoggle'));
     }
 
     resizer.addEventListener('pointerup', stopResizing);
@@ -366,6 +369,7 @@
       STATE.sidebarWidth = DEFAULT_WIDTH;
       localStorage.setItem('dsa_sidebar_width', DEFAULT_WIDTH);
       HapticAudio.tap();
+      window.dispatchEvent(new CustomEvent('dsa:sidebartoggle'));
     });
   }
 
@@ -436,6 +440,7 @@
         HapticAudio.sidebarOpen();
         setTimeout(renderVisibleDiagrams, 300);
       }
+      window.dispatchEvent(new CustomEvent('dsa:sidebartoggle', { detail: { isCollapsed: willCollapse } }));
     }
 
     function updateSidebarToggleButtons(collapsed) {
@@ -1738,9 +1743,253 @@
   }
 
   // ---------------------------------------------------------------------------
-  // INITIALIZATION ON DOMContentLoaded
+  // 12. DYNAMIC ADAPTIVE CONTENT ZOOM & STAGE WIDTH ENGINE
   // ---------------------------------------------------------------------------
-  document.addEventListener('DOMContentLoaded', () => {
+  function initDynamicZoomEngine() {
+    const zoomStepper = document.getElementById('hud-zoom-stepper');
+    const zoomInBtn = document.getElementById('zoom-in-btn');
+    const zoomOutBtn = document.getElementById('zoom-out-btn');
+    const zoomBadge = document.getElementById('zoom-level-badge');
+    const zoomFitBtn = document.getElementById('zoom-fit-btn');
+    const stageWrapper = document.querySelector('.stage-wrapper');
+
+    if (!stageWrapper) return;
+
+    const BASE_STAGE_WIDTH = 1040;
+
+    /**
+     * Dynamically calculates available content width, max fit zoom factor,
+     * and an adaptive step ladder tailored specifically to the screen width.
+     */
+    function calculateDynamicFit() {
+      const windowWidth = window.innerWidth;
+      const isMobile = windowWidth <= 768;
+      const isCollapsed = document.body.classList.contains('sidebar-collapsed');
+
+      if (isMobile) {
+        return {
+          windowWidth,
+          availWidth: windowWidth,
+          fitZoom: 1.0,
+          fitPct: 100,
+          steps: [100],
+          isMobile: true
+        };
+      }
+
+      // Sidebar width
+      let sidebarWidth = 0;
+      if (!isCollapsed && windowWidth > 1024) {
+        const sidebar = document.getElementById('main-sidebar');
+        sidebarWidth = sidebar ? sidebar.offsetWidth : 330;
+      }
+
+      // Safe reading gutters (anti-occlusion clearance for floating navigation toggle)
+      const gutters = isCollapsed ? 224 : 96;
+      const availWidth = Math.max(BASE_STAGE_WIDTH, windowWidth - sidebarWidth - gutters);
+
+      // Raw dynamic zoom needed to fit available width
+      const rawFitZoom = Math.min(2.0, Math.max(1.0, availWidth / BASE_STAGE_WIDTH));
+      const fitPct = Math.round(rawFitZoom * 100);
+
+      // Dynamic adaptive step ladder (2 to 4 punchy steps with ~25% increments)
+      let steps;
+      if (fitPct <= 105) {
+        steps = [100];
+      } else if (fitPct <= 130) {
+        // e.g. 14" laptop or tablet landscape (2 steps)
+        steps = [100, fitPct];
+      } else if (fitPct <= 160) {
+        // e.g. 15"/16" laptop standard scaling (3 steps)
+        steps = [100, 125, fitPct];
+      } else if (fitPct <= 185) {
+        // e.g. 16" MacBook Pro Retina scaling (4 steps: 100% -> 125% -> 150% -> 175%)
+        steps = [100, 125, 150, fitPct];
+      } else {
+        // e.g. 2K/4K External Monitor (up to 200%)
+        steps = [100, 125, 150, 175, fitPct];
+      }
+
+      return {
+        windowWidth,
+        availWidth,
+        fitZoom: rawFitZoom,
+        fitPct,
+        steps,
+        isMobile: false
+      };
+    }
+
+    /**
+     * Applies the specified zoom factor and updates UI controls, aria labels,
+     * and storage.
+     */
+    function applyZoom(zoomScale, isFit = false, emitSound = false) {
+      const fitData = calculateDynamicFit();
+
+      if (fitData.isMobile) {
+        zoomScale = 1.0;
+        isFit = false;
+      } else {
+        zoomScale = Math.min(fitData.fitZoom, Math.max(1.0, zoomScale));
+      }
+
+      STATE.zoomLevel = zoomScale;
+      STATE.isFitMode = isFit;
+
+      const currentPct = Math.round(zoomScale * 100);
+
+      // Apply zoom to reading stage
+      stageWrapper.style.zoom = String(zoomScale);
+
+      // In Fit mode or when zoomed > 100%, allow stage to expand to fill available space
+      if (isFit || zoomScale > 1.0) {
+        stageWrapper.style.maxWidth = '100%';
+      } else {
+        stageWrapper.style.maxWidth = `${BASE_STAGE_WIDTH}px`;
+      }
+
+      // Update badge & buttons
+      if (zoomBadge) {
+        zoomBadge.textContent = `${currentPct}%`;
+        zoomBadge.title = currentPct === 100 ? 'Standard Reading Width (100%)' : `Current Zoom: ${currentPct}% (Click to Reset)`;
+        zoomBadge.setAttribute('aria-valuenow', String(currentPct));
+      }
+
+      if (zoomFitBtn) {
+        zoomFitBtn.classList.toggle('active', isFit);
+        zoomFitBtn.title = isFit ? `Dynamic Fit Active (${currentPct}%) — Click to Reset` : `Fit to Screen Width (${fitData.fitPct}%) (Alt+F)`;
+      }
+
+      if (zoomOutBtn) {
+        zoomOutBtn.disabled = currentPct <= 100;
+      }
+
+      if (zoomInBtn) {
+        zoomInBtn.disabled = currentPct >= fitData.fitPct;
+      }
+
+      // Persist preferences
+      localStorage.setItem('dsa_content_zoom', String(zoomScale));
+      localStorage.setItem('dsa_content_fit', String(isFit));
+
+      if (emitSound && HapticAudio) {
+        if (isFit || zoomScale > 1.0) {
+          HapticAudio.expand();
+        } else {
+          HapticAudio.collapse();
+        }
+      }
+    }
+
+    // Handlers
+    if (zoomInBtn) {
+      zoomInBtn.addEventListener('click', () => {
+        const fitData = calculateDynamicFit();
+        const currentPct = Math.round(STATE.zoomLevel * 100);
+        const nextStep = fitData.steps.find(s => s > currentPct + 2) || fitData.fitPct;
+        const willBeFit = (nextStep >= fitData.fitPct);
+        applyZoom(nextStep / 100, willBeFit, true);
+      });
+    }
+
+    if (zoomOutBtn) {
+      zoomOutBtn.addEventListener('click', () => {
+        const fitData = calculateDynamicFit();
+        const currentPct = Math.round(STATE.zoomLevel * 100);
+        const prevSteps = fitData.steps.filter(s => s < currentPct - 2);
+        const prevStep = prevSteps.length > 0 ? prevSteps[prevSteps.length - 1] : 100;
+        applyZoom(prevStep / 100, false, true);
+      });
+    }
+
+    if (zoomFitBtn) {
+      zoomFitBtn.addEventListener('click', () => {
+        if (STATE.isFitMode) {
+          applyZoom(1.0, false, true);
+        } else {
+          const fitData = calculateDynamicFit();
+          applyZoom(fitData.fitZoom, true, true);
+        }
+      });
+    }
+
+    if (zoomBadge) {
+      zoomBadge.addEventListener('click', () => {
+        applyZoom(1.0, false, true);
+      });
+    }
+
+    // Keyboard Shortcuts (Alt+=, Alt+-, Alt+0, Alt+F)
+    document.addEventListener('keydown', (e) => {
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+
+      if (e.altKey && !e.ctrlKey && !e.metaKey) {
+        if (e.key === '=' || e.key === '+') {
+          e.preventDefault();
+          zoomInBtn?.click();
+        } else if (e.key === '-' || e.key === '_') {
+          e.preventDefault();
+          zoomOutBtn?.click();
+        } else if (e.key === '0') {
+          e.preventDefault();
+          zoomBadge?.click();
+        } else if (e.key.toLowerCase() === 'f') {
+          e.preventDefault();
+          zoomFitBtn?.click();
+        }
+      }
+    });
+
+    // Window resize observer (re-adapts if in Fit mode or recalculates bounds)
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      if (resizeTimer) cancelAnimationFrame(resizeTimer);
+      resizeTimer = requestAnimationFrame(() => {
+        if (STATE.isFitMode) {
+          const fitData = calculateDynamicFit();
+          applyZoom(fitData.fitZoom, true, false);
+        } else {
+          applyZoom(STATE.zoomLevel, false, false);
+        }
+      });
+    }, { passive: true });
+
+    // Custom event for sidebar toggle
+    window.addEventListener('dsa:sidebartoggle', () => {
+      if (STATE.isFitMode) {
+        const fitData = calculateDynamicFit();
+        applyZoom(fitData.fitZoom, true, false);
+      } else {
+        applyZoom(STATE.zoomLevel, false, false);
+      }
+    });
+
+    // Expose on window for programmatic verification and testing
+    window.dsaDynamicZoom = {
+      calculateDynamicFit,
+      applyZoom,
+      getSteps: () => calculateDynamicFit().steps,
+      getFitPct: () => calculateDynamicFit().fitPct,
+      getCurrentPct: () => Math.round(STATE.zoomLevel * 100),
+      isFitMode: () => STATE.isFitMode
+    };
+
+    // Restore saved state on boot
+    if (STATE.isFitMode) {
+      const fitData = calculateDynamicFit();
+      applyZoom(fitData.fitZoom, true, false);
+    } else if (STATE.zoomLevel > 1.0) {
+      applyZoom(STATE.zoomLevel, false, false);
+    } else {
+      applyZoom(1.0, false, false);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // INITIALIZATION
+  // ---------------------------------------------------------------------------
+  function initAll() {
     initThemeEngine();
     initHaloEngine();
     initSidebarResizer();
@@ -1753,7 +2002,14 @@
     initZoomableCanvases();
     initLazyRenderers();
     initScrollSpy();
+    initDynamicZoomEngine();
 
     console.log('%c Ω DSA PATTERN BIBLE — Activated ', 'background:#00f2fe;color:#03020a;font-weight:bold;padding:4px 8px;border-radius:4px;');
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
 })();

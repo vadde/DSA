@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# test-docs.sh — 15-Gate Headless Verification Suite for DSA Documentation
+# test-docs.sh — 16-Gate Headless Verification Suite for DSA Documentation
 # Validates HTML markup, KaTeX math delimiters, Mermaid syntax & sizing,
 # draggable sidebar resizer, Year 2500 mobile navigation drawer,
 # table overflow containment, relative subpath invariants, bundle integrity,
 # Unicode monospace box-drawing alignment, collapsible details invariants,
-# monospace semantic badging & ASCII tree geometric alignment, and
-# universal hyperlink integrity & zero local filesystem path leaks.
+# monospace semantic badging & ASCII tree geometric alignment,
+# universal hyperlink integrity & zero local filesystem path leaks, and
+# dynamic adaptive content zoom & stage width fitting invariants.
 # ==============================================================================
 set -euo pipefail
 
@@ -22,7 +23,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 echo "╔══════════════════════════════════════════════════════════════════╗"
-echo "║  🧪 Running DSA Living Documentation 15-Gate Audit Suite         ║"
+echo "║  🧪 Running DSA Living Documentation 16-Gate Audit Suite         ║"
 echo "╚══════════════════════════════════════════════════════════════════╝"
 
 # Ensure _site is built
@@ -263,7 +264,14 @@ echo -e "${CYAN}→ 15. Auditing Hyperlink Integrity & Local Path Prevention...$
 python3 "${SCRIPT_DIR}/audit_links_and_anchors.py"
 echo -e "   ${GREEN}✅ 100% hyperlink integrity & zero local path leaks verified.${NC}"
 
+# ------------------------------------------------------------------------------
+# Gate 16: Dynamic Adaptive Content Zoom & Stage Width Engine
+# ------------------------------------------------------------------------------
+echo -e "${CYAN}→ 16. Auditing Dynamic Adaptive Zoom & Stage Width Engine...${NC}"
+python3 "${SCRIPT_DIR}/audit_dynamic_zoom_engine.py"
+echo -e "   ${GREEN}✅ 100% dynamic zoom synthesis & clearance invariants verified.${NC}"
+
 echo ""
 echo "╔══════════════════════════════════════════════════════════════════╗"
-echo -e "║  ${GREEN}🎉 ALL 15 QUALITY GATES PASSED DETERMINISTICALLY!              ${NC}║"
+echo -e "║  ${GREEN}🎉 ALL 16 QUALITY GATES PASSED DETERMINISTICALLY!              ${NC}║"
 echo "╚══════════════════════════════════════════════════════════════════╝"

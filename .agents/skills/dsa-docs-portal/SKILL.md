@@ -262,7 +262,7 @@ Run before every commit or push:
 make docs-test
 ```
 
-All 15 quality gates must pass deterministically:
+All 16 quality gates must pass deterministically:
 1. **Core Assets Presence**: `index.html`, `style.css`, `app.js`, `catalog/manifest.json`.
 2. **Catalog Completeness & Search Index**: 44 patterns, 288+ indexed problems.
 3. **Mermaid Label Escaping**: No unescaped `<` or `>` inside node labels.
@@ -278,6 +278,7 @@ All 15 quality gates must pass deterministically:
 13. **Collapsible Details & Zero Raw HTML Block Escaping**: Zero raw unrendered or escaped `&lt;details&gt;` / `&lt;summary&gt;` text; 100% semantic `<details class="md-details">` with `.md-summary` and `.md-details-body`.
 14. **Monospace Semantic Badging & ASCII Tree Geometric Alignment**: Zero occurrences of `⚡ TEXT Implementation`; 100% content-aware semantic badges (`dna-label-code`, `dna-label-matrix`, `dna-label-memory`, `dna-label-trace`, `dna-label-tree`, `dna-label-blueprint`, `dna-label-spec`); mathematical geometric centering of ASCII tree root nodes over `/ \` branches with zero snapped roots.
 15. **Hyperlink Integrity & Local Path Prevention**: Zero `file://` or `/Users/` paths; zero raw `.md` or `.py` file links; zero external GitHub jumps for internal files; zero notebook-style previous/next/chapter footer navigation artifacts; 100% internal fragment anchor (`href="#..."`) resolution to on-page elements.
+16. **Dynamic Adaptive Content Zoom & Stage Width Engine**: Dynamic screen-width bounded zoom calculation ($Z_{\text{fit}} = W_{\text{avail}} / W_{\text{base}}$: $100\%$ on mobile, up to $175\%$ on MacBook Pro, up to $200\%$ on external 4K displays); adaptive step ladder synthesizing 2 to 4 punchy steps (e.g. 25% increments); segmented glass stepper pill (`#hud-zoom-stepper`) with `−`, current `%` badge, `+`, and one-click `⤢ Fit`; safe clearance gutter on `.content-area` (`padding-left: clamp(72px, 8vw, 156px)`) when sidebar is collapsed preventing `#floating-sidebar-toggle` from overlapping reading content; mobile scroll containment (locked to 100% on $\le 768\text{px}$).
 
 ---
 
@@ -288,7 +289,8 @@ All 15 quality gates must pass deterministically:
 | `make help` | Interactive targets menu |
 | `make docs-build` | Compiles 44 patterns and generates hydrated static site in `_site/` |
 | `make docs-serve` | Serves documentation locally on `http://localhost:4000/` |
-| `make docs-test` | Runs the full 15-gate headless verification suite |
+| `make docs-test` | Runs the full 16-gate headless verification suite |
+| `make test-zoom` | Audits dynamic adaptive content zoom and stage width fitting |
 | `make test-links` | Audits universal hyperlink integrity, SPA containment, and zero local path leaks |
 | `make test-trees` | Audits monospace semantic badges and ASCII tree alignments |
 | `make test-details` | Audits collapsible elements and raw HTML block invariants |

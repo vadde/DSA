@@ -419,6 +419,147 @@ body {
   color: #000000;
 }
 
+/* DYNAMIC READING CANVAS ZOOM & FIT STEPPER */
+.hud-zoom-stepper {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--bg-card-border);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  gap: 2px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.zoom-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--t-fast) ease;
+}
+
+.zoom-btn:hover:not(:disabled) {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.zoom-btn:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+.zoom-level-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: transparent;
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  min-width: 48px;
+  text-align: center;
+  transition: all var(--t-fast) ease;
+}
+
+.zoom-level-badge:hover {
+  background: rgba(0, 242, 254, 0.12);
+  color: #ffffff;
+}
+
+.zoom-fit-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--t-fast) ease;
+}
+
+.zoom-fit-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.zoom-fit-btn.active {
+  background: rgba(0, 242, 254, 0.18);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.35);
+}
+
+[data-theme="mica"] .hud-zoom-stepper {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(30, 41, 59, 0.18);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="mica"] .zoom-btn {
+  color: #475569;
+}
+
+[data-theme="mica"] .zoom-btn:hover:not(:disabled) {
+  color: #0f172a;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="mica"] .zoom-level-badge {
+  color: var(--accent-blue);
+}
+
+[data-theme="mica"] .zoom-level-badge:hover {
+  background: rgba(14, 165, 233, 0.12);
+  color: #0f172a;
+}
+
+[data-theme="mica"] .zoom-fit-btn {
+  color: #475569;
+}
+
+[data-theme="mica"] .zoom-fit-btn:hover {
+  color: #0f172a;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="mica"] .zoom-fit-btn.active {
+  background: rgba(14, 165, 233, 0.16);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.25);
+}
+
+[data-theme="holo"] .zoom-fit-btn.active {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: var(--accent-amber);
+  color: var(--accent-amber);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.35);
+}
+
+[data-theme="matrix"] .zoom-fit-btn.active {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: var(--accent-emerald);
+  color: var(--accent-emerald);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.35);
+}
+
 .hud-tool-btn {
   width: 36px;
   height: 36px;
@@ -637,8 +778,8 @@ body {
   }
 
   body.sidebar-collapsed .content-area {
-    padding-left: 68px;
-    padding-right: 68px;
+    padding-left: clamp(72px, 8vw, 156px);
+    padding-right: clamp(24px, 4vw, 68px);
   }
 
   body.sidebar-collapsed .floating-sidebar-toggle {
@@ -965,11 +1106,14 @@ body.resizing-sidebar .sidebar {
 }
 
 .stage-wrapper {
-  max-width: 1040px;
+  max-width: var(--stage-max-width, 1040px);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 48px;
+  transform-origin: top center;
+  transition: max-width var(--t-normal) var(--ease-spring);
+}
 }
 
 /* -----------------------------------------------------------------------------
@@ -2440,6 +2584,10 @@ tr:hover td {
 @media (max-width: 1024px) {
   .header-telemetry-cluster {
     display: none;
+  }
+
+  .hud-zoom-stepper {
+    display: none !important;
   }
 
   .mobile-nav-toggle {

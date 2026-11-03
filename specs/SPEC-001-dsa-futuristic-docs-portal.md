@@ -262,6 +262,12 @@ Every build is validated before commit or deployment across 10 deterministic gat
 | **Gate 8** | **Table & Math Containment** | Audits all `<table>` elements wrapped in `.table-wrapper` with touch scrolling and min-width. |
 | **Gate 9** | **Relative Path Integrity** | Confirms zero hardcoded root paths (`/assets/`, `/style.css`) to guarantee flawless execution under `/DSA/`. |
 | **Gate 10** | **Bundle Size & Integrity** | Confirms `_site/` build artifacts pass size thresholds and loads under 100ms. |
+| **Gate 11** | **Mermaid Diagram ID Uniqueness** | Enforces globally unique IDs and zero legacy navigation footer leaks in SVGs. |
+| **Gate 12** | **Unicode Box-Drawing Alignment** | Enforces UAX #11 East Asian Width monospace alignment across all cards and tables. |
+| **Gate 13** | **Collapsible Details Invariants** | Enforces tag balance and zero raw unrendered HTML block leaks. |
+| **Gate 14** | **Monospace Badging & Trees** | Validates content-aware badging & ASCII tree geometric centering ($\le 1.0$ char deviation). |
+| **Gate 15** | **Hyperlink Integrity & Local Paths** | Asserts zero local filesystem paths, zero external repo jumps, and 100% internal fragment anchor resolution. |
+| **Gate 16** | **Dynamic Adaptive Zoom & Fit Engine** | Asserts dynamic step synthesis, available width calculation, mobile scroll containment, and floating tile anti-occlusion. |
 
 ---
 
@@ -429,3 +435,11 @@ jobs:
   - [x] Purged all notebook-style previous/next/chapter footer navigation links and tables from compiled documentation.
   - [x] Prevented SPA breakages: eliminated raw `.md`, `.py`, relative path links, and external GitHub jumps for files embedded on the page.
   - [x] Created `scripts/audit_links_and_anchors.py` and elevated test suite to a **15-Gate Automated Audit Suite** verifying 100% internal anchor resolution and zero link leakage.
+- [x] **Phase 20: Dynamic Adaptive Content Zoom & Stage Width Engine**
+  - [x] Implemented dynamic screen-width bounded zoom calculation: dynamically derives $Z_{\text{fit}} = W_{\text{avail}} / W_{\text{base}}$ ($100\%$ on mobile, up to $175\%$ on MacBook Pro, up to $200\%$ on external 4K monitors).
+  - [x] Designed adaptive step ladder synthesizing 2 to 4 punchy steps (e.g. 25% increments: $100\% \to 125\% \to 150\% \to 175\%$ on MacBook Pro; $100\% \to 125\% \to 150\% \to 175\% \to 200\%$ on 4K display; 2 steps on compact laptops).
+  - [x] Built top HUD segmented glass stepper pill (`#hud-zoom-stepper`) with `−`, current `%` badge, `+`, and one-click `⤢ Fit` button.
+  - [x] Enforced anti-occlusion clearance gutter on `.content-area` (`padding-left: clamp(72px, 8vw, 156px)`) when sidebar is collapsed to permanently prevent `#floating-sidebar-toggle` from overlapping reading content.
+  - [x] Added mobile/tablet safeguards locking zoom to 100% on viewports $\le 768\text{px}$ to eliminate accidental horizontal scroll.
+  - [x] Integrated tactile audio feedback with `HapticAudio.tap()` and keyboard shortcuts (`Alt+=`, `Alt+-`, `Alt+0`, `Alt+F`).
+  - [x] Built `scripts/audit_dynamic_zoom_engine.py` (Gate 16) and integrated into `scripts/test-docs.sh`, `Makefile`, and `.github/workflows/ci.yml`.
