@@ -3,11 +3,11 @@
     "enabled": true,
     "PreToolUse": [
       {
-        "matcher": "run_command|grep_search",
+        "matcher": "run_command|grep_search|view_file",
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/.agents/scripts/hook_pre_tool.sh",
+            "command": "./scripts/hook_pre_tool.sh",
             "timeout": 5
           }
         ]
@@ -16,14 +16,14 @@
     "PreInvocation": [
       {
         "type": "command",
-        "command": "/Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/.agents/scripts/hook_pre_invocation.sh",
+        "command": "./scripts/hook_pre_invocation.sh",
         "timeout": 5
       }
     ],
     "Stop": [
       {
         "type": "command",
-        "command": "/Users/aparv/Library/CloudStorage/OneDrive-Personal/G-Drive/Interviews/knowledge/DSA/.agents/scripts/hook_stop.sh",
+        "command": "./scripts/hook_stop.sh",
         "timeout": 5
       }
     ]
