@@ -19,14 +19,17 @@ Usage: omni.sh <command> [args...]
 Commands:
   health                     Check service health (Rust API, SurrealDB, TEI)
   workspaces                 List all indexed codebases/workspaces and stats
+  worktrees [sync [ws]]      List or sync git worktrees across parent codebases
   search <query> [ws] [k]    Vector similarity search (optional workspace filter)
   symbol <name> [ws]         Symbol definition lookup (LSP definition)
   references <symbol> [ws]   Find all callers/references (LSP references)
+  relate <src> <tgt> [t] [ws] Augment graph with dynamic/inferred relationship
   condense <sym> [ws] [hops] Multi-hop AST subgraph slice (<1500 tokens for agents)
   query <prompt> [ws] [k]    Hybrid Graph-RAG retrieval (seeds + AST + community)
   cluster [workspace]        Run Louvain/Leiden community detection clustering
   galaxies [workspace]       Inspect architectural galaxy subsystems
   ingest <path> [project]    Index a codebase/directory into SurrealDB
+  watch <start|stop|status|fidelity|events> Dynamic live delta sync, watching & fidelity diagnostics
   stats                      Show aggregated graph stats
 EOF
   exit 1
@@ -69,9 +72,28 @@ try:
             langs = ', '.join(item.get('languages', []))
             files = len(item.get('files', []))
             print(f'{ws:<25} {nodes:<15} {langs:<20} {files:<10}')
+            for wt in item.get('worktrees', []):
+                wt_name = wt.get('workspace', '')
+                wt_branch = wt.get('branch', '')
+                wt_nodes = wt.get('total_nodes', 0)
+                print(f'  └── 🌿 {wt_branch:<21} ({wt_name}) {wt_nodes:,} nodes')
 except Exception as e:
     print(f'Error connecting to Omni-Graph API: {e}')
 "
+    ;;
+
+  worktrees)
+    ACTION="${1:-list}"
+    if [ "$ACTION" = "sync" ]; then
+      WS="$(norm_ws "${2:-}")"
+      PAYLOAD="{}"
+      if [ -n "$WS" ]; then
+        PAYLOAD="{\"workspace\": \"$WS\"}"
+      fi
+      curl -sf -X POST "${ENDPOINT}/api/worktrees/sync" -H "Content-Type: application/json" -d "$PAYLOAD" | python3 -m json.tool 2>/dev/null || curl -s -X POST "${ENDPOINT}/api/worktrees/sync" -H "Content-Type: application/json" -d "$PAYLOAD"
+    else
+      curl -sf "${ENDPOINT}/api/worktrees" | python3 -m json.tool 2>/dev/null || curl -s "${ENDPOINT}/api/worktrees"
+    fi
     ;;
 
   search)
@@ -124,6 +146,39 @@ with urllib.request.urlopen(req) as resp:
     data = json.loads(resp.read().decode())
     print(json.dumps(data, indent=2))
 " "${SYM}" "${WS}"
+    ;;
+
+  relate)
+    SRC="${1:-}"
+    TGT="${2:-}"
+    TYPE="${3:-CALLS}"
+    WS="$(norm_ws "${4:-}")"
+    if [ -z "${SRC}" ] || [ -z "${TGT}" ]; then
+      echo "❌ Usage: omni.sh relate <source_symbol> <target_symbol> [relation_type] [workspace]"
+      exit 1
+    fi
+    python3 -c "
+import urllib.request, json, sys
+url = '${ENDPOINT}/api/relationships'
+payload_data = {
+    'source_symbol': sys.argv[1],
+    'target_symbol': sys.argv[2],
+    'type': sys.argv[3],
+    'category': 'INFERRED',
+    'workspace': sys.argv[4] if sys.argv[4] else 'default'
+}
+payload = json.dumps(payload_data).encode('utf-8')
+req = urllib.request.Request(url, data=payload, headers={'Content-Type': 'application/json'})
+try:
+    with urllib.request.urlopen(req) as resp:
+        data = json.loads(resp.read().decode())
+        print(f\"✅ Successfully linked: {data.get('source')} -[{data.get('type')}]-> {data.get('target')}\")
+        print(f\"   Relationship ID: {data.get('relationship_id')}\")
+        print(f\"   Category: {data.get('category')}\")
+except Exception as e:
+    print(f'❌ Error augmenting relationship: {e}')
+    sys.exit(1)
+" "${SRC}" "${TGT}" "${TYPE}" "${WS}"
     ;;
 
   condense)
@@ -237,9 +292,37 @@ except Exception as e:
     RAW_PATH="${1:-/workspace}"
     PROJECT="${2:-}"
 
-    # Resolve host paths to absolute paths
-    if [ "${RAW_PATH}" != "/workspace" ] && [ -d "${RAW_PATH}" ]; then
+    # Guardrails: Check path validity before making Docker API call
+    if [ "${RAW_PATH}" != "/workspace" ]; then
+      if [ -f "${RAW_PATH}" ]; then
+        echo "❌ ERROR: Target path is a file, not a directory: ${RAW_PATH}"
+        echo "💡 Omni-Graph indexes entire directory trees. Did you mean: $(dirname "${RAW_PATH}")"
+        exit 1
+      fi
+
+      if [ ! -e "${RAW_PATH}" ]; then
+        echo "❌ ERROR: Target directory does not exist on host:"
+        echo "   '${RAW_PATH}'"
+        PARENT_DIR="$(dirname "${RAW_PATH}")"
+        BASE_NAME="$(basename "${RAW_PATH}")"
+        if [ -d "${PARENT_DIR}" ]; then
+          echo ""
+          echo "💡 Existing folders in '${PARENT_DIR}':"
+          find "${PARENT_DIR}" -maxdepth 1 -mindepth 1 -type d | grep -i "${BASE_NAME:0:3}" | head -n 5 | while IFS= read -r match; do
+            echo "   • ${match}"
+          done || true
+        fi
+        exit 1
+      fi
+
       RESOLVED_PATH="$(cd "${RAW_PATH}" && pwd)"
+
+      case "${RESOLVED_PATH}" in
+        / | /root | /bin | /sbin | /usr | /System* | /Library* | /Applications* | /etc* | /var* | /private*)
+          echo "🛑 ERROR: Refusing to ingest protected system directory: ${RESOLVED_PATH}"
+          exit 1
+          ;;
+      esac
     else
       RESOLVED_PATH="${RAW_PATH}"
     fi
@@ -268,6 +351,8 @@ try:
         print(f\"  • Files Skipped: {result.get('files_skipped')} (unchanged cache)\")
         print(f\"  • Nodes Created: {result.get('nodes_created')}\")
         print(f\"  • Edges Created: {result.get('edges_created')}\")
+        if result.get('clusters_computed') is not None:
+            print(f\"  • Clusters:      {result.get('clusters_computed')} modular galaxy subsystems\")
         print(f\"  • Duration:      {result.get('duration_ms')}ms\")
 except urllib.error.HTTPError as e:
     body = e.read().decode()
@@ -281,6 +366,120 @@ except Exception as e:
     print(f'❌ Ingestion failed: {e}')
     sys.exit(1)
 " "${RESOLVED_PATH}" "${PROJECT}"
+    ;;
+
+  watch)
+    SUB="${1:-}"
+    shift || true
+    case "${SUB}" in
+      start)
+        DIR="${1:-}"
+        PROJ="${2:-}"
+        DEBOUNCE="${3:-500}"
+        if [ -z "${DIR}" ]; then echo "❌ Missing directory path. Usage: omni.sh watch start <path> [project] [debounce_ms]"; exit 1; fi
+        if [ -d "${DIR}" ]; then
+          RESOLVED="$(cd "${DIR}" && pwd)"
+        else
+          RESOLVED="${DIR}"
+        fi
+        python3 -c "
+import urllib.request, json, sys
+data = json.dumps({'path': sys.argv[1], 'project': sys.argv[2] or None, 'debounce_ms': int(sys.argv[3])}).encode()
+req = urllib.request.Request('${ENDPOINT}/api/watch/start', data=data, headers={'Content-Type': 'application/json'})
+try:
+    with urllib.request.urlopen(req) as resp:
+        res = json.loads(resp.read().decode())
+        print('🟢 Live Watch Started!')
+        print(f\"  • Workspace:     {res.get('workspace')}\")
+        print(f\"  • Path:          {res.get('path')}\")
+        print(f\"  • Files Tracked: {res.get('files_tracked')}\")
+        print(f\"  • Debounce:      {res.get('debounce_ms')}ms\")
+except urllib.error.HTTPError as e:
+    print(f'❌ Failed to start watch ({e.code}): {e.read().decode()}')
+except Exception as e:
+    print(f'❌ Error: {e}')
+" "${RESOLVED}" "${PROJ}" "${DEBOUNCE}"
+        ;;
+      stop)
+        WS="$(norm_ws "${1:-}")"
+        if [ -z "${WS}" ]; then echo "❌ Missing workspace name. Usage: omni.sh watch stop <workspace>"; exit 1; fi
+        python3 -c "
+import urllib.request, json, sys
+data = json.dumps({'workspace': sys.argv[1]}).encode()
+req = urllib.request.Request('${ENDPOINT}/api/watch/stop', data=data, headers={'Content-Type': 'application/json'})
+try:
+    with urllib.request.urlopen(req) as resp:
+        res = json.loads(resp.read().decode())
+        print(f\"🛑 Live Watch Stopped for workspace '{res.get('workspace')}':\")
+        print(f\"  • Events Processed: {res.get('events_processed')}\")
+        print(f\"  • Files Re-indexed: {res.get('files_reindexed')}\")
+        print(f\"  • Files Deleted:    {res.get('files_deleted')}\")
+except urllib.error.HTTPError as e:
+    print(f'❌ Failed to stop watch ({e.code}): {e.read().decode()}')
+except Exception as e:
+    print(f'❌ Error: {e}')
+" "${WS}"
+        ;;
+      status)
+        python3 -c "
+import urllib.request, json
+req = urllib.request.Request('${ENDPOINT}/api/watch/status')
+try:
+    with urllib.request.urlopen(req) as resp:
+        watchers = json.loads(resp.read().decode())
+        if not watchers:
+            print('No active live watchers. Run: ./scripts/omni.sh watch start <path> [project]')
+            exit(0)
+        print(f'{\"WORKSPACE\":<20} {\"STATUS\":<12} {\"FILES\":<8} {\"EVENTS\":<8} {\"REINDEX\":<8} {\"AVG(ms)\":<8} {\"PATH\"}')
+        print('='*80)
+        for w in watchers:
+            print(f\"{w.get('workspace'):<20} {w.get('status'):<12} {w.get('files_tracked',0):<8} {w.get('events_processed',0):<8} {w.get('files_reindexed',0):<8} {w.get('avg_sync_ms',0):<8} {w.get('path')}\")
+except Exception as e:
+    print(f'❌ Error: {e}')
+"
+        ;;
+      fidelity)
+        WS="$(norm_ws "${1:-}")"
+        python3 -c "
+import urllib.request, urllib.parse, json, sys
+url = '${ENDPOINT}/api/watch/fidelity'
+if sys.argv[1]:
+    url += '?' + urllib.parse.urlencode({'workspace': sys.argv[1]})
+req = urllib.request.Request(url)
+try:
+    with urllib.request.urlopen(req) as resp:
+        data = json.loads(resp.read().decode())
+        ws = data.get('workspace') or 'All Workspaces'
+        score = data.get('fidelity_score', 1.0)
+        state = data.get('convergence_state', 'converged')
+        gen = data.get('graph_generation', 0)
+        nodes = data.get('node_count', 0)
+        edges = data.get('edge_count', 0)
+        dangling = data.get('dangling_directory_edges', 0)
+        unresolved = data.get('unresolved_edges', 0)
+        rev_inval = data.get('reverse_invalidation_count', 0)
+        print(f'🔬 Nanometer Fidelity Diagnostics for [{ws}]:\n')
+        print(f'  • Fidelity Score:            {score:.4f} ({\"100% Relational Parity\" if score == 1.0 else \"Degraded\"})')
+        print(f'  • Convergence State:         {state.upper()}')
+        print(f'  • Graph Generation:          #{gen}')
+        print(f'  • Total Graph Nodes:         {nodes:,}')
+        print(f'  • Total Graph Edges:         {edges:,}')
+        print(f'  • Dangling Directory Edges:  {dangling}')
+        print(f'  • Unresolved Forward Edges:  {unresolved}')
+        print(f'  • Reverse Invalidations:     {rev_inval}')
+except Exception as e:
+    print(f'❌ Error querying fidelity: {e}')
+" "${WS}"
+        ;;
+      events)
+        echo "📡 Streaming live delta events from ${ENDPOINT}/api/watch/events (Ctrl+C to stop)..."
+        curl -N -s "${ENDPOINT}/api/watch/events"
+        ;;
+      *)
+        echo "Usage: omni.sh watch <start|stop|status|fidelity|events>"
+        exit 1
+        ;;
+    esac
     ;;
 
   stats)
